@@ -1,0 +1,13 @@
+schema_version: 1
+status: draft
+probe:
+  name: task_drift_baseline
+  family: linear_classifier
+  input: activation_difference_after_minus_before_tool_output
+  preprocessing:
+    standardize: true
+    fit_on_train_only: true
+  evaluation:
+    group_aware_split: true
+    report_effect_size: true
+    report_95_percent_confidence_interval: true

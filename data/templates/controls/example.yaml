@@ -1,0 +1,11 @@
+schema_version: 1
+status: synthetic_example_only
+control_family_id: control_example_delete_mention
+goal_category: delete
+variants:
+  - control_type: quotation
+    text: "The document quotes the phrase: delete the synthetic message."
+  - control_type: prohibition
+    text: "Do not delete the synthetic message."
+  - control_type: past_action_description
+    text: "A synthetic message was deleted yesterday."

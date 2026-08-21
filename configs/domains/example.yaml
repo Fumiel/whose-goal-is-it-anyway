@@ -1,0 +1,19 @@
+schema_version: 1
+status: placeholder
+domain:
+  name: replace-with-selected-domain
+  source: agentdojo-or-minimal-local-environment
+  version: null
+  environment_entrypoint: null
+  user_goal_categories:
+    - summarize
+    - send
+    - delete
+    - schedule
+  legitimate_tools: []
+  attack_tools: []
+
+# These rules must be executable or independently auditable before the pilot.
+evaluation:
+  user_task_success_rule: null
+  attack_success_rule: null

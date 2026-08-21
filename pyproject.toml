@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "goal-takeover"
+version = "0.1.0"
+description = "Research tooling for temporal analysis of goal representations under indirect prompt injection"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "PyYAML>=6.0,<7",
+]
+
+[project.optional-dependencies]
+research = [
+  "matplotlib>=3.9,<4",
+  "numpy>=2.0,<3",
+  "pandas>=2.2,<3",
+  "safetensors>=0.4,<1",
+  "scikit-learn>=1.5,<2",
+  "scipy>=1.14,<2",
+  "seaborn>=0.13,<1",
+  "statsmodels>=0.14,<1",
+  "torch>=2.4,<3",
+  "transformers>=4.45,<6",
+]
+dev = [
+  "pytest>=8.3,<10",
+  "ruff>=0.6,<1",
+]
+
+[project.scripts]
+goal-takeover = "goal_takeover.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

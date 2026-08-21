@@ -1,0 +1,21 @@
+schema_version: 1
+status: auxiliary
+experiment:
+  name: stochastic_attack_success_rate
+  repetitions_per_condition: 10
+
+selection:
+  prioritize_near_zero_tool_margin: true
+  include_representative_condition_per_task_attack: true
+
+decoding:
+  do_sample: true
+  temperature: null
+  top_p: null
+
+capture:
+  save_full_activations: false
+  save_outcomes: true
+  save_tool_log_probabilities: true
+
+# temperature and top_p must be fixed after the pilot and before evaluation.

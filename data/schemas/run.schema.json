@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "run.schema.json",
+  "title": "Experiment run record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "condition_id",
+    "git_commit",
+    "model",
+    "tokenizer",
+    "seed",
+    "decoding",
+    "has_attack",
+    "user_task_success",
+    "attack_success",
+    "outcome_group",
+    "baseline_failure",
+    "stage_positions"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "condition_id": { "type": "string", "minLength": 1 },
+    "git_commit": { "type": "string", "minLength": 7 },
+    "model": { "$ref": "#/$defs/versionedArtifact" },
+    "tokenizer": { "$ref": "#/$defs/versionedArtifact" },
+    "seed": { "type": "integer" },
+    "decoding": { "type": "object" },
+    "has_attack": { "type": "boolean" },
+    "user_task_success": { "type": "boolean" },
+    "attack_success": { "type": "boolean" },
+    "outcome_group": { "enum": ["A", "B", "C", "D", null] },
+    "baseline_failure": { "type": "boolean" },
+    "stage_positions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/stagePosition" }
+    },
+    "tool_scores": {
+      "type": "object",
+      "properties": {
+        "attack_sequence_log_probability": { "type": ["number", "null"] },
+        "legitimate_sequence_log_probability": { "type": "number" },
+        "attack_minus_legitimate_margin": { "type": ["number", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["artifact_id", "kind", "sha256", "bytes"],
+        "properties": {
+          "artifact_id": { "type": "string" },
+          "kind": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "bytes": { "type": "integer", "minimum": 0 }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "$defs": {
+    "versionedArtifact": {
+      "type": "object",
+      "required": ["name", "revision"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "revision": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "stagePosition": {
+      "type": "object",
+      "required": ["stage", "token_index", "token_id", "sequence_length", "selection_rule"],
+      "properties": {
+        "stage": {
+          "enum": [
+            "after_user_instruction",
+            "before_external_tool_call",
+            "after_tool_output",
+            "before_next_action",
+            "before_final_tool_call"
+          ]
+        },
+        "token_index": { "type": "integer", "minimum": 0 },
+        "token_id": { "type": "integer", "minimum": 0 },
+        "sequence_length": { "type": "integer", "minimum": 1 },
+        "selection_rule": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

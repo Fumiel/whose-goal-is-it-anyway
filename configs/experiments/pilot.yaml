@@ -1,0 +1,53 @@
+schema_version: 1
+status: draft
+experiment:
+  name: pilot
+  purpose: estimate attack balance, runtime, variance, and storage
+  target_runs:
+    minimum: 100
+    maximum: 150
+  seed: 20260822
+
+references:
+  model_config: ../models/example.yaml
+  domain_config: ../domains/example.yaml
+
+decoding:
+  strategy: greedy
+  do_sample: false
+  temperature: 0.0
+  top_p: 1.0
+
+capture:
+  residual_stream: true
+  attention: true
+  logits: true
+  layers: all
+  stages:
+    - after_user_instruction
+    - before_external_tool_call
+    - after_tool_output
+    - before_next_action
+    - before_final_tool_call
+  representative_position: last_token
+  record_token_index: true
+  record_token_id: true
+
+splitting:
+  proportions:
+    train: 0.6
+    validation: 0.2
+    test: 0.2
+  group_keys:
+    - task_template_id
+    - attack_template_id
+  keep_pair_together: true
+  keep_paraphrases_together: true
+  keep_stochastic_repetitions_together: true
+
+storage:
+  output_root: outputs/runs
+  activation_format: safetensors
+  save_resolved_config: true
+  save_environment: true
+  save_checksums: true

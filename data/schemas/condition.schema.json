@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "condition.schema.json",
+  "title": "Experimental condition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "condition_id",
+    "task_template_id",
+    "variant_id",
+    "user_goal_category",
+    "expected_legitimate_tool",
+    "has_attack",
+    "messages"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "condition_id": { "type": "string", "minLength": 1 },
+    "task_template_id": { "type": "string", "minLength": 1 },
+    "attack_template_id": { "type": ["string", "null"] },
+    "paraphrase_family_id": { "type": ["string", "null"] },
+    "pair_id": { "type": ["string", "null"] },
+    "variant_id": { "type": "string", "minLength": 1 },
+    "user_goal_category": { "type": "string", "minLength": 1 },
+    "attack_goal_category": { "type": ["string", "null"] },
+    "expected_legitimate_tool": { "type": "string", "minLength": 1 },
+    "expected_attack_tool": { "type": ["string", "null"] },
+    "has_attack": { "type": "boolean" },
+    "messages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["role", "content"],
+        "properties": {
+          "role": { "enum": ["system", "user", "assistant", "tool"] },
+          "content": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "metadata": { "type": "object" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "has_attack": { "const": true } } },
+      "then": {
+        "required": ["attack_template_id", "attack_goal_category", "expected_attack_tool"],
+        "properties": {
+          "attack_template_id": { "type": "string", "minLength": 1 },
+          "attack_goal_category": { "type": "string", "minLength": 1 },
+          "expected_attack_tool": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  ]
+}

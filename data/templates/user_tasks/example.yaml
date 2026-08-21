@@ -1,0 +1,11 @@
+schema_version: 1
+status: synthetic_example_only
+task_template_id: task_example_summarize
+goal_category: summarize
+instruction: "Summarize the selected synthetic message."
+expected_legitimate_tool: read_message
+variables:
+  message_id:
+    - synthetic-message-001
+
+# Replace this example after selecting the primary domain.
