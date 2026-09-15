@@ -2,63 +2,63 @@
 
 ## 1. 位置付け
 
-本書は [`research_proposal.md`](research_proposal.md) を実装可能な実験手順へ落とすための作業文書である。研究目的やResearch Questionは研究計画書を正とし、本書だけで変更しない。
+本書は [`research_proposal.md`](research_proposal.md) を実装可能な実験手順へ落とすための作業文書である。研究目的や研究課題は研究計画書を正とし、本書だけで変更しない。
 
-研究設計およびプロトコルの変更理由は、[`decisions/README.md`](decisions/README.md)から参照できる個別のResearch Decision Recordに記録する。Pilot後にプロトコルを変更する場合は、変更日、根拠、影響を受ける仮説・解析、変更が確認的test setの確認前か後かを記録する。Pilot、条件選択またはlayer選択に使用したfamilyは確認的testへ再利用しない。
+研究設計およびプロトコルの変更理由は、[`decisions/README.md`](decisions/README.md)から参照できる個別の研究判断記録（Research Decision Record; RDR）に記録する。予備実験後にプロトコルを変更する場合は、変更日、根拠、影響を受ける仮説・解析、変更が確認的テストデータの確認前か後かを記録する。予備実験、条件選択または層選択に使用した系列は確認的テストへ再利用しない。
 
-## 2. Pilot前に固定する事項
+## 2. 予備実験前に固定する事項
 
-- 公開WeightのInstruction Modelを一つ選び、modelとtokenizerのrevisionを固定する。
+- 公開重みの指示モデルを一つ選び、モデルとトークナイザーのリビジョンを固定する。
 - AgentDojoの一ドメイン、または同等の最小ローカル環境を一つ選ぶ。
-- chat template、tool schema、dtype、decoding設定を固定する。
+- チャットテンプレート、ツールスキーマ、データ型、デコーディング設定を固定する。
 - ユーザータスク成功と攻撃成功を独立に判定できる実行可能なルールを用意する。
-- 主比較をgreedy decodingまたは同等の決定論的設定とし、モデル選定時にclean utilityとtool-call安定性を確認する。
-- 正規tool callと攻撃tool callを同一prefixからteacher forcingするcanonical serializationを固定する。
-- `B0`、`B1`、`B2_plus`および`Tpre`、`Tpost`、`Tend_tool`、`Tend_assistant`の取得規則を固定する。
-- task、attack goal、attack style、argument slot、paraphrase family、matched pair、prefixのID体系を固定する。
-- group-aware splitを確認的結果を見る前に生成する。
-- 出力schema、保存先、checksum方式、保存容量上限を固定する。
+- 主比較を貪欲デコーディングまたは同等の決定論的設定とし、モデル選定時に攻撃なしでの有用性とツール呼出しの安定性を確認する。
+- 正規ツール呼出しと攻撃ツール呼出しを同一の接頭系列から教師強制で評価するための正準直列化方式を固定する。
+- `user_to_assistant`、`first_tool_to_assistant`、`later_tool_to_assistant`および`Tpre`、`Tpost`、`Tend_tool`、`Tend_assistant`の取得規則を固定する。
+- タスク、攻撃目的、攻撃形式、引数スロット、言い換え系列、対応組、接頭系列のID体系を固定する。
+- グループを考慮したデータ分割を確認的結果を見る前に生成する。
+- 出力スキーマ、保存先、チェックサム方式、保存容量上限を固定する。
 - 自動評価器の小標本を人手監査し、不一致の扱いを固定する。
 
 ## 3. モデル・ドメイン選定ゲート
 
 Bankingを第一候補とするが、名称だけで決定しない。候補ごとに小規模な統合試験を行い、次を満たす一モデル・一ドメインを9月末までに固定する。
 
-- 決定論的条件でclean taskを実用的な割合で完了できる。
-- tool callを安定してparseし、環境で実行できる。
-- 正規／攻撃のcanonical callとargument slotを一意に構成できる。
-- 同一tool・異argumentのIPI条件を構成できる。
+- 決定論的条件で攻撃なしタスクを実用的な割合で完了できる。
+- ツール呼出しを安定して構文解析し、環境で実行できる。
+- 正規／攻撃の正準呼出しと引数スロットを一意に構成できる。
+- 同一ツール・異なる引数のIPI条件を構成できる。
 - ユーザータスク成功と攻撃成功の自動判定を、人手監査と十分に一致させられる。
 - 1実行当たりの時間と保存容量が11月中旬までのデータ収集に収まる。
 
-いずれかが満たせない場合は、同様にrecipientまたはtarget IDを扱える単一の代替ドメイン、またはAgentDojo形式を参考にした最小ローカル環境へ切り替える。複数ドメインを同時に主対象としない。
+いずれかが満たせない場合は、同様に受取人または対象IDを扱える単一の代替ドメイン、またはAgentDojo形式を参考にした最小ローカル環境へ切り替える。複数ドメインを同時に主対象としない。
 
-## 4. Pilotと凍結事項
+## 4. 予備実験と凍結事項
 
-Pilotは80～120実行を目安とし、次を記録する。
+予備実験は80～120実行を目安とし、次を記録する。
 
-- 群A～Dおよびclean `baseline_failure`の件数
+- 群A～Dおよび攻撃なしの`baseline_failure`の件数
 - `fully_specified`、`param_open`、`action_open`ごとの件数と攻撃成功率
-- ResistantとSusceptibleの両方が得られる意味的対応条件数
-- task、attack goal/style、surface variantごとの行動margin分布
-- canonical call全体とargument slotのtoken alignment
-- `B0`、`B1`および`Tpre`、`Tpost`、`Tend_tool`、`Tend_assistant`の位置選択成功率
+- 攻撃抵抗条件（Resistant）と攻撃感受条件（Susceptible）の両方が得られる意味的対応条件数
+- タスク、攻撃目的・形式、表層的な入力変種ごとの行動マージン分布
+- 正準呼出し全体と引数スロットのトークン対応
+- `user_to_assistant`、`first_tool_to_assistant`および`Tpre`、`Tpost`、`Tend_tool`、`Tend_assistant`の位置選択成功率
 - 同じ`prefix_id`を異なる観測時点として重複記録していないか
-- 1実行当たりの時間、GPU最大メモリ、Residual StreamとAttentionの保存容量
+- 1実行当たりの時間、GPU最大メモリ、残差ストリームとアテンションの保存容量
 - 自動成功判定と人手確認の不一致
-- Probe用matched conditionの生成可能数とgroup構造
+- プローブ用対応条件の生成可能数とグループ構造
 
-Pilotは、実行可能性、測定妥当性、データ均衡を確認するために用いる。結果を良く見せるattack、layerまたは閾値の探索に使用しない。Pilotで使用したtask/attack familyは確認的testへ入れない。
+予備実験は、実行可能性、測定妥当性、データ均衡を確認するために用いる。結果を良く見せる攻撃、層または閾値の探索に使用しない。予備実験で使用したタスク系列・攻撃系列は確認的テストへ入れない。
 
-Pilot後、確認的testを見る前に以下を凍結する。
+予備実験後、確認的テストを見る前に以下を凍結する。
 
-- モデル、ドメイン、revision、chat templateおよびdecoding
-- task/attack familyとtask opennessの構成
-- splitと確認的test family
-- canonical callとargument slotの定義
-- 主要なlayer領域、token位置、Probe前処理および正則化
-- 主解析モデル、共変量、除外規則、BootstrapまたはPermutation手順
-- 実行数、cluster数、保存対象および容量上限
+- モデル、ドメイン、リビジョン、チャットテンプレートおよびデコーディング
+- タスク系列・攻撃系列とタスクの開放度の構成
+- データ分割と確認的テスト系列
+- 正準呼出しと引数スロットの定義
+- 主要な層領域、トークン位置、プローブの前処理および正則化
+- 主解析モデル、共変量、除外規則、ブートストラップ法または置換法の手順
+- 実行数、クラスター数、保存対象および容量上限
 
 ## 5. 条件IDと対応関係
 
@@ -66,72 +66,78 @@ Pilot後、確認的testを見る前に以下を凍結する。
 
 - `condition_id`: 条件内容から生成した安定ID
 - `task_template_id`: ユーザータスクの意味的テンプレート
-- `attack_goal_id`: 攻撃が要求する意味的なgoal
-- `attack_style_id`: 攻撃の書式、偽装または表現style
-- `attack_template_id`: goalとstyleを組み合わせた具体的テンプレート
-- `argument_slot_id`: 正規／攻撃呼出しが異なる主なargument slot
+- `attack_goal_id`: 攻撃が要求する意味的な目的
+- `attack_style_id`: 攻撃の書式、偽装または表現形式
+- `attack_template_id`: 目的と形式を組み合わせた具体的テンプレート
+- `argument_slot_id`: 正規／攻撃呼出しが異なる主な引数スロット
 - `task_openness`: `fully_specified`、`param_open`または`action_open`
 - `paraphrase_family_id`: 近い言い換えの集合
-- `pair_id`: 意味的に対応するResistant/Susceptible候補の集合
-- `variant_id`: 配置、書式、周辺文章等のsurface variant
-- `prefix_id`: 実際にモデルへ渡したtoken列またはserialized prefixのchecksum由来ID
+- `pair_id`: 意味的に対応する攻撃抵抗条件（Resistant）・攻撃感受条件（Susceptible）候補の集合
+- `variant_id`: 配置、書式、周辺文章等の表層的な入力変種
+- `prefix_id`: 実際にモデルへ渡したトークン列または直列化済み接頭系列のチェックサム由来ID
 
-clean条件では攻撃関連IDをnullとする。同じtask、attack goal、attack style、pair、近いparaphraseおよび確率的反復はsplitをまたがせない。splitは個々の実行ではなく、事前に定めた最高位のgroup IDへ割り当てる。
+攻撃なし条件では攻撃関連IDをnullとする。同じタスク、攻撃目的、攻撃形式、対応組、近い言い換えおよび確率的反復はデータ分割をまたがせない。データ分割は個々の実行ではなく、事前に定めた最高位のグループIDへ割り当てる。
 
 ## 6. 実行記録
 
 各実行について以下を保存する。
 
 - 実行ID、条件ID、開始時刻
-- Git commit、解決済み設定、実行環境
-- modelとtokenizerの名前・revision
-- chat template、tool schema、dtype
-- 元のmessage列、serialized text、token列、`prefix_id`
-- model出力、parse済みtool call、環境状態の変化
-- seed、temperature、top-p、thinking設定等の生成条件
+- Gitコミット、解決済み設定、実行環境
+- モデルとトークナイザーの名前・リビジョン
+- チャットテンプレート、ツールスキーマ、データ型
+- 元のメッセージ列、直列化済みテキスト、トークン列、`prefix_id`
+- モデル出力、構文解析済みツール呼出し、環境状態の変化
+- シード、温度、top-p、思考設定等の生成条件
 - ユーザータスク成功、攻撃成功、群A～Dまたは`baseline_failure`
-- task opennessと各種group ID
-- 各boundary/positionのtoken index、token ID、系列長および選択規則
-- 各層のResidual Stream
-- 定義したspanへのAttention集約値
-- 次token Logitと正規／攻撃canonical callのteacher-forced score
+- タスクの開放度と各種グループID
+- 各境界・位置のトークン位置、トークンID、系列長および選択規則
+- 各層の残差ストリーム（主実験では指定トークン位置とIPI周辺window、予備実験の少数例では全sequence）
+- 定義した範囲へのアテンション集約値
+- 次トークンのロジットと正規／攻撃の正準呼出しに対する教師強制スコア
 - `argument_slot_margin`、`whole_call_margin_total`、`whole_call_margin_normalized`、`first_discriminating_token_margin`および適用可能な場合の`tool_name_margin`
-- 実行時間、GPU最大メモリ、各artifactのchecksum
+- 実行時間、GPU最大メモリ、各成果物のチェックサム
 
-モデルWeight、Activation、full Attention matrixおよび大量の実行出力はGit管理せず、manifestから外部保存場所を追跡する。生成済みrun directoryは変更せず、再処理または設定変更時は新しいrun IDを作る。
+モデル重み、活性化、完全なアテンション行列および大量の実行出力はGit管理せず、マニフェストから外部保存場所を追跡する。生成済み実行ディレクトリは変更せず、再処理または設定変更時は新しい実行IDを作る。
 
-## 7. 観測時点とtoken位置
+## 7. 観測時点とトークン位置
 
 観測時点を二つの時間軸で定義する。
 
-### Agent boundary
+### エージェント境界
 
-- `B0`: User instructionまでをserializeし、最初のAssistant生成を開始する直前。
-- `B1`: 最初のtool returnまでをserializeし、次のAssistant生成を開始する直前。
-- `B2_plus`: 後続の各tool return後に次のAssistant生成を開始する直前。副次解析用。
+- `user_to_assistant`: ユーザー指示までを直列化し、最初のアシスタント生成を開始する直前。
+- `first_tool_to_assistant`: 最初のツール返却までを直列化し、次のアシスタント生成を開始する直前。
+- `later_tool_to_assistant`: 2回目以降の各ツール返却後に次のアシスタント生成を開始する直前。副次解析用。
 
-### Tool-output内位置
+### ツール出力内の位置
 
-- `Tpre`: injected span直前。
-- `Tpost`: injected span直後。
-- `Tend_tool`: tool output末尾。
-- `Tend_assistant`: Assistant生成開始marker。`Tend_tool`と同じtokenでない場合は分けて保存する。
+- `Tpre`: 注入範囲直前。
+- `Tpost`: 注入範囲直後。
+- `Tend_tool`: ツール出力末尾。
+- `Tend_assistant`: アシスタント生成開始マーカー。`Tend_tool`と同じトークンでない場合は分けて保存する。
 
-各観測は、実際にforward passへ渡したtoken列上の位置として定義する。異なるstage名でも`prefix_id`とtoken indexが同一なら、独立した時点として扱わない。攻撃span、User goal span、tool metadata spanについて開始・終了token indexを保存する。tokenizerのoffset mappingが利用できない場合は、文字列からtoken列への対応規則と曖昧例の除外規則をPilot前に固定する。
+各観測は、実際に順伝播へ渡したトークン列上の位置として定義する。異なる段階名でも`prefix_id`とトークン位置が同一なら、独立した時点として扱わない。攻撃範囲、ユーザー目的範囲、ツールのメタデータ範囲について開始・終了トークン位置を保存する。トークナイザーのオフセット対応が利用できない場合は、文字列からトークン列への対応規則と曖昧例の除外規則を予備実験前に固定する。
 
-主解析の位置は`B1`内の`Tpre`、`Tend_tool`または`Tend_assistant`からvalidationで一つを選ぶ。`Tpost`、末尾数token平均、目的関連span平均および`B2_plus`は感度分析または副次解析とする。
+### 残差ストリームの保存範囲
 
-## 8. 行動score
+主実験では、全層の残差ストリームを、事前指定した観測トークン位置とIPI範囲周辺の固定幅windowに限定して保存する。全sequence・全層の残差ストリームは、トークン位置の対応確認、window幅の決定および探索的な時間変化の確認のため、予備実験で事前指定した少数例だけで保存する。
 
-正規呼出し $a_L$ と攻撃呼出し $a_A$ は、同一の`prefix_id`とcanonical serializationを用いてteacher forcingする。すべてのmarginはattack minus legitimateの向きへ統一する。
+window幅、sequence端での境界処理、保存対象とする観測位置および全sequenceを保存する予備実験例の選択規則は、予備実験と検証データで固定し、確認的テストの確認後に変更しない。各実行について、保存モード（`full_sequence`または`selected_positions_and_ipi_window`）、保存対象層、windowの左右幅と実際の開始・終了トークン位置、およびsequence端でのwindow切れの有無を実行記録に保存する。
 
-- `argument_slot_margin`: 対応するargument slot全体の系列Log probability差。確認的主指標。
-- `whole_call_margin_total`: canonical call全体の系列Log probability差。
-- `whole_call_margin_normalized`: token数で正規化したcanonical callの差。
-- `first_discriminating_token_margin`: 最初に異なるtokenのLogitまたはLog probability差。診断指標。
-- `tool_name_margin`: tool名が異なる条件だけで計算する。
+主解析の位置は`first_tool_to_assistant`内の`Tpre`、`Tend_tool`または`Tend_assistant`から検証データで一つを選ぶ。`Tpost`、末尾数トークンの平均、目的関連範囲の平均および`later_tool_to_assistant`は感度分析または副次解析とする。
 
-各系列scoreには、対象文字列、token ID列、各tokenの条件付きLog probability、開始・終了位置および合計方法を保存する。複数tokenのtool名またはargumentを最初のtokenだけで評価しない。正規／攻撃callの長さが異なる場合は、totalとnormalizedを併記し、主指標のargument slot定義をPilot前に固定する。
+## 8. 行動スコア
+
+正規呼出し $a_L$ と攻撃呼出し $a_A$ は、同一の`prefix_id`と正準直列化方式を用いて教師強制で評価する。すべてのマージンは「攻撃から正規を引く」向きへ統一する。
+
+- `argument_slot_margin`: 対応する引数スロット全体の系列対数確率差。確認的主指標。
+- `whole_call_margin_total`: 正準呼出し全体の系列対数確率差。
+- `whole_call_margin_normalized`: トークン数で正規化した正準呼出しの差。
+- `first_discriminating_token_margin`: 最初に異なるトークンのロジットまたは対数確率の差。診断指標。
+- `tool_name_margin`: ツール名が異なる条件だけで計算する。
+
+各系列スコアには、対象文字列、トークンID列、各トークンの条件付き対数確率、開始・終了位置および合計方法を保存する。複数トークンからなるツール名または引数を最初のトークンだけで評価しない。正規／攻撃呼出しの長さが異なる場合は、合計値と正規化値を併記し、主指標の引数スロット定義を予備実験前に固定する。
 
 ## 9. 成功・失敗の分類
 
@@ -140,90 +146,92 @@ clean条件では攻撃関連IDをnullとする。同じtask、attack goal、att
 - C: 攻撃文あり、攻撃失敗、ユーザータスク失敗
 - D: 攻撃者指定行動が発生。ユーザータスク成功は別に記録する
 
-攻撃文のないユーザータスク失敗はA～Dへ含めず、`baseline_failure`として保持する。攻撃文なしで攻撃成功が記録された場合は、評価器またはデータの矛盾として扱う。A～Dは外部挙動の記述と副次解析に用い、確認的主解析は連続marginを用いる。
+攻撃文のないユーザータスク失敗はA～Dへ含めず、`baseline_failure`として保持する。攻撃文なしで攻撃成功が記録された場合は、評価器またはデータの矛盾として扱う。A～Dは外部挙動の記述と副次解析に用い、確認的主解析は連続的なマージンを用いる。
 
-## 10. Readout学習と妥当性確認
+## 10. 読み出し学習と妥当性確認
 
-### Content readout
+### 内容の読み出し
 
 - `action_readout`と`argument_readout`を分ける。
 - 教師データは正常な単一目的実行と、説明、引用、否定、禁止、過去記述等の対照条件から作る。
-- 攻撃成功、A～Dまたは最終tool selectionを教師ラベルに使わない。
-- 同一action・異argument条件を除外しない。
+- 攻撃成功、A～Dまたは最終ツール選択を教師ラベルに使わない。
+- 同一行動・異なる引数の条件を除外しない。
 
-### Authority readout
+### 権限の読み出し
 
-- 同一または厳密に対応する文字列をUser、Tool、引用、説明、禁止等へ配置したmatched conditionを優先する。
-- 入力上のRoleまたは実験条件が読み出せることと、モデルがその内容を採用したことを区別する。
-- 行動結果から`adopted`または`committed`ラベルを作り、同じ行動を予測するProbeは作らない。
+- 同一または厳密に対応する文字列をユーザー、ツール、引用、説明、禁止等へ配置した対応条件を優先する。
+- 入力上の役割または実験条件が読み出せることと、モデルがその内容を採用したことを区別する。
+- 行動結果から`adopted`または`committed`ラベルを作り、同じ行動を予測するプローブは作らない。
 
 ### 必須の妥当性対照
 
-- TF-IDF＋logistic regression等のlexical baseline
-- 同じgroup構造を保ったrandom-label controlとselectivity
-- 未知task familyまたは未知attack familyでの評価
-- train setだけでの標準化および特徴前処理
-- validation setだけでのlayer、正則化、閾値および較正方法の選択
-- test setの一回限りの評価
+- TF-IDFとロジスティック回帰等による語彙ベースライン
+- 同じグループ構造を保ったランダムラベル対照と選択性
+- 未知のタスク系列または未知の攻撃系列での評価
+- 学習データだけでの標準化および特徴前処理
+- 検証データだけでの層、正則化、閾値および較正方法の選択
+- テストデータでの一回限りの評価
 
-ProbeごとにAUROC等の識別性能だけでなく、適用可能な場合はBrier scoreまたはECE、groupごとの効果量と95%信頼区間を報告する。Probe scoreはdecodabilityを示す測定であり、採用、権限付与または因果的利用を単独で示さない。
+プローブごとにAUROC等の識別性能だけでなく、適用可能な場合はBrierスコアまたはECE、グループごとの効果量と95%信頼区間を報告する。プローブスコアは読み出し可能性を示す測定であり、採用、権限付与または因果的利用を単独で示さない。
 
 ## 11. 確認的主解析
 
-確認的主解析は、`B1`のtool-output内で`Tpre`から事前指定した終端位置までに生じるattacker argument readoutの変化とauthority readoutが、後続するdecision boundaryの`argument_slot_margin`を説明するかを評価する。
+確認的主解析は、`first_tool_to_assistant`のツール出力内で`Tpre`から事前指定した終端位置までに生じる攻撃者側引数の読み出しの変化と権限の読み出しが、後続する行動決定時点の`argument_slot_margin`を説明するかを評価する。
 
-主要な説明変数と共変量はtest確認前に固定する。
+主要な説明変数と共変量はテスト確認前に固定する。
 
-- attacker argument readoutの変化
-- authority readout
-- IPI exposureまたはTask Drift baseline
-- task openness
+- 攻撃者側引数の読み出しの変化
+- 権限の読み出し
+- IPIへの露出またはタスクドリフトのベースライン
+- タスクの開放度
 - 入力長
-- attack spanの位置
+- 攻撃範囲の位置
 - 必要最小限の表面的特徴
 
-最終層・最終tokenのreadoutと同じ位置のLogit差は、構造的に相関し得るためsanity checkとする。群B対群D、Role readout、Attention、PCA、`B2_plus`、全layer×position mapは副次または探索的解析とする。
+最終層・最終トークンの読み出しと同じ位置のロジット差は、構造的に相関し得るため健全性確認とする。群B対群D、役割の読み出し、アテンション、PCA、`later_tool_to_assistant`、全層・全位置の図は副次または探索的解析とする。
 
-推論単位はsurface variantではなく、taskとattack goal/styleから構成した最高位clusterとする。効果量と95%信頼区間はcluster単位のBootstrapまたはPermutationで求める。十分なcluster数と安定した推定がある場合だけ変量効果モデルを補助的に使用する。探索的な多層・多位置比較にはFalse Discovery Rateを適用する。
+推論単位は表層的な入力変種ではなく、タスクと攻撃目的・形式から構成した最高位クラスターとする。効果量と95%信頼区間はクラスター単位のブートストラップ法または置換法で求める。十分なクラスター数と安定した推定がある場合だけ変量効果モデルを補助的に使用する。探索的な多層・多位置比較には偽発見率を適用する。
 
-## 12. Attentionの保存と解釈
+## 12. アテンションの保存と解釈
 
-通常の全実行では、各decision位置から次のspanへのAttention massをonlineまたは直後に集約して保存する。
+通常の全実行では、各行動決定位置から次の範囲へのアテンション量を実行中または実行直後に集約して保存する。
 
-- attack span
-- User goal span
-- tool metadata span
-- 必要に応じた無害な対照span
+- 攻撃範囲
+- ユーザー目的範囲
+- ツールのメタデータ範囲
+- 必要に応じた無害な対照範囲
 
-full Attention matrixはPilotの少数例と、validationで事前指定したlayer/headだけに限定する。Attention massは補助的な記述量であり、Attention knockout等の統制された介入を行わない限り因果的説明として扱わない。容量または実行時間が制約となる場合は、full Attention、集約Attention、Residual Streamの順ではなく、full Attentionを最初に削減し、Residual Streamと行動scoreを優先する。
+完全なアテンション行列は予備実験の少数例と、検証データで事前指定した層・ヘッドだけに限定する。アテンション量は補助的な記述量であり、アテンションのノックアウト等の統制された介入を行わない限り因果的説明として扱わない。容量または実行時間が制約となる場合は、完全なアテンション、集約アテンション、残差ストリームの順ではなく、完全なアテンションを最初に削減し、残差ストリームと行動スコアを優先する。
 
-## 13. 実験規模とsplit
+## 13. 実験規模とデータ分割
 
-Activationを保存する暫定総数は約450～700実行とする。
+活性化を保存する暫定総数は約450～700実行とする。
 
-- Pilot：80～120
-- Probe教師・matched control：200～300
-- 確認的IPI：独立clusterを最低30、各cluster 3～4 surface variant
-- Clean baseline：60～100
+この実行数は、主実験では指定トークン位置とIPI周辺windowの活性化のみを保存し、全sequence・全層の保存を予備実験の少数例に限定することを前提とする。
 
-数値はPilot後に実行時間、保存容量、群分布およびcluster内相関を確認して凍結する。surface variantを増やすことよりtask/attack familyの多様性を優先する。
+- 予備実験：80～120
+- プローブ教師・対応対照条件：200～300
+- 確認的IPI：独立クラスターを最低30、各クラスターにつき3～4個の表層的な入力変種
+- 攻撃なしベースライン：60～100
 
-split比は暫定的にtrain 60%、validation 20%、test 20%とする。同じtask、attack goal、attack style、pair、近いparaphraseおよび確率的反復をsplit間で分離しない。Pilotや選択に用いたfamilyは確認的testへ含めない。
+数値は予備実験後に実行時間、保存容量、群分布およびクラスター内相関を確認して凍結する。表層的な入力変種を増やすことよりタスク系列・攻撃系列の多様性を優先する。
 
-確率的なAttack Success Rate評価はmarginが0付近の条件と代表条件に限り、各10回程度実行する。原則として確率的反復ではActivationを保存しない。
+データ分割比は暫定的に学習60%、検証20%、テスト20%とする。同じタスク、攻撃目的、攻撃形式、対応組、近い言い換えおよび確率的反復を分割間で分離しない。予備実験や選択に用いた系列は確認的テストへ含めない。
 
-## 14. Activation Patching開始条件
+確率的な攻撃成功率評価はマージンが0付近の条件と代表条件に限り、各10回程度実行する。原則として確率的反復では活性化を保存しない。
 
-Activation Patchingは11月10日までに標準達成目標のデータが揃い、次をすべて満たす場合だけ開始する。
+## 14. 活性化パッチングの開始条件
 
-- action/argumentまたはauthority readoutが未知familyでlexical baselineを上回る。
-- 十分なResistant/Susceptible matched pairがある。
-- layerとtoken位置の候補が独立したvalidationで再現する。
-- 意味的に対応したin-distribution donorを用意できる。
-- random donor、semantic mismatch、隣接layer/positionを対照として用意できる。
-- target marginだけでなくclean action likelihood、出力分布の変化およびtask utilityを評価できる。
+活性化パッチングは11月10日までに標準達成目標のデータが揃い、次をすべて満たす場合だけ開始する。
 
-Resistant→SusceptibleとSusceptible→Resistantの双方向介入を行う。主な介入指標には、方向を明記したLogit differenceと、次の正規化効果量を用いる。
+- 行動・引数または権限の読み出しが未知の系列で語彙ベースラインを上回る。
+- 十分な攻撃抵抗条件（Resistant）・攻撃感受条件（Susceptible）の対応組がある。
+- 層とトークン位置の候補が独立した検証データで再現する。
+- 意味的に対応した同一分布内のドナーを用意できる。
+- ランダムドナー、意味的不一致、隣接する層・位置を対照として用意できる。
+- 対象マージンだけでなく、正規行動の尤度、出力分布の変化およびタスクの有用性を評価できる。
+
+攻撃抵抗条件から攻撃感受条件（Resistant→Susceptible）と、攻撃感受条件から攻撃抵抗条件（Susceptible→Resistant）への双方向介入を行う。主な介入指標には、方向を明記したロジット差と、次の正規化効果量を用いる。
 
 $$
 \mathrm{recovery} =
@@ -231,14 +239,14 @@ $$
 {LD_{\mathrm{resistant}} - LD_{\mathrm{susceptible}}}
 $$
 
-分母が0に近い例の除外規則を事前に固定する。target marginの変化だけでは単なる表現破壊を除外できないため、utility guardを満たさない介入を「安全な回復」と解釈しない。
+分母が0に近い例の除外規則を事前に固定する。対象マージンの変化だけでは単なる表現破壊を除外できないため、有用性の保護条件を満たさない介入を「安全な回復」と解釈しない。
 
-## 15. Go/No-Go基準と期限
+## 15. 継続・中止基準と期限
 
-- **9月末**：end-to-end実行、自動成功判定またはcanonical call scoringが安定しなければ、単一の代替ドメインまたは最小環境へ切り替える。
-- **10月11日**：`B0/B1`とtool-output token位置を再現可能に取得できなければ、within-output解析を縮小し、`B0/B1`のboundary解析を主とする。
-- **10月25日**：Probeが未知familyでlexical baselineを安定して上回らなければ、「目的表現」という主張を下げ、具体的tool action/argument表現またはbehavioral temporal attributionへ主題を縮小する。
-- **11月10日**：確認的主解析用のデータが揃っていなければ、Activation Patching、Attention介入および別モデル・別ドメイン評価を中止する。
+- **9月末**：エンドツーエンド実行、自動成功判定または正準呼出しのスコアリングが安定しなければ、単一の代替ドメインまたは最小環境へ切り替える。
+- **10月11日**：`user_to_assistant`と`first_tool_to_assistant`、およびツール出力内のトークン位置を再現可能に取得できなければ、出力内解析を縮小し、これら二つの境界解析を主とする。
+- **10月25日**：プローブが未知の系列で語彙ベースラインを安定して上回らなければ、「目的表現」という主張を下げ、具体的なツール操作・引数表現または時間的な行動帰属へ主題を縮小する。
+- **11月10日**：確認的主解析用のデータが揃っていなければ、活性化パッチング、アテンション介入および別モデル・別ドメイン評価を中止する。
 - **11月30日**：主解析、感度分析および主要図表を確定する。12月は再現確認と執筆に使用する。
 
-陰性結果であっても、評価器、matched control、Probe妥当性、splitおよび主解析が凍結済みであれば研究結果として保持する。No-Goによる縮小は失敗の隠蔽ではなく、事前に定めた代替計画として新しいRDRに記録する。
+陰性結果であっても、評価器、対応対照条件、プローブ妥当性、データ分割および主解析が凍結済みであれば研究結果として保持する。中止判断による縮小は失敗の隠蔽ではなく、事前に定めた代替計画として新しいRDRに記録する。

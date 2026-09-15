@@ -25,4 +25,5 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-09-16 | [RDR-2026-09-16-01](2026-09-16_agent_boundary_labels.md) | accepted | エージェント境界IDを情報の受け渡し元・先が分かる名称へ変更 |
 | 2026-09-15 | [RDR-2026-09-15-01](2026-09-15_pre-pilot_scope_revision.md) | accepted | Pilot前の研究焦点、測定単位、実験規模および期限の改訂 |
