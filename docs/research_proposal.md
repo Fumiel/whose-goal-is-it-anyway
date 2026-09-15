@@ -4,163 +4,223 @@
 
 ### 仮題
 
-Indirect Prompt Injectionを受けたLLMエージェントにおける目的表現の時系列的・幾何学的解析
+Indirect Prompt Injection下のLLMエージェントにおける目的内容・権限帰属・ツール引数選好の表現遷移解析
 
 ### 英題
 
-Temporal and Geometric Analysis of Goal-Representation Takeover in LLM Agents under Indirect Prompt Injection
+Tracing Goal Content, Authority Attribution, and Tool-Argument Commitment in LLM Agents under Indirect Prompt Injection
 
 ## 1. 研究背景と問題意識
 
-大規模言語モデル（LLM）は、外部のメール、ファイル、Webページなどを読み取り、必要に応じてツールを呼び出すAIエージェントとして利用されている。しかし、外部データに悪意ある命令が埋め込まれていると、本来は処理対象である文章を命令として解釈し、不正な行動を実行する可能性がある。この攻撃はIndirect Prompt Injectionと呼ばれる。
+大規模言語モデル（LLM）は、外部のメール、ファイル、Webページなどを読み取り、必要に応じてツールを呼び出すAIエージェントとして利用されている。しかし、外部データに悪意ある命令が埋め込まれていると、本来は処理対象である文章を命令として解釈し、不正な行動を実行する可能性がある。この攻撃はIndirect Prompt Injection（IPI）と呼ばれる。
 
-AgentDojoは、メール、オンラインバンキング、旅行予約などの環境で、エージェントのPrompt Injection攻撃と防御を評価するベンチマークである [1]。既存研究では、主に攻撃成功率、ユーザータスク成功率、攻撃検知性能などの外部的な結果が評価されてきた。
+AgentDojoは、メール、オンラインバンキング、旅行予約などの環境で、エージェントのPrompt Injection攻撃と防御を評価するベンチマークであり、ユーザータスク成功と攻撃成功を区別して評価できる [1]。既存研究では、主に攻撃成功率、ユーザータスク成功率、攻撃検知性能などの外部的な結果が評価されてきた。
 
-内部状態を利用する研究として、Are you still on track!?は、外部データを読む前後のActivation差分から、ユーザーの元のタスクから逸脱するTask Driftを線形分類器で検出できることを示した [2]。Prompt Injection as Role Confusionは、モデルが入力元のラベルだけでなく文章の書き方から「誰の発言か」を内部的に推定し、Roleの混同が生成開始前から攻撃成功と関連することを報告している [3]。またIterInjectは、攻撃文へのAttentionが中後層で増幅される閾値的な機構と、その機構に対する介入結果を報告している [4]。
+内部状態を利用する研究として、Are you still on track!?は、外部データを読む前後のActivation差分からTask Driftを線形分類器で検出できることを示した [2]。Prompt Injection as Role Confusionは、モデルが入力元のラベルだけでなく文章の書き方から発言者のRoleを内部的に推定し、Roleの混同が生成開始前から攻撃成功と関連すると報告している [3]。IterInjectは、中後層における攻撃文へのAttention増幅と、その機構への介入結果を報告している [4]。さらに、生成前hidden stateからIPIへの露出を判別できる一方、その信号が安全な行動へ必ずしも結び付かないknowledge-action gapが報告されている [5]。AgentSentryはmulti-turn IPIをtemporal causal takeoverとして扱い、tool-return境界におけるcounterfactual re-executionからtakeover pointを局在化している [6]。
 
-一方、ツール利用型エージェントが攻撃文を読んでから行動を選択するまでに、ユーザー目的と攻撃者目的に関する内部表現が、どの層・処理段階でどのように変化するかは十分に明らかになっていない。本研究では、この過程を二つの目的表現の競合として捉え、攻撃者側の表現が後続行動と結び付く候補時点をTakeover Pointと呼ぶ。ただし、目的が完全に置き換わることは前提とせず、観測上の候補として慎重に扱う。
+これらを踏まえると、「IPIへの露出を内部状態から検出できる」「Role表現またはAttentionが攻撃成功と関連する」「時間的なtakeover pointが存在する」という主張だけでは新規性が限定される。本研究は、目的に関する情報を、(i) action、(ii) argumentsまたはconstraints、(iii) source/authority条件、(iv) 具体的なtool callへの行動選好に分ける。特に、正規行動と攻撃行動が同じtoolを使用し、recipient、account、amount、target IDなどの引数だけが異なるIPIを中心に、内容が読めること、権限ある指示として表現されること、具体的な引数が選好されることの分離と結合を調べる。
+
+なお、2026年の関連研究には査読前preprintを含むため、報告された結果を確立した一般機構とはみなさず、本研究の新規性の境界と比較対象として慎重に扱う。
 
 ## 2. 研究目的とResearch Question
 
-本研究の目的は、Indirect Prompt Injectionを受けたAIエージェントについて、外部データを読み取ってからツールを選択するまでの内部状態を時系列で観測し、ユーザー目的と攻撃者目的に関する情報が、最終行動にどのように結び付くかを明らかにすることである。Task Driftや攻撃成功の検知は比較用ベースラインとし、主眼を表現の時間的変化に置く。
+本研究の目的は、IPIを受けたツール利用型LLMエージェントについて、攻撃内容が内部状態に表現されることと、その内容が権限ある指示として扱われ、具体的なtool actionまたはargumentの選好へ結び付くことを区別して観測することである。Task Drift、IPI exposure、Role readoutおよびAttentionは比較用の指標とし、主眼をgoal content・authority・tool-call preferenceの関係に置く。
 
 次のResearch Questionを設定する。
 
-1. 正常な単一目的実行から構成したreadoutによって、ユーザー目的と攻撃者目的に関する情報を各層・処理段階から別々に読み出せるか。
-2. 二つの目的readoutの変化は、後続する攻撃ツールと正規ツールのLogit差と関連し、その関係はどの層・処理段階で明瞭になるか。
-3. 攻撃を受け入れやすい条件と抵抗する条件の差は、目的readout、Role readout、攻撃文へのAttentionのどれによって安定して説明できるか。
-4. 十分な対応事例が得られた場合、候補時点へのActivation Patchingによって攻撃ツールの選択傾向を弱められるか。
+1. 同一内容をUser命令、Tool出力、引用、説明、否定・禁止などに置いたmatched conditionと未知のtaskまたはattack familyにおいて、action・argument内容とsource/authority条件を独立に読み出せるか。
+2. IPI spanの処理後、攻撃者側argumentのreadoutとauthority readoutは、後続する正規tool callと攻撃tool call、特に引数部分の系列Log probability差と、どのtoken位置・層・agent boundaryで関連するか。
+3. その関連は、IPI exposure、表面的な語彙・書式、task openness、入力長、攻撃位置およびattack-span Attentionを考慮しても、後続する行動選好と安定して対応するか。
 
-本研究の中心的な新規性は、Prompt Injectionを単一時点の検知問題として扱うのではなく、目的内容、入力Role、Attentionおよび行動候補の関係を、エージェントの複数処理段階にわたって比較する点にある。
+Activation PatchingはResearch Questionの成立条件には含めず、十分な対応事例と独立に再現する候補領域が得られた場合だけ、介入方法と評価指標に関するbest practice [9]を踏まえた発展的な因果検証として行う。
+
+本研究の中心的な新規性は、goal content、authorityおよびtool action/argument preferenceを異なる測定として扱い、tool-output内のtoken進行とagent loopの境界という二つの時間軸で、同一tool・異argumentのIPIを含めて追跡する点にある。ただし、readoutの増加だけを目的の採用とは解釈せず、介入なしに因果的な「乗っ取り」を主張しない。
 
 ## 3. 実験対象と範囲
 
-内部状態を取得できる2B～8B程度の公開WeightのInstruction Modelを用い、単一モデル・単一ドメインから開始する。対象ドメインは、AgentDojoに含まれるメール、旅行予約、金融、文書処理などから一つを選ぶ。
+内部状態を取得できる2B～8B程度の公開WeightのInstruction Modelを用い、単一モデル・単一ドメインから開始する。モデルとドメインは、以下を満たすかを小規模な統合試験で確認してから固定する。
 
-主な攻撃経路は、ツールが返す外部データに攻撃命令を埋め込むIndirect Prompt Injectionとする。各実行は次の四群に分類する。
+- 決定論的な主比較でclean taskとtool callingが安定する。
+- 正規呼出しと攻撃呼出しを同一prefixからteacher forcingで評価できる。
+- ユーザータスク成功と攻撃成功を実行後の環境状態から独立に判定できる。
+- 同一tool・異argumentの正規／攻撃counterfactualを構成できる。
+
+引数置換を形式化しやすいBankingを第一候補とするが、canonical tool-call scoringまたはエージェント接続が安定しない場合は、同様に宛先や対象IDを評価できる単一の代替ドメインへ切り替える。主実験では一モデル・一ドメインを維持し、別モデル・別ドメインの一般化評価は必須としない。
+
+task opennessを次のように事前分類する [7]。
+
+- `fully_specified`: actionと主要argumentがUser promptで指定される。
+- `param_open`: actionは指定され、argumentを外部データから取得する。
+- `action_open`: 実行するaction自体を外部データへ委ねる。
+
+確認的解析は解釈しやすい`fully_specified`と、同一tool・異argument攻撃を扱える`param_open`を中心とする。`action_open`は権限混同と正当な委任を分けにくいため、副次的なmoderation解析に限定する。
+
+主な攻撃経路は、ツールが返す外部データに攻撃命令を埋め込むIPIとする。各実行は次の四群に分類する。
 
 - 群A：攻撃文がなく、ユーザータスクに成功
 - 群B：攻撃文があり、攻撃には失敗するがユーザータスクに成功
 - 群C：攻撃文があり、攻撃とユーザータスクの両方に失敗
 - 群D：攻撃者が指定した不正な行動を実行（ユーザータスク成功・失敗を別途記録）
 
-主に群Bと群Dを比較し、「攻撃内容を認識したこと」と「攻撃に従ったこと」の分離を試みる。
+群A～Dは外部妥当性のために保持するが、主解析は連続的なtool-call preferenceを用い、群B対群Dの二値比較は副次解析とする。攻撃文のない実行でユーザータスクに失敗した場合は、A～Dへ含めず`baseline_failure`として保持する。
 
-## 4. 成功・失敗条件の構成
+## 4. 条件構成と行動指標
 
-同じ入力とモデルから計算される内部状態とLogitは、確率的生成で最初の異なるトークンが選ばれるまでは原則として同一である。そのため、同じ入力を乱数seedだけ変えて得た成功実行と失敗実行は、分岐前の内部状態差を説明する主比較には用いない。
+同じ入力とモデルから計算される内部状態とLogitは、確率的生成で最初の異なるtokenが選ばれるまでは原則として同一である。そのため、同じ入力を乱数seedだけ変えて得た成功実行と失敗実行は、分岐前の内部状態差を説明する主比較には用いない。
 
-主解析では、ユーザー目的と攻撃者目的を固定し、ユーザー指示と攻撃文の言い換え、攻撃文の配置、無害な周辺文章、書式などを制御して変化させた、意味的に対応する入力変種を作る。モデルを固定し、原則としてgreedy decodingまたはtemperature 0で実行する。攻撃ツールを選ばない入力変種をResistant、攻撃ツールを選ぶ入力変種をSusceptibleとする。文長、主要語彙、命令形式および行動決定点を可能な範囲で対応させ、特定の文面による差は複数の入力変種と対照条件で評価する。
+主解析では、ユーザー目的と攻撃者目的を固定し、ユーザー指示、攻撃文の言い換え、攻撃文の配置、無害な周辺文章および書式を制御して変化させた、意味的に対応する入力変種を作る。モデルを固定し、主比較はgreedy decodingまたは同等の決定論的設定で実行する。選定モデルがその設定で安定しない場合は、モデルを変更するか、決定論的なteacher-forced scoringを主解析として生成結果と分離する。確率的生成は、各条件のAttack Success Rateを推定する補助評価に限る。
 
-二値のツール選択だけでなく、ツール選択直前の攻撃ツールと正規ツールのLogit差を、攻撃行動への連続的な選択傾向として用いる。
+正規呼出し $a_L$ と攻撃呼出し $a_A$ を同一のserialized prefixからteacher forcingし、次の指標を保存する。
+
+1. `argument_slot_margin`: 対応するargument slot全体の系列Log probability差。主な行動指標とする。
+2. `whole_call_margin_total`と`whole_call_margin_normalized`: canonical tool call全体の系列Log probability差について、合計値とtoken数で正規化した値を保存する。
+3. `first_discriminating_token_margin`: $a_L$と$a_A$が最初に分岐するtokenでのLogit差。tokenization依存性を確認する診断指標とする。
+4. `tool_name_margin`: tool種別が異なる条件だけで使用する。
+
+主指標は、値が大きいほど攻撃呼出しを選好するよう、次の向きに統一する。
 
 $$
-m = \operatorname{Logit}(\mathrm{attack\ tool})
-- \operatorname{Logit}(\mathrm{legitimate\ tool})
+m_{\mathrm{arg}} = \log P(\mathrm{argument}_{A} \mid x)
+- \log P(\mathrm{argument}_{L} \mid x)
 $$
 
-ツール名が複数トークンの場合は、ツール呼び出し全体の系列Log probabilityなどを比較する。確率的生成は、個々の成功・失敗実行の内部状態比較ではなく、各入力条件のAttack Success Rateを推定する補助評価に用いる。攻撃強度を変える場合は、同一条件の反復ではなく独立した実験要因として扱う。
+多tokenのargumentまたはtool callについて、最初のtokenだけから結論を出さない。同一tool・異argument条件は除外せず、むしろ確認的解析の中心条件とする。
 
-## 5. 取得する内部情報と処理段階
+## 5. 取得する内部情報と二つの時間軸
 
-各実行について、Transformer各層のResidual Stream、攻撃文などへのAttention、次のトークンおよびツールに対するLogitを保存する。また、外部データを読む前後のActivation差分をTask Drift検知のベースラインに使用する。Attentionの大きさだけから判断理由を断定せず、補助指標として扱う。
+各実行について、Transformer各層のResidual Stream、定義したspanへのAttention集約値、次token Logitおよび正規／攻撃tool callの系列Log probabilityを保存する。また、外部データを読む前後のActivation差分をTask DriftまたはIPI exposure検知のベースラインに使用する。
 
-内部状態は、少なくとも次の処理段階に対応付ける。
+「いつ」をagent loopの境界と単一forward pass内のtoken位置に分ける。
 
-1. ユーザー指示を読んだ直後
-2. 外部ツールを呼び出す直前
-3. ツール出力を読んだ直後
-4. 次の行動を決定する直前
-5. 攻撃または正規ツールを呼び出す直前
+### Agent boundary
 
-各処理段階では、原則として、その時点までの入力系列を処理し、次の生成またはツール選択を開始する直前の系列末尾tokenにおけるResidual Streamを代表表現として取得する。入力形式の違いによる影響を抑えるため、可能な場合は各入力系列の末尾を同一の区切りtokenまたはAssistant生成開始位置に統一し、使用したtoken位置とtoken IDを記録する。末尾tokenだけでは結果が安定しない場合は、末尾数tokenの平均表現または目的に対応するtoken位置を用いた解析を感度分析として追加する。
+- `B0`: User instructionまでをserializeし、最初のAssistant生成を開始する直前。
+- `B1`: 最初のtool returnまでをserializeし、次のAssistant生成を開始する直前。IPIが次行動へ影響できる主要境界。
+- `B2_plus`: 後続のtool return後に次のAssistant生成を開始する直前。遅延効果を調べる副次時点。
 
-各層・処理段階の内部状態を時系列の軌跡として扱い、正常例、Resistant、Susceptibleで比較する。
+### Tool-output内token位置
 
-## 6. 目的readoutの構成
+- `Tpre`: injected span直前のtoken。
+- `Tpost`: injected span直後のtoken。
+- `Tend_tool`: tool output末尾のtoken。
+- `Tend_assistant`: chat template上のAssistant生成開始marker。`Tend_tool`と同じtokenでない場合は分けて保存する。
 
-「モデルが目的を保持しているか」は直接観測できないため、目的への適合度を単一の正解ラベルとして与えず、次の三要素に分解する。
+各時点について、元のmessage列、実際にモデルへ渡したserialized textまたはtoken列、そのchecksumから生成する`prefix_id`、系列長、token index、token ID、選択規則およびchat templateを保存する。異なる段階名でもserialized prefixとtoken位置が同一なら、別の観測時点として重複計上しない。末尾数token平均は感度分析に限り、主解析の位置はPilotおよびvalidationで固定する。
 
-- 目的内容readout：要約、送信、削除など、特定の行動目的に関する情報が表現されているか
-- Role readout：その目的を含む指示がUser由来かTool由来かという情報が表現されているか
-- 行動候補：その目的に対応するツールまたは行動が次の選択候補として強まっているか
+Attentionは攻撃span、User goal span、tool metadata spanへの集約量を通常保存し、全層・全headのfull Attention matrixはPilotの少数例または事前指定した候補だけに限定する。Attentionの大きさだけから判断理由を断定せず、補助的な記述量として扱う。
 
-目的内容readoutの教師データには、Prompt Injectionの成否ではなく、目的が一つだけ明示された正常な単一目的実行を用いる。正解ラベルは、タスク生成時に指定した目的、入力Role、文章形式からプログラム的に付与し、一部を人手で確認する。単なる語彙の検出を避けるため、同じ目的内容について、正規のUser命令、Tool出力内の命令、説明、引用、否定・禁止、過去の行動の記述を用意する。
+## 6. Readoutの構成と解釈
 
-目的内容readoutは、要約、送信、削除、予定登録など、実験前に定めた目的カテゴリごとのMulti-label線形Probeとして構成する。各実行について、ユーザー目的に対応するカテゴリ $g_{\mathrm{user}}$ と攻撃者目的に対応するカテゴリ $g_{\mathrm{attack}}$ を特定し、各層・処理段階における較正済み出力スコア $s_{g_{\mathrm{user}}}(t,l)$ および $s_{g_{\mathrm{attack}}}(t,l)$ を追跡する。ユーザー目的と攻撃者目的は同時に表現され得るため、一方だけを選ばせる多クラス分類にはしない。
+「モデルが目的を採用したか」は直接観測できないため、次の測定を区別する。
 
-スコアは共通の検証データ上で確率較正または標準化し、生の出力値を直接比較しない。また、このスコアは各目的内容が内部状態から読み出せる程度を示すものであり、その目的の入力元、権限の認識、行動への採用を単独で示すものではない。そのため、Role readoutおよびツール選択のLogit差と併せて解釈する。ユーザー目的と攻撃者目的が同じカテゴリに属する条件は、目的内容readoutだけでは両者を区別できないため、主比較から除外するか、同一カテゴリ条件として別に解析する。攻撃成功と最終的なツール選択は目的内容readoutの教師ラベルには使わず、学習後の外部評価に用いる。
+- `action_readout`: send、transfer、deleteなど、action内容がResidual Streamから読み出せる程度。
+- `argument_readout`: recipient、account、amount、file IDなど、具体的argumentまたはconstraintが読み出せる程度。
+- `authority_readout`: 同一内容がUser命令、Tool由来の非信頼内容、引用、説明、否定・禁止など、どのsource/authority条件に置かれたかを読み出せる程度。
+- `tool_call_preference`: 正規／攻撃tool call、特にargumentへの行動選好。ProbeではなくLog probability marginで測定する。
+
+action・argument readoutの教師データには、攻撃成否ではなく、目的が一つだけ明示された正常な単一目的実行と対照条件を用いる。authority readoutには、可能な限り同一文字列を異なるRole、引用、説明、禁止等に配置したmatched text条件を用いる。攻撃成功と最終的なtool selectionはreadoutの教師ラベルに使用せず、学習後の外部評価にのみ用いる。
+
+内容の`mention`はcontent readout、具体的行動への`commitment`はtool-call preferenceとして操作的に区別する。行動結果から`adopted`または`committed`ラベルを作って同じ行動を予測するProbeは、循環的になるため主解析では作らない。readoutスコアの増加は、内容が読み出し可能であることを示すに留まり、権限付与、採用または因果的寄与を単独では示さない。
+
+Probeの妥当性確認には、Probeが表面的対応や無意味なラベルを学習しただけではないかを調べるcontrol-taskの考え方 [8]を踏まえ、少なくとも次を含める。
+
+- matched text / different authority条件
+- TF-IDF等を用いたlexical baseline
+- 同じgroup構造を保ったrandom-label control
+- task、attack goal、attack styleおよび近いparaphraseを跨がせないgroup-aware split
+- 未知task familyまたは未知attack familyでの評価
+- trainのみでの標準化、validationのみでのlayer・正則化・閾値・較正方法の選択
+
+test setは最後に一度だけ確認し、Pilot、attack選択、layer選択または閾値調整に使用したfamilyを確認的testへ含めない。
 
 ## 7. 解析方法と対照条件
 
-まず、PCAなどによる探索的可視化と、Task Driftおよび攻撃成功を予測する線形Probeを既存研究との比較用ベースラインとして実施する。主解析では、正常な単一目的実行と、同じ目的語彙を含む説明・引用・否定などの対照実行から目的方向を構成し、各層・処理段階における二つの目的readoutの変化を追跡する。
+確認的主解析は一つに固定する。`B1`のtool-output内`Tpre`から事前指定した終端位置における攻撃者argument readoutの変化と、その終端位置におけるauthority readoutが、後続するdecision boundaryの`argument_slot_margin`を説明するかを評価する。終端位置は`Tend_tool`または`Tend_assistant`からvalidationで選び、IPI exposure baseline、task openness、入力長、攻撃位置および表面的特徴を共変量または層別要因として扱う。
 
-主な統計的比較は、攻撃文を読む前後の標準化された攻撃者目的readoutの変化量と、ツール選択直前の攻撃ツール・正規ツール間のLogit差との関連とする。群Bと群Dの二値比較は副次解析とし、同じ層・時点におけるRole readoutおよびAttention指標と説明力を比較する。readoutの逆転だけで目的が置き換わったとは判断せず、複数指標と後続行動との対応からTakeover Point候補を示す。
+中間層の候補領域、token位置、前処理、正則化および判定閾値はPilotとvalidationだけで決定し、そこで使用したtask/attack familyは確認的testから除外する。最終層・最終tokenのreadoutと同じ位置のLogit差は、構造的に相関し得るためsanity checkに下げ、主張の中心にしない。
 
-表面的特徴による説明を除くため、無害な命令文、同じ攻撃語彙を含む説明文、長さを揃えた無害文、異なる言い回しの攻撃を対照条件に含める。また、タスクまたは攻撃テンプレート単位でデータを分割し、未知タスク・未知攻撃で評価する。
+主な対照条件として、無害な命令文、同じ攻撃語彙を含む説明・引用・禁止、長さを揃えた無害文、同じ内容を異なるRoleへ置いた条件、異なる言い回しの攻撃を含める。Task Drift、IPI exposure、Role readout、PCA等の可視化、群B対群D、Attentionおよび`B2_plus`は副次解析とする。全layer×全positionの探索的mapを示す場合は探索的解析と明記し、False Discovery Rateを制御する。
 
-十分な対応事例と安定したreadoutが得られた場合のみ、発展課題としてActivation Patchingを行う。意味的に対応するResistantのActivationをSusceptibleの候補時点へ移植し、攻撃ツールと正規ツールのLogit差が低下するかを、無関係な位置・層・donorを用いた対照介入と比較する。
+推論単位は個々のsurface variantではなく、taskとattack goal/styleから構成した独立clusterとする。効果量と95%信頼区間を、最高位cluster単位のBootstrapまたはPermutationで報告する。十分なcluster数と安定した推定が得られた場合だけ、変量効果モデルを補助的に用いる。
 
 ## 8. 実験規模と統計計画
 
-単一モデル・単一ドメインについて、内部状態を保存する主実験を約1,400実行とする。暫定的な内訳は次のとおりである。
+12月までに主結果を確定するため、実行数を先に固定するのではなく、独立cluster数、実装時間および保存容量を優先する。単一モデル・単一ドメインについて、Activationを保存する実行の暫定総数を約450～700とする。
 
-- 目的readoutの教師・対照データ：約480実行
-- Prompt Injection評価：約800実行
-- 正常実行ベースライン：約100実行
+- Pilot：80～120実行
+- Probe教師・matched control：200～300実行
+- 確認的IPI：task×attack goal/styleの独立clusterを最低30、各clusterにつき3～4 surface variantを目安とする
+- Clean baseline：60～100実行
 
-Prompt Injection評価は、例えば20種類のユーザータスク、4種類の攻撃目的またはテンプレート、各組合せ10種類の意味的な入力変種で構成する。群Bと群Dをそれぞれ最低100実行、目標150実行以上確保し、ResistantとSusceptibleの両方が得られる意味的な対応条件を最低20組、目標30組以上確保する。
+最終的な配分はPilot後に凍結する。surface paraphraseだけを増やして見かけ上の標本数を大きくせず、`attack_goal_id`と`attack_style_id`を分け、多様な意味・style familyを優先する。ResistantとSusceptibleの両方が得られる意味的対応条件は最低20組、目標30組とするが、群B・群Dの件数だけを主解析の成立条件にはしない。
 
-確率的生成は、Logit差が0に近い条件と各タスク・攻撃の代表条件を優先し、temperature、top-pなどを固定して各10回程度行う。この補助評価では原則として全Activationを保存しない。最初に100～150実行のPilot実験を行い、攻撃成功率、入力変種間の分散、計算時間、保存容量を推定した上で、入力変種数と反復数を調整する。
+確率的生成は、marginが0に近い条件と各task/attackの代表条件を優先し、生成設定を固定して各10回程度行う。この補助評価では原則としてActivationを保存しない。
 
-学習・検証・テストは暫定的に60%、20%、20%とするが、実行単位で無作為分割せず、同じタスク・攻撃条件に属する入力変種、確率的反復、近い言い換えを同じ分割にまとめる。統計解析では、同一タスク・攻撃条件内の入力変種を完全に独立とはみなさず、条件単位のBootstrapまたは変量効果モデルを用いる。効果量と95%信頼区間を報告し、層・時点・指標の多重比較にはFalse Discovery Rateの制御を適用する。最終的な標本数と解析方法はPilot結果に基づいて確定する。
+学習・検証・テストは暫定的に60%、20%、20%とするが、実行単位で無作為分割しない。同じtask、attack goal、attack style、pair、近いparaphraseおよび確率的反復をsplit間で分離しない。検定方法、主要な説明変数、共変量、除外規則および感度分析はtest確認前に凍結する。
 
 ## 9. 期待される成果と達成基準
 
-攻撃失敗例でも攻撃内容自体は読み出せる一方、攻撃を受け入れやすい条件では、攻撃者目的readout、Role readout、Attentionまたは行動候補に異なる時間的変化が現れると予想する。本研究により、最終的な攻撃成否だけでなく、不正なツール選択に至る前の内部的兆候と、その候補層・時点を示すことを目指す。
-
-卒業研究としての達成基準を次のように設定する。
+攻撃失敗例でも攻撃内容自体は早期に読み出せる一方、攻撃を受け入れやすい条件では、内容の有無よりauthority readoutとargument preferenceの結び付きが中間層から後半層で強くなると予想する。また、`action_open`なtaskほど攻撃内容と正当な委任の区別が難しくなると予想する。
 
 ### 必須達成目標
 
-- 公開LLMを用いた単一ドメインのツール利用型エージェントを構築する
-- 正常例、攻撃失敗例、攻撃成功例の内部状態を取得する
-- 層・処理段階ごとの内部状態変化を比較する
-- Task Driftまたは攻撃成功の検知Probeをベースラインとして再現・評価する
+- 公開LLMを用いた単一ドメインのツール利用型エージェントを構築する。
+- 正確なserialized prefixとtoken位置に対応したResidual Streamを取得する。
+- ユーザータスク成功、攻撃成功、A～Dおよびbaseline failureを独立に記録する。
+- Task DriftまたはIPI exposure Probeを比較用baselineとして再現・評価する。
+- 同一prefixから正規／攻撃canonical tool callの系列Log probabilityを評価する。
 
 ### 標準達成目標
 
-- 正常な単一目的実行と対照条件から目的readoutを構成する
-- 目的readoutの時間的変化とツール選択直前のLogit差との関連を定量化する
-- Role readoutおよびAttention指標と比較してTakeover Point候補を示す
+- matched controlからaction/argument readoutとauthority readoutを構成し、lexical baselineと比較する。
+- `Tpre`から事前指定した終端位置までのreadout変化と、後続するargument marginの関連を定量化する。
+- task opennessとgroup構造を考慮した効果量および95%信頼区間を報告する。
+- 陽性・陰性のいずれでも、goal content、authority、tool-call preferenceを区別した解釈を提示する。
 
 ### 発展達成目標
 
-- 意味的に対応したActivation Patchingによって候補状態の因果的寄与を検証する
-- 別モデルまたは別ドメインで小規模な一般化評価を行う
+- 意味的に対応した双方向Activation Patchingによって候補状態の因果的寄与を検証する。
+- 別モデルまたは別ドメインで小規模な一般化評価を行う。
 
-## 10. 研究工程
+## 10. 研究工程と期限
 
-1. 公開Instruction Modelと単一ドメインを選定し、内部状態を保存できる最小エージェント環境を構築する。
-2. 100～150実行のPilotによって攻撃成否、計算時間、保存容量を確認し、本実験規模を確定する。
-3. 正常実行と意味的に対応するPrompt Injection入力変種を収集し、外部挙動とLogit差を評価する。
-4. Task Drift検知を再現した後、目的内容、Role、行動候補のreadoutを学習・評価する。
-5. 各層・処理段階の時間的変化、対照条件、未知タスク・未知攻撃を解析する。
-6. 条件が整った場合のみActivation Patchingを行い、結果を卒業論文としてまとめる。
+12月は追加の探索実験ではなく、執筆と再現確認に充てる。2026年9月15日時点の工程を次のように設定する。
 
-## 11. リスクと代替案
+1. 9月15日～9月27日：モデル・ドメインを選定し、AgentDojoまたは最小環境との接続、canonical tool-call scoring、成功判定を動作させる。
+2. 9月28日～10月11日：80～120実行のPilotを行い、群分布、scorer、token位置、計算時間、保存容量を確認する。
+3. 10月12日～10月25日：matched controlとProbeの妥当性を確認し、条件family、split、主要層・位置および主解析を凍結する。
+4. 10月26日～11月15日：確認的データを収集する。
+5. 11月16日～11月30日：主解析、感度分析、図表作成を行い、卒業研究の主要結果を確定する。
+6. 12月：再現確認、本文執筆、関連研究の最新版・査読状況の再確認を行う。
 
-- 目的方向を明確に抽出できない場合は、単一方向ではなく低次元部分空間、または具体的なツール選択表現を解析する。
-- 攻撃成功例が不足する場合は、事前評価した攻撃テンプレートや強度を独立要因として追加し、単一ドメイン内で条件数を確保する。
-- AgentDojoと内部状態取得基盤の接続が難しい場合は、AgentDojoのタスク構造を参考に独自の最小環境を構築する。
-- Activation Patchingで効果が得られない場合も、時系列的なreadout解析を主成果とし、介入結果は発展的・否定的結果として扱う。
+Activation Patchingまたは別モデル・別ドメインの実験は、11月10日までに標準達成目標の解析に必要なデータが揃った場合だけ開始する。
+
+## 11. リスク、Go/No-Go基準と代替案
+
+- 9月末までにエンドツーエンド実行、自動成功判定またはcanonical call scoringが安定しない場合は、単一の代替ドメインまたはAgentDojo形式を参考にした最小環境へ切り替える。
+- 選定モデルが決定論的設定でclean taskまたはtool callingを安定して実行できない場合は、thinking設定を混在させず、別モデルを選ぶかteacher-forced behavioral scoringを主解析とする。
+- Probeが未知familyでlexical baselineを安定して上回らない場合は、「目的表現」という強い主張を下げ、具体的なtool action/argument表現またはbehavioral temporal attributionへ主題を縮小する。
+- `fully_specified`または`param_open`条件でSusceptible例が不足する場合は、Pilotで事前評価したattack familyまたは強度を独立要因として追加する。test結果を見た後に条件を選び直さない。
+- 全Attention保存が容量または実行時間を支配する場合は、span集約値だけを残し、Residual Streamとbehavioral scoreを優先する。
+- 11月10日までに主解析用データが揃わない場合は、Activation Patching、Attention介入および別モデル・別ドメイン評価を行わない。
+- Activation Patchingで効果が得られない場合も、観測解析を主成果とし、介入結果は発展的または否定的結果として報告する。
 
 ## 参考文献
 
-[1] E. Debenedetti, J. Zhang, M. Balunović, L. Beurer-Kellner, M. Fischer, and F. Tramèr, “[AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents](https://arxiv.org/abs/2406.13352),” arXiv:2406.13352, 2024.
+[1] E. Debenedetti, J. Zhang, M. Balunović, L. Beurer-Kellner, M. Fischer, and F. Tramèr, “[AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents](https://arxiv.org/abs/2406.13352),” NeurIPS 2024 / arXiv:2406.13352, 2024.
 
 [2] S. Abdelnabi, A. Fay, G. Cherubin, A. Salem, M. Fritz, and A. Paverd, “[Are you still on track!? Catching LLM Task Drift with Activations](https://arxiv.org/abs/2406.00799v3),” arXiv:2406.00799v3, 2024.
 
-[3] C. Ye, J. Cui, and D. Hadfield-Menell, “[Prompt Injection as Role Confusion](https://arxiv.org/abs/2603.12277),” arXiv:2603.12277, 2026.
+[3] C. Ye, J. Cui, and D. Hadfield-Menell, “[Prompt Injection as Role Confusion](https://arxiv.org/abs/2603.12277),” ICML 2026 / arXiv:2603.12277v6, 2026.
 
-[4] Z. Chen, J. Chen, L. Luo, K. Xu, X. Huang, T. Sun, and X. Jiang, “[IterInject: Indirect Prompt Injection Against LLM Agents via Feedback-Guided Iterative Optimization](https://arxiv.org/abs/2605.24659),” arXiv:2605.24659, 2026.
+[4] Z. Chen, J. Chen, L. Luo, K. Xu, X. Huang, T. Sun, and X. Jiang, “[IterInject: Indirect Prompt Injection Against LLM Agents via Feedback-Guided Iterative Optimization](https://arxiv.org/abs/2605.24659),” arXiv:2605.24659v1, 2026.
+
+[5] J. Dong, Y. Liu, M. Zhang, et al., “[Your Agentic LLMs Secretly Encode Indirect Prompt-Injection Exposure in Hidden States](https://arxiv.org/abs/2608.02657),” arXiv:2608.02657v2, 2026.
+
+[6] T. Zhang, Y. Xu, J. Wang, et al., “[AgentSentry: Mitigating Indirect Prompt Injection in LLM Agents via Temporal Causal Diagnostics and Context Purification](https://arxiv.org/abs/2602.22724),” arXiv:2602.22724v1, 2026.
+
+[7] X. Ma, T. Li, C. Xiao, Z. Yu, N. Zhang, and Y. Vorobeychik, “[AutoDojo: Adaptive Attacks Expose Superficial Defenses and User-Underspecification Limits in LLM Agents](https://arxiv.org/abs/2606.15057),” arXiv:2606.15057v1, 2026.
+
+[8] J. Hewitt and P. Liang, “[Designing and Interpreting Probes with Control Tasks](https://aclanthology.org/D19-1275/),” EMNLP-IJCNLP 2019.
+
+[9] F. Zhang and N. Nanda, “[Towards Best Practices of Activation Patching in Language Models: Metrics and Methods](https://arxiv.org/abs/2309.16042),” ICLR 2024 / arXiv:2309.16042, 2024.
