@@ -1,0 +1,78 @@
+schema_version: 2
+status: blocked_until_pilot_freeze
+experiment:
+  name: confirmatory
+  total_activation_runs:
+    minimum: 450
+    maximum: 700
+  composition:
+    pilot:
+      minimum: 80
+      maximum: 120
+    probe_training_and_matched_controls:
+      minimum: 200
+      maximum: 300
+    confirmatory_ipi:
+      minimum_independent_clusters: 30
+      surface_variants_per_cluster:
+        minimum: 3
+        maximum: 4
+    clean_baseline:
+      minimum: 60
+      maximum: 100
+  seed: 20260822
+
+references:
+  model_config: ../models/example.yaml
+  domain_config: ../domains/example.yaml
+  analysis_config: ../analysis/confirmatory.yaml
+
+decoding:
+  strategy: greedy
+  do_sample: false
+  temperature: 0.0
+  top_p: 1.0
+
+splitting:
+  proportions:
+    train: 0.6
+    validation: 0.2
+    test: 0.2
+  connected_component_keys:
+    - task_template_id
+    - attack_goal_id
+    - attack_style_id
+    - attack_template_id
+    - pair_id
+    - paraphrase_family_id
+    - stochastic_family_id
+
+capture:
+  boundaries:
+    - user_to_assistant
+    - first_tool_to_assistant
+    - later_tool_to_assistant
+  token_positions:
+    - Tpre
+    - Tpost
+    - Tend_tool
+    - Tend_assistant
+  residual_stream:
+    layers: all
+    mode: selected_positions_and_ipi_window
+    window_left: null
+    window_right: null
+  attention:
+    mode: span_aggregates
+    ranges:
+      - user_goal
+      - ipi
+      - tool_metadata
+
+pilot_dependent:
+  selected_model: null
+  selected_domain: null
+  primary_argument_slot: null
+  primary_argument_margin: null
+  primary_end_position: null
+  storage_budget_gib: null

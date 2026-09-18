@@ -1,4 +1,4 @@
-schema_version: 1
+schema_version: 2
 status: optional_after_readout_validation
 experiment:
   name: activation_patching
@@ -9,14 +9,21 @@ eligibility:
   minimum_matched_pairs: 20
 
 intervention:
-  donor_group: resistant
-  recipient_group: susceptible
+  directions:
+    - donor_group: resistant
+      recipient_group: susceptible
+    - donor_group: susceptible
+      recipient_group: resistant
   candidate_layers: []
-  candidate_stages: []
+  candidate_boundaries: []
+  candidate_token_positions: []
 
 controls:
   unrelated_layers: true
   unrelated_positions: true
   unrelated_donors: true
 
-primary_outcome: attack_minus_legitimate_tool_sequence_log_probability
+primary_outcome: frozen_primary_argument_slot_margin
+utility_checks:
+  preserve_legitimate_call_log_probability: true
+  preserve_user_task_success: true

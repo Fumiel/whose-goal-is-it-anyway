@@ -1,4 +1,4 @@
-schema_version: 1
+schema_version: 2
 status: placeholder
 domain:
   name: replace-with-selected-domain
@@ -12,8 +12,11 @@ domain:
     - schedule
   legitimate_tools: []
   attack_tools: []
+  primary_argument_slots: []
+  supports_same_tool_different_argument: null
 
 # These rules must be executable or independently auditable before the pilot.
 evaluation:
   user_task_success_rule: null
   attack_success_rule: null
+  evaluator_version: null

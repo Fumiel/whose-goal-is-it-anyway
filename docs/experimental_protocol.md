@@ -287,7 +287,7 @@ test隔離の最低要件:
 - raw model output、parsed call、parser error、tool event log
 - 二つの成功flag、outcome、評価器version
 - 全group ID、split、task openness
-- 各stage・位置のtoken index、token ID、選択規則
+- 各agent boundary・位置のtoken index、token ID、選択規則
 - activation保存mode、層、位置、window、shape、dtype
 - Attention集約値と対象range
 - 候補call、token別log probability、各margin
@@ -648,7 +648,7 @@ $$
 - split leakageが0件
 - raw artifact checksum一致
 - runner、activation extractor、scorerのprefix token ID完全一致
-- 全stageのtoken index範囲とtoken ID一致
+- 全agent boundaryのtoken index範囲とtoken ID一致
 - activation shape、layer数、NaN / inf
 - candidate scoreのshift、mask、token数、finite value
 - outcome truth tableの矛盾
@@ -695,7 +695,7 @@ rawとprocessedを分離し、processed artifactには入力raw checksum、処�
 推奨する論理構成:
 
 ```text
-outputs/runs/<run_id>/
+  artifacts/runs/<run_id>/
   resolved_config.yaml
   run.json
   messages.json
@@ -709,7 +709,7 @@ outputs/runs/<run_id>/
   manifest.json
 ```
 
-実際の大容量artifactは外部保存先に置いてよいが、manifestからURI、checksum、shape、dtypeを追跡できるようにする。Gitへcommitするのはconfig、schema、code、小さい非機密fixture、split / manifestのうち安全で小さいものに限る。secret、model weight、raw activation、Attention tensor、大量run outputはcommitしない。
+実際の大容量artifactは外部保存先に置いてよいが、manifestからURI、checksum、shape、dtypeを追跡できるようにする。再生成可能な派生データは`artifacts/processed/`、解析実行出力は`artifacts/analyses/`、provenanceを確認した小さな確定図表だけを`results/`へ置く。Gitへcommitするのはconfig、schema、code、小さい非機密fixture、split / manifestのうち安全で小さいものに限る。secret、model weight、raw activation、Attention tensor、大量run outputはcommitしない。
 
 ## 22. 継続・中止基準と期限
 

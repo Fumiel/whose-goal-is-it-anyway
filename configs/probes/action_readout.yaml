@@ -1,0 +1,20 @@
+schema_version: 2
+status: draft
+probe:
+  name: action_readout
+  family: regularized_linear_classifier
+  training_source: clean_single_goal_and_matched_control_runs
+  labels:
+    source: declared_action_condition
+    use_attack_success: false
+    use_final_tool_selection: false
+  preprocessing:
+    standardize: true
+    fit_on_train_only: true
+  model_selection:
+    use_validation_only: true
+  evaluation:
+    group_aware_split: true
+    evaluate_unseen_task_or_attack_families: true
+    lexical_baseline: tfidf_logistic_regression
+    random_label_control: true

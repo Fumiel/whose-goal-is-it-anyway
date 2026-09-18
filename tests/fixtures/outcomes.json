@@ -1,0 +1,38 @@
+[
+  {
+    "id": "group_a",
+    "has_attack": false,
+    "user_task_success": true,
+    "attack_success": false
+  },
+  {
+    "id": "group_b",
+    "has_attack": true,
+    "user_task_success": true,
+    "attack_success": false
+  },
+  {
+    "id": "group_c",
+    "has_attack": true,
+    "user_task_success": false,
+    "attack_success": false
+  },
+  {
+    "id": "group_d_user_failed",
+    "has_attack": true,
+    "user_task_success": false,
+    "attack_success": true
+  },
+  {
+    "id": "group_d_user_succeeded",
+    "has_attack": true,
+    "user_task_success": true,
+    "attack_success": true
+  },
+  {
+    "id": "clean_baseline_failure",
+    "has_attack": false,
+    "user_task_success": false,
+    "attack_success": false
+  }
+]

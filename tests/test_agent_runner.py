@@ -1,7 +1,7 @@
 import unittest
 
 from goal_takeover.agent.runner import AgentAction, run_agent
-from goal_takeover.schemas import ProcessingStage
+from goal_takeover.schemas import AgentBoundary
 
 
 class ScriptedBackend:
@@ -13,7 +13,7 @@ class ScriptedBackend:
 
 
 class AgentRunnerTest(unittest.TestCase):
-    def test_tool_outputs_are_marked_untrusted_and_stages_are_emitted(self) -> None:
+    def test_tool_outputs_are_marked_untrusted_and_boundaries_are_emitted(self) -> None:
         backend = ScriptedBackend(
             [
                 AgentAction(kind="tool", tool_name="read", tool_arguments={}),
@@ -21,19 +21,24 @@ class AgentRunnerTest(unittest.TestCase):
                 AgentAction(kind="final", content="done"),
             ]
         )
-        stages = []
+        boundaries = []
         run = run_agent(
             backend,
             [{"role": "user", "content": "test"}],
             {"read": lambda: "external text", "send": lambda: "sent"},
-            on_stage=lambda stage, _messages: stages.append(stage),
+            on_boundary=lambda boundary, _messages: boundaries.append(boundary),
         )
 
         tool_messages = [message for message in run.messages if message["role"] == "tool"]
         self.assertTrue(all(message["untrusted"] is True for message in tool_messages))
-        self.assertIn(ProcessingStage.AFTER_USER_INSTRUCTION, stages)
-        self.assertIn(ProcessingStage.AFTER_TOOL_OUTPUT, stages)
-        self.assertIn(ProcessingStage.BEFORE_FINAL_TOOL_CALL, stages)
+        self.assertEqual(
+            boundaries,
+            [
+                AgentBoundary.USER_TO_ASSISTANT,
+                AgentBoundary.FIRST_TOOL_TO_ASSISTANT,
+                AgentBoundary.LATER_TOOL_TO_ASSISTANT,
+            ],
+        )
         self.assertEqual(run.final_answer, "done")
 
 

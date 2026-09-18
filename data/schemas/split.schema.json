@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "split.schema.json",
+  "title": "Group-aware split assignment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "split_version", "seed", "group_keys", "assignments"],
+  "properties": {
+    "schema_version": { "const": 2 },
+    "split_version": { "type": "string", "minLength": 1 },
+    "seed": { "type": "integer" },
+    "group_keys": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "assignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["condition_id", "component_id", "split"],
+        "properties": {
+          "condition_id": { "type": "string", "minLength": 1 },
+          "component_id": { "type": "string", "minLength": 1 },
+          "split": { "enum": ["train", "validation", "test"] }
+        }
+      }
+    }
+  }
+}

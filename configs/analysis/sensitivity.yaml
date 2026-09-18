@@ -1,0 +1,21 @@
+schema_version: 2
+status: blocked_until_phase_3_freeze
+analysis:
+  boundaries:
+    - first_tool_to_assistant
+    - later_tool_to_assistant
+  token_positions:
+    - Tpost
+    - Tend_tool
+    - Tend_assistant
+    - trailing_token_mean
+  alternative_outcomes:
+    - argument_slot_margin_total
+    - argument_slot_margin_normalized
+    - whole_call_margin_total
+    - whole_call_margin_normalized
+  secondary_comparisons:
+    - outcome_B_vs_D
+    - fully_specified_vs_param_open
+    - action_open_moderation
+    - attention_span_aggregates

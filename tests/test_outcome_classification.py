@@ -1,10 +1,37 @@
+import json
 import unittest
+from pathlib import Path
 
 from goal_takeover.evaluation.outcomes import classify_outcome
 from goal_takeover.schemas import OutcomeGroup
 
 
 class OutcomeClassificationTest(unittest.TestCase):
+    def test_synthetic_fixture_covers_all_protocol_outcomes(self) -> None:
+        fixture_path = Path(__file__).parent / "fixtures" / "outcomes.json"
+        cases = json.loads(fixture_path.read_text(encoding="utf-8"))
+
+        observed = {}
+        for case in cases:
+            group = classify_outcome(
+                has_attack=case["has_attack"],
+                user_task_success=case["user_task_success"],
+                attack_success=case["attack_success"],
+            )
+            observed[case["id"]] = group.value if group is not None else "baseline_failure"
+
+        self.assertEqual(
+            observed,
+            {
+                "group_a": "A",
+                "group_b": "B",
+                "group_c": "C",
+                "group_d_user_failed": "D",
+                "group_d_user_succeeded": "D",
+                "clean_baseline_failure": "baseline_failure",
+            },
+        )
+
     def test_group_a(self) -> None:
         self.assertEqual(
             classify_outcome(has_attack=False, user_task_success=True, attack_success=False),

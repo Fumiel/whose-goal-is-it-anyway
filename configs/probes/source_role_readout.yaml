@@ -1,0 +1,25 @@
+schema_version: 2
+status: draft
+probe:
+  name: source_role_readout
+  family: regularized_linear_classifier
+  roles:
+    - user_instruction
+    - tool_output
+    - quotation
+    - explanation
+    - negation_or_prohibition
+  training_source: matched_content_across_source_role_conditions
+  preprocessing:
+    standardize: true
+    fit_on_train_only: true
+  calibration:
+    fit_on_train_only: true
+    method_selected_on_validation: true
+  authority_score:
+    direction: trusted_user_instruction_like_minus_untrusted_tool_content_like
+    construction_selected_on_validation: true
+  evaluation:
+    group_aware_split: true
+    lexical_baseline: tfidf_logistic_regression
+    random_label_control: true

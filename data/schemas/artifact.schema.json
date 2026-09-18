@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "artifact.schema.json",
+  "title": "Artifact manifest entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["artifact_id", "kind", "relative_path", "sha256", "bytes"],
+  "properties": {
+    "artifact_id": { "type": "string", "minLength": 1 },
+    "run_id": { "type": ["string", "null"] },
+    "kind": { "type": "string", "minLength": 1 },
+    "relative_path": { "type": "string", "minLength": 1 },
+    "external_uri": { "type": ["string", "null"] },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "bytes": { "type": "integer", "minimum": 0 },
+    "shape": {
+      "type": ["array", "null"],
+      "items": { "type": "integer", "minimum": 0 }
+    },
+    "dtype": { "type": ["string", "null"] }
+  }
+}

@@ -24,20 +24,19 @@ venv/
 .ipynb_checkpoints/
 
 # Model weights and large tensor artifacts
-models/
-checkpoints/
+/model_weights/
+/checkpoints/
 *.safetensors
 *.pt
 *.pth
 *.ckpt
 
-# Generated experiment data
-data/raw/*
-!data/raw/README.md
-data/processed/*
-!data/processed/README.md
-outputs/*
-!outputs/README.md
+# Generated experiment artifacts. Keep only the layout documentation in Git.
+/artifacts/*
+!/artifacts/README.md
+
+# Curated, small result tables and figures may be committed under results/.
+/results/**/*.tmp
 
 # Temporary files
 *.log

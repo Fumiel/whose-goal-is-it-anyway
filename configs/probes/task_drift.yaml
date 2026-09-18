@@ -1,9 +1,9 @@
-schema_version: 1
+schema_version: 2
 status: draft
 probe:
   name: task_drift_baseline
   family: linear_classifier
-  input: activation_difference_after_minus_before_tool_output
+  input: activation_difference_first_tool_to_assistant_minus_user_to_assistant
   preprocessing:
     standardize: true
     fit_on_train_only: true
@@ -11,3 +11,5 @@ probe:
     group_aware_split: true
     report_effect_size: true
     report_95_percent_confidence_interval: true
+    lexical_baseline: tfidf_logistic_regression
+    random_label_control: true

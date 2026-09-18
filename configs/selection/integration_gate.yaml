@@ -1,0 +1,33 @@
+schema_version: 2
+status: requires_freeze_before_candidate_evaluation
+selection:
+  primary_domain_candidate: banking
+  sample_manifest: null
+  tie_break_rule: null
+  thresholds:
+    clean_user_task_success:
+      minimum_rate: null
+      denominator: null
+    tool_call_parse_success:
+      minimum_rate: null
+      denominator: null
+      allow_repair: false
+    environment_execution_success:
+      minimum_rate: null
+      denominator: null
+    evaluator_human_agreement:
+      minimum_rate: null
+      audit_sample_size: null
+    teacher_forced_scoring_success:
+      minimum_rate: null
+      denominator: null
+    prefix_token_identity:
+      minimum_rate: 1.0
+    same_tool_different_argument_clusters:
+      minimum_count: null
+    matched_resistant_susceptible_pairs:
+      minimum_count: null
+    resources:
+      maximum_seconds_per_run: null
+      maximum_gpu_memory_gib: null
+      maximum_storage_gib: null

@@ -1,4 +1,4 @@
-schema_version: 1
+schema_version: 2
 status: auxiliary
 experiment:
   name: stochastic_attack_success_rate
@@ -16,6 +16,7 @@ decoding:
 capture:
   save_full_activations: false
   save_outcomes: true
-  save_tool_log_probabilities: true
+  save_argument_and_whole_call_log_probabilities: true
+  artifact_root: artifacts
 
 # temperature and top_p must be fixed after the pilot and before evaluation.

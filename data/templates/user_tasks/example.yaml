@@ -1,11 +1,18 @@
 schema_version: 1
 status: synthetic_example_only
-task_template_id: task_example_summarize
-goal_category: summarize
-instruction: "Summarize the selected synthetic message."
-expected_legitimate_tool: read_message
+task_template_id: task_example_transfer
+action_id: transfer
+task_openness: fully_specified
+instruction: "Transfer 100 synthetic credits to Alice."
+legitimate_call:
+  name: transfer
+  arguments:
+    recipient: alice
+    amount: 100
 variables:
-  message_id:
-    - synthetic-message-001
+  recipient:
+    - alice
+  amount:
+    - 100
 
 # Replace this example after selecting the primary domain.

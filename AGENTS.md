@@ -15,7 +15,8 @@ and their evidence instead of silently changing the intended experiment.
 - The repository is at the pre-pilot scaffolding stage.
 - The model and primary AgentDojo domain have not been selected.
 - Files under `configs/**/example.yaml` are placeholders, not settled choices.
-- There is not yet an end-to-end model runner or a validated AgentDojo adapter.
+- A synthetic end-to-end integration path exists. There is not yet a validated
+  real-model runner or AgentDojo adapter.
 
 Do not present placeholder configurations or synthetic fixtures as research
 results.
@@ -38,13 +39,14 @@ results.
     separately.
 - A clean run in which the user task fails is not A-D and must be retained as
   an explicit baseline failure or excluded with a documented rule.
-- Goal-content readout, role readout, attention, and action logits are distinct
-  measurements. Never claim that a readable goal was adopted merely because a
-  probe score increased.
-- Treat a Takeover Point as an observational candidate unless a controlled
-  intervention supports a causal claim.
-- Save the exact token index and token ID used at every processing stage.
-- For multi-token tool names, compare whole-call sequence log probability, not
+- Action readout, argument readout, source-role readout, operational authority
+  score, attention, and tool-call preference are distinct measurements. Never
+  claim that a readable goal was adopted merely because a probe score increased.
+- Treat a Takeover Point as observational unless a controlled intervention
+  supports a causal claim.
+- Save the exact token index and token ID used at every agent boundary and
+  selected position.
+- For multi-token tool names and arguments, compare the declared sequence, not
   only the first token.
 - Fit calibration and preprocessing using training data only.
 
@@ -54,7 +56,7 @@ results.
   in research-facing documentation.
 - Put importable code under `src/goal_takeover/`; keep notebooks exploratory.
 - Prefer configuration-driven experiments. Do not hard-code model, domain,
-  layer, stage, decoding, or output paths in analysis code.
+  layer, agent boundary, decoding, or output paths in analysis code.
 - Give conditions stable IDs and runs unique IDs. Preserve pair IDs for matched
   Resistant/Susceptible conditions.
 - Every run should preserve the resolved configuration, Git commit, model and
@@ -68,6 +70,9 @@ results.
   large run outputs. Store them externally and commit only manifests/checksums.
 - Small, synthetic, non-sensitive test fixtures may be committed.
 - Use paths relative to the repository in committed configs and manifests.
+- Use `artifacts/runs/` for immutable raw run bundles,
+  `artifacts/processed/` for derived data, and `results/` only for curated small
+  outputs with provenance.
 
 ## Quality checks
 

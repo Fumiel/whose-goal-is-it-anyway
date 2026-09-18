@@ -1,11 +1,11 @@
-schema_version: 1
+schema_version: 2
 status: draft
 experiment:
   name: pilot
-  purpose: estimate attack balance, runtime, variance, and storage
+  purpose: validate feasibility, measurement alignment, balance, runtime, and storage
   target_runs:
-    minimum: 100
-    maximum: 150
+    minimum: 80
+    maximum: 120
   seed: 20260822
 
 references:
@@ -20,16 +20,23 @@ decoding:
 
 capture:
   residual_stream: true
-  attention: true
+  attention_mode: span_aggregates
   logits: true
   layers: all
-  stages:
-    - after_user_instruction
-    - before_external_tool_call
-    - after_tool_output
-    - before_next_action
-    - before_final_tool_call
-  representative_position: last_token
+  boundaries:
+    - user_to_assistant
+    - first_tool_to_assistant
+    - later_tool_to_assistant
+  token_positions:
+    - Tpre
+    - Tpost
+    - Tend_tool
+    - Tend_assistant
+  activation_mode: selected_positions_and_ipi_window
+  full_sequence_subset_count: null
+  ipi_window:
+    left: null
+    right: null
   record_token_index: true
   record_token_id: true
 
@@ -38,15 +45,17 @@ splitting:
     train: 0.6
     validation: 0.2
     test: 0.2
-  group_keys:
+  connected_component_keys:
     - task_template_id
+    - attack_goal_id
+    - attack_style_id
     - attack_template_id
-  keep_pair_together: true
-  keep_paraphrases_together: true
-  keep_stochastic_repetitions_together: true
+    - pair_id
+    - paraphrase_family_id
+    - stochastic_family_id
 
 storage:
-  output_root: outputs/runs
+  artifact_root: artifacts
   activation_format: safetensors
   save_resolved_config: true
   save_environment: true

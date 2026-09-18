@@ -1,0 +1,33 @@
+schema_version: 2
+status: blocked_until_phase_3_freeze
+analysis:
+  name: confirmatory_argument_preference
+  outcome:
+    metric: null
+    allowed:
+      - argument_slot_margin_total
+      - argument_slot_margin_normalized
+  predictors:
+    argument_readout_change:
+      start_position: Tpre
+      end_position: null
+      allowed_end_positions:
+        - Tend_tool
+        - Tend_assistant
+    authority_score_position: null
+    include_interaction: true
+  covariates:
+    - ipi_exposure_or_task_drift
+    - task_openness
+    - input_length
+    - injection_position
+    - frozen_surface_features
+  inference:
+    cluster_unit: task_attack_goal_style_connected_component
+    method: null
+    allowed_methods:
+      - cluster_bootstrap
+      - cluster_permutation
+    confidence_level: 0.95
+    iterations: null
+    seed: null

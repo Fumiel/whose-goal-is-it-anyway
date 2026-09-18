@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "condition.schema.json",
-  "title": "Experimental condition",
+  "title": "Experimental condition v2",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -9,36 +9,50 @@
     "condition_id",
     "task_template_id",
     "variant_id",
-    "user_goal_category",
-    "expected_legitimate_tool",
+    "task_openness",
+    "paraphrase_family_id",
+    "pair_id",
     "has_attack",
+    "legitimate_call",
     "messages"
   ],
   "properties": {
-    "schema_version": { "const": 1 },
+    "schema_version": { "const": 2 },
     "condition_id": { "type": "string", "minLength": 1 },
     "task_template_id": { "type": "string", "minLength": 1 },
-    "attack_template_id": { "type": ["string", "null"] },
+    "variant_id": { "type": "string", "minLength": 1 },
+    "task_openness": {
+      "enum": ["fully_specified", "param_open", "action_open"]
+    },
     "paraphrase_family_id": { "type": ["string", "null"] },
     "pair_id": { "type": ["string", "null"] },
-    "variant_id": { "type": "string", "minLength": 1 },
-    "user_goal_category": { "type": "string", "minLength": 1 },
-    "attack_goal_category": { "type": ["string", "null"] },
-    "expected_legitimate_tool": { "type": "string", "minLength": 1 },
-    "expected_attack_tool": { "type": ["string", "null"] },
+    "attack_goal_id": { "type": ["string", "null"] },
+    "attack_style_id": { "type": ["string", "null"] },
+    "attack_template_id": { "type": ["string", "null"] },
+    "argument_slot_id": { "type": ["string", "null"] },
+    "stochastic_family_id": { "type": ["string", "null"] },
+    "condition_family": {
+      "enum": [
+        "clean",
+        "ipi",
+        "matched_source_role",
+        "lexical_control",
+        "length_control",
+        "paraphrase"
+      ]
+    },
     "has_attack": { "type": "boolean" },
+    "legitimate_call": { "$ref": "#/$defs/toolCall" },
+    "attack_call": {
+      "anyOf": [{ "$ref": "#/$defs/toolCall" }, { "type": "null" }]
+    },
+    "injection_span": {
+      "anyOf": [{ "$ref": "#/$defs/messageSpan" }, { "type": "null" }]
+    },
     "messages": {
       "type": "array",
       "minItems": 1,
-      "items": {
-        "type": "object",
-        "required": ["role", "content"],
-        "properties": {
-          "role": { "enum": ["system", "user", "assistant", "tool"] },
-          "content": { "type": "string" }
-        },
-        "additionalProperties": true
-      }
+      "items": { "$ref": "#/$defs/message" }
     },
     "metadata": { "type": "object" }
   },
@@ -46,13 +60,64 @@
     {
       "if": { "properties": { "has_attack": { "const": true } } },
       "then": {
-        "required": ["attack_template_id", "attack_goal_category", "expected_attack_tool"],
+        "required": [
+          "attack_goal_id",
+          "attack_style_id",
+          "attack_template_id",
+          "argument_slot_id",
+          "attack_call",
+          "injection_span"
+        ],
         "properties": {
+          "attack_goal_id": { "type": "string", "minLength": 1 },
+          "attack_style_id": { "type": "string", "minLength": 1 },
           "attack_template_id": { "type": "string", "minLength": 1 },
-          "attack_goal_category": { "type": "string", "minLength": 1 },
-          "expected_attack_tool": { "type": "string", "minLength": 1 }
+          "argument_slot_id": { "type": "string", "minLength": 1 },
+          "attack_call": { "$ref": "#/$defs/toolCall" },
+          "injection_span": { "$ref": "#/$defs/messageSpan" }
+        }
+      },
+      "else": {
+        "properties": {
+          "attack_goal_id": { "type": "null" },
+          "attack_style_id": { "type": "null" },
+          "attack_template_id": { "type": "null" },
+          "argument_slot_id": { "type": "null" },
+          "attack_call": { "type": "null" },
+          "injection_span": { "type": "null" }
         }
       }
     }
-  ]
+  ],
+  "$defs": {
+    "toolCall": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "arguments"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "arguments": { "type": "object" }
+      }
+    },
+    "message": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["role", "content"],
+      "properties": {
+        "role": { "enum": ["system", "user", "assistant", "tool"] },
+        "name": { "type": "string" },
+        "content": { "type": "string" }
+      }
+    },
+    "messageSpan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["message_index", "start", "end"],
+      "properties": {
+        "message_index": { "type": "integer", "minimum": 0 },
+        "start": { "type": "integer", "minimum": 0 },
+        "end": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
 }

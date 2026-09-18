@@ -1,0 +1,23 @@
+schema_version: 2
+status: placeholder
+model:
+  name: replace-with-open-weight-instruction-model
+  revision: null
+  tokenizer_revision: null
+  trust_remote_code: false
+  dtype: bfloat16
+  device_map: auto
+  attn_implementation: eager
+  load_in_8bit: false
+  load_in_4bit: false
+
+# Fill these only after verifying the selected architecture.
+instrumentation:
+  transformer_block_path: null
+  residual_hook_point: block_output
+  capture_layers: all
+  output_attentions: true
+serialization:
+  chat_template_sha256: null
+  add_generation_prompt: true
+  canonical_tool_call_format: canonical_json_v1
