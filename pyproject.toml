@@ -15,6 +15,11 @@ dependencies = [
 
 [project.optional-dependencies]
 research = [
+  "accelerate>=1.2,<2",
+  "agentdojo==0.1.35",
+  "bitsandbytes>=0.45,<1; platform_system == 'Linux'",
+  "huggingface-hub>=0.27,<1",
+  "jinja2>=3.1,<4",
   "matplotlib>=3.9,<4",
   "numpy>=2.0,<3",
   "pandas>=2.2,<3",
@@ -24,7 +29,7 @@ research = [
   "seaborn>=0.13,<1",
   "statsmodels>=0.14,<1",
   "torch>=2.4,<3",
-  "transformers>=4.45,<6",
+  "transformers>=4.51,<5",
 ]
 dev = [
   "pytest>=8.3,<10",
@@ -43,6 +48,7 @@ pythonpath = ["src"]
 testpaths = ["tests"]
 markers = [
   "integration: synthetic or local integration tests without external model downloads",
+  "gpu: tests that require a CUDA GPU and downloaded model weights",
 ]
 
 [tool.ruff]

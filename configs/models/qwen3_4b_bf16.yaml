@@ -1,0 +1,26 @@
+schema_version: 2
+status: pre_gate_shakedown_candidate
+model:
+  name: Qwen/Qwen3-4B
+  revision: 2863ddf32bc3434b6c25143b11c15c5eaa820d15
+  tokenizer_revision: 2863ddf32bc3434b6c25143b11c15c5eaa820d15
+  trust_remote_code: false
+  dtype: bfloat16
+  device_map: cuda
+  quantization: null
+  low_cpu_mem_usage: true
+  attn_implementation: sdpa
+  max_context_tokens: 4096
+
+instrumentation:
+  transformer_block_path: model.layers
+  residual_hook_point: block_output
+  capture_layers: all
+  output_attentions: false
+
+serialization:
+  chat_template_sha256: resolve_and_verify_at_runtime
+  add_generation_prompt: true
+  enable_thinking: false
+  canonical_tool_call_format: qwen3_native_v1
+

@@ -94,18 +94,46 @@ def serialize_huggingface_prefix(
     boundary: AgentBoundary,
     tokenizer_revision: str,
     chat_template_sha256: str,
+    tools: Sequence[Mapping[str, Any]] | None = None,
+    enable_thinking: bool = False,
+    add_generation_prompt: bool = True,
 ) -> SerializedPrefix:
     """Serialize with a verified Hugging Face chat template and fast offsets."""
 
-    text = tokenizer.apply_chat_template(list(messages), tokenize=False, add_generation_prompt=True)
+    template_kwargs = {
+        "tools": list(tools) if tools is not None else None,
+        "enable_thinking": enable_thinking,
+        "add_generation_prompt": add_generation_prompt,
+    }
+    text = tokenizer.apply_chat_template(list(messages), tokenize=False, **template_kwargs)
     encoded = tokenizer(text, add_special_tokens=False, return_offsets_mapping=True)
     if "offset_mapping" not in encoded:
         raise ValueError("selected tokenizer must provide verified offset mapping")
+    template_ids = tokenizer.apply_chat_template(list(messages), tokenize=True, **template_kwargs)
+    if hasattr(template_ids, "tolist"):
+        template_ids = template_ids.tolist()
+    if template_ids and isinstance(template_ids[0], list):
+        template_ids = template_ids[0]
+    if tuple(int(value) for value in template_ids) != tuple(encoded["input_ids"]):
+        raise ValueError("chat-template tokenization differs from text tokenization")
+    tools_payload = [] if tools is None else list(tools)
+    tools_json = json.dumps(
+        tools_payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    )
+    system_messages = [
+        message.get("content", "") for message in messages if message.get("role") == "system"
+    ]
+    system_json = json.dumps(
+        system_messages, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    )
     metadata = {
         "serializer": "huggingface_chat_template",
         "tokenizer_revision": tokenizer_revision,
         "chat_template_sha256": chat_template_sha256,
-        "add_generation_prompt": True,
+        "add_generation_prompt": add_generation_prompt,
+        "enable_thinking": enable_thinking,
+        "tool_schema_sha256": hashlib.sha256(tools_json.encode("utf-8")).hexdigest(),
+        "system_message_sha256": hashlib.sha256(system_json.encode("utf-8")).hexdigest(),
     }
     return build_serialized_prefix(
         boundary=boundary,

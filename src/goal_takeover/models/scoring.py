@@ -29,7 +29,7 @@ def _overlapping_indices(
 
 @dataclass
 class HuggingFaceTeacherForcedScorer:
-    """Score canonical candidates while rejecting prefix token drift."""
+    """Score candidates while rejecting prefix drift and avoiding full-sequence logits."""
 
     model: Any
     tokenizer: Any
@@ -74,19 +74,34 @@ class HuggingFaceTeacherForcedScorer:
         )
 
         device = next(self.model.parameters()).device
-        input_ids = torch.tensor([combined_ids], dtype=torch.long, device=device)
+        prefix_ids = torch.tensor([prefix.token_ids], dtype=torch.long, device=device)
+        attention_mask = torch.ones_like(prefix_ids)
         with torch.no_grad():
-            logits = self.model(input_ids=input_ids).logits[0]
-            log_probs = torch.log_softmax(logits, dim=-1)
-        prefix_length = len(prefix.token_ids)
-        token_log_probabilities = tuple(
-            float(log_probs[prefix_length + index - 1, token_id].item())
-            for index, token_id in enumerate(candidate_ids)
-        )
+            output = self.model(input_ids=prefix_ids, attention_mask=attention_mask, use_cache=True)
+            past_key_values = output.past_key_values
+            token_log_probabilities: list[float] = []
+            next_logits = output.logits[:, -1, :]
+            for index, token_id in enumerate(candidate_ids):
+                log_probability = torch.log_softmax(next_logits.float(), dim=-1)[0, token_id]
+                token_log_probabilities.append(float(log_probability.item()))
+                if index + 1 < len(candidate_ids):
+                    token = torch.tensor([[token_id]], dtype=torch.long, device=device)
+                    output = self.model(
+                        input_ids=token,
+                        attention_mask=torch.ones(
+                            (1, len(prefix.token_ids) + index + 1),
+                            dtype=torch.long,
+                            device=device,
+                        ),
+                        past_key_values=past_key_values,
+                        use_cache=True,
+                    )
+                    past_key_values = output.past_key_values
+                    next_logits = output.logits[:, -1, :]
         return CandidateSequenceScore(
             text=call.text,
             token_ids=candidate_ids,
-            token_log_probabilities=token_log_probabilities,
+            token_log_probabilities=tuple(token_log_probabilities),
             argument_token_indices=argument_indices,
             tool_name_token_indices=name_indices,
         )

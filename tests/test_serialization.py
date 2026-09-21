@@ -3,7 +3,7 @@ import unittest
 from goal_takeover.datasets.generation import stable_condition_id
 from goal_takeover.schemas import AgentBoundary
 from goal_takeover.serialization.canonical import serialize_tool_call
-from goal_takeover.serialization.prefix import build_serialized_prefix
+from goal_takeover.serialization.prefix import build_serialized_prefix, serialize_huggingface_prefix
 
 
 class SerializationTest(unittest.TestCase):
@@ -41,6 +41,33 @@ class SerializationTest(unittest.TestCase):
         self.assertNotEqual(first.prefix_id, changed.prefix_id)
         with self.assertRaises(ValueError):
             first.assert_same_tokens([10, 99, 30], consumer="test")
+
+    def test_huggingface_prefix_hashes_tools_and_disables_thinking(self) -> None:
+        class FakeTokenizer:
+            def apply_chat_template(self, _messages, *, tokenize, **kwargs):
+                self.kwargs = kwargs
+                return [10, 20, 30] if tokenize else "abc"
+
+            def __call__(self, _text, **_kwargs):
+                return {
+                    "input_ids": [10, 20, 30],
+                    "offset_mapping": [(0, 1), (1, 2), (2, 3)],
+                }
+
+        tokenizer = FakeTokenizer()
+        prefix = serialize_huggingface_prefix(
+            tokenizer,
+            [{"role": "user", "content": "test"}],
+            boundary=AgentBoundary.USER_TO_ASSISTANT,
+            tokenizer_revision="revision",
+            chat_template_sha256="a" * 64,
+            tools=[{"type": "function", "function": {"name": "read"}}],
+            enable_thinking=False,
+        )
+
+        self.assertFalse(prefix.metadata["enable_thinking"])
+        self.assertEqual(len(prefix.metadata["tool_schema_sha256"]), 64)
+        self.assertFalse(tokenizer.kwargs["enable_thinking"])
 
 
 if __name__ == "__main__":

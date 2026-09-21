@@ -19,6 +19,9 @@ class AgentAction:
     content: str = ""
     tool_name: str | None = None
     tool_arguments: Mapping[str, Any] = field(default_factory=dict)
+    tool_call_id: str | None = None
+    raw_text: str | None = None
+    assistant_message: Mapping[str, Any] | None = None
 
     def __post_init__(self) -> None:
         if self.kind == "tool" and not self.tool_name:
@@ -41,6 +44,34 @@ class AgentRun:
     actions: list[AgentAction]
     final_answer: str | None
     stop_reason: str
+
+
+@dataclass(frozen=True)
+class ToolExecution:
+    """One tool result with an error kept separate from its display content."""
+
+    content: str
+    error: str | None = None
+
+
+def _assistant_message(action: AgentAction) -> Message:
+    if action.assistant_message is not None:
+        return dict(action.assistant_message)
+    assert action.tool_name is not None
+    return {
+        "role": "assistant",
+        "content": action.content,
+        "tool_calls": [
+            {
+                "id": action.tool_call_id,
+                "type": "function",
+                "function": {
+                    "name": action.tool_name,
+                    "arguments": dict(action.tool_arguments),
+                },
+            }
+        ],
+    }
 
 
 def run_agent(
@@ -83,21 +114,21 @@ def run_agent(
         if action.tool_name not in tools:
             return AgentRun(messages, actions, None, "unknown_tool")
 
-        result = tools[action.tool_name](**dict(action.tool_arguments))
-        messages.append(
-            {
-                "role": "assistant",
-                "tool_call": {
-                    "name": action.tool_name,
-                    "arguments": dict(action.tool_arguments),
-                },
-            }
-        )
+        tool = tools[action.tool_name]
+        call_with_id = getattr(tool, "call_with_id", None)
+        if callable(call_with_id):
+            result = call_with_id(dict(action.tool_arguments), action.tool_call_id)
+        else:
+            result = tool(**dict(action.tool_arguments))
+        execution = result if isinstance(result, ToolExecution) else ToolExecution(str(result))
+        messages.append(_assistant_message(action))
         messages.append(
             {
                 "role": "tool",
                 "name": action.tool_name,
-                "content": str(result),
+                "tool_call_id": action.tool_call_id,
+                "content": execution.content,
+                "error": execution.error,
                 "untrusted": True,
             }
         )

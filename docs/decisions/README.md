@@ -25,6 +25,7 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-09-22 | [RDR-2026-09-22-02](2026-09-22_agentdojo_shakedown_implementation.md) | accepted | AgentDojo、Qwen3候補、Windows / WSL2実行基盤と3 fixtureを固定 |
 | 2026-09-22 | [RDR-2026-09-22-01](2026-09-22_pre_gate_engineering_shakedown.md) | accepted | Gate凍結前に、研究データから隔離した非選定engineering shakedownを限定的に許可 |
 | 2026-09-16 | [RDR-2026-09-16-01](2026-09-16_agent_boundary_labels.md) | accepted | エージェント境界IDを情報の受け渡し元・先が分かる名称へ変更 |
 | 2026-09-15 | [RDR-2026-09-15-01](2026-09-15_pre-pilot_scope_revision.md) | accepted | Pilot前の研究焦点、測定単位、実験規模および期限の改訂 |

@@ -6,7 +6,7 @@ Indirect Prompt Injectionを受けたツール利用型LLMエージェントに�
 
 ## 現在の状態
 
-現在はPilot実験前の基盤整備段階です。モデルと主対象ドメインはまだ確定しておらず、`configs/**/example.yaml`は選定候補を記入するための雛形です。合成fixtureによるend-to-end試験は実装済みですが、実モデルrunnerとAgentDojo接続は未検証です。作業開始時は[`PROJECT_STATE.md`](PROJECT_STATE.md)も確認してください。
+現在はPilot実験前の基盤整備段階です。モデルと主対象ドメインはまだ確定しておらず、`configs/**/example.yaml`は選定候補を記入するための雛形です。合成fixtureに加え、AgentDojo 0.1.35 / Banking v1.2.2用adapterとQwen3 Transformers runnerを実装済みです。AgentDojo fixtureのAPI整合は確認済みですが、Windows GPUでの実モデルshakedownは未実施です。作業開始時は[`PROJECT_STATE.md`](PROJECT_STATE.md)も確認してください。
 
 ## ディレクトリ
 
@@ -55,6 +55,23 @@ make check
 ```bash
 make validate
 ```
+
+AgentDojo研究依存を導入した環境では、固定した3 fixtureをモデルを読まずに検査できます。
+
+```bash
+make agentdojo-preflight
+```
+
+Windows 11 / WSL2 GPU環境の構築と実行方法は[`docs/windows_wsl_execution.md`](docs/windows_wsl_execution.md)を参照してください。実モデルshakedownは、8B int8候補なら次のように開始します。
+
+```bash
+goal-takeover gpu-preflight
+goal-takeover agentdojo-shakedown configs/selection/pre_gate_shakedown.yaml \
+  --model-config configs/models/qwen3_8b_int8.yaml \
+  --run-prefix qwen3-8b-int8-shakedown-001
+```
+
+この3 fixtureの行動成否はモデル選定、閾値設定、研究結果に使用しません。
 
 ## 実験出力
 

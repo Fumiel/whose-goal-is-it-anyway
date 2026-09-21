@@ -29,7 +29,57 @@ def build_parser() -> argparse.ArgumentParser:
     )
     synthetic.add_argument("--artifact-root", default="artifacts")
     synthetic.add_argument("--run-id", required=True)
+    gpu = subparsers.add_parser("gpu-preflight", help="verify the CUDA research runtime")
+    gpu.add_argument("--json", action="store_true", dest="as_json")
+    dojo = subparsers.add_parser(
+        "agentdojo-preflight", help="verify pinned AgentDojo fixtures without loading a model"
+    )
+    dojo.add_argument("config")
+    shakedown = subparsers.add_parser(
+        "agentdojo-shakedown", help="run the authorized three-fixture GPU shakedown"
+    )
+    shakedown.add_argument("config")
+    shakedown.add_argument("--model-config", required=True)
+    shakedown.add_argument("--run-prefix", required=True)
     return parser
+
+
+def _agentdojo_preflight(config_path: str) -> list[dict[str, object]]:
+    from goal_takeover.environments.agentdojo import AgentDojoSession
+
+    config = load_yaml(config_path)
+    experiment = config["experiment"]
+    fixtures = config.get("fixtures")
+    if not isinstance(fixtures, list) or len(fixtures) != 3:
+        raise ConfigError("pre-gate shakedown must contain exactly three fixtures")
+    results = []
+    for fixture in fixtures:
+        session = AgentDojoSession.create(
+            benchmark_version=experiment["benchmark_version"],
+            suite_name=experiment["suite"],
+            user_task_id=fixture["user_task_id"],
+            injection_task_id=fixture.get("injection_task_id"),
+            injections=fixture.get("injections", {}),
+        )
+        legitimate, attack = session.ground_truth_calls()
+        if not legitimate:
+            raise ConfigError(f"{fixture['fixture_id']}: no legitimate ground truth")
+        if fixture.get("primary_argument_slot"):
+            if not attack:
+                raise ConfigError(f"{fixture['fixture_id']}: no attack ground truth")
+            legitimate_call = legitimate[int(fixture["legitimate_call_index"])]
+            attack_call = attack[int(fixture["attack_call_index"])]
+            if legitimate_call.function != attack_call.function:
+                raise ConfigError(f"{fixture['fixture_id']}: calls do not use the same tool")
+        results.append(
+            {
+                "fixture_id": fixture["fixture_id"],
+                "tools": len(session.tool_schemas),
+                "legitimate_calls": len(legitimate),
+                "attack_calls": len(attack),
+            }
+        )
+    return results
 
 
 def _validate_repository(root: Path) -> None:
@@ -77,6 +127,58 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"created: {result.run_path}")
         print(f"condition_id: {result.condition_id}")
         print(f"prefix_id: {result.prefix_id}")
+        return 0
+    if args.command == "gpu-preflight":
+        try:
+            from goal_takeover.runtime import gpu_runtime_report
+
+            report = gpu_runtime_report()
+        except RuntimeError as exc:
+            print(f"failed: {exc}")
+            return 1
+        if args.as_json:
+            print(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2))
+        else:
+            for key, value in report.items():
+                print(f"{key}: {value}")
+        return 0
+    if args.command == "agentdojo-preflight":
+        try:
+            results = _agentdojo_preflight(args.config)
+        except (ConfigError, KeyError, OSError, RuntimeError, ValueError) as exc:
+            print(f"failed: {exc}")
+            return 1
+        for result in results:
+            print(json.dumps(result, ensure_ascii=False, sort_keys=True))
+        print("valid: pinned AgentDojo shakedown fixtures")
+        return 0
+    if args.command == "agentdojo-shakedown":
+        try:
+            from goal_takeover.shakedown import (
+                run_agentdojo_shakedown,
+                write_shakedown_failure,
+            )
+
+            result = run_agentdojo_shakedown(
+                args.config, args.model_config, run_prefix=args.run_prefix
+            )
+        except (KeyError, OSError, RuntimeError, ValueError) as exc:
+            print(f"failed: {exc}")
+            try:
+                failure_path = write_shakedown_failure(
+                    args.config,
+                    run_prefix=args.run_prefix,
+                    stage="shakedown",
+                    error=exc,
+                )
+            except (KeyError, OSError, RuntimeError, ValueError):
+                pass
+            else:
+                print(f"recorded: {failure_path}")
+            return 1
+        print(f"model: {result.model_name}@{result.model_revision}")
+        for path in result.run_paths:
+            print(f"created: {path}")
         return 0
     raise AssertionError(f"unhandled command: {args.command}")
 

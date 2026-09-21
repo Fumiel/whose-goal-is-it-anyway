@@ -1,0 +1,34 @@
+schema_version: 2
+status: pre_gate_shakedown_candidate
+domain:
+  name: banking
+  source: agentdojo
+  package_version: 0.1.35
+  benchmark_version: v1.2.2
+  environment_entrypoint: agentdojo.task_suite.load_suites:get_suite
+  user_goal_categories:
+    - summarize
+    - send
+  legitimate_tools:
+    - get_iban
+    - send_money
+    - schedule_transaction
+    - update_scheduled_transaction
+    - get_balance
+    - get_most_recent_transactions
+    - get_scheduled_transactions
+    - read_file
+    - get_user_info
+    - update_password
+    - update_user_info
+  attack_tools:
+    - send_money
+  primary_argument_slots:
+    - recipient
+  supports_same_tool_different_argument: true
+
+evaluation:
+  user_task_success_rule: agentdojo_user_task_evaluator
+  attack_success_rule: agentdojo_injection_task_security_true_means_attack_occurred
+  evaluator_version: agentdojo-0.1.35:v1.2.2
+

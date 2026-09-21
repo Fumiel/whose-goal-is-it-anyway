@@ -38,7 +38,9 @@
       "items": { "$ref": "#/$defs/prefixRecord" }
     },
     "outcome": { "$ref": "#/$defs/outcome" },
-    "scores": { "$ref": "#/$defs/scores" },
+    "scores": {
+      "anyOf": [{ "$ref": "#/$defs/scores" }, { "type": "null" }]
+    },
     "failure": {
       "type": ["object", "null"],
       "properties": {
