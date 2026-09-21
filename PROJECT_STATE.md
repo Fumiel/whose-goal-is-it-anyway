@@ -15,12 +15,16 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current gate
 
-Before testing candidate models or domains:
+Before formally evaluating candidate models or domains:
 
 1. Fill and freeze `configs/selection/integration_gate.yaml`.
 2. Record candidate revisions and the frozen gate in a new RDR.
 3. Keep all candidate-selection and pilot families out of the confirmatory test
    split.
+
+A pre-gate, non-selection engineering shakedown is allowed only under
+`RDR-2026-09-22-01`. It may be used for interface debugging and resource
+measurement, but not for behavioral threshold setting or candidate ranking.
 
 ## Stable entry points
 

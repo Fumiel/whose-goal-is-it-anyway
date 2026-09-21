@@ -57,6 +57,18 @@ $$
 
 実験を次の6フェーズに分ける。後のフェーズへ進む前に、当該フェーズの成果物とexit criteriaを満たす。
 
+### Gate凍結前の非選定engineering shakedown
+
+正式な候補評価より前に、実モデル・実環境のinterface互換性と資源使用量だけを確認する
+小規模なengineering shakedownを許可する。実施範囲、閲覧可能な情報、最大fixture数、
+データ隔離および終了条件は
+[RDR-2026-09-22-01](decisions/2026-09-22_pre_gate_engineering_shakedown.md)に従う。
+
+shakedownの行動結果を集計・比較せず、成功率、攻撃成否、Resistant / Susceptibleの分布、
+モデル順位または行動性能に関するgate閾値の設定に利用しない。使用した意味系列は正式な
+選定標本とPhase 1以降の全splitから除外する。正式な候補評価は、integration gate、
+選定用sample manifestおよびtie-break規則を凍結した後に、新しい条件とrun IDで開始する。
+
 ### Phase 0: 実装・統合試験
 
 目的はモデルとドメインの採用可能性を判定することであり、研究結果を得ることではない。
