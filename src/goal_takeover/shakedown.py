@@ -37,12 +37,19 @@ class ShakedownResult:
     model_revision: str
 
 
+@dataclass
+class ShakedownProgress:
+    stage: str = "runtime_preflight"
+    fixture_id: str | None = None
+
+
 def write_shakedown_failure(
     shakedown_config_path: str | Path,
     *,
     run_prefix: str,
     stage: str,
     error: BaseException,
+    fixture_id: str | None = None,
 ) -> Path:
     """Publish a small immutable bundle when a shakedown aborts before a full run record."""
 
@@ -56,8 +63,10 @@ def write_shakedown_failure(
                 "schema_version": 1,
                 "status": "technical_failure",
                 "stage": stage,
+                "fixture_id": fixture_id,
                 "kind": type(error).__name__,
                 "message": str(error),
+                "raw_model_output": getattr(error, "raw_text", None),
                 "shakedown_config": str(shakedown_config_path),
             },
             kind="technical_failure",
@@ -215,9 +224,12 @@ def run_agentdojo_shakedown(
     model_config_path: str | Path,
     *,
     run_prefix: str,
+    progress: ShakedownProgress | None = None,
 ) -> ShakedownResult:
     """Execute the three authorized fixtures and publish immutable run bundles."""
 
+    progress = progress if progress is not None else ShakedownProgress()
+    progress.stage = "runtime_preflight"
     try:
         import torch
     except ImportError as exc:  # pragma: no cover - optional research dependency
@@ -229,6 +241,7 @@ def run_agentdojo_shakedown(
     runtime_report = gpu_runtime_report()
     torch.manual_seed(int(experiment["seed"]))
     torch.cuda.manual_seed_all(int(experiment["seed"]))
+    progress.stage = "model_load"
     model, tokenizer = load_hugging_face_model(
         model_values["name"],
         revision=model_values["revision"],
@@ -241,16 +254,20 @@ def run_agentdojo_shakedown(
         attn_implementation=model_values.get("attn_implementation"),
     )
     assert_model_has_no_cpu_offload(model)
+    progress.stage = "instrumentation_setup"
     extractor = HuggingFaceActivationExtractor(
         model, block_path=model_config["instrumentation"]["transformer_block_path"]
     )
     scorer = HuggingFaceTeacherForcedScorer(model, tokenizer)
     if extractor.model is not model or scorer.model is not model:
         raise RuntimeError("generation, activation, and scoring must share one model instance")
+    progress.stage = "provenance"
     git_commit, git_dirty = _git_metadata()
     run_paths: list[Path] = []
 
     for fixture in shakedown_config["fixtures"]:
+        progress.fixture_id = fixture["fixture_id"]
+        progress.stage = "fixture_setup"
         fixture_started = time.perf_counter()
         torch.cuda.empty_cache()
         torch.cuda.reset_peak_memory_stats()
@@ -261,7 +278,9 @@ def run_agentdojo_shakedown(
             "injection_task_id": fixture.get("injection_task_id"),
             "injections": fixture.get("injections", {}),
         }
+        progress.stage = "measurement_environment"
         measurement_session = AgentDojoSession.create(**common)
+        progress.stage = "measurement_boundary"
         legitimate_calls, attack_calls = measurement_session.ground_truth_calls()
         if not legitimate_calls:
             raise RuntimeError("fixture has no legitimate ground-truth call")
@@ -280,6 +299,7 @@ def run_agentdojo_shakedown(
         if fixture.get("injection_vector") is not None:
             injection_text = fixture["injection_match_text"]
         positions = _positions(prefix, tool_output=tool_output, injection_text=injection_text)
+        progress.stage = "activation_capture"
         activation = extractor.capture(
             prefix, positions=[position.token_index for position in positions.values()]
         )
@@ -293,6 +313,7 @@ def run_agentdojo_shakedown(
         )
         attack_call_document = None
         if fixture.get("primary_argument_slot") is not None:
+            progress.stage = "candidate_scoring"
             if not attack_calls:
                 raise RuntimeError("scored fixture has no attack ground-truth call")
             attack_call_document = _call_parts(
@@ -314,9 +335,11 @@ def run_agentdojo_shakedown(
             }
 
         # Generation is deliberately performed from the same measured prefix.
+        progress.stage = "measurement_generation"
         backend.next_action(messages)
         backend.prefixes[-1].assert_same_tokens(prefix.token_ids, consumer="generation")
 
+        progress.stage = "actual_agent_loop"
         actual_session = AgentDojoSession.create(**common)
         actual_backend = _make_backend(
             model=model,
@@ -331,6 +354,7 @@ def run_agentdojo_shakedown(
             actual_session.tools,
             max_steps=int(experiment["max_steps"]),
         )
+        progress.stage = "evaluation"
         evaluation = actual_session.evaluate(actual_run.final_answer)
         outcome_group = classify_outcome(
             has_attack=fixture.get("injection_task_id") is not None,
@@ -353,6 +377,7 @@ def run_agentdojo_shakedown(
         technical_error = "; ".join(technical_errors) or None
         peak_memory = int(torch.cuda.max_memory_allocated())
         elapsed_seconds = time.perf_counter() - fixture_started
+        progress.stage = "record_assembly"
         resolved_config = {
             "schema_version": 2,
             "status": "pre_gate_shakedown_only",
@@ -434,6 +459,7 @@ def run_agentdojo_shakedown(
             "metadata": {"pre_gate_shakedown_only": True},
         }
 
+        progress.stage = "artifact_write"
         with ImmutableRunWriter(experiment["artifact_root"], run_id) as writer:
             artifact_records = []
             config_artifact = writer.write_json(

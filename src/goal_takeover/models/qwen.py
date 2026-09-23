@@ -8,7 +8,7 @@ import re
 from collections.abc import Mapping, Sequence
 from typing import Any
 
-from goal_takeover.agent.runner import AgentAction, Message
+from goal_takeover.agent.runner import AgentAction, AgentToolCall, Message
 from goal_takeover.models.generation import DecodingConfig
 from goal_takeover.schemas import AgentBoundary
 from goal_takeover.serialization.prefix import SerializedPrefix, serialize_huggingface_prefix
@@ -20,48 +20,63 @@ _THINK_PATTERN = re.compile(r"<think>.*?</think>\s*", re.DOTALL)
 class QwenToolCallParseError(ValueError):
     """Raised when a Qwen completion declares a malformed or ambiguous tool call."""
 
+    def __init__(self, message: str, *, raw_text: str) -> None:
+        super().__init__(message)
+        self.raw_text = raw_text
+
 
 def parse_qwen_action(text: str, *, call_id: str) -> AgentAction:
-    """Parse exactly zero or one Qwen tool call without repairing model output."""
+    """Parse every declared Qwen tool call in the order emitted by the model."""
 
     matches = list(_TOOL_CALL_PATTERN.finditer(text))
-    if len(matches) > 1:
-        raise QwenToolCallParseError("multiple tool calls in one assistant turn are unsupported")
+    if text.count("<tool_call>") != len(matches) or text.count("</tool_call>") != len(matches):
+        raise QwenToolCallParseError("tool call tags are malformed or incomplete", raw_text=text)
     visible_text = _THINK_PATTERN.sub("", text).strip()
     if not matches:
         return AgentAction(kind="final", content=visible_text, raw_text=text)
-    match = matches[0]
-    try:
-        payload = json.loads(match.group(1))
-    except json.JSONDecodeError as exc:
-        raise QwenToolCallParseError("tool call is not valid JSON") from exc
-    if not isinstance(payload, dict):
-        raise QwenToolCallParseError("tool call payload must be an object")
-    name = payload.get("name")
-    arguments = payload.get("arguments")
-    if not isinstance(name, str) or not name:
-        raise QwenToolCallParseError("tool call name must be a non-empty string")
-    if not isinstance(arguments, dict):
-        raise QwenToolCallParseError("tool call arguments must be an object")
-    outside = (text[: match.start()] + text[match.end() :]).strip()
+    calls: list[AgentToolCall] = []
+    for index, match in enumerate(matches):
+        try:
+            payload = json.loads(match.group(1))
+        except json.JSONDecodeError as exc:
+            raise QwenToolCallParseError("tool call is not valid JSON", raw_text=text) from exc
+        if not isinstance(payload, dict):
+            raise QwenToolCallParseError("tool call payload must be an object", raw_text=text)
+        name = payload.get("name")
+        arguments = payload.get("arguments")
+        if not isinstance(name, str) or not name:
+            raise QwenToolCallParseError(
+                "tool call name must be a non-empty string", raw_text=text
+            )
+        if not isinstance(arguments, dict):
+            raise QwenToolCallParseError("tool call arguments must be an object", raw_text=text)
+        current_id = call_id if index == 0 else f"{call_id}_{index}"
+        calls.append(AgentToolCall(name=name, arguments=arguments, call_id=current_id))
+    outside = text
+    for match in reversed(matches):
+        outside = outside[: match.start()] + outside[match.end() :]
+    outside = outside.strip()
     outside = _THINK_PATTERN.sub("", outside).strip()
     assistant_message = {
         "role": "assistant",
         "content": outside,
         "tool_calls": [
             {
-                "id": call_id,
+                "id": call.call_id,
                 "type": "function",
-                "function": {"name": name, "arguments": arguments},
+                "function": {"name": call.name, "arguments": dict(call.arguments)},
             }
+            for call in calls
         ],
     }
+    first = calls[0]
     return AgentAction(
         kind="tool",
         content=outside,
-        tool_name=name,
-        tool_arguments=arguments,
-        tool_call_id=call_id,
+        tool_name=first.name,
+        tool_arguments=first.arguments,
+        tool_call_id=first.call_id,
+        tool_calls=tuple(calls),
         raw_text=text,
         assistant_message=assistant_message,
     )

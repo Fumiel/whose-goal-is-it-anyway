@@ -153,23 +153,31 @@ def main(argv: Sequence[str] | None = None) -> int:
         print("valid: pinned AgentDojo shakedown fixtures")
         return 0
     if args.command == "agentdojo-shakedown":
+        progress = None
+        failure_writer = None
         try:
             from goal_takeover.shakedown import (
+                ShakedownProgress,
                 run_agentdojo_shakedown,
                 write_shakedown_failure,
             )
 
+            failure_writer = write_shakedown_failure
+            progress = ShakedownProgress()
             result = run_agentdojo_shakedown(
-                args.config, args.model_config, run_prefix=args.run_prefix
+                args.config, args.model_config, run_prefix=args.run_prefix, progress=progress
             )
         except (KeyError, OSError, RuntimeError, ValueError) as exc:
             print(f"failed: {exc}")
+            if failure_writer is None:
+                return 1
             try:
-                failure_path = write_shakedown_failure(
+                failure_path = failure_writer(
                     args.config,
                     run_prefix=args.run_prefix,
-                    stage="shakedown",
+                    stage=progress.stage if progress is not None else "initialization",
                     error=exc,
+                    fixture_id=progress.fixture_id if progress is not None else None,
                 )
             except (KeyError, OSError, RuntimeError, ValueError):
                 pass

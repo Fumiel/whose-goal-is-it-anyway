@@ -12,6 +12,17 @@ Message = dict[str, Any]
 
 
 @dataclass(frozen=True)
+class AgentToolCall:
+    name: str
+    arguments: Mapping[str, Any] = field(default_factory=dict)
+    call_id: str | None = None
+
+    def __post_init__(self) -> None:
+        if not self.name:
+            raise ValueError("tool calls require a name")
+
+
+@dataclass(frozen=True)
 class AgentAction:
     """A normalized action returned by a model backend."""
 
@@ -20,12 +31,30 @@ class AgentAction:
     tool_name: str | None = None
     tool_arguments: Mapping[str, Any] = field(default_factory=dict)
     tool_call_id: str | None = None
+    tool_calls: tuple[AgentToolCall, ...] = ()
     raw_text: str | None = None
     assistant_message: Mapping[str, Any] | None = None
 
     def __post_init__(self) -> None:
-        if self.kind == "tool" and not self.tool_name:
-            raise ValueError("tool actions require tool_name")
+        if self.kind == "tool" and not (self.tool_name or self.tool_calls):
+            raise ValueError("tool actions require at least one tool call")
+        if self.tool_calls and self.tool_name and self.tool_name != self.tool_calls[0].name:
+            raise ValueError("first tool call does not match tool_name")
+        if self.tool_calls and self.tool_name:
+            first = self.tool_calls[0]
+            mismatched_arguments = dict(self.tool_arguments) != dict(first.arguments)
+            if mismatched_arguments or self.tool_call_id != first.call_id:
+                raise ValueError("first tool call does not match legacy tool fields")
+        if self.kind == "final" and self.tool_calls:
+            raise ValueError("final actions cannot contain tool calls")
+
+    def ordered_tool_calls(self) -> tuple[AgentToolCall, ...]:
+        if self.tool_calls:
+            return self.tool_calls
+        if self.kind == "tool":
+            assert self.tool_name is not None
+            return (AgentToolCall(self.tool_name, self.tool_arguments, self.tool_call_id),)
+        return ()
 
 
 class AgentBackend(Protocol):
@@ -57,19 +86,19 @@ class ToolExecution:
 def _assistant_message(action: AgentAction) -> Message:
     if action.assistant_message is not None:
         return dict(action.assistant_message)
-    assert action.tool_name is not None
     return {
         "role": "assistant",
         "content": action.content,
         "tool_calls": [
             {
-                "id": action.tool_call_id,
+                "id": call.call_id,
                 "type": "function",
                 "function": {
-                    "name": action.tool_name,
-                    "arguments": dict(action.tool_arguments),
+                    "name": call.name,
+                    "arguments": dict(call.arguments),
                 },
             }
+            for call in action.ordered_tool_calls()
         ],
     }
 
@@ -110,26 +139,27 @@ def run_agent(
         if action.kind == "final":
             return AgentRun(messages, actions, action.content, "final_answer")
 
-        assert action.tool_name is not None
-        if action.tool_name not in tools:
+        calls = action.ordered_tool_calls()
+        messages.append(_assistant_message(action))
+        if any(call.name not in tools for call in calls):
             return AgentRun(messages, actions, None, "unknown_tool")
 
-        tool = tools[action.tool_name]
-        call_with_id = getattr(tool, "call_with_id", None)
-        if callable(call_with_id):
-            result = call_with_id(dict(action.tool_arguments), action.tool_call_id)
-        else:
-            result = tool(**dict(action.tool_arguments))
-        execution = result if isinstance(result, ToolExecution) else ToolExecution(str(result))
-        messages.append(_assistant_message(action))
-        messages.append(
-            {
-                "role": "tool",
-                "name": action.tool_name,
-                "tool_call_id": action.tool_call_id,
-                "content": execution.content,
-                "error": execution.error,
-                "untrusted": True,
-            }
-        )
+        for call in calls:
+            tool = tools[call.name]
+            call_with_id = getattr(tool, "call_with_id", None)
+            if callable(call_with_id):
+                result = call_with_id(dict(call.arguments), call.call_id)
+            else:
+                result = tool(**dict(call.arguments))
+            execution = result if isinstance(result, ToolExecution) else ToolExecution(str(result))
+            messages.append(
+                {
+                    "role": "tool",
+                    "name": call.name,
+                    "tool_call_id": call.call_id,
+                    "content": execution.content,
+                    "error": execution.error,
+                    "untrusted": True,
+                }
+            )
     return AgentRun(messages, actions, None, "max_steps")

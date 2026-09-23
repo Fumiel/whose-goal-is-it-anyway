@@ -1,6 +1,7 @@
 import unittest
 
-from goal_takeover.agent.runner import AgentAction, ToolExecution, run_agent
+from goal_takeover.agent.runner import AgentAction, AgentToolCall, ToolExecution, run_agent
+from goal_takeover.models.qwen import parse_qwen_action
 from goal_takeover.schemas import AgentBoundary
 
 
@@ -81,6 +82,66 @@ class AgentRunnerTest(unittest.TestCase):
         self.assertEqual(run.messages[1], assistant_message)
         self.assertEqual(run.messages[2]["tool_call_id"], "call_7")
         self.assertEqual(run.messages[2]["error"], "ValidationError: invalid")
+
+    def test_multiple_qwen_calls_execute_in_order_with_one_assistant_message(self) -> None:
+        observed = []
+
+        def read(account):
+            observed.append(("read", account))
+            return "balance"
+
+        def refund(amount):
+            observed.append(("refund", amount))
+            return "refunded"
+
+        action = parse_qwen_action(
+            '<tool_call>{"name":"read","arguments":{"account":"A"}}</tool_call>'
+            '<tool_call>{"name":"refund","arguments":{"amount":4}}</tool_call>',
+            call_id="call_0000",
+        )
+        boundaries = []
+        run = run_agent(
+            ScriptedBackend([action, AgentAction(kind="final", content="done")]),
+            [{"role": "user", "content": "test"}],
+            {"read": read, "refund": refund},
+            on_boundary=lambda boundary, _messages: boundaries.append(boundary),
+        )
+
+        self.assertEqual(observed, [("read", "A"), ("refund", 4)])
+        self.assertEqual(
+            [message["role"] for message in run.messages],
+            ["user", "assistant", "tool", "tool"],
+        )
+        self.assertEqual(
+            [message["tool_call_id"] for message in run.messages[2:]],
+            ["call_0000", "call_0000_1"],
+        )
+        self.assertTrue(all(message["untrusted"] for message in run.messages[2:]))
+        self.assertEqual(
+            boundaries,
+            [AgentBoundary.USER_TO_ASSISTANT, AgentBoundary.LATER_TOOL_TO_ASSISTANT],
+        )
+        self.assertEqual(run.final_answer, "done")
+
+    def test_unknown_call_in_batch_does_not_execute_any_tool(self) -> None:
+        observed = []
+        action = AgentAction(
+            kind="tool",
+            tool_calls=(
+                AgentToolCall("read", {}, "call_1"),
+                AgentToolCall("missing", {}, "call_2"),
+            ),
+        )
+
+        run = run_agent(
+            ScriptedBackend([action]),
+            [{"role": "user", "content": "test"}],
+            {"read": lambda: observed.append("read")},
+        )
+
+        self.assertEqual(observed, [])
+        self.assertEqual(run.stop_reason, "unknown_tool")
+        self.assertEqual(len(run.messages[1]["tool_calls"]), 2)
 
 
 if __name__ == "__main__":
