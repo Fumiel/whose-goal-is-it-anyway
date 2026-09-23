@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from goal_takeover.agent import run_agent
+from goal_takeover.agent.runner import AgentAction, AgentRun
 from goal_takeover.config import ConfigError, load_yaml
 from goal_takeover.environments.agentdojo import AgentDojoSession
 from goal_takeover.evaluation.outcomes import classify_outcome
@@ -215,6 +216,102 @@ def _boundary_prefix_document(prefix: Any) -> dict[str, Any]:
     return record
 
 
+def _action_document(action: AgentAction, *, prefix_id: str, step_index: int) -> dict[str, Any]:
+    if action.raw_text is None:
+        raise RuntimeError("selection generation did not retain raw model output")
+    return {
+        "step_index": step_index,
+        "prefix_id": prefix_id,
+        "kind": action.kind,
+        "raw_text": action.raw_text,
+        "content": action.content,
+        "tool_calls": [
+            {"name": call.name, "arguments": dict(call.arguments), "call_id": call.call_id}
+            for call in action.ordered_tool_calls()
+        ],
+    }
+
+
+def selection_output_documents(
+    measurement_action: AgentAction,
+    measurement_prefix_id: str,
+    actual: AgentRun,
+    actual_prefixes: list[Any],
+) -> tuple[dict[str, Any], dict[str, Any], list[dict[str, Any]]]:
+    """Preserve raw generations and the final reply for independent auditing."""
+
+    if len(actual.actions) != len(actual_prefixes):
+        raise RuntimeError("actual actions and generation prefixes are misaligned")
+    measurement = {
+        "schema_version": 1,
+        "generation": _action_document(
+            measurement_action, prefix_id=measurement_prefix_id, step_index=0
+        ),
+    }
+    output = {
+        "schema_version": 1,
+        "stop_reason": actual.stop_reason,
+        "final_answer": actual.final_answer,
+        "generations": [
+            _action_document(action, prefix_id=prefix.prefix_id, step_index=index)
+            for index, (action, prefix) in enumerate(
+                zip(actual.actions, actual_prefixes, strict=True)
+            )
+        ],
+    }
+    messages = _json_messages(actual.messages)
+    if actual.stop_reason == "final_answer":
+        if (
+            not actual.actions
+            or actual.actions[-1].kind != "final"
+            or actual.final_answer != actual.actions[-1].content
+        ):
+            raise RuntimeError("final answer does not match the final generated action")
+        messages.append({"role": "assistant", "content": actual.final_answer, "tool_calls": []})
+    elif actual.final_answer is not None:
+        raise RuntimeError("non-final run unexpectedly contains a final answer")
+    return measurement, output, messages
+
+
+def _audit_trace_complete(directory: Path, run: dict[str, Any]) -> bool:
+    try:
+        measurement = json.loads((directory / "measurement_output.json").read_text())
+        output = json.loads((directory / "model_output.json").read_text())
+        messages = json.loads((directory / "messages.json").read_text())
+        actual_prefixes = run["prefix_records"][1:]
+        generations = output["generations"]
+        if measurement["generation"]["prefix_id"] != run["prefix_records"][0]["prefix_id"]:
+            return False
+        if not isinstance(measurement["generation"]["raw_text"], str):
+            return False
+        if len(generations) != len(actual_prefixes):
+            return False
+        for index, (generation, prefix) in enumerate(
+            zip(generations, actual_prefixes, strict=True)
+        ):
+            if (
+                generation["step_index"] != index
+                or generation["prefix_id"] != prefix["prefix_id"]
+                or not isinstance(generation["raw_text"], str)
+            ):
+                return False
+        if output["stop_reason"] == "final_answer":
+            return (
+                isinstance(output["final_answer"], str)
+                and generations[-1]["kind"] == "final"
+                and generations[-1]["content"] == output["final_answer"]
+                and messages[-1]
+                == {
+                    "role": "assistant",
+                    "content": output["final_answer"],
+                    "tool_calls": [],
+                }
+            )
+        return output["final_answer"] is None
+    except (IndexError, KeyError, OSError, TypeError, ValueError):
+        return False
+
+
 def _run_one(
     plan: SelectionPlan,
     condition: dict[str, Any],
@@ -278,7 +375,7 @@ def _run_one(
         ):
             raise RuntimeError("candidate scoring returned nonfinite token log probabilities")
     # The generated action is checked against exactly the prefix used above.
-    backend.next_action(messages)
+    measurement_action = backend.next_action(messages)
     backend.prefixes[-1].assert_same_tokens(prefix.token_ids, consumer="selection_generation")
     actual_session = _session(plan, condition)
     actual_backend = _make_backend(
@@ -293,6 +390,12 @@ def _run_one(
         actual_session.initial_messages,
         actual_session.tools,
         max_steps=int(decoding["max_steps"]),
+    )
+    measurement_output, model_output, audited_messages = selection_output_documents(
+        measurement_action,
+        prefix.prefix_id,
+        actual,
+        actual_backend.prefixes,
     )
     evaluation = actual_session.evaluate(actual.final_answer)
     group = classify_outcome(
@@ -356,8 +459,10 @@ def _run_one(
                 "measurement_messages.json", _json_messages(messages), kind="measurement_messages"
             ),
             writer.write_json(
-                "messages.json", _json_messages(actual.messages), kind="message_trace"
+                "measurement_output.json", measurement_output, kind="measurement_generation"
             ),
+            writer.write_json("messages.json", audited_messages, kind="message_trace"),
+            writer.write_json("model_output.json", model_output, kind="model_generations"),
             writer.write_json("tokens.json", token_document, kind="token_record"),
             writer.write_json(
                 "actual_prefixes.json",
@@ -586,6 +691,7 @@ def summarize_selection(
         model_config = load_yaml(plan.sample_path.parent / model_path)
         records = []
         failures = []
+        audit_trace_failures = []
         for condition in conditions:
             run_id = f"{run_prefix}-m{model_index + 1}-{condition['condition_id']}"
             expected_audit_ids.add(run_id)
@@ -597,6 +703,8 @@ def summarize_selection(
                 if record["condition_id"] != condition["condition_id"]:
                     raise ConfigError(f"{run_id}: condition ID mismatch")
                 records.append((condition, record))
+                if not _audit_trace_complete(directory, record):
+                    audit_trace_failures.append(run_id)
             elif failure_path.exists():
                 failures.append(
                     {"run_id": run_id, **json.loads(failure_path.read_text(encoding="utf-8"))}
@@ -623,6 +731,7 @@ def summarize_selection(
         all_complete = len(records) == 7 and not failures
         checks = {
             "all_conditions_complete": all_complete,
+            "audit_trace_complete": all_complete and not audit_trace_failures,
             "clean_user_task_success": all_complete
             and clean_success / 5 >= thresholds["clean_user_task_success"]["minimum_rate"],
             "tool_call_parse_success": all_complete
@@ -647,6 +756,7 @@ def summarize_selection(
                 "model": model_config["model"]["name"],
                 "complete_runs": len(records),
                 "technical_failures": failures,
+                "audit_trace_failures": audit_trace_failures,
                 "clean_success": {
                     "numerator": clean_success,
                     "denominator": 5,
@@ -683,11 +793,14 @@ def summarize_selection(
         )
     if human is not None and set(human) != expected_audit_ids:
         raise ConfigError("human audit run IDs differ from the fourteen declared runs")
+    audit_evidence_complete = human is not None and all(
+        not report["audit_trace_failures"] for report in reports
+    )
     passing = [report["model"] for report in reports if report["passes"]]
     selected = None
-    if len(passing) == 1:
+    if audit_evidence_complete and len(passing) == 1:
         selected = passing[0]
-    elif len(passing) == 2:
+    elif audit_evidence_complete and len(passing) == 2:
         preferred = load_yaml(
             plan.sample_path.parent / plan.sample["selection"]["candidate_models"][0]
         )["model"]["name"]
@@ -695,7 +808,8 @@ def summarize_selection(
     return {
         "schema_version": 1,
         "status": "complete"
-        if human is not None and all(not r["technical_failures"] for r in reports)
+        if human is not None
+        and all(not r["technical_failures"] and not r["audit_trace_failures"] for r in reports)
         else "incomplete",
         "gate_sha256": plan.checksums["gate"],
         "sample_sha256": plan.checksums["sample"],

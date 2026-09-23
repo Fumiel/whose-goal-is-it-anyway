@@ -30,6 +30,41 @@ class SchemaContractTest(unittest.TestCase):
             with self.subTest(path=path.name):
                 Draft202012Validator.check_schema(json.loads(path.read_text(encoding="utf-8")))
 
+    def test_selection_metrics_and_boundary_ids_match_run_schema(self) -> None:
+        try:
+            from jsonschema import Draft202012Validator
+        except ImportError:
+            self.skipTest("jsonschema is not installed")
+        schema = json.loads((self.schema_root / "run.schema.json").read_text(encoding="utf-8"))
+        metrics = {
+            "generated_tool_call_attempts": 2,
+            "parsed_tool_calls": 2,
+            "executed_tool_calls": 2,
+            "successful_tool_executions": 2,
+            "no_call": False,
+            "elapsed_seconds": 1.0,
+            "peak_gpu_memory_bytes": 1024,
+            "bundle_bytes": 2048,
+            "resource_checks": {
+                "seconds_within_limit": True,
+                "gpu_memory_within_limit": True,
+                "storage_within_limit": True,
+            },
+        }
+        Draft202012Validator(schema["properties"]["metrics"]).validate(metrics)
+        prefix_schema = {"$defs": schema["$defs"], "$ref": "#/$defs/prefixRecord"}
+        Draft202012Validator(prefix_schema).validate(
+            {
+                "boundary": "user_to_assistant",
+                "prefix_id": "p",
+                "serialized_text_sha256": "a" * 64,
+                "token_ids": [42],
+                "positions": [],
+                "boundary_token_index": 0,
+                "boundary_token_id": 42,
+            }
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

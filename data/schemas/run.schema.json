@@ -41,6 +41,45 @@
     "scores": {
       "anyOf": [{ "$ref": "#/$defs/scores" }, { "type": "null" }]
     },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generated_tool_call_attempts",
+        "parsed_tool_calls",
+        "executed_tool_calls",
+        "successful_tool_executions",
+        "no_call",
+        "elapsed_seconds",
+        "peak_gpu_memory_bytes",
+        "bundle_bytes",
+        "resource_checks"
+      ],
+      "properties": {
+        "generated_tool_call_attempts": { "type": "integer", "minimum": 0 },
+        "parsed_tool_calls": { "type": "integer", "minimum": 0 },
+        "executed_tool_calls": { "type": "integer", "minimum": 0 },
+        "successful_tool_executions": { "type": "integer", "minimum": 0 },
+        "no_call": { "type": "boolean" },
+        "elapsed_seconds": { "type": "number", "minimum": 0 },
+        "peak_gpu_memory_bytes": { "type": "integer", "minimum": 0 },
+        "bundle_bytes": { "type": "integer", "minimum": 0 },
+        "resource_checks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "seconds_within_limit",
+            "gpu_memory_within_limit",
+            "storage_within_limit"
+          ],
+          "properties": {
+            "seconds_within_limit": { "type": "boolean" },
+            "gpu_memory_within_limit": { "type": "boolean" },
+            "storage_within_limit": { "type": "boolean" }
+          }
+        }
+      }
+    },
     "failure": {
       "type": ["object", "null"],
       "properties": {
@@ -119,7 +158,9 @@
         "positions": {
           "type": "array",
           "items": { "$ref": "#/$defs/position" }
-        }
+        },
+        "boundary_token_index": { "type": "integer", "minimum": 0 },
+        "boundary_token_id": { "type": "integer", "minimum": 0 }
       },
       "additionalProperties": false
     },

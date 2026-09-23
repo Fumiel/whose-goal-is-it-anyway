@@ -11,6 +11,7 @@ raw run、モデルweight、生activationなどの大きなデータはここに
 
 ## Index
 
+- [2026-09-24 Banking選定試験の初回run監査](2026-09-24_banking_selection_first_run_audit.md)
 - [2026-09-24 shakedown raw run 監査](2026-09-24_shakedown_raw_audit.md)
 - [2026-09-24 AgentDojo / Qwen3-4B BF16 engineering shakedown](2026-09-24_agentdojo_qwen3_4b_shakedown.md)
 - [2026-09-24 AgentDojo / Qwen3-8B int8 engineering shakedown](2026-09-24_agentdojo_qwen3_8b_shakedown.md)

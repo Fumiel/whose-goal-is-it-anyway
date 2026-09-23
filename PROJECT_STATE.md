@@ -19,15 +19,21 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   but the three consumer input sequences cannot be independently reconstructed
   from raw artifacts alone. The failure bundle lacks Git metadata and is not
   linked from the later successful runs.
+- The first formal seven-condition selection execution produced 14 immutable
+  bundles under `banking-selection-20260924-001`. Their checksums and scoring
+  records were internally consistent, but the selection runner omitted final
+  answers and raw generations. The required blind audit cannot be completed
+  from those bundles. A provenance-only runner correction now requires both
+  candidates to be rerun with new run IDs; no primary model is selected.
 
 ## Current gate
 
 Before formally evaluating candidate models or domains:
 
-1. The seven-condition Banking selection gate is frozen in
-   `configs/selection/integration_gate.freeze.json` and the accompanying RDR.
-   Run `selection-preflight` and the formal selection runner on the frozen clean
-   commit before evaluating the candidate models.
+1. The seven-condition Banking selection gate remains fixed. The current
+   `configs/selection/integration_gate.freeze.json` records the corrected
+   runner commit for a full rerun of both candidates. Run `selection-preflight`
+   and the formal selection runner on that frozen clean commit.
 2. Keep all candidate-selection and pilot families out of the confirmatory test
    split.
 
@@ -49,7 +55,7 @@ measurement, but not for behavioral threshold setting or candidate ranking.
 
 - No selected primary model or formally adopted primary domain
 - Qwen3-8B int8 and Qwen3-4B BF16 are shakedown candidates only
-- Both GPU shakedowns are engineering-only; the formal seven-condition
-  selection has not been executed
+- Both GPU shakedowns are engineering-only. The first formal selection run is
+  incomplete for audit and must not be used for model adoption.
 - No fitted action, argument, source-role, authority, or task-drift probe
 - No confirmatory data and no research result

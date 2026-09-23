@@ -85,7 +85,9 @@ goal-takeover selection-report configs/selection/integration_gate.yaml \
   --run-prefix banking-selection-YYYYMMDD-NNN --audit <audit.json>
 ```
 
-モデル選定runはまだ実行していません。
+最初のモデル選定run `banking-selection-20260924-001` は14件を生成しましたが、
+最終回答と生成時の生出力が保存されず、必須のblind監査に使用できません。
+旧runを残したまま、凍結済みの修正版から**新しいrun prefixで両候補7件ずつ**再実行してください。
 
 ## 実験出力
 
