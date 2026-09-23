@@ -1,5 +1,5 @@
 schema_version: 2
-status: sample_specified_not_frozen
+status: frozen
 references:
   qwen3_8b_int8: ../models/qwen3_8b_int8.yaml
   qwen3_4b_bf16: ../models/qwen3_4b_bf16.yaml

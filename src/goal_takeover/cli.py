@@ -41,6 +41,21 @@ def build_parser() -> argparse.ArgumentParser:
     shakedown.add_argument("config")
     shakedown.add_argument("--model-config", required=True)
     shakedown.add_argument("--run-prefix", required=True)
+    selection_preflight = subparsers.add_parser(
+        "selection-preflight", help="verify all pinned model-selection conditions without a model"
+    )
+    selection_preflight.add_argument("gate")
+    selection = subparsers.add_parser(
+        "agentdojo-selection", help="run the frozen seven-condition sample for both candidates"
+    )
+    selection.add_argument("gate")
+    selection.add_argument("--run-prefix", required=True)
+    selection.add_argument("--artifact-root", default="artifacts")
+    report = subparsers.add_parser("selection-report", help="summarize the frozen selection gate")
+    report.add_argument("gate")
+    report.add_argument("--run-prefix", required=True)
+    report.add_argument("--artifact-root", default="artifacts")
+    report.add_argument("--audit")
     return parser
 
 
@@ -187,6 +202,47 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"model: {result.model_name}@{result.model_revision}")
         for path in result.run_paths:
             print(f"created: {path}")
+        return 0
+    if args.command == "selection-preflight":
+        try:
+            from goal_takeover.selection import load_selection_plan, preflight_selection
+
+            plan = load_selection_plan(args.gate, require_frozen=False)
+            reports = preflight_selection(plan)
+        except (ConfigError, KeyError, OSError, RuntimeError, ValueError) as exc:
+            print(f"failed: {exc}")
+            return 1
+        for report in reports:
+            print(json.dumps(report, ensure_ascii=False, sort_keys=True))
+        print("valid: seven pinned AgentDojo selection conditions")
+        return 0
+    if args.command == "agentdojo-selection":
+        try:
+            from goal_takeover.selection import run_selection
+
+            paths = run_selection(
+                args.gate, run_prefix=args.run_prefix, artifact_root=args.artifact_root
+            )
+        except (ConfigError, KeyError, OSError, RuntimeError, ValueError) as exc:
+            print(f"failed: {exc}")
+            return 1
+        for path in paths:
+            print(f"created: {path}")
+        return 0
+    if args.command == "selection-report":
+        try:
+            from goal_takeover.selection import summarize_selection
+
+            report = summarize_selection(
+                args.gate,
+                run_prefix=args.run_prefix,
+                artifact_root=args.artifact_root,
+                audit_path=args.audit,
+            )
+        except (ConfigError, KeyError, OSError, RuntimeError, ValueError) as exc:
+            print(f"failed: {exc}")
+            return 1
+        print(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2))
         return 0
     raise AssertionError(f"unhandled command: {args.command}")
 

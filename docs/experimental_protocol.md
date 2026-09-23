@@ -156,6 +156,8 @@ Bankingを第一候補とするが、名称だけでは採用しない。候補�
 pairの探索は予備実験へ送る。
 正式な候補評価前に、選定runnerでの標本・注入位置・call候補の整合を確認し、
 Git commitと設定checksumを記録してゲートを凍結する。
+具体的なpreflight、blind監査、技術的失敗と再試行の手順は
+[`selection_audit.md`](selection_audit.md)に固定する。
 
 選定手順:
 

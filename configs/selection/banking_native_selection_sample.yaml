@@ -1,5 +1,5 @@
 schema_version: 2
-status: sample_specified_not_frozen
+status: frozen
 references:
   banking_domain: ../domains/agentdojo_banking_v1_2_2.yaml
   shakedown_exclusions: pre_gate_shakedown.yaml

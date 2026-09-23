@@ -74,6 +74,19 @@ goal-takeover agentdojo-shakedown configs/selection/pre_gate_shakedown.yaml \
 `YYYYMMDD-NNN`は未使用の実行IDに置き換えてください。既存runは上書きしません。
 この3 fixtureの行動成否はモデル選定、閾値設定、研究結果に使用しません。
 
+正式なBankingモデル選定は7条件を両候補に適用します。実行前監査とblind人手監査は
+[`docs/selection_audit.md`](docs/selection_audit.md)を参照してください。
+
+```bash
+goal-takeover selection-preflight configs/selection/integration_gate.yaml
+goal-takeover agentdojo-selection configs/selection/integration_gate.yaml \
+  --run-prefix banking-selection-YYYYMMDD-NNN
+goal-takeover selection-report configs/selection/integration_gate.yaml \
+  --run-prefix banking-selection-YYYYMMDD-NNN --audit <audit.json>
+```
+
+モデル選定runはまだ実行していません。
+
 ## 実験出力
 
 各実行は`artifacts/runs/<run_id>/`に独立して保存し、少なくとも次を残します。

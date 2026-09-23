@@ -30,7 +30,7 @@ class ConfigTest(unittest.TestCase):
         config = load_yaml(path)
         validate_config(config, source=str(path))
         validate_config_references(config, source=path)
-        self.assertEqual(config["status"], "sample_specified_not_frozen")
+        self.assertEqual(config["status"], "frozen")
         self.assertEqual(
             config["selection"]["sample_manifest"],
             "banking_native_selection_sample.yaml",
