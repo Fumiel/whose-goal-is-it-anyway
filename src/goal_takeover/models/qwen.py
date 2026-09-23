@@ -45,9 +45,7 @@ def parse_qwen_action(text: str, *, call_id: str) -> AgentAction:
         name = payload.get("name")
         arguments = payload.get("arguments")
         if not isinstance(name, str) or not name:
-            raise QwenToolCallParseError(
-                "tool call name must be a non-empty string", raw_text=text
-            )
+            raise QwenToolCallParseError("tool call name must be a non-empty string", raw_text=text)
         if not isinstance(arguments, dict):
             raise QwenToolCallParseError("tool call arguments must be an object", raw_text=text)
         current_id = call_id if index == 0 else f"{call_id}_{index}"
