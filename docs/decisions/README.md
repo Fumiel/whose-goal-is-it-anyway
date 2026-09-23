@@ -25,7 +25,8 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
-| 2026-09-24 | [RDR-2026-09-24-04](2026-09-24_banking_selection_gate_freeze.md) | accepted | 7条件選定runner・監査手順・固定環境の照合を確認し、Git commitと設定checksumを凍結 |
+| 2026-09-24 | [RDR-2026-09-24-05](2026-09-24_selection_audit_trace_rerun.md) | accepted | 初回runの最終回答・生出力欠落を補い、同じ7条件で両候補を再実行するcommitを凍結 |
+| 2026-09-24 | [RDR-2026-09-24-04](2026-09-24_banking_selection_gate_freeze.md) | superseded | 初回7条件選定のGit commitと設定checksumの凍結 |
 | 2026-09-24 | [RDR-2026-09-24-03](2026-09-24_native_model_selection_gate.md) | accepted | 既存Bankingタスクの7条件で縮小ゲートと選定標本を指定。正式凍結と実行は未了 |
 | 2026-09-24 | [RDR-2026-09-24-02](2026-09-24_integration_gate_provisional_thresholds.md) | superseded | 旧暫定閾値。RDR-2026-09-24-03で縮小 |
 | 2026-09-24 | [RDR-2026-09-24-01](2026-09-24_integration_gate_partial_decisions.md) | accepted | 統合試験ゲートの候補参照、tie-break、資源上限を部分決定。正式ゲートは未凍結 |

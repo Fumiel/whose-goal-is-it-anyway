@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "status": "frozen_before_candidate_selection",
-  "frozen_at_utc": "2026-09-23T19:54:55Z",
-  "source_git_commit": "95cc1e860aff2658fccba9fccdf1adfd7e5a0013",
+  "status": "frozen_before_selection_rerun",
+  "frozen_at_utc": "2026-09-23T20:21:13Z",
+  "source_git_commit": "3e168324054bfe4d2ba907999bd78daec3fa2aa5",
   "preflight_report": "data/audits/2026-09-24_banking_selection_preflight.json",
   "preflight_report_sha256": "fc6e565b16aaf92725f747aa140d047caf5eae477397948a0f156ed64914a937",
   "sha256": {

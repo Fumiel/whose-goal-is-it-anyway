@@ -2,7 +2,9 @@
 
 この手順は `configs/selection/integration_gate.yaml` と
 `configs/selection/banking_native_selection_sample.yaml` の7条件を、両候補へ適用する。
-候補の行動結果を見る前に、preflight、設定checksum、Git commitを記録して凍結する。
+初回runの前に、preflight、設定checksum、Git commitを記録して凍結した。
+初回14件は最終回答と生出力を欠いたため、監査証拠の保存だけを修正して
+両候補を再実行する。再実行用commitは新しい凍結記録に固定する。
 
 ## 実行前の照合
 
