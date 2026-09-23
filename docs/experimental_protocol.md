@@ -162,6 +162,11 @@ Git commitと設定checksumを記録してゲートを凍結する。
 既に見た研究実施者本人が結果閲覧後の非blind自己監査を行う。
 [RDR-2026-09-24-06](decisions/2026-09-24_selection_self_audit.md)に当初のblind計画からの
 逸脱を記録し、一致率を独立したblind検証として解釈しない。
+集計後、両候補とも凍結済みゲートには不合格だった。ただし
+[RDR-2026-09-24-07](decisions/2026-09-24_provisional_qwen3_8b_banking_pilot.md)により、
+Qwen3-8B int8・Bankingを探索的予備実験の暫定構成とする。これはゲート合格や
+主モデル・主ドメインの最終採用を意味しない。予備実験の標本と停止・移行条件は
+新しいrunの前に固定する。
 
 選定手順:
 

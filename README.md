@@ -82,15 +82,17 @@ goal-takeover selection-preflight configs/selection/integration_gate.yaml
 goal-takeover agentdojo-selection configs/selection/integration_gate.yaml \
   --run-prefix banking-selection-YYYYMMDD-NNN
 goal-takeover selection-report configs/selection/integration_gate.yaml \
-  --run-prefix banking-selection-YYYYMMDD-NNN --audit <audit.json>
+  --run-prefix banking-selection-YYYYMMDD-NNN --audit path/to/audit.json
 ```
 
 最初のモデル選定run `banking-selection-20260924-001` は14件を生成しましたが、
 最終回答と生成時の生出力が保存されず、必須のblind監査に使用できません。
 凍結済みの修正版による再実行`banking-selection-20260924-002`は両候補7件ずつ完了しました。
-次は[14件の監査票](data/audits/2026-09-24_banking_selection_self_audit_template.json)を用いた
-実施者本人の判定です。モデル別集計を閲覧した後の非blind自己監査として記録し、
-独立したblind検証とは区別します。
+[14件の自己監査](data/audits/2026-09-24_banking_selection_self_audit_completed.json)と
+[選定レポート](results/2026-09-24_banking_selection_self_audit_report.json)も完了し、
+両候補とも凍結済みゲートには不合格でした。Qwen3-8B int8・Bankingは
+[RDR-2026-09-24-07](docs/decisions/2026-09-24_provisional_qwen3_8b_banking_pilot.md)により、
+探索的予備実験の暫定構成とします。主モデル・主ドメインはまだ最終採用していません。
 
 ## 実験出力
 

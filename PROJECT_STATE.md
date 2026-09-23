@@ -9,6 +9,8 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 - Phase: `pre_pilot_scaffolding`
 - Primary model: not selected
 - Primary domain: not selected
+- Provisional exploratory pilot: Qwen3-8B int8 on AgentDojo Banking v1.2.2;
+  see `docs/decisions/2026-09-24_provisional_qwen3_8b_banking_pilot.md`.
 - Confirmatory test set: not created or inspected
 - End-to-end status: synthetic integration implemented; AgentDojo 0.1.35 API
   and three Banking v1.2.2 fixtures validated; Qwen3-8B int8 and Qwen3-4B BF16
@@ -26,19 +28,21 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   from those bundles. Both candidates were rerun with new IDs after the
   provenance-only runner correction; no primary model is selected.
 - The corrected `banking-selection-20260924-002` produced 14 complete audit
-  traces. The researcher has seen model-level automatic aggregates and will
-  perform a non-blind self-audit of all runs. This deviates from the originally
-  frozen blind-review procedure; the agreement will be reported descriptively.
+  traces. The researcher completed a non-blind self-audit after seeing
+  model-level aggregates. Both candidates failed the frozen selection gate:
+  8B clean success was 3/5 and 4B was 2/5; the report selected no model.
 
 ## Current gate
 
-Before adopting a candidate model or domain:
+Before starting new exploratory pilot runs:
 
 1. The seven-condition Banking selection gate remains fixed. The current
    `configs/selection/integration_gate.freeze.json` records the corrected
-   runner commit used for the completed rerun. Complete the fourteen-entry
-   self-audit, then generate the selection report using the frozen gate.
-2. Keep all candidate-selection and pilot families out of the confirmatory test
+   runner commit used for the completed rerun. The audit and report are complete;
+   keep their failures and non-blind audit status visible.
+2. Fix the pilot sample, stop and transition rules, and split exclusions before
+   collecting new runs. The 8B/Banking combination is provisional only.
+3. Keep all candidate-selection and pilot families out of the confirmatory test
    split.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
@@ -57,11 +61,12 @@ measurement, but not for behavioral threshold setting or candidate ranking.
 
 ## Known intentional gaps
 
-- No selected primary model or formally adopted primary domain
+- No selected primary model or formally adopted primary domain; the 8B/Banking
+  pilot configuration is provisional.
 - Qwen3-8B int8 and Qwen3-4B BF16 are evaluated selection candidates; neither
   has been adopted as the primary model.
 - Both GPU shakedowns are engineering-only. The first formal selection run is
-  incomplete for audit and must not be used for model adoption. Human review
-  of the complete rerun is pending.
+  incomplete for audit and must not be used for model adoption. The complete
+  rerun and human review did not produce a passing candidate.
 - No fitted action, argument, source-role, authority, or task-drift probe
 - No confirmatory data and no research result
