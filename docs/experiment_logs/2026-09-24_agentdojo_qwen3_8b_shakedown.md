@@ -58,6 +58,8 @@ prefix token不一致、層の取得漏れ、候補scoringの例外があれば�
 
 今回の転記だけでは、各runのGit commit・dirty flag、manifestのchecksum、
 activationのshape・dtype、正確な保存byte数は独立に確認していない。
-Qwen3-4B BF16候補のGPU実行も未確認である。正式な候補評価の前に
+この記録を作成した時点ではQwen3-4B BF16候補のGPU実行も未確認だった。
+その後の実行は[別記録](2026-09-24_agentdojo_qwen3_4b_shakedown.md)にまとめた。
+正式な候補評価の前に
 `configs/selection/integration_gate.yaml`、選定用sample manifest、tie-break規則、
 shakedown fixtureの除外リストを凍結し、新しいRDRに記録する。

@@ -6,7 +6,7 @@ Indirect Prompt Injectionを受けたツール利用型LLMエージェントに�
 
 ## 現在の状態
 
-現在はPilot実験前の基盤整備段階です。モデルと主対象ドメインはまだ確定しておらず、`configs/**/example.yaml`は選定候補を記入するための雛形です。合成fixtureに加え、AgentDojo 0.1.35 / Banking v1.2.2用adapterとQwen3 Transformers runnerを実装済みです。Qwen3-8B int8のWindows GPU工学shakedownは3 fixtureを完走しました。これは正式な候補評価や研究結果ではありません。測定値と確認範囲は[技術記録](docs/experiment_logs/2026-09-24_agentdojo_qwen3_8b_shakedown.md)を、作業時点の状態は[`PROJECT_STATE.md`](PROJECT_STATE.md)を参照してください。
+現在はPilot実験前の基盤整備段階です。モデルと主対象ドメインはまだ確定しておらず、`configs/**/example.yaml`は選定候補を記入するための雛形です。合成fixtureに加え、AgentDojo 0.1.35 / Banking v1.2.2用adapterとQwen3 Transformers runnerを実装済みです。Qwen3-8B int8とQwen3-4B BF16のWindows GPU工学shakedownは各3 fixtureを完走しました。これらは正式な候補評価や研究結果ではありません。測定値と確認範囲は[技術記録一覧](docs/experiment_logs/README.md)を、作業時点の状態は[`PROJECT_STATE.md`](PROJECT_STATE.md)を参照してください。
 
 ## ディレクトリ
 
@@ -20,7 +20,7 @@ Indirect Prompt Injectionを受けたツール利用型LLMエージェントに�
 - `artifacts/`: Git管理外のraw run、processed data、analysis output
 - `results/`: provenance付きの小さな確定表・図
 - `tests/`: 小さな合成fixtureを用いた回帰テスト
-- `docs/`: 計画書と実験プロトコル
+- `docs/`: 計画書、実験プロトコル、実験記録（`experiment_logs/`）、教授向け報告書（`reports/`）
 
 ## セットアップ
 
