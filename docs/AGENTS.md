@@ -5,6 +5,7 @@
 - Record later design deviations as a new file under `decisions/`; do not
   rewrite old decision records to match the present.
 - Preserve dated PDFs under `snapshots/` as immutable records.
-- Reports and source material are historical inputs, not automatically current
-  protocol.
+- `reports/` contains professor-facing progress reports and other submitted or
+  shared documents. `experiment_logs/` contains dated execution and engineering
+  records. Neither is automatically current protocol.
 - Verify unstable citations and software compatibility before relying on them.

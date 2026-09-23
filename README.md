@@ -6,7 +6,7 @@ Indirect Prompt Injectionを受けたツール利用型LLMエージェントに�
 
 ## 現在の状態
 
-現在はPilot実験前の基盤整備段階です。モデルと主対象ドメインはまだ確定しておらず、`configs/**/example.yaml`は選定候補を記入するための雛形です。合成fixtureに加え、AgentDojo 0.1.35 / Banking v1.2.2用adapterとQwen3 Transformers runnerを実装済みです。AgentDojo fixtureのAPI整合は確認済みですが、Windows GPUでの実モデルshakedownは未実施です。作業開始時は[`PROJECT_STATE.md`](PROJECT_STATE.md)も確認してください。
+現在はPilot実験前の基盤整備段階です。モデルと主対象ドメインはまだ確定しておらず、`configs/**/example.yaml`は選定候補を記入するための雛形です。合成fixtureに加え、AgentDojo 0.1.35 / Banking v1.2.2用adapterとQwen3 Transformers runnerを実装済みです。Qwen3-8B int8のWindows GPU工学shakedownは3 fixtureを完走しました。これは正式な候補評価や研究結果ではありません。測定値と確認範囲は[技術記録](docs/experiment_logs/2026-09-24_agentdojo_qwen3_8b_shakedown.md)を、作業時点の状態は[`PROJECT_STATE.md`](PROJECT_STATE.md)を参照してください。
 
 ## ディレクトリ
 
@@ -68,9 +68,10 @@ Windows 11 / WSL2 GPU環境の構築と実行方法は[`docs/windows_wsl_executi
 goal-takeover gpu-preflight
 goal-takeover agentdojo-shakedown configs/selection/pre_gate_shakedown.yaml \
   --model-config configs/models/qwen3_8b_int8.yaml \
-  --run-prefix qwen3-8b-int8-shakedown-001
+  --run-prefix qwen3-8b-int8-shakedown-YYYYMMDD-NNN
 ```
 
+`YYYYMMDD-NNN`は未使用の実行IDに置き換えてください。既存runは上書きしません。
 この3 fixtureの行動成否はモデル選定、閾値設定、研究結果に使用しません。
 
 ## 実験出力

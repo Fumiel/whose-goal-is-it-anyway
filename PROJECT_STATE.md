@@ -11,8 +11,10 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 - Primary domain: not selected
 - Confirmatory test set: not created or inspected
 - End-to-end status: synthetic integration implemented; AgentDojo 0.1.35 API
-  and the three Banking v1.2.2 fixtures validated without a model; Windows GPU
-  real-model execution remains pending
+  and three Banking v1.2.2 fixtures validated; Qwen3-8B int8 completed the
+  three-fixture Windows GPU engineering shakedown on 2026-09-24. See
+  `docs/experiment_logs/2026-09-24_agentdojo_qwen3_8b_shakedown.md` for user-reported
+  measurements and verification limits.
 
 ## Current gate
 
@@ -40,6 +42,8 @@ measurement, but not for behavioral threshold setting or candidate ranking.
 
 - No selected primary model or formally adopted primary domain
 - Qwen3-8B int8 and Qwen3-4B BF16 are shakedown candidates only
-- Real-model generation, activation capture, and scoring are not yet GPU-validated
+- Qwen3-4B BF16 has not completed the Windows GPU shakedown
+- The Qwen3-8B int8 shakedown is engineering-only; the formal integration gate
+  and candidate-selection sample are not frozen
 - No fitted action, argument, source-role, authority, or task-drift probe
 - No confirmatory data and no research result
