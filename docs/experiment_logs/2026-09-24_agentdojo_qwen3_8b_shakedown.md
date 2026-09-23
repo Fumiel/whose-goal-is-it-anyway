@@ -63,3 +63,9 @@ activationのshape・dtype、正確な保存byte数は独立に確認してい�
 正式な候補評価の前に
 `configs/selection/integration_gate.yaml`、選定用sample manifest、tie-break規則、
 shakedown fixtureの除外リストを凍結し、新しいRDRに記録する。
+
+## 事後監査
+
+WSL上の全raw bundleについて、checksumと通常runのGit情報・activationのshape・dtype、
+正確なbyte数を[2026-09-24 raw run監査](2026-09-24_shakedown_raw_audit.md)に記録した。
+本節は上記の実行時記録を事後的に補足するものであり、shakedownの行動結果は選定に使用しない。

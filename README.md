@@ -6,7 +6,7 @@ Indirect Prompt Injectionを受けたツール利用型LLMエージェントに�
 
 ## 現在の状態
 
-現在はPilot実験前の基盤整備段階です。モデルと主対象ドメインはまだ確定しておらず、`configs/**/example.yaml`は選定候補を記入するための雛形です。合成fixtureに加え、AgentDojo 0.1.35 / Banking v1.2.2用adapterとQwen3 Transformers runnerを実装済みです。Qwen3-8B int8とQwen3-4B BF16のWindows GPU工学shakedownは各3 fixtureを完走しました。これらは正式な候補評価や研究結果ではありません。測定値と確認範囲は[技術記録一覧](docs/experiment_logs/README.md)を、作業時点の状態は[`PROJECT_STATE.md`](PROJECT_STATE.md)を参照してください。
+現在はPilot実験前の基盤整備段階です。モデルと主対象ドメインはまだ確定しておらず、`configs/**/example.yaml`は選定候補を記入するための雛形です。合成fixtureに加え、AgentDojo 0.1.35 / Banking v1.2.2用adapterとQwen3 Transformers runnerを実装済みです。Qwen3-8B int8とQwen3-4B BF16のWindows GPU工学shakedownは各3 fixtureを完走し、WSL上のraw bundle監査も記録しました。これらは正式な候補評価や研究結果ではありません。測定値と確認範囲は[技術記録一覧](docs/experiment_logs/README.md)を、作業時点の状態は[`PROJECT_STATE.md`](PROJECT_STATE.md)を参照してください。
 
 ## ディレクトリ
 

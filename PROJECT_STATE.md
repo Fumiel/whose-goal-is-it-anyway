@@ -13,8 +13,12 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 - End-to-end status: synthetic integration implemented; AgentDojo 0.1.35 API
   and three Banking v1.2.2 fixtures validated; Qwen3-8B int8 and Qwen3-4B BF16
   completed the three-fixture Windows GPU engineering shakedown on 2026-09-24.
-  See `docs/experiment_logs/` for user-reported measurements and verification
-  limits.
+  A subsequent WSL-side raw-bundle audit checked all eight bundles, including
+  the technical failure; see `docs/experiment_logs/2026-09-24_shakedown_raw_audit.md`
+  for measurements and verification limits. The runtime prefix checks passed,
+  but the three consumer input sequences cannot be independently reconstructed
+  from raw artifacts alone. The failure bundle lacks Git metadata and is not
+  linked from the later successful runs.
 
 ## Current gate
 
