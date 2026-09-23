@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "frozen_before_candidate_selection",
+  "frozen_at_utc": "2026-09-23T19:54:55Z",
+  "source_git_commit": "95cc1e860aff2658fccba9fccdf1adfd7e5a0013",
+  "preflight_report": "data/audits/2026-09-24_banking_selection_preflight.json",
+  "preflight_report_sha256": "fc6e565b16aaf92725f747aa140d047caf5eae477397948a0f156ed64914a937",
+  "sha256": {
+    "banking_domain": "f118211bc354818088f64cfa7c02563e773f36c35be32dc5fe658582cd279e37",
+    "gate": "e84db8e1ae1ca886004bde2e4a58cad7ef58705d204cb2151fed58c3a532b5df",
+    "qwen3_4b_bf16": "5c3c20e6d2e2c04658e444e9cb68c4ac23ef7fbbf42f8fcd0e70a09e8110a134",
+    "qwen3_8b_int8": "59f75014a0a0d200c0b7f1af87d7e8fab9360ad3c533a618bc81ef6e8a808c85",
+    "sample": "c5fb408b51ae6bef21b7b5fe6fea2eca0be4e93e2802e35000d98a430adee819",
+    "selection_sample": "c5fb408b51ae6bef21b7b5fe6fea2eca0be4e93e2802e35000d98a430adee819",
+    "shakedown_exclusions": "b2396acb2af40bc0491f025fffa82cff773378bd6c043d1c2c8347cbd238057b"
+  }
+}
