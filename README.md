@@ -74,7 +74,7 @@ goal-takeover agentdojo-shakedown configs/selection/pre_gate_shakedown.yaml \
 `YYYYMMDD-NNN`は未使用の実行IDに置き換えてください。既存runは上書きしません。
 この3 fixtureの行動成否はモデル選定、閾値設定、研究結果に使用しません。
 
-正式なBankingモデル選定は7条件を両候補に適用します。実行前監査とblind人手監査は
+正式なBankingモデル選定は7条件を両候補に適用します。実行前監査と人手監査は
 [`docs/selection_audit.md`](docs/selection_audit.md)を参照してください。
 
 ```bash
@@ -87,7 +87,10 @@ goal-takeover selection-report configs/selection/integration_gate.yaml \
 
 最初のモデル選定run `banking-selection-20260924-001` は14件を生成しましたが、
 最終回答と生成時の生出力が保存されず、必須のblind監査に使用できません。
-旧runを残したまま、凍結済みの修正版から**新しいrun prefixで両候補7件ずつ**再実行してください。
+凍結済みの修正版による再実行`banking-selection-20260924-002`は両候補7件ずつ完了しました。
+次は[14件の監査票](data/audits/2026-09-24_banking_selection_self_audit_template.json)を用いた
+実施者本人の判定です。モデル別集計を閲覧した後の非blind自己監査として記録し、
+独立したblind検証とは区別します。
 
 ## 実験出力
 

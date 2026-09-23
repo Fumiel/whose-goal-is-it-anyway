@@ -158,6 +158,10 @@ pairの探索は予備実験へ送る。
 Git commitと設定checksumを記録してゲートを凍結する。
 具体的なpreflight、blind監査、技術的失敗と再試行の手順は
 [`selection_audit.md`](selection_audit.md)に固定する。
+ただし`banking-selection-20260924-002`の14件については、モデル別の自動集計を
+既に見た研究実施者本人が結果閲覧後の非blind自己監査を行う。
+[RDR-2026-09-24-06](decisions/2026-09-24_selection_self_audit.md)に当初のblind計画からの
+逸脱を記録し、一致率を独立したblind検証として解釈しない。
 
 選定手順:
 

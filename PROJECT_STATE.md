@@ -23,17 +23,21 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   bundles under `banking-selection-20260924-001`. Their checksums and scoring
   records were internally consistent, but the selection runner omitted final
   answers and raw generations. The required blind audit cannot be completed
-  from those bundles. A provenance-only runner correction now requires both
-  candidates to be rerun with new run IDs; no primary model is selected.
+  from those bundles. Both candidates were rerun with new IDs after the
+  provenance-only runner correction; no primary model is selected.
+- The corrected `banking-selection-20260924-002` produced 14 complete audit
+  traces. The researcher has seen model-level automatic aggregates and will
+  perform a non-blind self-audit of all runs. This deviates from the originally
+  frozen blind-review procedure; the agreement will be reported descriptively.
 
 ## Current gate
 
-Before formally evaluating candidate models or domains:
+Before adopting a candidate model or domain:
 
 1. The seven-condition Banking selection gate remains fixed. The current
    `configs/selection/integration_gate.freeze.json` records the corrected
-   runner commit for a full rerun of both candidates. Run `selection-preflight`
-   and the formal selection runner on that frozen clean commit.
+   runner commit used for the completed rerun. Complete the fourteen-entry
+   self-audit, then generate the selection report using the frozen gate.
 2. Keep all candidate-selection and pilot families out of the confirmatory test
    split.
 
@@ -54,8 +58,10 @@ measurement, but not for behavioral threshold setting or candidate ranking.
 ## Known intentional gaps
 
 - No selected primary model or formally adopted primary domain
-- Qwen3-8B int8 and Qwen3-4B BF16 are shakedown candidates only
+- Qwen3-8B int8 and Qwen3-4B BF16 are evaluated selection candidates; neither
+  has been adopted as the primary model.
 - Both GPU shakedowns are engineering-only. The first formal selection run is
-  incomplete for audit and must not be used for model adoption.
+  incomplete for audit and must not be used for model adoption. Human review
+  of the complete rerun is pending.
 - No fitted action, argument, source-role, authority, or task-drift probe
 - No confirmatory data and no research result
