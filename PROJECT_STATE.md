@@ -24,7 +24,12 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 Before formally evaluating candidate models or domains:
 
-1. Fill and freeze `configs/selection/integration_gate.yaml`.
+1. Complete and freeze `configs/selection/integration_gate.yaml`. Candidate
+   references, tie-break, and engineering resource ceilings are decided in
+   `RDR-2026-09-24-01`. The reduced gate and seven-condition native Banking
+   sample are specified in `RDR-2026-09-24-03`. Verify the formal selection
+   runner against the manifest, then record Git commit and configuration
+   checksum before candidate evaluation.
 2. Record candidate revisions and the frozen gate in a new RDR.
 3. Keep all candidate-selection and pilot families out of the confirmatory test
    split.
@@ -47,6 +52,8 @@ measurement, but not for behavioral threshold setting or candidate ranking.
 - No selected primary model or formally adopted primary domain
 - Qwen3-8B int8 and Qwen3-4B BF16 are shakedown candidates only
 - Both GPU shakedowns are engineering-only; the formal integration gate
-  and candidate-selection sample are not frozen
+  and candidate-selection sample are specified but not frozen or executed
+- The existing CLI runs only the three-fixture engineering shakedown; a formal
+  selection runner for the seven-condition sample is not yet available
 - No fitted action, argument, source-role, authority, or task-drift probe
 - No confirmatory data and no research result

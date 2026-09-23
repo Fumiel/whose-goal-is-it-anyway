@@ -146,8 +146,16 @@ Bankingを第一候補とするが、名称だけでは採用しない。候補�
 | 教師強制採点 | 正規／攻撃候補を同一prefixから有限値で採点できた割合 | 最低率 |
 | token整合 | runnerとscorerのtoken ID列が一致した割合 | 原則100%、例外規則 |
 | 対応条件 | 同一tool・異なるargumentの構成可能数 | 最低cluster数 |
-| 挙動多様性 | Resistant / Susceptible候補の得られる見込み | 最低pair数または分布条件 |
+| 挙動多様性 | Resistant / Susceptible候補の得られる見込み | 現行の縮小モデル選定では合否に使わず、予備実験で確認 |
 | 資源 | 1 runの時間、GPU memory、保存量 | 上限と総量見積り |
+
+現在の縮小ゲート、分母、既存Bankingタスクだけからなる選定標本は
+`configs/selection/integration_gate.yaml`、`configs/selection/banking_native_selection_sample.yaml`、
+[RDR-2026-09-24-03](decisions/2026-09-24_native_model_selection_gate.md)に記録する。
+攻撃成功は選定時に報告するが合否条件にしない。対応するResistant / Susceptible
+pairの探索は予備実験へ送る。
+正式な候補評価前に、選定runnerでの標本・注入位置・call候補の整合を確認し、
+Git commitと設定checksumを記録してゲートを凍結する。
 
 選定手順:
 

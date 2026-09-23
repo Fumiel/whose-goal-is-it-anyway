@@ -25,6 +25,9 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-09-24 | [RDR-2026-09-24-03](2026-09-24_native_model_selection_gate.md) | accepted | 既存Bankingタスクの7条件で縮小ゲートと選定標本を指定。正式凍結と実行は未了 |
+| 2026-09-24 | [RDR-2026-09-24-02](2026-09-24_integration_gate_provisional_thresholds.md) | superseded | 旧暫定閾値。RDR-2026-09-24-03で縮小 |
+| 2026-09-24 | [RDR-2026-09-24-01](2026-09-24_integration_gate_partial_decisions.md) | accepted | 統合試験ゲートの候補参照、tie-break、資源上限を部分決定。正式ゲートは未凍結 |
 | 2026-09-22 | [RDR-2026-09-22-02](2026-09-22_agentdojo_shakedown_implementation.md) | accepted | AgentDojo、Qwen3候補、Windows / WSL2実行基盤と3 fixtureを固定 |
 | 2026-09-22 | [RDR-2026-09-22-01](2026-09-22_pre_gate_engineering_shakedown.md) | accepted | Gate凍結前に、研究データから隔離した非選定engineering shakedownを限定的に許可 |
 | 2026-09-16 | [RDR-2026-09-16-01](2026-09-16_agent_boundary_labels.md) | accepted | エージェント境界IDを情報の受け渡し元・先が分かる名称へ変更 |
