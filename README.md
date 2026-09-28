@@ -10,17 +10,31 @@ Indirect Prompt Injectionを受けたツール利用型LLMエージェントに�
 
 ## ディレクトリ
 
-- `configs/`: モデル、ドメイン、実験、Probeの宣言的設定
-- `src/goal_takeover/`: エージェント、計測、評価、データ処理のコード
-- `data/templates/`: ユーザータスク、攻撃、対照条件のテンプレート
-- `data/schemas/`: 条件・実行記録のJSON Schema
-- `data/conditions/`: 生成済みの小さな条件宣言
-- `data/manifests/`: 外部保存artifactの所在とchecksum
-- `data/splits/`: task・attack template単位のデータ分割
-- `artifacts/`: Git管理外のraw run、processed data、analysis output
-- `results/`: provenance付きの小さな確定表・図
-- `tests/`: 小さな合成fixtureを用いた回帰テスト
-- `docs/`: 計画書、実験プロトコル、実験記録（`experiment_logs/`）、教授向け報告書（`reports/`）
+```text
+.
+├── configs/                 # モデル・ドメイン・実験・Probe・解析・選定の設定
+├── src/goal_takeover/       # エージェント実行、計測、評価、データ処理の実装
+├── data/                    # Gitで管理する小さな実験条件と追跡情報
+│   ├── templates/           # ユーザータスク・攻撃・対照条件の生成元
+│   ├── schemas/             # 条件・run・artifact・splitのJSON Schema
+│   ├── conditions/          # テンプレートから生成した条件宣言
+│   ├── splits/              # task・攻撃テンプレート単位で固定した分割
+│   ├── audits/              # 評価者による監査の割当と判定記録
+│   └── manifests/           # 外部保存データの所在・checksum・生成run
+├── artifacts/               # Git管理外の生成データ（下記は実行時に作成）
+│   ├── runs/<run_id>/       # 上書きしない生の実行記録
+│   ├── processed/           # 生データから再生成できる派生データ
+│   └── analyses/            # 解析の実行出力
+├── results/                 # 出典を追跡できる小さな確定表・図
+├── tests/                   # 合成fixtureを含む回帰テスト
+└── docs/                    # 研究計画と手順、および判断・実施の記録
+    ├── decisions/           # 研究設計・実験手順の変更判断（RDR）
+    ├── experiment_logs/     # 実験と工学的shakedownの実施記録
+    ├── reports/             # 教授向けの進捗報告など
+    └── snapshots/           # 日付付き研究計画の固定PDF
+```
+
+研究目的は[`docs/research_proposal.md`](docs/research_proposal.md)、現行の実験手順は[`docs/experimental_protocol.md`](docs/experimental_protocol.md)を参照してください。実行で生じた大きなデータは`artifacts/`に置き、再現に必要な小さな宣言・記録は`data/`、確定した集計結果は`results/`に分けます。
 
 ## セットアップ
 
