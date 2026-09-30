@@ -131,6 +131,27 @@ Exit criteria: 全予定runについて完了、技術的失敗、事前規則�
 
 例示設定をそのまま採用せず、採用値をresolved configとしてrunごとに保存する。
 
+### 5.1 Banking候補の実現可能性確認（2026-10-01）
+
+[タスク候補表](banking_task_candidates_2026-10-01.md)と
+[RDR-2026-10-01-01](decisions/2026-10-01_banking_task_feasibility_review.md)に基づき、
+新しい予備実験runの前に次を確認する。
+
+- task ID数、意味的task系列数、task × attack条件数、第8節の連結成分数を区別する。
+  候補表の8系列は、複合タスク15を除いた保守案であり、独立性やsplitの凍結ではない。
+- 既使用系列を除いた候補graphを作り、予備実験へ投入する系列と確認的評価へ残す未知系列を
+  明示する。同じattack goal/style等による結合を含めて、第17節の暫定cluster目標の
+  実現可能性を確認する。確保できなければ、新しいRDRで範囲または計画を判断する。
+- `user_task_5`と`user_task_6`は、ソース関数の限定的な無操作検査でutilityがtrueとなった。
+  native環境で対照状態を検証し、評価器の扱いと監査規則を固定するまで、成功率・主解析の
+  標本としては保留する。技術検証を行う場合も研究用のclean成功例として数えない。
+- `user_task_11`はamountしか成功判定に使わないため、使用前にrecipientの監査規則を決める。
+  native評価と補助的な厳密監査を別々に保存する。native評価器の差替えを行う場合は、
+  別versionと新しいRDRを作り、既存runの判定を上書きしない。
+
+研究課題、暫定30cluster目標、既存の漏洩防止規則、凍結済み選定ゲートは維持する。
+この確認はソース監査に基づき、モデルによる予備実験結果やnative suiteの検証完了を意味しない。
+
 ## 6. モデル・ドメイン選定ゲート
 
 Bankingを第一候補とするが、名称だけでは採用しない。候補モデルは内部状態を取得できる2B～8B程度の公開重み指示モデルとする。候補ごとの統合試験を同一の小標本と判定規則で行う。
@@ -771,6 +792,8 @@ rawとprocessedを分離し、processed artifactには入力raw checksum、処�
 - [ ] 一モデル・一domainの採用RDRがある
 - [ ] resolved config、condition schema、run schemaが検証を通る
 - [ ] split group IDを生成できる
+- [ ] task・attack関係graphと既使用除外から、pilot投入系列と未知系列の確保可能性を確認した
+- [ ] Banking候補の無操作・正規・攻撃状態を検証し、評価器の保留と補助監査の扱いを固定した
 - [ ] runner / scorer / activation extractorでprefix tokenが一致する
 - [ ] outcome、token位置、系列log probabilityのtestが通る
 - [ ] 人手監査の抽出・裁定規則を固定した

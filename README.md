@@ -108,6 +108,14 @@ goal-takeover selection-report configs/selection/integration_gate.yaml \
 [RDR-2026-09-24-07](docs/decisions/2026-09-24_provisional_qwen3_8b_banking_pilot.md)により、
 探索的予備実験の暫定構成とします。主モデル・主ドメインはまだ最終採用していません。
 
+[Bankingタスク候補表（2026-10-01）](docs/banking_task_candidates_2026-10-01.md)では、
+全16タスクの操作・注入経路・系列関係・既使用によるtest除外を整理しました。
+保守案では複合タスク15を除いて8系列ですが、攻撃を含む最上位の独立group数は未確定です。
+タスク5・6は限定的なソース関数検査で無操作でもutilityがtrueとなるため、成功率・主解析の
+標本としては保留します。タスク11も宛先を判定しない評価器の監査が必要です。
+新しい予備実験runの前に、未知系列を残せる条件計画と評価器の扱いを固定します。
+判断と検証範囲は[RDR-2026-10-01-01](docs/decisions/2026-10-01_banking_task_feasibility_review.md)を参照してください。
+
 ## 実験出力
 
 各実行は`artifacts/runs/<run_id>/`に独立して保存し、少なくとも次を残します。

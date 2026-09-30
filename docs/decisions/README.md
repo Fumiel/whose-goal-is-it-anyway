@@ -25,6 +25,7 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-10-01 | [RDR-2026-10-01-01](2026-10-01_banking_task_feasibility_review.md) | accepted | Banking候補の系列・既使用除外・評価器問題を記録し、予備実験前に独立groupの実現可能性を確認する |
 | 2026-09-24 | [RDR-2026-09-24-07](2026-09-24_provisional_qwen3_8b_banking_pilot.md) | accepted | ゲート不合格を保持し、Qwen3-8B int8・Bankingを探索的予備実験の暫定構成とする |
 | 2026-09-24 | [RDR-2026-09-24-06](2026-09-24_selection_self_audit.md) | accepted | 再実行結果の閲覧後、本人が非blindで14件を自己監査する逸脱と解釈上の限界を記録 |
 | 2026-09-24 | [RDR-2026-09-24-05](2026-09-24_selection_audit_trace_rerun.md) | accepted | 初回runの最終回答・生出力欠落を補い、同じ7条件で両候補を再実行するcommitを凍結 |

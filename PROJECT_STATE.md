@@ -12,6 +12,13 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 - Provisional exploratory pilot: Qwen3-8B int8 on AgentDojo Banking v1.2.2;
   see `docs/decisions/2026-09-24_provisional_qwen3_8b_banking_pilot.md`.
 - Confirmatory test set: not created or inspected
+- Banking task inventory: all 16 native user tasks reviewed against the pinned
+  AgentDojo 0.1.35 source on 2026-10-01; see
+  [task candidates](docs/banking_task_candidates_2026-10-01.md). The conservative
+  proposal has eight task families without composite task 15, before attack
+  edges and prior-use exclusions. These are not validated independent clusters.
+  Source-function no-op checks found utility positives for tasks 5 and 6;
+  native-suite evaluator validation remains outstanding.
 - End-to-end status: synthetic integration implemented; AgentDojo 0.1.35 API
   and three Banking v1.2.2 fixtures validated; Qwen3-8B int8 and Qwen3-4B BF16
   completed the three-fixture Windows GPU engineering shakedown on 2026-09-24.
@@ -44,6 +51,14 @@ Before starting new exploratory pilot runs:
    collecting new runs. The 8B/Banking combination is provisional only.
 3. Keep all candidate-selection and pilot families out of the confirmatory test
    split.
+4. Before fixing the pilot sample, inventory task and attack relationships,
+   prior-use exclusions, and the resulting connected components. Report task
+   families separately from the highest-level split/inference groups; the
+   feasibility of 30 confirmatory clusters is unresolved. Keep tasks 5 and 6
+   on hold for success-rate and main-analysis sampling until evaluator handling
+   is specified. Audit task 11's recipient-insensitive utility before use, and
+   decide which unseen families to reserve before consuming them in the pilot.
+   See [RDR-2026-10-01-01](docs/decisions/2026-10-01_banking_task_feasibility_review.md).
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -69,4 +84,7 @@ measurement, but not for behavioral threshold setting or candidate ranking.
   incomplete for audit and must not be used for model adoption. The complete
   rerun and human review did not produce a passing candidate.
 - No fitted action, argument, source-role, authority, or task-drift probe
+- No frozen pilot sample or verified supply of independent unseen Banking
+  clusters; native tasks 5 and 6 cannot yet support a meaningful clean-success
+  count, and task 11 requires recipient-level audit.
 - No confirmatory data and no research result
