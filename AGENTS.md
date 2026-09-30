@@ -6,20 +6,34 @@ This repository supports the graduation research described in
 `docs/research_proposal.md`: temporal and geometric analysis of goal
 representations in tool-using LLM agents under indirect prompt injection.
 
-Read `docs/research_proposal.md` before making research-design changes. Treat it
-as the canonical statement of the research questions. Record later deviations
-and their evidence instead of silently changing the intended experiment.
+Treat `docs/research_proposal.md` as the canonical statement of the research
+questions and `docs/experimental_protocol.md` as the canonical execution
+procedure. Record later deviations and their evidence instead of silently
+changing the intended experiment.
 
-## Current status
+## Required reading
 
-- The repository is at the pre-pilot scaffolding stage.
-- The model and primary AgentDojo domain have not been selected.
-- Files under `configs/**/example.yaml` are placeholders, not settled choices.
-- A synthetic end-to-end integration path exists. There is not yet a validated
-  real-model runner or AgentDojo adapter.
+1. At the start of each task, read `PROJECT_STATE.md` for the current phase,
+   operational constraints, completed work, and outstanding gates. Use it as
+   the operational entry point rather than relying on historical status
+   descriptions.
+2. Before work involving research decisions (including research-design changes,
+   experiment configuration, execution, or analysis), read
+   `docs/research_proposal.md`, the relevant sections of
+   `docs/experimental_protocol.md`, and `docs/decisions/README.md`.
+3. Read the full text of RDRs relevant to the task before acting on their
+   decisions. Check `status`, `supersedes`, related decisions, and the exact
+   scope of any partial revision; follow referenced predecessor records as
+   needed to identify constraints that remain in force. Do not infer current
+   permission from a record's date, index summary, or `accepted` status alone.
 
-Do not present placeholder configurations or synthetic fixtures as research
-results.
+RDRs document the reasons and scope of decisions; they do not replace the
+canonical plan or protocol. If these documents disagree in a way that affects
+the task, identify and resolve the discrepancy before dependent work. Do not
+treat every historical RDR as a currently applicable instruction.
+
+Do not present placeholder configurations, synthetic fixtures, or
+engineering-only runs as research results.
 
 ## Research invariants
 
