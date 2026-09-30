@@ -25,6 +25,7 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-10-01 | [RDR-2026-10-01-02](2026-10-01_existing_tasks_pilot_new_families_test.md) | accepted | 既存系列を予備実験へ、新系列を開発・確認用へ配分。shakedown系列の新規pilot実行を許す部分改訂 |
 | 2026-10-01 | [RDR-2026-10-01-01](2026-10-01_banking_task_feasibility_review.md) | accepted | Banking候補の系列・既使用除外・評価器問題を記録し、予備実験前に独立groupの実現可能性を確認する |
 | 2026-09-24 | [RDR-2026-09-24-07](2026-09-24_provisional_qwen3_8b_banking_pilot.md) | accepted | ゲート不合格を保持し、Qwen3-8B int8・Bankingを探索的予備実験の暫定構成とする |
 | 2026-09-24 | [RDR-2026-09-24-06](2026-09-24_selection_self_audit.md) | accepted | 再実行結果の閲覧後、本人が非blindで14件を自己監査する逸脱と解釈上の限界を記録 |
@@ -34,6 +35,6 @@
 | 2026-09-24 | [RDR-2026-09-24-02](2026-09-24_integration_gate_provisional_thresholds.md) | superseded | 旧暫定閾値。RDR-2026-09-24-03で縮小 |
 | 2026-09-24 | [RDR-2026-09-24-01](2026-09-24_integration_gate_partial_decisions.md) | accepted | 統合試験ゲートの候補参照、tie-break、資源上限を部分決定。正式ゲートは未凍結 |
 | 2026-09-22 | [RDR-2026-09-22-02](2026-09-22_agentdojo_shakedown_implementation.md) | accepted | AgentDojo、Qwen3候補、Windows / WSL2実行基盤と3 fixtureを固定 |
-| 2026-09-22 | [RDR-2026-09-22-01](2026-09-22_pre_gate_engineering_shakedown.md) | accepted | Gate凍結前に、研究データから隔離した非選定engineering shakedownを限定的に許可 |
+| 2026-09-22 | [RDR-2026-09-22-01](2026-09-22_pre_gate_engineering_shakedown.md) | accepted | 非選定engineering shakedownを限定許可。系列のpilot再利用禁止はRDR-2026-10-01-02で部分改訂 |
 | 2026-09-16 | [RDR-2026-09-16-01](2026-09-16_agent_boundary_labels.md) | accepted | エージェント境界IDを情報の受け渡し元・先が分かる名称へ変更 |
 | 2026-09-15 | [RDR-2026-09-15-01](2026-09-15_pre-pilot_scope_revision.md) | accepted | Pilot前の研究焦点、測定単位、実験規模および期限の改訂 |

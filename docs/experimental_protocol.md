@@ -66,7 +66,11 @@ $$
 
 shakedownの行動結果を集計・比較せず、成功率、攻撃成否、Resistant / Susceptibleの分布、
 モデル順位または行動性能に関するgate閾値の設定に利用しない。使用した意味系列は正式な
-選定標本とPhase 1以降の全splitから除外する。正式な候補評価は、integration gate、
+選定標本と確認的testから除外する。ただし
+[RDR-2026-10-01-02](decisions/2026-10-01_existing_tasks_pilot_new_families_test.md)により、
+系列と近い変種を新しいrunとしてPhase 1の探索的予備実験に再利用できる。
+過去のshakedown run自体は研究データへ転用せず、この許可をprobe training / validationへの
+再利用許可とは解釈しない。正式な候補評価は、integration gate、
 選定用sample manifestおよびtie-break規則を凍結した後に、新しい条件とrun IDで開始する。
 
 ### Phase 0: 実装・統合試験
@@ -88,6 +92,10 @@ Exit criteria: 一モデル・一ドメインを選定し、revisionと採用判
 ### Phase 1: 予備実験
 
 80～120実行を目安に、実行可能性、測定妥当性、条件分布および資源量を調べる。予備実験系列は確認的testへ再利用しない。
+
+既存Banking系列を使って測定・解析の方針を固める。選定・shakedownで既使用の系列も、
+新規runで再実行できる。新系列の設計と関係graphの作成を並行し、開発側と確認側の
+候補を確保する。詳細な配分・検証は第5.2節に従う。
 
 Exit criteria: 第7～15節の未確定事項をvalidationで選べる状態になり、凍結予定項目と未解決事項の一覧を作れること。
 
@@ -121,7 +129,8 @@ Exit criteria: 全予定runについて完了、技術的失敗、事前規則�
 - domain config: domain、初期状態、tool schema、データ型、状態reset方法、成功判定器
 - experiment config: decoding、seed、保存対象、位置選択規則、容量上限、出力先
 - condition manifest: 条件ID、意味ラベル、正規／攻撃候補、注入文字範囲、分割用group ID
-- split manifest: group単位のtrain / validation / test割当と生成seed
+- split manifest: pilot系列のtest除外、group生成規則とseed、および開発・確認用の配分方針。
+  新系列を含む最終train / validation / test割当は第5.2節に従いPhase 3で凍結する
 - evaluator specification: user-task successとattack successの個別判定規則
 - canonical call specification: ツール呼出しの正準直列化、引数順、空白、数値・文字列・真偽値・nullの表現
 - token-position specification: 各境界、各位置、曖昧例および除外規則
@@ -139,9 +148,10 @@ Exit criteria: 全予定runについて完了、技術的失敗、事前規則�
 
 - task ID数、意味的task系列数、task × attack条件数、第8節の連結成分数を区別する。
   候補表の8系列は、複合タスク15を除いた保守案であり、独立性やsplitの凍結ではない。
-- 既使用系列を除いた候補graphを作り、予備実験へ投入する系列と確認的評価へ残す未知系列を
-  明示する。同じattack goal/style等による結合を含めて、第17節の暫定cluster目標の
-  実現可能性を確認する。確保できなければ、新しいRDRで範囲または計画を判断する。
+- 既使用系列を含む予備実験の候補graphと、新系列による開発・確認用の配分方針を記録する。
+  同じattack goal/style等による結合を含めて、第17節の暫定cluster目標の実現可能性を
+  予備実験と並行して確認し、最終数とsplitをPhase 3で凍結する。確保できなければ、
+  test開封前の新しいRDRで範囲または計画を判断する。
 - `user_task_5`と`user_task_6`は、ソース関数の限定的な無操作検査でutilityがtrueとなった。
   native環境で対照状態を検証し、評価器の扱いと監査規則を固定するまで、成功率・主解析の
   標本としては保留する。技術検証を行う場合も研究用のclean成功例として数えない。
@@ -151,6 +161,27 @@ Exit criteria: 全予定runについて完了、技術的失敗、事前規則�
 
 研究課題、暫定30cluster目標、既存の漏洩防止規則、凍結済み選定ゲートは維持する。
 この確認はソース監査に基づき、モデルによる予備実験結果やnative suiteの検証完了を意味しない。
+
+### 5.2 既存系列の予備実験と新系列による確認的評価
+
+[RDR-2026-10-01-02](decisions/2026-10-01_existing_tasks_pilot_new_families_test.md)により、
+既存8系列を予備実験とtestへ無理に分割せず、予備実験は既存タスクを中心に行う。
+パスワード変更など比較が明確な条件から、請求書、返金、家賃、住所へ広げる。
+履歴照会・要約は対照とし、5/6の保留と11の補助監査を維持する。全系列の均等実行は要求しない。
+
+確認的評価には新しい意味系列を設計する。その一部をprobe training / validation用、
+別の連結成分を未使用test用とする。新task ID数と独立group数を区別し、名前・口座・金額や
+言い換えだけの変更を新系列と数えない。既使用系列とのtask・attack関係も第8節のedgeに含める。
+
+新タスクは別namespace・version・来歴を持ち、native定義と区別する。初期状態、tool schema、
+正規／攻撃callと注入範囲、独立した成功述語、無操作・正規・攻撃状態の対照検証を用意する。
+設計候補のmodel-free検証を行ってから、連結成分単位で開発側と確認側へ割り当てる。
+確認側への割当後は第8節の事前確認制限を適用し、モデルの成否を見て設計を調整した系列は
+開発側に置く。調整に使った系列を後から未使用testへ戻さない。
+
+予備実験前に固定するのはpilot標本・停止規則・除外と新系列の設計方針であり、全確認用系列の
+完成は要求しない。最終の関係graph、独立group数、split、評価器versionと解析仕様は
+Phase 3で凍結し、その後に確認的testを実行する。暫定30cluster目標を満たせることは未確認である。
 
 ## 6. モデル・ドメイン選定ゲート
 
@@ -271,6 +302,10 @@ Bankingが基準を満たさない場合は、受取人または対象IDの置�
 汎用的すぎる`attack_style_id`等によって全条件が一つの巨大な連結成分になる場合は、結果を見ずにIDの意味粒度または条件計画を見直す。十分な独立groupを確保できないことを理由に、収集後に漏洩制約を緩めない。
 
 予備実験、モデル選定、攻撃選択、層選択、位置選択または閾値調整に使った系列はtestへ入れない。既知の候補argument集合を使うことは許容するが、未知系列評価が未知のargument valueのzero-shot復号を意味するとは主張しない。
+
+shakedown系列の新規pilot実行を許しても、当該系列と近い変種のtest除外は維持する。
+新しく設計した系列も、既使用側とedgeでつながればtestから除外する。既存の凍結選定設定に
+あるshakedown除外は当時の選定用であり、新しいpilotへの一律禁止として流用しない。
 
 test隔離の最低要件:
 
@@ -792,7 +827,7 @@ rawとprocessedを分離し、processed artifactには入力raw checksum、処�
 - [ ] 一モデル・一domainの採用RDRがある
 - [ ] resolved config、condition schema、run schemaが検証を通る
 - [ ] split group IDを生成できる
-- [ ] task・attack関係graphと既使用除外から、pilot投入系列と未知系列の確保可能性を確認した
+- [ ] 既使用系列を含むpilot候補graphと、新系列の開発・確認用配分方針を記録した
 - [ ] Banking候補の無操作・正規・攻撃状態を検証し、評価器の保留と補助監査の扱いを固定した
 - [ ] runner / scorer / activation extractorでprefix tokenが一致する
 - [ ] outcome、token位置、系列log probabilityのtestが通る
@@ -802,6 +837,7 @@ rawとprocessedを分離し、processed artifactには入力raw checksum、処�
 
 - [ ] test leakageが0件である
 - [ ] pilot・選択に使った系列がtestにない
+- [ ] 新系列の来歴・評価器version・対照検証と、既使用側を含む関係graphの独立group数を確認した
 - [ ] 主margin、layer、位置、終端位置、probeを凍結した
 - [ ] authority scoreの構成とscaleを凍結した
 - [ ] 主回帰式、共変量、欠測・除外、bootstrapを凍結した

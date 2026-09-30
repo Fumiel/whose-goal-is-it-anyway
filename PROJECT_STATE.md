@@ -12,6 +12,11 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 - Provisional exploratory pilot: Qwen3-8B int8 on AgentDojo Banking v1.2.2;
   see `docs/decisions/2026-09-24_provisional_qwen3_8b_banking_pilot.md`.
 - Confirmatory test set: not created or inspected
+- Task allocation: use existing Banking families, including previously used
+  selection/shakedown families, in fresh exploratory pilot runs. Design new
+  semantic families alongside the pilot and assign connected components to
+  development (training / validation) or held-out confirmatory test. See
+  [RDR-2026-10-01-02](docs/decisions/2026-10-01_existing_tasks_pilot_new_families_test.md).
 - Banking task inventory: all 16 native user tasks reviewed against the pinned
   AgentDojo 0.1.35 source on 2026-10-01; see
   [task candidates](docs/banking_task_candidates_2026-10-01.md). The conservative
@@ -49,20 +54,28 @@ Before starting new exploratory pilot runs:
    keep their failures and non-blind audit status visible.
 2. Fix the pilot sample, stop and transition rules, and split exclusions before
    collecting new runs. The 8B/Banking combination is provisional only.
-3. Keep all candidate-selection and pilot families out of the confirmatory test
-   split.
+3. Keep all shakedown, candidate-selection, pilot, and tuning families and close
+   variants out of confirmatory test. Existing families may be rerun for the
+   exploratory pilot; old shakedown bundles remain engineering-only.
 4. Before fixing the pilot sample, inventory task and attack relationships,
-   prior-use exclusions, and the resulting connected components. Report task
+   prior-use relationships, and the resulting connected components. Report task
    families separately from the highest-level split/inference groups; the
    feasibility of 30 confirmatory clusters is unresolved. Keep tasks 5 and 6
    on hold for success-rate and main-analysis sampling until evaluator handling
    is specified. Audit task 11's recipient-insensitive utility before use, and
-   decide which unseen families to reserve before consuming them in the pilot.
-   See [RDR-2026-10-01-01](docs/decisions/2026-10-01_banking_task_feasibility_review.md).
+   record how new families will be designed and divided between development
+   and confirmatory evaluation. Complete the graph, evaluator validation and
+   final split by Phase 3; all new test families need not be finished before
+   the pilot starts. See
+   [RDR-2026-10-01-01](docs/decisions/2026-10-01_banking_task_feasibility_review.md)
+   and [RDR-2026-10-01-02](docs/decisions/2026-10-01_existing_tasks_pilot_new_families_test.md).
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
 measurement, but not for behavioral threshold setting or candidate ranking.
+RDR-2026-10-01-02 partially revises the later family exclusion rule to allow
+fresh pilot runs; it does not change the completed selection gate or permit
+reuse of engineering bundles as research data.
 
 ## Stable entry points
 
@@ -87,4 +100,6 @@ measurement, but not for behavioral threshold setting or candidate ranking.
 - No frozen pilot sample or verified supply of independent unseen Banking
   clusters; native tasks 5 and 6 cannot yet support a meaningful clean-success
   count, and task 11 requires recipient-level audit.
+- New development/test families, their AgentDojo compatibility and evaluator
+  validation, and their final connected-component split are not implemented.
 - No confirmatory data and no research result

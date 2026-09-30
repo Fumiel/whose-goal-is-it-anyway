@@ -113,8 +113,16 @@ goal-takeover selection-report configs/selection/integration_gate.yaml \
 保守案では複合タスク15を除いて8系列ですが、攻撃を含む最上位の独立group数は未確定です。
 タスク5・6は限定的なソース関数検査で無操作でもutilityがtrueとなるため、成功率・主解析の
 標本としては保留します。タスク11も宛先を判定しない評価器の監査が必要です。
-新しい予備実験runの前に、未知系列を残せる条件計画と評価器の扱いを固定します。
+新しい予備実験runの前に、pilot標本・停止規則と評価器の扱いを固定します。
 判断と検証範囲は[RDR-2026-10-01-01](docs/decisions/2026-10-01_banking_task_feasibility_review.md)を参照してください。
+
+[RDR-2026-10-01-02](docs/decisions/2026-10-01_existing_tasks_pilot_new_families_test.md)により、
+予備実験は既存系列を中心に方針を固め、確認的評価には新しい意味系列も設計します。
+選定・shakedownの既使用系列も、新しいrunで予備実験に再利用できます。
+過去のshakedown runは工学記録として隔離し、既使用・予備実験・調整に使った系列はtestへ入れません。
+新系列の設計・model-free検証を予備実験と並行して進め、関係graphで分離した開発用と
+確認用のgroupを作ります。最終splitと独立group数は解析仕様とともに凍結します。
+新系列や確認的testはまだ作成しておらず、30clusterの確保も未確認です。
 
 ## 実験出力
 
