@@ -133,6 +133,7 @@ def execute_condition(
             *,
             scope: str,
             resolve_exposure: bool,
+            capture_activations: bool = True,
         ) -> tuple[Any, dict[str, Any]]:
             nonlocal stage, last_stage
             stage = f"{scope}_serialization"
@@ -143,7 +144,7 @@ def execute_condition(
                 prefix,
                 current_messages,
                 condition,
-                capture,
+                capture if capture_activations else {**capture, "full_sequence_condition_ids": []},
                 resolve_exposure=resolve_exposure,
             )
             for position in positions_doc["positions"]:
@@ -163,40 +164,50 @@ def execute_condition(
                 "step_index": index,
             }
             prefixes.append(prefix_doc)
-            stage = f"{scope}_capture"
-            activation, attention, full = services.capture(
-                prefix,
-                indices,
-                ranges,
-                full_attention=condition["condition_id"]
-                in capture["full_sequence_attention_condition_ids"],
-            )
-            # Keep the consumer input independently reconstructable from raw artifacts.
-            activation.assert_matches(prefix)
-            if activation.positions != indices:
-                raise ValueError("activation position mismatch")
-            write_bytes(
-                f"measurements/{index}/residual.safetensors",
-                services.activation_bytes(activation),
-                "residual_activation",
-            )
-            metadata = {
-                "prefix_id": activation.prefix_id,
-                "token_ids": list(activation.token_ids),
-                "positions": list(activation.positions),
-                "layers": {
-                    name: {"shape": list(t.shape), "dtype": str(t.dtype)}
-                    for name, t in activation.values.items()
-                },
-            }
-            write_json(f"measurements/{index}/activation.json", metadata, "activation_metadata")
-            if attention.get("prefix_id") != prefix.prefix_id or attention.get(
-                "prefix_token_ids"
-            ) != list(prefix.token_ids):
-                raise ValueError("attention prefix token mismatch")
-            write_json(f"measurements/{index}/attention.json", attention, "attention_aggregates")
-            if full is not None:
-                write_bytes(f"measurements/{index}/attention.safetensors", full, "full_attention")
+            if capture_activations:
+                stage = f"{scope}_capture"
+                activation, attention, full = services.capture(
+                    prefix,
+                    indices,
+                    ranges,
+                    full_attention=condition["condition_id"]
+                    in capture["full_sequence_attention_condition_ids"],
+                )
+                # Keep the consumer input independently reconstructable from raw artifacts.
+                activation.assert_matches(prefix)
+                if activation.positions != indices:
+                    raise ValueError("activation position mismatch")
+                write_bytes(
+                    f"measurements/{index}/residual.safetensors",
+                    services.activation_bytes(activation),
+                    "residual_activation",
+                )
+                metadata = {
+                    "prefix_id": activation.prefix_id,
+                    "token_ids": list(activation.token_ids),
+                    "positions": list(activation.positions),
+                    "layers": {
+                        name: {"shape": list(t.shape), "dtype": str(t.dtype)}
+                        for name, t in activation.values.items()
+                    },
+                }
+                write_json(f"measurements/{index}/activation.json", metadata, "activation_metadata")
+                if attention.get("prefix_id") != prefix.prefix_id or attention.get(
+                    "prefix_token_ids"
+                ) != list(prefix.token_ids):
+                    raise ValueError("attention prefix token mismatch")
+                write_json(
+                    f"measurements/{index}/attention.json", attention, "attention_aggregates"
+                )
+                if full is not None:
+                    write_bytes(
+                        f"measurements/{index}/attention.safetensors", full, "full_attention"
+                    )
+            else:
+                metadata = {
+                    "prefix_id": prefix.prefix_id,
+                    "status": "not_captured_fixed_prefix_scoring_diagnostic",
+                }
             scores = None
             if positions_doc["exposed"] and condition["intervention_span_in_vector"] is not None:
                 stage = f"{scope}_scoring"
@@ -354,6 +365,7 @@ def execute_condition(
                         diag_messages,
                         scope="fixed_prefix_diagnostic",
                         resolve_exposure=True,
+                        capture_activations=False,
                     )
                     if not measured["positions"]["exposed"] or measured["scores"] is None:
                         raise ValueError("diagnostic injection is missing")

@@ -63,11 +63,20 @@ def read_bundle(path: Path) -> dict[str, Any]:
         }
     for measurement in record.get("measurements", []):
         index = measurement["index"]
-        required_measurement = {
-            f"measurements/{index}/residual.safetensors",
-            f"measurements/{index}/activation.json",
-            f"measurements/{index}/attention.json",
-        }
+        if measurement["scope"] == "fixed_prefix_diagnostic":
+            if (
+                measurement["scores"] is None
+                or measurement["activation"].get("status")
+                != "not_captured_fixed_prefix_scoring_diagnostic"
+            ):
+                raise ConfigError("invalid scoring-only fixed-prefix diagnostic")
+            required_measurement = set()
+        else:
+            required_measurement = {
+                f"measurements/{index}/residual.safetensors",
+                f"measurements/{index}/activation.json",
+                f"measurements/{index}/attention.json",
+            }
         if measurement["scores"] is not None:
             required_measurement.add(f"measurements/{index}/scores.json")
         if not required_measurement.issubset(declared):

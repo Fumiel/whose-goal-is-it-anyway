@@ -232,13 +232,22 @@ cleanを先に、task順14/0/3/4/2/12とcondition ID順をmanifestに保存す�
 実軌跡を主対象とし、注入非接触は行動結果を残してIPI位置・スコアを欠測にする。
 後続tool返却での初接触をfirst境界へ改名しない。固定ground-truth prefixは別診断とする。
 資源上限は1条件300秒・GPU12GiB・保存0.05GiB、通常4.5GiB、
-最大180attempt・9GiB・54000秒で、診断・失敗記録も含む。
+最大180attempt・9GiB・54000秒で、固定prefixの採点診断・失敗記録も含む。
+2026-10-02の[RDR-2026-10-02-01](decisions/2026-10-02_pilot_capture_resource_revision.md)は、
+実測に基づき診断の内部状態保存だけを改訂した。通常実軌跡では`sdpa`出力のまま最後のqueryの
+Attention重みを再計算して範囲集約し、全層残差はIPI前後左右16 tokenと既定位置を保存する。
+先行IPIの固定prefix診断は正確なtoken列・位置と候補系列採点を保存し、残差・Attentionを
+重複取得しない。全sequence・全層残差は事前指定した四task系列各一件の固定prefixから
+別のimmutable派生bundleとして取得する。派生取得には1件1.5 GiB、合計6 GiB、GPU12 GiB、
+各300秒の独立上限を置き、完全Attention行列は初回pilotで保存しない。
+固定prefixの派生値は実軌跡の内部状態や成功件数へ代用しない。
 
 pilot runnerと合成adapterのtestは実装済みである（[実装と使用方法](pilot_runner.md)）。
 2026-10-02のnative全90条件対照、固定tokenizerでの固定prefix位置確認、基本GPU preflightは
-成功した。一方、Attention取得方式と資源上限、window・全sequence保存subset、task 14の
-人手確認、実行code commit・設定checksumの別runtime freezeは未完了である。
-実測と制約は[実行前計測記録](experiment_logs/2026-10-02_pilot_preflight_measurements.md)に残す。
+成功した。Attention方式、windowと派生詳細subsetは上記RDRで事前指定した。
+task 14の人手確認、実行code commit・設定checksumの別runtime freeze、実軌跡の
+研究runは未完了である。実測と制約は[最初の実行前計測](experiment_logs/2026-10-02_pilot_preflight_measurements.md)と
+[修正後計測](experiment_logs/2026-10-02_capture_repair_preflight.md)に残す。
 標本freezeを上書きせず実行用設定へcapture値を解決し、上限との整合を確認する。
 詳細な成果物と残るgateは[実行前確認](banking_pilot_v1.md)を参照する。
 

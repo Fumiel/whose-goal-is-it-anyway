@@ -1,0 +1,21 @@
+schema_version: 2
+status: preregistered_execution_pending
+experiment:
+  name: banking-pilot-detail-v1
+  purpose: pilot_only_fixed_prefix_full_sequence_diagnostic
+  source_scope: fixed_prefix_diagnostic
+  source_boundary: first_tool_to_assistant
+  capture: all_layers_full_sequence_block_output_bfloat16
+  selected_condition_ids:
+    - banking_pilot_v1_4fb7f8324a191b52
+    - banking_pilot_v1_4bcd2e89355ab958
+    - banking_pilot_v1_0ec8e0587c4a88e7
+    - banking_pilot_v1_196e79c78200e3c1
+  missing_source_policy: record_missing_no_replacement
+  maximum_seconds_per_capture: 300
+  maximum_gpu_memory_gib: 12
+  maximum_storage_gib_per_capture: 1.5
+  maximum_total_storage_gib: 6.0
+references:
+  pilot_sample: banking_pilot_v1.yaml
+  pilot_sample_freeze: banking_pilot_v1.freeze.json

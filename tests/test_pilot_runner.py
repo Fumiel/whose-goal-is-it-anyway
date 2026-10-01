@@ -59,10 +59,11 @@ def runtime_for(plan):
     capture = copy.deepcopy(plan.config["capture"])
     capture.update(
         position_rule_version="protocol_offsets_v1",
-        ipi_window={"left": 1, "right": 2},
+        ipi_window={"left": 16, "right": 16},
         full_sequence_condition_ids=[],
         full_sequence_attention_condition_ids=[],
         attention={
+            "method": "qwen3_last_query_recompute_v1",
             "query_position": "Tend_assistant",
             "aggregation": "sum_and_mean",
             "key_ranges": ["user_goal", "intervention", "tool_metadata"],
@@ -452,6 +453,17 @@ class PilotRunnerTest(unittest.TestCase):
             self.assertEqual(outputs["final_answer"], "test-only done")
             self.assertEqual(len(outputs["generations"]), 3)
             self.assertEqual({p["scope"] for p in prefixes}, {"actual", "fixed_prefix_diagnostic"})
+            diagnostic = next(
+                m for m in record["measurements"] if m["scope"] == "fixed_prefix_diagnostic"
+            )
+            self.assertEqual(
+                diagnostic["activation"]["status"],
+                "not_captured_fixed_prefix_scoring_diagnostic",
+            )
+            self.assertFalse(
+                (path / f"measurements/{diagnostic['index']}/residual.safetensors").exists()
+            )
+            self.assertFalse((path / f"measurements/{diagnostic['index']}/attention.json").exists())
             with self.assertRaises(FileExistsError):
                 self.execute(root, condition=condition)
             (path / "model_output.json").write_text("{}")
@@ -687,6 +699,14 @@ class PilotRunnerTest(unittest.TestCase):
             capture[key] = None
             with self.assertRaises((ConfigError, AttributeError)):
                 validate_capture(self.plan, capture)
+        for change in (
+            {"ipi_window": {"left": 8, "right": 8}},
+            {"full_sequence_condition_ids": [self.plan.conditions[0]["condition_id"]]},
+            {"full_sequence_attention_condition_ids": [self.plan.conditions[0]["condition_id"]]},
+            {"attention": {**self.runtime["capture"]["attention"], "method": "eager"}},
+        ):
+            with self.subTest(change=change), self.assertRaises(ConfigError):
+                validate_capture(self.plan, {**self.runtime["capture"], **change})
         with self.assertRaises(ConfigError):
             load_runtime_freeze(self.plan, CONFIG)
 

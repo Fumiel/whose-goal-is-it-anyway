@@ -6,7 +6,7 @@ from typing import Any
 
 from goal_takeover.instrumentation.huggingface import HuggingFaceActivationExtractor
 from goal_takeover.models.scoring import HuggingFaceTeacherForcedScorer
-from goal_takeover.pilot.attention import QwenAttentionCapture
+from goal_takeover.pilot.attention import QwenAttentionCapture, QwenQueryAttentionCapture
 from goal_takeover.pilot.measurement import score_slots, validate_activation
 from goal_takeover.pilot.plan import PilotPlan
 from goal_takeover.pilot.preflight import create_session
@@ -101,7 +101,11 @@ class HuggingFacePilotServices:
             "query_token_index": len(prefix.token_ids) - 1,
             "query_token_id": prefix.token_ids[-1],
             "aggregation": "sum_and_mean",
-            "execution": "output_attentions_true_reduce_and_release_each_qwen_layer",
+            "execution": (
+                "full_eager_attention_diagnostic"
+                if full_attention
+                else "sdpa_output_with_last_query_weights_recomputed_per_qwen_layer"
+            ),
             "ranges": {
                 name: {"token_indices": list(indices), "length": len(indices)}
                 for name, indices in ranges.items()
@@ -111,15 +115,20 @@ class HuggingFacePilotServices:
         tensors = {}
 
         def consume(name: str, value: Any) -> None:
-            if (
-                value.ndim != 4
-                or value.shape[0] != 1
-                or tuple(value.shape[-2:]) != (len(prefix.token_ids), len(prefix.token_ids))
-                or not bool(value.isfinite().all())
-                or bool((value < 0).any())
-            ):
-                raise ValueError("attention shape or finite-value check failed")
-            query = value[0, :, -1, :].float()
+            if full_attention:
+                if (
+                    value.ndim != 4
+                    or value.shape[0] != 1
+                    or tuple(value.shape[-2:]) != (len(prefix.token_ids), len(prefix.token_ids))
+                ):
+                    raise ValueError("full attention shape check failed")
+                query = value[0, :, -1, :].float()
+            else:
+                if value.ndim != 2 or value.shape[-1] != len(prefix.token_ids):
+                    raise ValueError("query attention shape check failed")
+                query = value.float()
+            if not bool(query.isfinite().all()) or bool((query < 0).any()):
+                raise ValueError("attention finite-value check failed")
             metadata["layers"][name] = {
                 name: {
                     "sum": query[:, list(indices)].sum(dim=-1).cpu().tolist(),
@@ -133,15 +142,16 @@ class HuggingFacePilotServices:
                 tensors[name] = value.detach().cpu().contiguous()
             self.check_memory()
 
+        attention_type = QwenAttentionCapture if full_attention else QwenQueryAttentionCapture
         with (
             torch.no_grad(),
-            QwenAttentionCapture(self.model, self.extractor.module_names, consume) as attention,
+            attention_type(self.model, self.extractor.module_names, consume) as attention,
         ):
             self.model(
                 input_ids=ids,
                 attention_mask=torch.ones_like(ids),
                 use_cache=False,
-                output_attentions=True,
+                output_attentions=full_attention,
             )
         attention.assert_complete()
         self.check_memory()

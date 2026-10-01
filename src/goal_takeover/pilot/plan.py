@@ -13,6 +13,7 @@ from goal_takeover.shakedown import _git_metadata
 from goal_takeover.storage.run_writer import sha256_file
 
 POSITION_RULE_VERSION = "protocol_offsets_v1"
+QUERY_ATTENTION_METHOD = "qwen3_last_query_recompute_v1"
 
 
 @dataclass(frozen=True)
@@ -73,6 +74,8 @@ def validate_capture(plan: PilotPlan, capture: dict[str, Any]) -> None:
         raise ConfigError("freeze the IPI window widths before execution")
     if any(type(window.get(key)) is not int or window[key] < 0 for key in ("left", "right")):
         raise ConfigError("freeze nonnegative integer IPI window widths before execution")
+    if window != {"left": 16, "right": 16}:
+        raise ConfigError("runtime IPI window must match RDR-2026-10-02-01")
     ids = {row["condition_id"] for row in plan.conditions}
     for key in ("full_sequence_condition_ids", "full_sequence_attention_condition_ids"):
         values = capture.get(key)
@@ -82,11 +85,14 @@ def validate_capture(plan: PilotPlan, capture: dict[str, Any]) -> None:
             or not set(values).issubset(ids)
         ):
             raise ConfigError(f"freeze an explicit condition subset (possibly empty): {key}")
+        if values:
+            raise ConfigError(f"runtime {key} must be empty under RDR-2026-10-02-01")
     attention = capture.get("attention", {})
     if not isinstance(attention, dict):
         raise ConfigError("freeze attention range/query/aggregation rules")
     if (
         attention.get("query_position") != "Tend_assistant"
+        or attention.get("method") != QUERY_ATTENTION_METHOD
         or attention.get("aggregation") != "sum_and_mean"
         or attention.get("key_ranges") != ["user_goal", "intervention", "tool_metadata"]
     ):

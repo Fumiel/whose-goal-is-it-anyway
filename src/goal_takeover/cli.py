@@ -67,6 +67,13 @@ def build_parser() -> argparse.ArgumentParser:
     pilot.add_argument("--stage", choices=("lead", "expansion"), default="lead")
     pilot.add_argument("--artifact-root")
     pilot.add_argument("--audit")
+    detail = subparsers.add_parser(
+        "pilot-detail-capture", help="derive declared full-sequence residual bundles"
+    )
+    detail.add_argument("config")
+    detail.add_argument("--run-prefix", required=True)
+    detail.add_argument("--detail-prefix")
+    detail.add_argument("--artifact-root", default="artifacts")
     for name in ("pilot-report", "pilot-audit-template"):
         command = subparsers.add_parser(name, help="derive pilot gate report or blank audit form")
         command.add_argument("config")
@@ -264,6 +271,22 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(f"failed: {exc}")
             return 1
         print(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2))
+        return 0
+    if args.command == "pilot-detail-capture":
+        try:
+            from goal_takeover.pilot.detail import run_detail
+
+            paths = run_detail(
+                args.config,
+                run_prefix=args.run_prefix,
+                detail_prefix=args.detail_prefix,
+                artifact_root=args.artifact_root,
+            )
+        except (ConfigError, KeyError, OSError, RuntimeError, ValueError) as exc:
+            print(f"failed: {exc}")
+            return 1
+        for path in paths:
+            print(f"created: {path}")
         return 0
     if args.command in {
         "pilot-preflight",

@@ -1,7 +1,8 @@
 # Banking pilot v1：凍結内容と実行前の確認
 
 2026-10-01に[RDR-2026-10-01-03](decisions/2026-10-01_banking_pilot_sample_freeze.md)で
-標本と停止・移行規則を採用した。現在は`sample_frozen_execution_pending`であり、
+標本と停止・移行規則を採用し、2026-10-02に[RDR-2026-10-02-01](decisions/2026-10-02_pilot_capture_resource_revision.md)で
+診断取得・詳細保存の方式を部分改訂した。現在は実行待ちであり、
 新しいモデル実行は開始していない。正本の手順は[プロトコル第5.3節](experimental_protocol.md)、
 研究目的は[研究計画書](research_proposal.md)を参照する。
 
@@ -38,20 +39,24 @@ make validate
 1. pilot runnerと合成adapterによるtestは実装済み。実軌跡・固定prefix診断・停止判定・
    監査記録の実モデル/native経路の検証は残る。[runnerの使用方法](pilot_runner.md)を参照する。
 2. 固定tokenizer/chat templateによる全90条件の固定prefix位置確認は成功した。
-   Attention取得方式と資源上限を整合させ、window左右幅と全sequence/全Attention保存
-   condition IDを、結果を見ずに実行用設定へ指定する。別runtime freezeで固定する。
+   通常IPI window左右16、最後のqueryのAttention再計算、完全Attentionなしを
+   RDR-2026-10-02-01で指定した。四task系列から各一件の固定prefix全系列残差を
+   [詳細保存設定](../configs/experiments/banking_pilot_detail_v1.yaml)へ事前指定した。
+   これらを実行code・checksumとともに別runtime freezeへ反映する。
 3. 全90条件のnative AgentDojo model-free対照は成功した。tool schema、vector展開、
    候補call、無操作・正規・攻撃・誤対象・副作用状態を確認した。14の条件付き
    パスワード変更の根拠と人手監査rubricは引き続き実行前に記録する。
-4. 基本GPU preflightは成功した。capture資源の再計測後、実行code commitとresolved
-   runtime設定・checksumを固定する。
+4. 基本GPU preflightと修正後のGPU capture・実モデル採点を使った一条件の工学bundle計測は
+   成功した。先行18の各条件が上限内であることは未保証で、超過時は凍結した停止規則に従う。
+   実行code commitとresolved runtime設定・checksumを固定する。
 
-2026-10-02の結果と残る制約は[実行前計測記録](experiment_logs/2026-10-02_pilot_preflight_measurements.md)を参照する。
+2026-10-02の結果と残る制約は[最初の計測](experiment_logs/2026-10-02_pilot_preflight_measurements.md)と
+[修正後計測](experiment_logs/2026-10-02_capture_repair_preflight.md)を参照する。
 
 `capture`のnull値は残るgateを示す。今回の標本freezeはそれを解決したことを意味しない。
 実行用設定はこのfreezeを参照し、標本・payload・停止閾値を変更せずにcapture値を解決する。
 実行・監査コマンドは実装済みだが、別runtime freezeが未完了ならモデル読み込み前に停止する。
-今回の作業ではcapture値を決定せず、GPU実行とnative対照検証を次の作業に残した。
+通常capture値はRDRで指定したが、task 14の人手審査とcleanなruntime freezeは未完了である。
 
 ## 収集と判定
 

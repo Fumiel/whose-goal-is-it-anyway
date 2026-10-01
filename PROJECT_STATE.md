@@ -21,10 +21,13 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   gates. Synthetic orchestration tests cover all 90 conditions. On 2026-10-02,
   native model-free controls passed for all 90 conditions after a pilot-only YAML
   escaping fix; fixed-tokenizer positions passed for all 90 native fixed prefixes.
-  GPU capture/scoring passed on one fixed prefix, but the installed Transformers
-  `sdpa` path does not provide Attention weights, diagnostic `eager` exceeds the
-  12 GiB ceiling on a shorter input, and detailed saves exceed 0.05 GiB.
-  See [preflight measurements](docs/experiment_logs/2026-10-02_pilot_preflight_measurements.md).
+  The installed Transformers `sdpa` path does not provide Attention weights,
+  and full `eager` Attention exceeded the 12 GiB ceiling. RDR-2026-10-02-01
+  specifies last-query recomputation, a 16/16 IPI window, score-only fixed
+  diagnostics and four separate derived full-sequence residual captures.
+  Engineering GPU checks of the revised path passed; the pilot is still gated.
+  See [initial measurements](docs/experiment_logs/2026-10-02_pilot_preflight_measurements.md)
+  and [capture repair](docs/experiment_logs/2026-10-02_capture_repair_preflight.md).
 - Confirmatory test set: not created or inspected
 - Task allocation: use existing Banking families, including previously used
   selection/shakedown families, in fresh exploratory pilot runs. Design new
@@ -69,9 +72,11 @@ Before starting new exploratory pilot runs:
 2. Verify `configs/experiments/banking_pilot_v1.freeze.json`. Sample, stop rules,
    audit specification and pilot exclusions are frozen. Native model-free controls,
    fixed-prefix token-position checks and basic GPU preflight passed on 2026-10-02.
-   Before model execution, resolve Attention capture and detailed-save resource
-   failures, complete task 14 human review, then freeze token-position rules,
-   capture window/subset and runtime code/config checksums separately.
+   Attention capture and detailed-save resource choices are documented by
+   RDR-2026-10-02-01 and implemented for preflight. Complete task 14 human
+   review using the [evidence packet](docs/experiment_logs/2026-10-02_task14_preexecution_review_packet.md),
+   then freeze the chosen token-position/capture rules and runtime
+   code/config checksums separately before any new pilot run.
    The 8B/Banking combination is provisional only.
 3. Keep all shakedown, candidate-selection, pilot, and tuning families and close
    variants out of confirmatory test. Existing families may be rerun for the
@@ -107,6 +112,7 @@ reuse of engineering bundles as research data.
 - Offline pilot freeze verification: `PYTHONPATH=src python3 -m goal_takeover.datasets.pilot_sample configs/experiments/banking_pilot_v1.freeze.json`
 - Pilot native preflight: `goal-takeover pilot-preflight configs/experiments/banking_pilot_v1.yaml`
 - Pilot runner/report/audit commands and runtime freeze contract: [runner usage](docs/pilot_runner.md)
+- Derived pilot detail capture: `goal-takeover pilot-detail-capture configs/experiments/banking_pilot_detail_v1.yaml --run-prefix <pilot-prefix>` after the lead stage
 - Windows GPU preflight: `make gpu-preflight`
 
 ## Known intentional gaps
@@ -120,9 +126,10 @@ reuse of engineering bundles as research data.
   rerun and human review did not produce a passing candidate.
 - No fitted action, argument, source-role, authority, or task-drift probe
 - Pilot sample and stop rules are frozen; runner implementation, synthetic tests,
-  native controls and fixed-prefix token checks are complete. Actual-trajectory
-  pilot validation, Attention/resource repair, token/capture runtime freeze and
-  verified supply of unseen Banking clusters remain outstanding. Tasks 5/6 remain
+  native controls and fixed-prefix token checks are complete. Attention/resource
+  repair passed targeted engineering checks. Actual-trajectory pilot validation,
+  task 14 human review, runtime freeze and verified supply of unseen Banking
+  clusters remain outstanding. Tasks 5/6 remain
   on hold, task 11 requires recipient audit, and task 14 requires human review.
 - New development/test families, their AgentDojo compatibility and evaluator
   validation, and their final connected-component split are not implemented.

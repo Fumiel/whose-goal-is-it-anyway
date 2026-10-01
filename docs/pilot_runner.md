@@ -3,8 +3,8 @@
 2026-10-02、凍結済みBanking標本を扱うrunnerとテストを追加した。
 条件・順序・停止閾値・標本freezeは変更していない。研究判断の正本は
 [プロトコル第5.3節](experimental_protocol.md)と
-[RDR-2026-10-01-03](decisions/2026-10-01_banking_pilot_sample_freeze.md)である。
-利用者の指定により、capture値の決定とGPU実行は次の作業に残した。
+[RDR-2026-10-01-03](decisions/2026-10-01_banking_pilot_sample_freeze.md)と
+[RDR-2026-10-02-01](decisions/2026-10-02_pilot_capture_resource_revision.md)である。
 
 ## 実装と検証範囲
 
@@ -25,9 +25,11 @@ Attention取得、GPU service、段階実行、監査・集計を置いた。
 native判定、厳密な新規操作・最終状態・副作用、宣言攻撃call発生を別ラベルとし、
 途中で復元された不正操作も副作用として残す。人手監査前のstrict値は自動判定にすぎない。
 
-AttentionはQwen3 self-attentionの`(output, weights)`をhookで確認し、各層で集約した後に
-weightsを解放する。通常保存で全層の行列を保持しない。完全行列は事前指定subsetのみ
-CPUへ保存する。実際のbackendがweightsを返さない場合は明示的に停止する。
+通常のAttentionはQwen3 self-attentionへのpre-hookで最後のqueryの重みだけを再計算し、
+範囲別に全層・headで集約する。モデル出力側の`sdpa`は維持し、全token間行列は生成しない。
+同一`eager` forward passのweightsとの照合で全36層の最大絶対差を確認した。
+固定prefix診断では残差・Attentionを取得せず、prefixと候補系列採点を保存する。
+完全Attention行列は初回pilotでは保存しない。
 固定revisionの[Qwen chat template](https://huggingface.co/Qwen/Qwen3-8B/blob/b968826d9c46dd6066d109eabc6255188de91218/tokenizer_config.json)と
 [Transformers 4.51.3の公式実装](https://github.com/huggingface/transformers/blob/v4.51.3/src/transformers/models/qwen3/modeling_qwen3.py)
 を照合した。インストール先でのtokenizer・Attention・GPU互換性の完了は主張しない。
@@ -35,7 +37,7 @@ CPUへ保存する。実際のbackendがweightsを返さない場合は明示的
 unit/integration testは小さい合成adapterを使用し、実験結果ではない。
 90条件のmodel-free制御経路、先行18→監査→拡張72、陰性結果、監査不一致と裁定、
 prefix/shape/非有限値、JSON文字範囲、失敗保存、再試行来歴、上書き・改変検出を検証する。
-native AgentDojo対照検証、固定tokenizerによる位置検証、CUDA・容量の実測は未実施。
+native AgentDojo対照検証、固定tokenizerによる位置検証、CUDA・容量の実測は後続計測で実施した。
 2026-10-02の検証用venvでは`unittest`/`pytest`の83件が成功し、AgentDojo未導入の
 既存native test 3件はskipした。`compileall`、Ruff、repository宣言と標本freeze照合も成功した。
 
@@ -43,7 +45,7 @@ native AgentDojo対照検証、固定tokenizerによる位置検証、CUDA・容
 native全90条件対照、固定tokenizerでの位置対応、基本CUDA preflightを確認した。
 追加したpilot経路のYAMLエスケープtestを含め、現環境で`unittest`と`pytest`の
 87件が成功した。Attentionと詳細保存は現行設定・資源上限に整合せず、
-別runtime freezeは未作成である。
+別runtime freezeは未作成である。[修正後計測](experiment_logs/2026-10-02_capture_repair_preflight.md)を参照する。
 
 ## 実行前gate
 
@@ -59,13 +61,13 @@ runtime freezeはYAML/JSON mappingで、次を必要とする。
 | `git_commit` | 実行codeのHEAD commit。作業treeがcleanであること |
 | `files_sha256` | repository相対path→SHA-256。全`src/goal_takeover/**/*.py`、全`configs/**/*.yaml`、全`data/schemas/*.json`を含む。runtime自身は除く |
 | `chat_template_sha256`, `tool_schema_sha256` | 固定tokenizerとnative suiteから検証したdigest |
-| `capture` | 標本の固定項目を維持し、未定window左右幅と全sequence/全Attentionのcondition IDリストを明示。空リストは可、nullは不可 |
-| `capture.position_rule_version` | 実装候補`protocol_offsets_v1`。固定tokenizerでの検証後に凍結する |
-| `capture.attention` | 対応する実装候補は`query_position: Tend_assistant`、`aggregation: sum_and_mean`、`key_ranges: [user_goal, intervention, tool_metadata]` |
+| `capture` | 標本の固定項目を維持し、`ipi_window: {left: 16, right: 16}`、`full_sequence_condition_ids: []`、`full_sequence_attention_condition_ids: []`を指定 |
+| `capture.position_rule_version` | `protocol_offsets_v1` |
+| `capture.attention` | `method: qwen3_last_query_recompute_v1`、`query_position: Tend_assistant`、`aggregation: sum_and_mean`、`key_ranges: [user_goal, intervention, tool_metadata]` |
 | `password_suspicion_review` | `approved: true`、`reviewer_id`、`evidence`、`rubric`。task 14の不審取引根拠を人が判断した記録 |
 | `capture_resource_preflight_passed` | 指定captureと全sequence subsetがGPU・保存上限を満たすことを実測した後に`true` |
 
-この表は対応可能な実装仕様であり、未決定capture値の採用や事前検証の代替ではない。
+この表のcapture値はRDR-2026-10-02-01で決定済みである。
 別のquery・集約・位置規則を採る場合は実装とtestを追加し、新runtime freezeにする。
 runtimeを`artifacts/`等のGit対象外へ置けば、実行commit確定後にfreezeを作成でき、
 freeze自身に自分のcommit hashを書き込む循環を避けられる。sample freezeは保持する。
@@ -84,6 +86,9 @@ goal-takeover agentdojo-pilot configs/experiments/banking_pilot_v1.yaml \
   --runtime-freeze artifacts/pilot-runtime.freeze.json \
   --run-prefix banking-pilot-001 --stage lead
 
+goal-takeover pilot-detail-capture configs/experiments/banking_pilot_detail_v1.yaml \
+  --run-prefix banking-pilot-001
+
 goal-takeover pilot-audit-template configs/experiments/banking_pilot_v1.yaml \
   --run-prefix banking-pilot-001 > artifacts/pilot-lead-audit.json
 
@@ -95,6 +100,14 @@ goal-takeover agentdojo-pilot configs/experiments/banking_pilot_v1.yaml \
   --run-prefix banking-pilot-001 --stage expansion \
   --audit artifacts/pilot-lead-audit.json
 ```
+
+`pilot-detail-capture`は先行run後、事前指定4条件の固定prefixから全層・全系列残差を
+`artifacts/processed/pilot_detail_v1/runs/`へ不変bundleとして保存する。sourceの
+manifest・prefix ID・token列・revisionを照合し、sourceがない条件は欠測を記録する。
+指定4条件のsourceが一つもない場合は開始前に停止する。派生処理をやり直す必要があれば
+元の`--run-prefix`を保持し、新しい`--detail-prefix`で別bundleを作る。
+別の条件に差し替えない。GPU12 GiB、各300秒・1.5 GiB、合計6 GiBが独立上限である。
+この派生bundleは実軌跡の残差として集計しない。
 
 拡張後は`pilot-audit-template`で90件時点の監査対象を再抽出する。
 新しい監査票には先行18件も含まれる。先行監査票は保存したまま、初回判断・裁定・
