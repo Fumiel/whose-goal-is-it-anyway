@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `pre_pilot_scaffolding`
+- Phase: `pilot_lead_awaiting_human_audit`
 - Primary model: not selected
 - Primary domain: not selected
 - Provisional exploratory pilot: Qwen3-8B int8 on AgentDojo Banking v1.2.2;
@@ -15,7 +15,8 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   four task families, maximum 90 conditions (6 clean / 72 IPI / 12 controls),
   with an 18-condition lead stage. The declared relationship graph has one
   connected component; all conditions are pilot_only and test-excluded.
-  See [pilot preparation](docs/banking_pilot_v1.md). New pilot runs have not begun.
+  See [pilot preparation](docs/banking_pilot_v1.md). The 18-condition lead stage
+  completed under `banking-pilot-001`; the remaining 72 conditions have not begun.
 - Pilot runner: implemented with separate actual-trajectory/fixed-prefix paths,
   immutable partial failures, native/strict labels, checksummed audits and staged
   gates. Synthetic orchestration tests cover all 90 conditions. On 2026-10-02,
@@ -29,7 +30,11 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   suspicion review was approved on 2026-10-02 for transaction ID 4, with a
   strict rubric fixed in `data/audits/2026-10-02_task14_password_suspicion_review.json`.
   The pilot runtime freeze is recorded separately under
-  `artifacts/pilot-runtime.freeze.json`; the lead stage has not begun.
+  `artifacts/pilot-runtime.freeze.json`. All 18 lead bundles are complete and
+  the stage awaits human audit. The blank 18-record audit form and raw-trace
+  guide are under `artifacts/`; see the [lead execution log](docs/experiment_logs/2026-10-02_banking_pilot_lead_execution.md).
+  One of four planned derived full-sequence captures completed; the second
+  exceeded the frozen 12 GiB GPU ceiling, and the remaining two were not tried.
   See [initial measurements](docs/experiment_logs/2026-10-02_pilot_preflight_measurements.md)
   and [capture repair](docs/experiment_logs/2026-10-02_capture_repair_preflight.md).
 - Confirmatory test set: not created or inspected
@@ -67,7 +72,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current gate
 
-Before starting new exploratory pilot runs:
+Before expanding the pilot beyond the completed lead stage:
 
 1. The seven-condition Banking selection gate remains fixed. The current
    `configs/selection/integration_gate.freeze.json` records the corrected
@@ -130,12 +135,16 @@ reuse of engineering bundles as research data.
   incomplete for audit and must not be used for model adoption. The complete
   rerun and human review did not produce a passing candidate.
 - No fitted action, argument, source-role, authority, or task-drift probe
+- The pilot lead has 18 completed immutable raw bundles and a blank human audit
+  form. No audited transition decision exists. Derived full-sequence capture
+  stopped at the second of four declared conditions on the GPU ceiling.
 - Pilot sample, stop rules and runtime are frozen; runner implementation, synthetic
   tests, native controls and fixed-prefix token checks are complete.
   Attention/resource repair passed targeted engineering checks. Task 14's human
-  suspicion review is approved. Actual-trajectory pilot validation and verified
-  supply of unseen Banking clusters remain outstanding. Tasks 5/6 remain on
-  hold, and task 11 requires recipient audit.
+  suspicion review is approved. The lead actual-trajectory bundles need human
+  audit and a transition report; derived detail capture needs a separate
+  resource decision. Verified supply of unseen Banking clusters remains
+  outstanding. Tasks 5/6 remain on hold, and task 11 requires recipient audit.
 - New development/test families, their AgentDojo compatibility and evaluator
   validation, and their final connected-component split are not implemented.
 - No confirmatory data and no research result
