@@ -1,7 +1,5 @@
 import unittest
 
-import numpy as np
-
 from goal_takeover.analysis.pilot_lead_figures import capture_row, cosine_distance_matrix
 
 
@@ -44,30 +42,27 @@ class PilotLeadFiguresTests(unittest.TestCase):
             "measurements/1/scores.json",
             "measurements/2/scores.json",
         }
-        np.testing.assert_array_equal(capture_row(run, paths), [1, 1, 1, 1, 1, 1, 2, 3, 4])
+        self.assertEqual(capture_row(run, paths), [1, 1, 1, 1, 1, 1, 2, 3, 4])
 
     def test_cosine_distance_has_expected_shape_alignment_and_value(self):
-        states = np.array(
-            [
-                [[9, 9], [1, 0], [0, 1], [-1, 0]],
-                [[9, 9], [0, 1], [0, 1], [1, 0]],
-            ],
-            dtype=float,
-        )
+        states = [
+            [[9, 9], [1, 0], [0, 1], [-1, 0]],
+            [[9, 9], [0, 1], [0, 1], [1, 0]],
+        ]
         distances, offsets = cosine_distance_matrix(states, [4, 5, 6, 7], 5)
         self.assertEqual(offsets, [0, 1, 2])
-        np.testing.assert_allclose(distances, [[0, 1, 2], [0, 0, 1]])
-        np.testing.assert_array_equal(distances, cosine_distance_matrix(states, [4, 5, 6, 7], 5)[0])
+        self.assertEqual(distances, [[0, 1, 2], [0, 0, 1]])
+        self.assertEqual(distances, cosine_distance_matrix(states, [4, 5, 6, 7], 5)[0])
 
     def test_cosine_distance_rejects_missing_or_unaligned_positions(self):
-        states = np.ones((2, 3, 4))
+        states = [[[1] * 4 for _ in range(3)] for _ in range(2)]
         with self.assertRaises(ValueError):
             cosine_distance_matrix(states, [1, 3, 4], 1)
         with self.assertRaises(ValueError):
             cosine_distance_matrix(states, [1, 2], 1)
         with self.assertRaises(ValueError):
             cosine_distance_matrix(states, [1, 2, 3], 0)
-        states[0, 0, 0] = np.nan
+        states[0][0][0] = float("nan")
         with self.assertRaises(ValueError):
             cosine_distance_matrix(states, [1, 2, 3], 1)
 

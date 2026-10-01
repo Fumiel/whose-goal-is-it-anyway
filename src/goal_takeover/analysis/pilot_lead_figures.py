@@ -10,17 +10,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
-
-import matplotlib
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-import numpy as np
-import torch
-from matplotlib.colors import BoundaryNorm, ListedColormap
-from matplotlib.patches import Patch
-from safetensors import safe_open
 
 CAPTURE_COLUMNS = (
     "Initial\nresidual",
@@ -57,9 +48,9 @@ def require_artifact(run_dir: Path, manifest: dict, relative_path: str) -> Path:
     return path
 
 
-def capture_row(run: dict, manifest_paths: set[str]) -> np.ndarray:
+def capture_row(run: dict, manifest_paths: set[str]) -> list[int]:
     """Encode present actual residual/attention/score and diagnostic score."""
-    row = np.zeros(len(CAPTURE_COLUMNS), dtype=np.uint8)
+    row = [0] * len(CAPTURE_COLUMNS)
     for measurement in run["measurements"]:
         index = measurement["index"]
         scope = measurement["scope"]
@@ -94,10 +85,10 @@ def capture_row(run: dict, manifest_paths: set[str]) -> np.ndarray:
 
 
 def cosine_distance_matrix(
-    states: np.ndarray, positions: list[int], tpre: int
-) -> tuple[np.ndarray, list[int]]:
+    states: list[list[list[float]]], positions: list[int], tpre: int
+) -> tuple[list[list[float]], list[int]]:
     """Compare each saved token vector with Tpre at the same layer and prefix."""
-    if states.ndim != 3 or states.shape[1] != len(positions):
+    if not states or not positions or any(len(layer) != len(positions) for layer in states):
         raise ValueError("Expected layers × captured positions × hidden dimensions")
     if len(set(positions)) != len(positions) or tpre not in positions:
         raise ValueError("Captured positions must be unique and include Tpre")
@@ -105,18 +96,47 @@ def cosine_distance_matrix(
     offsets = [positions[i] - tpre for i in after]
     if offsets != list(range(offsets[-1] + 1)):
         raise ValueError("Positions from Tpre through the last saved token must be continuous")
-    vectors = np.asarray(states[:, after, :], dtype=np.float64)
-    baseline = vectors[:, :1, :]
-    norms = np.linalg.norm(vectors, axis=2) * np.linalg.norm(baseline, axis=2)
-    if not np.all(np.isfinite(vectors)) or np.any(norms == 0):
-        raise ValueError("Residual vectors must be finite and nonzero")
-    similarity = np.sum(vectors * baseline, axis=2) / norms
-    distance = np.clip(1.0 - similarity, 0.0, 2.0)
-    distance[:, 0] = 0.0
+    distance = []
+    baseline_index = positions.index(tpre)
+    for layer in states:
+        baseline = layer[baseline_index]
+        if not baseline or not all(math.isfinite(value) for value in baseline):
+            raise ValueError("Residual vectors must be finite and nonzero")
+        baseline_norm = math.sqrt(sum(value * value for value in baseline))
+        if baseline_norm == 0:
+            raise ValueError("Residual vectors must be finite and nonzero")
+        row = []
+        for index in after:
+            vector = layer[index]
+            if len(vector) != len(baseline) or not all(math.isfinite(value) for value in vector):
+                raise ValueError("Residual vectors must have aligned finite dimensions")
+            vector_norm = math.sqrt(sum(value * value for value in vector))
+            if vector_norm == 0:
+                raise ValueError("Residual vectors must be finite and nonzero")
+            similarity = sum(a * b for a, b in zip(vector, baseline, strict=True)) / (
+                vector_norm * baseline_norm
+            )
+            row.append(min(2.0, max(0.0, 1.0 - similarity)))
+        row[0] = 0.0
+        distance.append(row)
     return distance, offsets
 
 
-def render_coverage(matrix: np.ndarray, labels: list[str], output: Path) -> None:
+def _plotting():
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    return plt
+
+
+def render_coverage(matrix: list[list[int]], labels: list[str], output: Path) -> None:
+    import numpy as np
+    from matplotlib.colors import BoundaryNorm, ListedColormap
+    from matplotlib.patches import Patch
+
+    plt = _plotting()
     colors = ["#eef1f5", "#3664ad", "#168f8c", "#e49b34", "#9570b6"]
     cmap = ListedColormap(colors)
     norm = BoundaryNorm(np.arange(-0.5, 5.5), cmap.N)
@@ -129,8 +149,8 @@ def render_coverage(matrix: np.ndarray, labels: list[str], output: Path) -> None
     ax.set_title("Pilot lead: saved measurements by condition", fontsize=15, pad=22)
     ax.set_xlabel("Measurement stored in the immutable bundle", labelpad=13)
     ax.set_ylabel("Execution order · task · condition", labelpad=11)
-    ax.set_xticks(np.arange(-0.5, matrix.shape[1], 1), minor=True)
-    ax.set_yticks(np.arange(-0.5, matrix.shape[0], 1), minor=True)
+    ax.set_xticks(np.arange(-0.5, len(matrix[0]), 1), minor=True)
+    ax.set_yticks(np.arange(-0.5, len(matrix), 1), minor=True)
     ax.grid(which="minor", color="white", linewidth=1.8)
     ax.tick_params(which="minor", bottom=False, left=False)
     ax.legend(
@@ -152,8 +172,9 @@ def render_coverage(matrix: np.ndarray, labels: list[str], output: Path) -> None
 
 
 def render_distance(
-    distance: np.ndarray, offsets: list[int], markers: dict[str, int], output: Path
+    distance: list[list[float]], offsets: list[int], markers: dict[str, int], output: Path
 ) -> None:
+    plt = _plotting()
     fig, ax = plt.subplots(figsize=(12.5, 7), constrained_layout=True)
     image = ax.imshow(distance, aspect="auto", interpolation="nearest", cmap="viridis")
     ax.set_title("First IPI condition: residual-state distance from Tpre", fontsize=15, pad=20)
@@ -161,7 +182,7 @@ def render_distance(
     ax.set_ylabel("Transformer layer", labelpad=10)
     xticks = sorted(set([0, *range(0, len(offsets), 5), len(offsets) - 1]))
     ax.set_xticks(xticks, [str(offsets[i]) for i in xticks])
-    ax.set_yticks(range(0, distance.shape[0], 5))
+    ax.set_yticks(range(0, len(distance), 5))
     for name, position in markers.items():
         if name == "Tpre":
             continue
@@ -174,6 +195,9 @@ def render_distance(
 
 
 def main() -> None:
+    import torch
+    from safetensors import safe_open
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("stage_dir", type=Path)
     parser.add_argument("output_dir", type=Path)
@@ -204,7 +228,7 @@ def main() -> None:
         labels.append(f"{order:02d}   task {task:<2}   {condition['condition_family'].upper()}")
         if selected is None and condition["condition_family"] == "ipi":
             selected = (run_dir, manifest, run)
-    matrix = np.stack(rows)
+    matrix = rows
     if selected is None:
         raise ValueError("No IPI condition found")
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -234,9 +258,7 @@ def main() -> None:
             raise ValueError(f"Token ID mismatch at {item['name']}")
     layer_keys = sorted(metadata["layers"], key=lambda key: int(key.rsplit(".", 1)[1]))
     with safe_open(str(tensor_path), framework="pt", device="cpu") as tensors:
-        states = np.stack(
-            [tensors.get_tensor(key)[0].to(torch.float32).numpy() for key in layer_keys]
-        )
+        states = [tensors.get_tensor(key)[0].to(torch.float32).tolist() for key in layer_keys]
     distance, offsets = cosine_distance_matrix(states, metadata["positions"], markers["Tpre"])
     for name in ("Tpost", "Tend_tool", "Tend_assistant"):
         if markers[name] - markers["Tpre"] not in offsets:
@@ -249,12 +271,14 @@ def main() -> None:
             {
                 "run_count": len(rows),
                 "ipi_count": sum(label.endswith("IPI") for label in labels),
-                "coverage_counts": (matrix != 0).sum(axis=0).tolist(),
+                "coverage_counts": [
+                    sum(row[i] != 0 for row in matrix) for i in range(len(CAPTURE_COLUMNS))
+                ],
                 "figure2_run_id": run["run_id"],
                 "figure2_prefix_id": measurement["prefix_id"],
                 "figure2_layers": len(layer_keys),
                 "figure2_offsets": [offsets[0], offsets[-1]],
-                "figure2_distance_range": [float(distance.min()), float(distance.max())],
+                "figure2_distance_range": [min(map(min, distance)), max(map(max, distance))],
             },
             indent=2,
         )
