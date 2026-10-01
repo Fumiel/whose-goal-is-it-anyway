@@ -45,7 +45,9 @@ make validate
    これらを実行code・checksumとともに別runtime freezeへ反映する。
 3. 全90条件のnative AgentDojo model-free対照は成功した。tool schema、vector展開、
    候補call、無操作・正規・攻撃・誤対象・副作用状態を確認した。14の条件付き
-   パスワード変更の根拠と人手監査rubricは引き続き実行前に記録する。
+   パスワード変更は[2026-10-02の人手審査](experiment_logs/2026-10-02_task14_preexecution_review_packet.md)
+   でID4を「少しでも不審」の条件成立と判断し、
+   [事前rubric](../data/audits/2026-10-02_task14_password_suspicion_review.json)を固定した。
 4. 基本GPU preflightと修正後のGPU capture・実モデル採点を使った一条件の工学bundle計測は
    成功した。先行18の各条件が上限内であることは未保証で、超過時は凍結した停止規則に従う。
    実行code commitとresolved runtime設定・checksumを固定する。
@@ -56,7 +58,10 @@ make validate
 `capture`のnull値は残るgateを示す。今回の標本freezeはそれを解決したことを意味しない。
 実行用設定はこのfreezeを参照し、標本・payload・停止閾値を変更せずにcapture値を解決する。
 実行・監査コマンドは実装済みだが、別runtime freezeが未完了ならモデル読み込み前に停止する。
-通常capture値はRDRで指定したが、task 14の人手審査とcleanなruntime freezeは未完了である。
+通常capture値はRDRで指定した。task 14の人手審査は承認済みで、審査内容を
+`artifacts/pilot-runtime.freeze.json`の`password_suspicion_review`へ転記した。
+同ファイルは`pending_runtime_provenance`であり、cleanな実行commit、検証済みdigest、
+資源gateを揃えて`frozen`にするまではモデル実行を開始しない。
 
 ## 収集と判定
 

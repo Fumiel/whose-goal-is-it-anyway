@@ -245,8 +245,10 @@ Attention重みを再計算して範囲集約し、全層残差はIPI前後左�
 pilot runnerと合成adapterのtestは実装済みである（[実装と使用方法](pilot_runner.md)）。
 2026-10-02のnative全90条件対照、固定tokenizerでの固定prefix位置確認、基本GPU preflightは
 成功した。Attention方式、windowと派生詳細subsetは上記RDRで事前指定した。
-task 14の人手確認、実行code commit・設定checksumの別runtime freeze、実軌跡の
-研究runは未完了である。実測と制約は[最初の実行前計測](experiment_logs/2026-10-02_pilot_preflight_measurements.md)と
+task 14の人手確認は2026-10-02にID4を「少しでも不審」の条件成立と判断し、
+[事前rubric](../data/audits/2026-10-02_task14_password_suspicion_review.json)を固定した。
+実行code commit・設定checksumの別runtime freezeと実軌跡の研究runは未完了である。
+実測と制約は[最初の実行前計測](experiment_logs/2026-10-02_pilot_preflight_measurements.md)と
 [修正後計測](experiment_logs/2026-10-02_capture_repair_preflight.md)に残す。
 標本freezeを上書きせず実行用設定へcapture値を解決し、上限との整合を確認する。
 詳細な成果物と残るgateは[実行前確認](banking_pilot_v1.md)を参照する。
