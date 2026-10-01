@@ -4,10 +4,26 @@ from pathlib import Path
 
 from goal_takeover.config import load_yaml
 from goal_takeover.environments.agentdojo import AgentDojoSession
+from goal_takeover.pilot.plan import load_pilot_plan
+from goal_takeover.pilot.preflight import create_session
 
 
 @unittest.skipUnless(importlib.util.find_spec("agentdojo"), "AgentDojo is not installed")
 class AgentDojoIntegrationTest(unittest.TestCase):
+    def test_pilot_banking_vector_preserves_literal_quotes_and_newlines(self) -> None:
+        root = Path(__file__).parents[1]
+        plan = load_pilot_plan(root / "configs/experiments/banking_pilot_v1.yaml")
+        condition = next(
+            row
+            for row in plan.conditions
+            if row["user_task_id"] == "user_task_0" and row["condition_family"] == "ipi"
+        )
+        session = create_session(plan, condition)
+        call = condition["first_tool_call"]
+        result = session.execute_tool(call["name"], call["arguments"])
+        self.assertIsNone(result.error)
+        self.assertIn(condition["injections"][condition["injection_vector"]], result.content)
+
     def test_pinned_banking_fixtures_match_agentdojo_0_1_35(self) -> None:
         root = Path(__file__).parents[1]
         config = load_yaml(root / "configs/selection/pre_gate_shakedown.yaml")

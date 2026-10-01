@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import json
 from typing import Any
 
 from goal_takeover.config import ConfigError
@@ -19,12 +20,18 @@ from goal_takeover.shakedown import _call_parts, _measurement_messages
 
 def create_session(plan: PilotPlan, condition: dict[str, Any]) -> AgentDojoSession:
     domain = plan.domain_config["domain"]
+    # AgentDojo interpolates vectors into double-quoted Banking YAML scalars.
+    # Pilot manifests hold literal text, so escape only at this interface.
+    yaml_fragments = {
+        key: json.dumps(value, ensure_ascii=False)[1:-1]
+        for key, value in condition["injections"].items()
+    }
     return AgentDojoSession.create(
         benchmark_version=domain["benchmark_version"],
         suite_name=domain["name"],
         user_task_id=condition["user_task_id"],
         injection_task_id=condition["injection_task_id"],
-        injections=condition["injections"],
+        injections=yaml_fragments,
     )
 
 

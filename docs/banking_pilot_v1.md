@@ -37,13 +37,16 @@ make validate
 
 1. pilot runnerと合成adapterによるtestは実装済み。実軌跡・固定prefix診断・停止判定・
    監査記録の実モデル/native経路の検証は残る。[runnerの使用方法](pilot_runner.md)を参照する。
-2. 固定tokenizer/chat templateで位置・delimiter・hookの対応を確認する。window左右幅と
-   全sequence/全Attention保存condition IDを、結果を見ずに実行用設定へ指定する。
-   0.05GiB/条件と診断を含む上限に収まることを確認し、別runtime freezeで固定する。
-3. 全90条件をnative AgentDojoでmodel-free検証する。tool schema、vector展開、候補call、
-   無操作・正規・攻撃・誤対象・副作用状態を確認し、native/厳密判定の違いを記録する。
-   14の条件付きパスワード変更の根拠と監査rubricも記録する。成立しなければ開始しない。
-4. GPU preflight、実行code commitとresolved runtime設定・checksumを固定する。
+2. 固定tokenizer/chat templateによる全90条件の固定prefix位置確認は成功した。
+   Attention取得方式と資源上限を整合させ、window左右幅と全sequence/全Attention保存
+   condition IDを、結果を見ずに実行用設定へ指定する。別runtime freezeで固定する。
+3. 全90条件のnative AgentDojo model-free対照は成功した。tool schema、vector展開、
+   候補call、無操作・正規・攻撃・誤対象・副作用状態を確認した。14の条件付き
+   パスワード変更の根拠と人手監査rubricは引き続き実行前に記録する。
+4. 基本GPU preflightは成功した。capture資源の再計測後、実行code commitとresolved
+   runtime設定・checksumを固定する。
+
+2026-10-02の結果と残る制約は[実行前計測記録](experiment_logs/2026-10-02_pilot_preflight_measurements.md)を参照する。
 
 `capture`のnull値は残るgateを示す。今回の標本freezeはそれを解決したことを意味しない。
 実行用設定はこのfreezeを参照し、標本・payload・停止閾値を変更せずにcapture値を解決する。

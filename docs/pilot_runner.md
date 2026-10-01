@@ -39,6 +39,12 @@ native AgentDojo対照検証、固定tokenizerによる位置検証、CUDA・容
 2026-10-02の検証用venvでは`unittest`/`pytest`の83件が成功し、AgentDojo未導入の
 既存native test 3件はskipした。`compileall`、Ruff、repository宣言と標本freeze照合も成功した。
 
+追記（2026-10-02）：[実行前計測](experiment_logs/2026-10-02_pilot_preflight_measurements.md)で
+native全90条件対照、固定tokenizerでの位置対応、基本CUDA preflightを確認した。
+追加したpilot経路のYAMLエスケープtestを含め、現環境で`unittest`と`pytest`の
+87件が成功した。Attentionと詳細保存は現行設定・資源上限に整合せず、
+別runtime freezeは未作成である。
+
 ## 実行前gate
 
 標本設定の`capture`に残るnullは埋めない。別runtime freezeを用意するまで

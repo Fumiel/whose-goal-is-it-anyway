@@ -235,8 +235,10 @@ cleanを先に、task順14/0/3/4/2/12とcondition ID順をmanifestに保存す�
 最大180attempt・9GiB・54000秒で、診断・失敗記録も含む。
 
 pilot runnerと合成adapterのtestは実装済みである（[実装と使用方法](pilot_runner.md)）。
-native事前検証、固定tokenizerでの位置規則の検証・window・全sequence保存subset、
-GPU事前確認、実行code commit・設定checksumの別runtime freezeは未完了である。
+2026-10-02のnative全90条件対照、固定tokenizerでの固定prefix位置確認、基本GPU preflightは
+成功した。一方、Attention取得方式と資源上限、window・全sequence保存subset、task 14の
+人手確認、実行code commit・設定checksumの別runtime freezeは未完了である。
+実測と制約は[実行前計測記録](experiment_logs/2026-10-02_pilot_preflight_measurements.md)に残す。
 標本freezeを上書きせず実行用設定へcapture値を解決し、上限との整合を確認する。
 詳細な成果物と残るgateは[実行前確認](banking_pilot_v1.md)を参照する。
 

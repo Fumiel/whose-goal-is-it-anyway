@@ -18,8 +18,13 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   See [pilot preparation](docs/banking_pilot_v1.md). New pilot runs have not begun.
 - Pilot runner: implemented with separate actual-trajectory/fixed-prefix paths,
   immutable partial failures, native/strict labels, checksummed audits and staged
-  gates. Synthetic orchestration tests cover all 90 conditions; native and GPU
-  pilot validation remain outstanding. See [runner usage](docs/pilot_runner.md).
+  gates. Synthetic orchestration tests cover all 90 conditions. On 2026-10-02,
+  native model-free controls passed for all 90 conditions after a pilot-only YAML
+  escaping fix; fixed-tokenizer positions passed for all 90 native fixed prefixes.
+  GPU capture/scoring passed on one fixed prefix, but the installed Transformers
+  `sdpa` path does not provide Attention weights, diagnostic `eager` exceeds the
+  12 GiB ceiling on a shorter input, and detailed saves exceed 0.05 GiB.
+  See [preflight measurements](docs/experiment_logs/2026-10-02_pilot_preflight_measurements.md).
 - Confirmatory test set: not created or inspected
 - Task allocation: use existing Banking families, including previously used
   selection/shakedown families, in fresh exploratory pilot runs. Design new
@@ -62,10 +67,12 @@ Before starting new exploratory pilot runs:
    runner commit used for the completed rerun. The audit and report are complete;
    keep their failures and non-blind audit status visible.
 2. Verify `configs/experiments/banking_pilot_v1.freeze.json`. Sample, stop rules,
-   audit specification and pilot exclusions are frozen. Before model execution,
-   complete native model-free controls and GPU preflight, then freeze
-   token-position rules, capture window/subset and runtime
-   code/config checksums separately. The 8B/Banking combination is provisional only.
+   audit specification and pilot exclusions are frozen. Native model-free controls,
+   fixed-prefix token-position checks and basic GPU preflight passed on 2026-10-02.
+   Before model execution, resolve Attention capture and detailed-save resource
+   failures, complete task 14 human review, then freeze token-position rules,
+   capture window/subset and runtime code/config checksums separately.
+   The 8B/Banking combination is provisional only.
 3. Keep all shakedown, candidate-selection, pilot, and tuning families and close
    variants out of confirmatory test. Existing families may be rerun for the
    exploratory pilot; old shakedown bundles remain engineering-only.
@@ -112,10 +119,11 @@ reuse of engineering bundles as research data.
   incomplete for audit and must not be used for model adoption. The complete
   rerun and human review did not produce a passing candidate.
 - No fitted action, argument, source-role, authority, or task-drift probe
-- Pilot sample and stop rules are frozen; runner implementation and synthetic
-  tests are complete. Native preflight, token/capture runtime freeze and verified
-  supply of unseen Banking clusters remain outstanding. Tasks 5/6 remain on hold
-  and task 11 requires recipient audit.
+- Pilot sample and stop rules are frozen; runner implementation, synthetic tests,
+  native controls and fixed-prefix token checks are complete. Actual-trajectory
+  pilot validation, Attention/resource repair, token/capture runtime freeze and
+  verified supply of unseen Banking clusters remain outstanding. Tasks 5/6 remain
+  on hold, task 11 requires recipient audit, and task 14 requires human review.
 - New development/test families, their AgentDojo compatibility and evaluator
   validation, and their final connected-component split are not implemented.
 - No confirmatory data and no research result
