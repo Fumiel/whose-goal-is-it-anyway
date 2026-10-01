@@ -71,8 +71,8 @@ runtime freezeはYAML/JSON mappingで、次を必要とする。
 別のquery・集約・位置規則を採る場合は実装とtestを追加し、新runtime freezeにする。
 runtimeを`artifacts/`等のGit対象外へ置けば、実行commit確定後にfreezeを作成でき、
 freeze自身に自分のcommit hashを書き込む循環を避けられる。sample freezeは保持する。
-現在の`artifacts/pilot-runtime.freeze.json`はTask 14の承認と決定済みcapture規則を
-保存した`pending_runtime_provenance`の下書きで、runnerが受け入れる`frozen`ではない。
+`artifacts/pilot-runtime.freeze.json`はTask 14の承認、決定済みcapture規則、
+実行commitとchecksumを保存した実行用freezeである。標本freezeは変更しない。
 
 ## コマンド
 

@@ -28,7 +28,8 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   Engineering GPU checks of the revised path passed. Task 14's pre-pilot
   suspicion review was approved on 2026-10-02 for transaction ID 4, with a
   strict rubric fixed in `data/audits/2026-10-02_task14_password_suspicion_review.json`.
-  The pilot is still gated.
+  The pilot runtime freeze is recorded separately under
+  `artifacts/pilot-runtime.freeze.json`; the lead stage has not begun.
   See [initial measurements](docs/experiment_logs/2026-10-02_pilot_preflight_measurements.md)
   and [capture repair](docs/experiment_logs/2026-10-02_capture_repair_preflight.md).
 - Confirmatory test set: not created or inspected
@@ -79,8 +80,8 @@ Before starting new exploratory pilot runs:
    RDR-2026-10-02-01 and implemented for preflight. Task 14 human review is
    approved using the [evidence packet](docs/experiment_logs/2026-10-02_task14_preexecution_review_packet.md)
    and [fixed rubric](data/audits/2026-10-02_task14_password_suspicion_review.json).
-   Freeze the chosen token-position/capture rules and runtime
-   code/config checksums separately before any new pilot run.
+   The chosen token-position/capture rules and runtime code/config checksums
+   are frozen separately in `artifacts/pilot-runtime.freeze.json`.
    The 8B/Banking combination is provisional only.
 3. Keep all shakedown, candidate-selection, pilot, and tuning families and close
    variants out of confirmatory test. Existing families may be rerun for the
@@ -129,12 +130,12 @@ reuse of engineering bundles as research data.
   incomplete for audit and must not be used for model adoption. The complete
   rerun and human review did not produce a passing candidate.
 - No fitted action, argument, source-role, authority, or task-drift probe
-- Pilot sample and stop rules are frozen; runner implementation, synthetic tests,
-  native controls and fixed-prefix token checks are complete. Attention/resource
-  repair passed targeted engineering checks. Task 14's human suspicion review
-  is approved before new pilot execution. Actual-trajectory pilot validation,
-  executable runtime freeze and verified supply of unseen Banking clusters remain
-  outstanding. Tasks 5/6 remain on hold, and task 11 requires recipient audit.
+- Pilot sample, stop rules and runtime are frozen; runner implementation, synthetic
+  tests, native controls and fixed-prefix token checks are complete.
+  Attention/resource repair passed targeted engineering checks. Task 14's human
+  suspicion review is approved. Actual-trajectory pilot validation and verified
+  supply of unseen Banking clusters remain outstanding. Tasks 5/6 remain on
+  hold, and task 11 requires recipient audit.
 - New development/test families, their AgentDojo compatibility and evaluator
   validation, and their final connected-component split are not implemented.
 - No confirmatory data and no research result

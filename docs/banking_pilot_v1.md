@@ -57,11 +57,9 @@ make validate
 
 `capture`のnull値は残るgateを示す。今回の標本freezeはそれを解決したことを意味しない。
 実行用設定はこのfreezeを参照し、標本・payload・停止閾値を変更せずにcapture値を解決する。
-実行・監査コマンドは実装済みだが、別runtime freezeが未完了ならモデル読み込み前に停止する。
-通常capture値はRDRで指定した。task 14の人手審査は承認済みで、審査内容を
-`artifacts/pilot-runtime.freeze.json`の`password_suspicion_review`へ転記した。
-同ファイルは`pending_runtime_provenance`であり、cleanな実行commit、検証済みdigest、
-資源gateを揃えて`frozen`にするまではモデル実行を開始しない。
+実行・監査コマンドは実装済みである。通常capture値はRDRで指定し、task 14の
+事前審査内容とともに`artifacts/pilot-runtime.freeze.json`へ固定した。
+実行前には同freezeのcommit、checksum、native対照と資源gateをrunnerで照合する。
 
 ## 収集と判定
 
