@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "status": "sample_frozen_execution_pending",
+  "decision_id": "RDR-2026-10-01-03",
+  "frozen_at": "2026-10-01T14:28:34.306561+00:00",
+  "base_git_commit": "7934f39a92aaaaee74d435a7a2b9ce5b947f0550",
+  "commit_provenance": "base_git_commit is the pre-change parent; the commit containing this freeze identifies the frozen sample; runtime commit must be frozen separately",
+  "config": "banking_pilot_v1.yaml",
+  "template": "../../data/templates/banking_pilot_v1.json",
+  "manifest": "../../data/conditions/banking_pilot_v1.jsonl",
+  "evaluator_spec": "../../data/evaluators/banking_pilot_v1.json",
+  "files_sha256": {
+    "banking_pilot_v1.yaml": "fa30587c0126f0d5814b8c2a24dffadf9e07d0a904cd15c9a42f8fb960ea36cd",
+    "../../data/templates/banking_pilot_v1.json": "9e006d664e6f3c02c56015dd39a35b6219c9c1955b647d38a30435e969aba461",
+    "../../data/conditions/banking_pilot_v1.jsonl": "4c2e285944cd289a064a4dd25c2e1b971013856a08608ccf455f63379995c691",
+    "../../data/evaluators/banking_pilot_v1.json": "5646cb88835bea09a433cc43d7025e84fbdaaa3ddf96a78f8edfd4b39560a7ac",
+    "../models/qwen3_8b_int8.yaml": "59f75014a0a0d200c0b7f1af87d7e8fab9360ad3c533a618bc81ef6e8a808c85",
+    "../domains/agentdojo_banking_v1_2_2.yaml": "f118211bc354818088f64cfa7c02563e773f36c35be32dc5fe658582cd279e37",
+    "../../src/goal_takeover/datasets/pilot_sample.py": "ab75a0d850fb5180af087b2e5dbe64f8df22c1fef18ea4a05e69762dcd03bb60",
+    "../../src/goal_takeover/datasets/generation.py": "806883e048aec57dbd9dccf76d2a1a174bca62d88bcbe0e783473b7333ef7588",
+    "../../src/goal_takeover/datasets/splitting.py": "462c0b48e129748ed99744fe05822d76ad8819ab70cd0bad5cbb7db3d1f2542d",
+    "../../src/goal_takeover/config.py": "fec8a3677cb66a4c29e828ebbd67c7a3d9b567f124c72ea94e6a4e4e3ec1eaa9"
+  },
+  "declaration_summary": {
+    "conditions": 90,
+    "counts": {
+      "clean": 6,
+      "ipi": 72,
+      "lexical_control": 12
+    },
+    "lead_conditions": 18,
+    "task_families": 4,
+    "connected_components": 1,
+    "native_preflight": "not_performed_by_this_offline_check"
+  },
+  "prior_use": {
+    "shakedown_task_ids": [
+      "user_task_0",
+      "user_task_1",
+      "user_task_3"
+    ],
+    "selection_task_ids": [
+      "user_task_2",
+      "user_task_7",
+      "user_task_12",
+      "user_task_13",
+      "user_task_14"
+    ],
+    "source": "docs/banking_task_candidates_2026-10-01.md",
+    "rule": "retain all historical test exclusions; pilot reuse does not authorize probe training/validation reuse"
+  },
+  "excluded_task_ids_this_sample": [
+    "user_task_1",
+    "user_task_5",
+    "user_task_6",
+    "user_task_7",
+    "user_task_8",
+    "user_task_9",
+    "user_task_10",
+    "user_task_11",
+    "user_task_13",
+    "user_task_15"
+  ],
+  "execution_checks": "native preflight, pilot runner, capture and runtime freeze remain outstanding; offline verification is not benchmark validation",
+  "model_config": "../models/qwen3_8b_int8.yaml",
+  "domain_config": "../domains/agentdojo_banking_v1_2_2.yaml"
+}

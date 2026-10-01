@@ -113,7 +113,8 @@ goal-takeover selection-report configs/selection/integration_gate.yaml \
 保守案では複合タスク15を除いて8系列ですが、攻撃を含む最上位の独立group数は未確定です。
 タスク5・6は限定的なソース関数検査で無操作でもutilityがtrueとなるため、成功率・主解析の
 標本としては保留します。タスク11も宛先を判定しない評価器の監査が必要です。
-新しい予備実験runの前に、pilot標本・停止規則と評価器の扱いを固定します。
+初回pilot標本・停止規則・評価仕様は下記のRDR-2026-10-01-03で固定しました。
+native環境での評価器対照検証は実行前gateとして残っています。
 判断と検証範囲は[RDR-2026-10-01-01](docs/decisions/2026-10-01_banking_task_feasibility_review.md)を参照してください。
 
 [RDR-2026-10-01-02](docs/decisions/2026-10-01_existing_tasks_pilot_new_families_test.md)により、
@@ -123,6 +124,13 @@ goal-takeover selection-report configs/selection/integration_gate.yaml \
 新系列の設計・model-free検証を予備実験と並行して進め、関係graphで分離した開発用と
 確認用のgroupを作ります。最終splitと独立group数は解析仕様とともに凍結します。
 新系列や確認的testはまだ作成しておらず、30clusterの確保も未確認です。
+
+[RDR-2026-10-01-03](docs/decisions/2026-10-01_banking_pilot_sample_freeze.md)により、
+初回pilotは14/0/3/4/2/12の6task・4系列、最大90条件（clean6・IPI72・対照12）を凍結しました。
+先行18件の後、厳密clean成功3/6以上・2系列以上と測定・監査基準を満たせば残りへ進みます。
+この標本は共有攻撃形式等で1連結成分です。全条件pilot_onlyとしてtestから除外します。
+標本の照合コマンドと未完了のrunner・native検証・capture・runtime凍結は
+[Banking pilot v1](docs/banking_pilot_v1.md)を参照してください。新しいモデルrunは未実行です。
 
 ## 実験出力
 

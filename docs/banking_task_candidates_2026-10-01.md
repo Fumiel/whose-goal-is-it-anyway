@@ -15,6 +15,11 @@ shakedown・選定で既使用の系列も、新しいrunで予備実験に再�
 表中の「test不可」は予備実験での使用禁止ではない。8系列は既存タスクの分類案であり、
 今後作成する系列を含む研究全体の上限ではない。
 
+**後続の標本決定：** [RDR-2026-10-01-03](decisions/2026-10-01_banking_pilot_sample_freeze.md)で、
+この候補表から初回pilotに14/0/3/4/2/12の6task・4系列、最大90条件を採用した。
+標本の正確なpayload・順序・停止規則は[実行前確認](banking_pilot_v1.md)とfreezeに保存した。
+本表全体の8系列案と確認的splitは引き続き候補であり、初回pilotの標本凍結とは区別する。
+
 ## 判定の前提
 
 - [研究計画書](research_proposal.md)と[実行プロトコル第8節](experimental_protocol.md)を適用する。

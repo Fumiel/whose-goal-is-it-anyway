@@ -11,6 +11,11 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 - Primary domain: not selected
 - Provisional exploratory pilot: Qwen3-8B int8 on AgentDojo Banking v1.2.2;
   see `docs/decisions/2026-09-24_provisional_qwen3_8b_banking_pilot.md`.
+- Initial pilot sample: frozen by RDR-2026-10-01-03. Tasks 14/0/3/4/2/12,
+  four task families, maximum 90 conditions (6 clean / 72 IPI / 12 controls),
+  with an 18-condition lead stage. The declared relationship graph has one
+  connected component; all conditions are pilot_only and test-excluded.
+  See [pilot preparation](docs/banking_pilot_v1.md). New pilot runs have not begun.
 - Confirmatory test set: not created or inspected
 - Task allocation: use existing Banking families, including previously used
   selection/shakedown families, in fresh exploratory pilot runs. Design new
@@ -52,14 +57,17 @@ Before starting new exploratory pilot runs:
    `configs/selection/integration_gate.freeze.json` records the corrected
    runner commit used for the completed rerun. The audit and report are complete;
    keep their failures and non-blind audit status visible.
-2. Fix the pilot sample, stop and transition rules, and split exclusions before
-   collecting new runs. The 8B/Banking combination is provisional only.
+2. Verify `configs/experiments/banking_pilot_v1.freeze.json`. Sample, stop rules,
+   audit specification and pilot exclusions are frozen. Before model execution,
+   implement/test the pilot runner, complete native model-free controls and GPU
+   preflight, and freeze token-position rules, capture window/subset and runtime
+   code/config checksums separately. The 8B/Banking combination is provisional only.
 3. Keep all shakedown, candidate-selection, pilot, and tuning families and close
    variants out of confirmatory test. Existing families may be rerun for the
    exploratory pilot; old shakedown bundles remain engineering-only.
-4. Before fixing the pilot sample, inventory task and attack relationships,
-   prior-use relationships, and the resulting connected components. Report task
-   families separately from the highest-level split/inference groups; the
+4. The initial pilot inventory has four task families and one connected
+   component, with prior-use/test exclusions retained. Report task families
+   separately from the highest-level split/inference groups; the
    feasibility of 30 confirmatory clusters is unresolved. Keep tasks 5 and 6
    on hold for success-rate and main-analysis sampling until evaluator handling
    is specified. Audit task 11's recipient-insensitive utility before use, and
@@ -85,6 +93,7 @@ reuse of engineering bundles as research data.
 - Synthetic immutable-run dry run: `make dry-run`
 - AgentDojo fixture preflight: `make agentdojo-preflight`
 - Seven-condition selection preflight: `goal-takeover selection-preflight configs/selection/integration_gate.yaml`
+- Offline pilot freeze verification: `PYTHONPATH=src python3 -m goal_takeover.datasets.pilot_sample configs/experiments/banking_pilot_v1.freeze.json`
 - Windows GPU preflight: `make gpu-preflight`
 
 ## Known intentional gaps
@@ -97,9 +106,9 @@ reuse of engineering bundles as research data.
   incomplete for audit and must not be used for model adoption. The complete
   rerun and human review did not produce a passing candidate.
 - No fitted action, argument, source-role, authority, or task-drift probe
-- No frozen pilot sample or verified supply of independent unseen Banking
-  clusters; native tasks 5 and 6 cannot yet support a meaningful clean-success
-  count, and task 11 requires recipient-level audit.
+- Pilot sample and stop rules are frozen, but its runner, native preflight,
+  token/capture runtime freeze and verified supply of unseen Banking clusters
+  remain outstanding. Tasks 5/6 remain on hold and task 11 requires recipient audit.
 - New development/test families, their AgentDojo compatibility and evaluator
   validation, and their final connected-component split are not implemented.
 - No confirmatory data and no research result

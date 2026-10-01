@@ -25,6 +25,7 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-10-01 | [RDR-2026-10-01-03](2026-10-01_banking_pilot_sample_freeze.md) | accepted | 初回pilotの6task・4系列・90条件と停止規則を凍結。実行前gateは未完了 |
 | 2026-10-01 | [RDR-2026-10-01-02](2026-10-01_existing_tasks_pilot_new_families_test.md) | accepted | 既存系列を予備実験へ、新系列を開発・確認用へ配分。shakedown系列の新規pilot実行を許す部分改訂 |
 | 2026-10-01 | [RDR-2026-10-01-01](2026-10-01_banking_task_feasibility_review.md) | accepted | Banking候補の系列・既使用除外・評価器問題を記録し、予備実験前に独立groupの実現可能性を確認する |
 | 2026-09-24 | [RDR-2026-09-24-07](2026-09-24_provisional_qwen3_8b_banking_pilot.md) | accepted | ゲート不合格を保持し、Qwen3-8B int8・Bankingを探索的予備実験の暫定構成とする |

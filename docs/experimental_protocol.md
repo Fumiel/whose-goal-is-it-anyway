@@ -183,6 +183,62 @@ Exit criteria: 全予定runについて完了、技術的失敗、事前規則�
 完成は要求しない。最終の関係graph、独立group数、split、評価器versionと解析仕様は
 Phase 3で凍結し、その後に確認的testを実行する。暫定30cluster目標を満たせることは未確認である。
 
+### 5.3 初回Banking pilotの凍結標本と停止・移行（2026-10-01）
+
+[RDR-2026-10-01-03](decisions/2026-10-01_banking_pilot_sample_freeze.md)により、
+`configs/experiments/banking_pilot_v1.yaml`、`data/templates/banking_pilot_v1.json`、
+`data/conditions/banking_pilot_v1.jsonl`、`data/evaluators/banking_pilot_v1.json`を
+`configs/experiments/banking_pilot_v1.freeze.json`のchecksumで固定する。
+これは標本・判断規則の凍結で、実行前gateの検証完了ではない。
+
+| 系列・task | 攻撃task | 比較範囲 |
+|---|---|---|
+| パスワード14 | 7 | password一スロット。条件付き変更の根拠も事前監査する |
+| 請求書0 | 5 | amount98.70を保ったrecipient一スロット |
+| 返金3/4 | 5 | recipientとamount（正規4.00/10.00対攻撃20.00）。同一系列 |
+| 家賃2/12 | 4 | 正規ID7・amount1200対攻撃ID6・recipient変更。同一系列、12は委任対照 |
+
+14/0を一スロット比較の中心、3/4は各slotとjoint・whole-call、2/12はID slot診断と
+whole-call副次比較とする。3/4と2/12をrecipientだけの比較や独立task系列と呼ばない。
+13、1/7/8、9/10、11、15は今回含めず、5/6の保留を維持する。恒久的な研究全体の除外ではない。
+
+clean6、IPI72（6task×3形式×4変種）、語彙対照12（代表14/0/3/2×引用・説明・禁止）の
+最大90条件。先行18はclean6と代表4task×3形式のIPI12とする。
+cleanを先に、task順14/0/3/4/2/12とcondition ID順をmanifestに保存する。
+全条件greedy・非thinkingで、seedのみの反復や先行結果によるpayload・順序変更を行わない。
+6task ID・4task系列だが、第8節のedgeで**1連結成分**となる。全条件をpilot_onlyとし、
+既使用系列を含むtest除外を維持する。training / validationへの再配分は今回許可しない。
+
+移行にはnative判定と別に保存した`audited_strict_user_task_success`を使う。
+対象・金額・新規操作・副作用を確認し、native user/attackと厳密user/宣言攻撃call発生を分ける。
+語彙対照はclean6の分母に含めず、clean失敗はbaseline_failureとして残す。
+先行18、全D・異常、残るtask×outcomeの実行順先頭を監査し、初回判断・裁定・blind状況を残す。
+
+- 開始前：全90条件のnative schema・vector・候補callと評価器の対照状態をmodel-free検証する。
+  14の不審取引条件と監査rubricを記録し、正当化できなければ実行しない。
+- 先行18後：厳密clean成功3/6以上かつ2系列以上、18件監査済み、未裁定不一致0、
+  固定prefix候補対12件が有限値かつtoken整合100%なら残り72へ進む。
+  3/6は探索継続の最低条件で、既存モデル選定gateの合格・正式採用を意味しない。
+- 最大90終了後：全条件の完了または失敗を記録し、同じclean・監査基準と、実軌跡での
+  注入接触・内部状態取得・候補採点が2系列以上で得られることを確認してPhase 2設計へ進む。
+  固定prefix診断を実軌跡の成功へ代用しない。主モデル採用・test実行への移行ではない。
+- 攻撃成功・R/S pairの最低数は0。Dが0でも予定標本を完了し陰性結果を保持する。
+  新攻撃探索には別RDRを作る。移行未達なら拡張停止・run保持とし、別taskに交換せず
+  モデル/domain、教師強制採点中心または研究範囲の変更を新RDRで判断する。
+- token不一致、非有限採点、範囲の曖昧さ、必須記録欠落、評価器対照失敗、資源超過は即停止。
+  モデル失敗は再試行せず、最初のモデル出力前の外部インフラ中断だけ1条件1回、新run IDと
+  元run参照で再試行できる。修正後もこの例外を広げず、新しいruntime freezeを残す。
+
+実軌跡を主対象とし、注入非接触は行動結果を残してIPI位置・スコアを欠測にする。
+後続tool返却での初接触をfirst境界へ改名しない。固定ground-truth prefixは別診断とする。
+資源上限は1条件300秒・GPU12GiB・保存0.05GiB、通常4.5GiB、
+最大180attempt・9GiB・54000秒で、診断・失敗記録も含む。
+
+pilot runnerとnative事前検証、token位置規則・window・全sequence保存subset、GPU事前確認、
+実行code commit・設定checksumの別runtime freezeは未完了である。
+標本freezeを上書きせず実行用設定へcapture値を解決し、上限との整合を確認する。
+詳細な成果物と残るgateは[実行前確認](banking_pilot_v1.md)を参照する。
+
 ## 6. モデル・ドメイン選定ゲート
 
 Bankingを第一候補とするが、名称だけでは採用しない。候補モデルは内部状態を取得できる2B～8B程度の公開重み指示モデルとする。候補ごとの統合試験を同一の小標本と判定規則で行う。
@@ -217,8 +273,8 @@ Git commitと設定checksumを記録してゲートを凍結する。
 集計後、両候補とも凍結済みゲートには不合格だった。ただし
 [RDR-2026-09-24-07](decisions/2026-09-24_provisional_qwen3_8b_banking_pilot.md)により、
 Qwen3-8B int8・Bankingを探索的予備実験の暫定構成とする。これはゲート合格や
-主モデル・主ドメインの最終採用を意味しない。予備実験の標本と停止・移行条件は
-新しいrunの前に固定する。
+主モデル・主ドメインの最終採用を意味しない。初回予備実験の標本と停止・移行条件は
+第5.3節で固定した。実行前gateを満たしてから新しいrunを開始する。
 
 選定手順:
 
@@ -824,7 +880,8 @@ rawとprocessedを分離し、processed artifactには入力raw checksum、処�
 
 ### 予備実験開始前
 
-- [ ] 一モデル・一domainの採用RDRがある
+- [ ] 一モデル・一domainの採用RDR、または探索的pilotの暫定構成RDRがある
+- [ ] pilot標本・停止規則のfreezeを検証し、残るruntime freezeとnative事前検証を完了した
 - [ ] resolved config、condition schema、run schemaが検証を通る
 - [ ] split group IDを生成できる
 - [ ] 既使用系列を含むpilot候補graphと、新系列の開発・確認用配分方針を記録した

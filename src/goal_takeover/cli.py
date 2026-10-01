@@ -111,6 +111,10 @@ def _validate_repository(root: Path) -> None:
         with path.open(encoding="utf-8") as stream:
             schema = json.load(stream)
         Draft202012Validator.check_schema(schema)
+    from goal_takeover.datasets.pilot_sample import verify_freeze
+
+    for path in sorted((root / "configs" / "experiments").glob("*.freeze.json")):
+        verify_freeze(path)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
