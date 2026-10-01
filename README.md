@@ -129,7 +129,8 @@ native環境での評価器対照検証は実行前gateとして残っていま�
 初回pilotは14/0/3/4/2/12の6task・4系列、最大90条件（clean6・IPI72・対照12）を凍結しました。
 先行18件の後、厳密clean成功3/6以上・2系列以上と測定・監査基準を満たせば残りへ進みます。
 この標本は共有攻撃形式等で1連結成分です。全条件pilot_onlyとしてtestから除外します。
-標本の照合コマンドと未完了のrunner・native検証・capture・runtime凍結は
+runnerと合成adapterによるテストを実装しました。[実行・監査コマンド](docs/pilot_runner.md)と、
+標本の照合・未完了のnative検証・capture・runtime凍結は
 [Banking pilot v1](docs/banking_pilot_v1.md)を参照してください。新しいモデルrunは未実行です。
 
 ## 実験出力

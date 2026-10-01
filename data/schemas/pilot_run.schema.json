@@ -1,0 +1,423 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pilot_run.schema.json",
+  "title": "Exploratory pilot run v1 including partial failures",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "condition_id",
+    "parent_run_id",
+    "sample_freeze_sha256",
+    "runtime_freeze_sha256",
+    "resolved_config_sha256",
+    "git_commit",
+    "git_dirty",
+    "started_at",
+    "ended_at",
+    "model",
+    "tokenizer",
+    "seed",
+    "decoding",
+    "split",
+    "group_id",
+    "task_openness",
+    "status",
+    "failure",
+    "retry_eligible",
+    "model_output_count",
+    "actual_exposed_scored",
+    "actual_measurement_missing_reason",
+    "diagnostic",
+    "outcome",
+    "measurements",
+    "elapsed_seconds",
+    "peak_gpu_memory_bytes",
+    "artifacts"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "condition_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_run_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sample_freeze_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "runtime_freeze_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "resolved_config_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "git_commit": {
+      "type": "string",
+      "minLength": 7
+    },
+    "git_dirty": {
+      "type": "boolean"
+    },
+    "started_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ended_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "name",
+        "revision"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "tokenizer": {
+      "type": "object",
+      "required": [
+        "name",
+        "revision"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "decoding": {
+      "type": "object",
+      "required": [
+        "strategy",
+        "do_sample",
+        "enable_thinking"
+      ],
+      "properties": {
+        "strategy": {
+          "const": "greedy"
+        },
+        "do_sample": {
+          "const": false
+        },
+        "enable_thinking": {
+          "const": false
+        }
+      }
+    },
+    "split": {
+      "const": "pilot_only"
+    },
+    "group_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_openness": {
+      "enum": [
+        "fully_specified",
+        "param_open",
+        "action_open"
+      ]
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "model_failure",
+        "technical_failure"
+      ]
+    },
+    "failure": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "kind",
+        "stage",
+        "message"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "model_failure",
+            "technical_failure"
+          ]
+        },
+        "stage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "retry_eligible": {
+      "type": "boolean"
+    },
+    "model_output_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "actual_exposed_scored": {
+      "type": "boolean"
+    },
+    "actual_measurement_missing_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "diagnostic": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "finite_scoring",
+        "prefix_token_identity",
+        "measurement_index",
+        "messages",
+        "events",
+        "initial_state",
+        "final_state"
+      ],
+      "properties": {
+        "finite_scoring": {
+          "const": true
+        },
+        "prefix_token_identity": {
+          "const": true
+        },
+        "measurement_index": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "outcome": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "has_attack",
+        "native_user_task_success",
+        "native_attack_success",
+        "automatic_strict_user_task_success",
+        "strict_candidate_attack_occurred",
+        "baseline_failure",
+        "quarantined_contradiction",
+        "native_evaluator_version",
+        "strict_evaluator_version",
+        "group",
+        "forbidden_side_effects",
+        "audited_strict_user_task_success"
+      ],
+      "properties": {
+        "has_attack": {
+          "type": "boolean"
+        },
+        "native_user_task_success": {
+          "type": "boolean"
+        },
+        "native_attack_success": {
+          "type": "boolean"
+        },
+        "automatic_strict_user_task_success": {
+          "type": "boolean"
+        },
+        "strict_candidate_attack_occurred": {
+          "type": "boolean"
+        },
+        "baseline_failure": {
+          "type": "boolean"
+        },
+        "quarantined_contradiction": {
+          "type": "boolean"
+        },
+        "native_evaluator_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "strict_evaluator_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "group": {
+          "enum": [
+            "A",
+            "B",
+            "C",
+            "D",
+            null
+          ]
+        },
+        "forbidden_side_effects": {
+          "type": "array"
+        },
+        "audited_strict_user_task_success": {
+          "type": "null"
+        }
+      }
+    },
+    "measurements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "scope",
+          "prefix_id",
+          "index",
+          "positions",
+          "scores",
+          "activation",
+          "prefix_token_identity"
+        ],
+        "properties": {
+          "scope": {
+            "enum": [
+              "actual",
+              "fixed_prefix_diagnostic"
+            ]
+          },
+          "prefix_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "positions": {
+            "type": "object"
+          },
+          "scores": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "activation": {
+            "type": "object"
+          },
+          "prefix_token_identity": {
+            "const": true
+          }
+        }
+      }
+    },
+    "elapsed_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "peak_gpu_memory_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "artifact_id",
+          "kind",
+          "relative_path",
+          "sha256",
+          "bytes"
+        ],
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "relative_path": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "completed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "failure": {
+            "type": "null"
+          },
+          "outcome": {
+            "type": "object"
+          },
+          "retry_eligible": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "retry_eligible": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "status": {
+            "const": "technical_failure"
+          },
+          "model_output_count": {
+            "const": 0
+          }
+        }
+      }
+    }
+  ]
+}

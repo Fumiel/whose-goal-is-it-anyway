@@ -56,6 +56,23 @@ def build_parser() -> argparse.ArgumentParser:
     report.add_argument("--run-prefix", required=True)
     report.add_argument("--artifact-root", default="artifacts")
     report.add_argument("--audit")
+    pilot_preflight = subparsers.add_parser(
+        "pilot-preflight", help="check all frozen pilot conditions without model inference"
+    )
+    pilot_preflight.add_argument("config")
+    pilot = subparsers.add_parser("agentdojo-pilot", help="run one frozen, audited pilot stage")
+    pilot.add_argument("config")
+    pilot.add_argument("--runtime-freeze", required=True)
+    pilot.add_argument("--run-prefix", required=True)
+    pilot.add_argument("--stage", choices=("lead", "expansion"), default="lead")
+    pilot.add_argument("--artifact-root")
+    pilot.add_argument("--audit")
+    for name in ("pilot-report", "pilot-audit-template"):
+        command = subparsers.add_parser(name, help="derive pilot gate report or blank audit form")
+        command.add_argument("config")
+        command.add_argument("--run-prefix", required=True)
+        command.add_argument("--artifact-root", default="artifacts")
+        command.add_argument("--audit")
     return parser
 
 
@@ -247,6 +264,45 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(f"failed: {exc}")
             return 1
         print(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2))
+        return 0
+    if args.command in {
+        "pilot-preflight",
+        "agentdojo-pilot",
+        "pilot-report",
+        "pilot-audit-template",
+    }:
+        try:
+            from goal_takeover.pilot.plan import load_pilot_plan
+            from goal_takeover.pilot.preflight import preflight_pilot
+            from goal_takeover.pilot.report import audit_template, load_records, summarize_pilot
+            from goal_takeover.pilot.runner import run_pilot
+
+            if args.command == "agentdojo-pilot":
+                paths = run_pilot(
+                    args.config,
+                    args.runtime_freeze,
+                    run_prefix=args.run_prefix,
+                    stage=args.stage,
+                    artifact_root=args.artifact_root,
+                    audit_path=args.audit,
+                )
+                for path in paths:
+                    print(f"created: {path}")
+                return 0
+            plan = load_pilot_plan(args.config)
+            if args.command == "pilot-preflight":
+                result = preflight_pilot(plan)
+            else:
+                records = load_records(plan, args.artifact_root, args.run_prefix)
+                if args.command == "pilot-audit-template":
+                    result = audit_template(plan, records)
+                else:
+                    audit = json.loads(Path(args.audit).read_text()) if args.audit else None
+                    result = summarize_pilot(plan, records, audit=audit)
+        except (ConfigError, KeyError, OSError, RuntimeError, ValueError) as exc:
+            print(f"failed: {exc}")
+            return 1
+        print(json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2))
         return 0
     raise AssertionError(f"unhandled command: {args.command}")
 

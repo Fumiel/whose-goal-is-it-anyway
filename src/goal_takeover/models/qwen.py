@@ -112,6 +112,7 @@ class QwenTransformersBackend:
         self.max_context_tokens = max_context_tokens
         self.template_sha256 = chat_template_sha256(tokenizer)
         self.prefixes: list[SerializedPrefix] = []
+        self.generations: list[dict[str, Any]] = []
         self._call_index = 0
 
     @staticmethod
@@ -142,11 +143,16 @@ class QwenTransformersBackend:
         return prefix
 
     def next_action(self, messages: Sequence[Message]) -> AgentAction:
+        return self.next_action_from_prefix(self.serialize(messages))
+
+    def next_action_from_prefix(self, prefix: SerializedPrefix) -> AgentAction:
+        """Generate from the exact prefix already used by instrumentation."""
         try:
             import torch
         except ImportError as exc:  # pragma: no cover - optional research dependency
             raise RuntimeError("install research dependencies for model generation") from exc
-        prefix = self.serialize(messages)
+        if len(prefix.token_ids) > self.max_context_tokens:
+            raise ValueError("generation prefix exceeds the configured context limit")
         self.prefixes.append(prefix)
         device = next(self.model.parameters()).device
         input_ids = torch.tensor([prefix.token_ids], dtype=torch.long, device=device)
@@ -163,6 +169,9 @@ class QwenTransformersBackend:
         text = self.tokenizer.decode(generated, skip_special_tokens=False)
         if self.tokenizer.eos_token and text.endswith(self.tokenizer.eos_token):
             text = text[: -len(self.tokenizer.eos_token)]
+        self.generations.append(
+            {"prefix_id": prefix.prefix_id, "token_ids": generated, "raw_text": text}
+        )
         call_id = f"call_{self._call_index:04d}"
         self._call_index += 1
         return parse_qwen_action(text, call_id=call_id)

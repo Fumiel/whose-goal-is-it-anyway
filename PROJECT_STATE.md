@@ -16,6 +16,10 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   with an 18-condition lead stage. The declared relationship graph has one
   connected component; all conditions are pilot_only and test-excluded.
   See [pilot preparation](docs/banking_pilot_v1.md). New pilot runs have not begun.
+- Pilot runner: implemented with separate actual-trajectory/fixed-prefix paths,
+  immutable partial failures, native/strict labels, checksummed audits and staged
+  gates. Synthetic orchestration tests cover all 90 conditions; native and GPU
+  pilot validation remain outstanding. See [runner usage](docs/pilot_runner.md).
 - Confirmatory test set: not created or inspected
 - Task allocation: use existing Banking families, including previously used
   selection/shakedown families, in fresh exploratory pilot runs. Design new
@@ -59,8 +63,8 @@ Before starting new exploratory pilot runs:
    keep their failures and non-blind audit status visible.
 2. Verify `configs/experiments/banking_pilot_v1.freeze.json`. Sample, stop rules,
    audit specification and pilot exclusions are frozen. Before model execution,
-   implement/test the pilot runner, complete native model-free controls and GPU
-   preflight, and freeze token-position rules, capture window/subset and runtime
+   complete native model-free controls and GPU preflight, then freeze
+   token-position rules, capture window/subset and runtime
    code/config checksums separately. The 8B/Banking combination is provisional only.
 3. Keep all shakedown, candidate-selection, pilot, and tuning families and close
    variants out of confirmatory test. Existing families may be rerun for the
@@ -94,6 +98,8 @@ reuse of engineering bundles as research data.
 - AgentDojo fixture preflight: `make agentdojo-preflight`
 - Seven-condition selection preflight: `goal-takeover selection-preflight configs/selection/integration_gate.yaml`
 - Offline pilot freeze verification: `PYTHONPATH=src python3 -m goal_takeover.datasets.pilot_sample configs/experiments/banking_pilot_v1.freeze.json`
+- Pilot native preflight: `goal-takeover pilot-preflight configs/experiments/banking_pilot_v1.yaml`
+- Pilot runner/report/audit commands and runtime freeze contract: [runner usage](docs/pilot_runner.md)
 - Windows GPU preflight: `make gpu-preflight`
 
 ## Known intentional gaps
@@ -106,9 +112,10 @@ reuse of engineering bundles as research data.
   incomplete for audit and must not be used for model adoption. The complete
   rerun and human review did not produce a passing candidate.
 - No fitted action, argument, source-role, authority, or task-drift probe
-- Pilot sample and stop rules are frozen, but its runner, native preflight,
-  token/capture runtime freeze and verified supply of unseen Banking clusters
-  remain outstanding. Tasks 5/6 remain on hold and task 11 requires recipient audit.
+- Pilot sample and stop rules are frozen; runner implementation and synthetic
+  tests are complete. Native preflight, token/capture runtime freeze and verified
+  supply of unseen Banking clusters remain outstanding. Tasks 5/6 remain on hold
+  and task 11 requires recipient audit.
 - New development/test families, their AgentDojo compatibility and evaluator
   validation, and their final connected-component split are not implemented.
 - No confirmatory data and no research result

@@ -234,8 +234,9 @@ cleanを先に、task順14/0/3/4/2/12とcondition ID順をmanifestに保存す�
 資源上限は1条件300秒・GPU12GiB・保存0.05GiB、通常4.5GiB、
 最大180attempt・9GiB・54000秒で、診断・失敗記録も含む。
 
-pilot runnerとnative事前検証、token位置規則・window・全sequence保存subset、GPU事前確認、
-実行code commit・設定checksumの別runtime freezeは未完了である。
+pilot runnerと合成adapterのtestは実装済みである（[実装と使用方法](pilot_runner.md)）。
+native事前検証、固定tokenizerでの位置規則の検証・window・全sequence保存subset、
+GPU事前確認、実行code commit・設定checksumの別runtime freezeは未完了である。
 標本freezeを上書きせず実行用設定へcapture値を解決し、上限との整合を確認する。
 詳細な成果物と残るgateは[実行前確認](banking_pilot_v1.md)を参照する。
 

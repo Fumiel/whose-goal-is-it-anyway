@@ -35,7 +35,8 @@ make validate
 
 ## 実行前に残るgate
 
-1. 実軌跡・固定prefix診断・停止判定・監査記録を扱うpilot runnerを実装し、testを通す。
+1. pilot runnerと合成adapterによるtestは実装済み。実軌跡・固定prefix診断・停止判定・
+   監査記録の実モデル/native経路の検証は残る。[runnerの使用方法](pilot_runner.md)を参照する。
 2. 固定tokenizer/chat templateで位置・delimiter・hookの対応を確認する。window左右幅と
    全sequence/全Attention保存condition IDを、結果を見ずに実行用設定へ指定する。
    0.05GiB/条件と診断を含む上限に収まることを確認し、別runtime freezeで固定する。
@@ -46,7 +47,8 @@ make validate
 
 `capture`のnull値は残るgateを示す。今回の標本freezeはそれを解決したことを意味しない。
 実行用設定はこのfreezeを参照し、標本・payload・停止閾値を変更せずにcapture値を解決する。
-この時点ではpilot実行コマンドを提供していない。
+実行・監査コマンドは実装済みだが、別runtime freezeが未完了ならモデル読み込み前に停止する。
+今回の作業ではcapture値を決定せず、GPU実行とnative対照検証を次の作業に残した。
 
 ## 収集と判定
 
