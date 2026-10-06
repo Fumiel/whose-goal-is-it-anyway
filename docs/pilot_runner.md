@@ -5,6 +5,9 @@
 [プロトコル第5.3節](experimental_protocol.md)と
 [RDR-2026-10-01-03](decisions/2026-10-01_banking_pilot_sample_freeze.md)と
 [RDR-2026-10-02-01](decisions/2026-10-02_pilot_capture_resource_revision.md)である。
+先行18件の結果閲覧後に決めた残り72件の探索的継続は、
+[RDR-2026-10-07-01](decisions/2026-10-07_banking_pilot_post_gate_exploratory_continuation.md)
+と[継続許可ファイル](../configs/experiments/banking_pilot_post_gate_continuation_v1.json)に記録する。
 
 ## 実装と検証範囲
 
@@ -103,6 +106,27 @@ goal-takeover agentdojo-pilot configs/experiments/banking_pilot_v1.yaml \
   --audit artifacts/pilot-lead-audit.json
 ```
 
+上記の通常拡張コマンドは、今回の先行ゲート不合格では引き続き停止する。
+RDR-2026-10-07-01による探索的継続には、更新した実行codeをcommitした後、
+旧runtime freezeを保持して、同じcapture・model・tool schema・task 14 reviewを用いる
+**新しい**`artifacts/pilot-runtime-continuation.freeze.json`を作る。
+`git_commit`を新commitに、`files_sha256`を新commitの全対象ファイルの値に更新し、
+cleanな作業treeで`load_runtime_freeze`の検証を通す。先行stageと新stageのruntime checksumは
+別々に記録され、元のruntime freezeは書き換えない。
+
+```bash
+goal-takeover agentdojo-pilot configs/experiments/banking_pilot_v1.yaml \
+  --runtime-freeze artifacts/pilot-runtime-continuation.freeze.json \
+  --run-prefix banking-pilot-001 --stage expansion \
+  --audit artifacts/pilot-lead-audit.json \
+  --post-gate-continuation configs/experiments/banking_pilot_post_gate_continuation_v1.json
+```
+
+継続経路は旧報告のclean 2/6・ゲート不合格、監査と固定prefix診断の完了、
+先行run・stageと許可ファイルのchecksum、残り72件のIDをweights読込前に照合する。
+元の`lead_to_expansion`はfalseのままである。継続後の通常`pilot-report`も
+元のPhase 2移行判定を合格へ変更しない。収集結果と次段階の判断は別に記録する。
+
 `pilot-detail-capture`は先行run後、事前指定4条件の固定prefixから全層・全系列残差を
 `artifacts/processed/pilot_detail_v1/runs/`へ不変bundleとして保存する。sourceの
 manifest・prefix ID・token列・revisionを照合し、sourceがない条件は欠測を記録する。
@@ -141,6 +165,25 @@ parse不成立、未知tool、tool error、最大step到達はモデルの実験
 一般的なRuntimeError、OOM、parse error、timeoutをこの例外へ読み替えない。
 既存stageの自動再開や別prefixによる同条件の都合のよい再生成は提供しない。
 停止後の変更・再収集はプロトコルに従ってRDRと新freezeで判断する。
+
+51番のGPU上限停止については
+[RDR-2026-10-07-02](decisions/2026-10-07_pilot_gpu_recovery.md)により、
+旧bundleを保持した`c051-a2`と52～90の収集を一度だけ認める。
+`configs/experiments/banking_pilot_technical_recovery_v1.json`は旧manifestと
+RDRのchecksum、および凍結した40条件の順序を固定する。修正codeをcommitした後、
+旧runtimeを保持し、新commitと全対象checksumを記した別runtime freeze
+`artifacts/pilot-runtime-recovery.freeze.json`を作る。実行経路は以下のみとする。
+
+```bash
+goal-takeover agentdojo-pilot configs/experiments/banking_pilot_v1.yaml \
+  --runtime-freeze artifacts/pilot-runtime-recovery.freeze.json \
+  --run-prefix banking-pilot-001 \
+  --technical-recovery configs/experiments/banking_pilot_technical_recovery_v1.json
+```
+
+この経路は旧拡張stageの`technical_stop`、50完了・51番の3出力後の
+`actual_capture`失敗・52～90未実行を照合し、別のimmutable recovery stageを残す。
+追加の停止は自動再開しない。元の2/6ゲート不合格とPhase 2未許可を保持する。
 
 最終reportはclean分母6、native outcomeとbaseline_failure、技術的失敗、監査欠測、
 実軌跡で接触・取得・採点できたtask系列を保持する。

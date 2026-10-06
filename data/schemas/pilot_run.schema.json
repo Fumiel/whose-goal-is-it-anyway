@@ -54,6 +54,16 @@
         "null"
       ]
     },
+    "technical_recovery": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["decision_id", "authorization_sha256", "source_manifest_sha256"],
+      "properties": {
+        "decision_id": {"const": "RDR-2026-10-07-02"},
+        "authorization_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "source_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
     "sample_freeze_sha256": {
       "type": "string",
       "pattern": "^[0-9a-f]{64}$"

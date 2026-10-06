@@ -71,11 +71,14 @@ class HuggingFacePilotServices:
         self.torch.cuda.reset_peak_memory_stats()
 
     def check_memory(self) -> int:
-        peak = max(
-            int(self.torch.cuda.max_memory_allocated()), int(self.torch.cuda.max_memory_reserved())
-        )
+        allocated = int(self.torch.cuda.max_memory_allocated())
+        reserved = int(self.torch.cuda.max_memory_reserved())
+        peak = max(allocated, reserved)
         if peak > self.plan.config["resources"]["maximum_gpu_memory_gib"] * 2**30:
-            raise RuntimeError("oom_or_resource_limit: peak GPU memory exceeds frozen ceiling")
+            raise RuntimeError(
+                "oom_or_resource_limit: peak GPU memory exceeds frozen ceiling "
+                f"(allocated={allocated}, reserved={reserved} bytes)"
+            )
         return peak
 
     def activation_bytes(self, record: Any) -> bytes:
@@ -89,6 +92,9 @@ class HuggingFacePilotServices:
         *,
         full_attention: bool,
     ) -> tuple[Any, dict[str, Any], bytes | None]:
+        # Release inactive allocator blocks between uncached forwards. Peak stats
+        # remain condition-wide; the frozen 12 GiB resource check is unchanged.
+        self.torch.cuda.empty_cache()
         record = self.extractor.capture(prefix, positions=positions)
         validate_activation(record, prefix, positions, self.extractor.module_names)
         self.check_memory()
@@ -143,6 +149,7 @@ class HuggingFacePilotServices:
             self.check_memory()
 
         attention_type = QwenAttentionCapture if full_attention else QwenQueryAttentionCapture
+        self.torch.cuda.empty_cache()
         with (
             torch.no_grad(),
             attention_type(self.model, self.extractor.module_names, consume) as attention,
