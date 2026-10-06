@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `pre_pilot_scaffolding`
+- Phase: `exploratory_pilot_post_lead`
 - Primary model: not selected
 - Primary domain: not selected
 - Provisional exploratory pilot: Qwen3-8B int8 on AgentDojo Banking v1.2.2;
@@ -15,7 +15,14 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   four task families, maximum 90 conditions (6 clean / 72 IPI / 12 controls),
   with an 18-condition lead stage. The declared relationship graph has one
   connected component; all conditions are pilot_only and test-excluded.
-  See [pilot preparation](docs/banking_pilot_v1.md). New pilot runs have not begun.
+  See [pilot preparation](docs/banking_pilot_v1.md). The lead 18 conditions ran
+  on 2026-10-06. Audited strict clean success was 2/6, so the frozen lead gate
+  failed; 18 audits and 12 fixed-prefix diagnostics were complete, with no
+  technical failures or unresolved disagreements. The immutable lead report is
+  `artifacts/pilot-lead-report-2026-10-06.json`. RDR-2026-10-07-01 authorizes
+  the remaining 72 as a post-result exploratory continuation, without changing
+  the failed gate or task 12's baseline-failure label. This is 60 IPI and 12
+  lexical controls, with no additional clean conditions. Execution is pending.
 - Pilot runner: implemented with separate actual-trajectory/fixed-prefix paths,
   immutable partial failures, native/strict labels, checksummed audits and staged
   gates. Synthetic orchestration tests cover all 90 conditions. On 2026-10-02,
@@ -28,8 +35,9 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   Engineering GPU checks of the revised path passed. Task 14's pre-pilot
   suspicion review was approved on 2026-10-02 for transaction ID 4, with a
   strict rubric fixed in `data/audits/2026-10-02_task14_password_suspicion_review.json`.
-  The pilot runtime freeze is recorded separately under
-  `artifacts/pilot-runtime.freeze.json`; the lead stage has not begun.
+  The lead-stage runtime freeze is recorded separately under
+  `artifacts/pilot-runtime.freeze.json`; the continuation needs a new runtime
+  freeze tied to its execution code.
   See [initial measurements](docs/experiment_logs/2026-10-02_pilot_preflight_measurements.md)
   and [capture repair](docs/experiment_logs/2026-10-02_capture_repair_preflight.md).
 - Confirmatory test set: not created or inspected
@@ -67,7 +75,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current gate
 
-Before starting new exploratory pilot runs:
+Before the post-gate exploratory continuation:
 
 1. The seven-condition Banking selection gate remains fixed. The current
    `configs/selection/integration_gate.freeze.json` records the corrected
@@ -98,6 +106,10 @@ Before starting new exploratory pilot runs:
    the pilot starts. See
    [RDR-2026-10-01-01](docs/decisions/2026-10-01_banking_task_feasibility_review.md)
    and [RDR-2026-10-01-02](docs/decisions/2026-10-01_existing_tasks_pilot_new_families_test.md).
+5. Preserve the 2026-10-06 lead report's failed gate and all six clean labels.
+   The remaining 72 conditions require the explicit post-gate continuation
+   path, lead evidence checksums and a new code/runtime freeze. Completion will
+   remain exploratory and will not automatically authorize Phase 2 or test.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -130,11 +142,11 @@ reuse of engineering bundles as research data.
   incomplete for audit and must not be used for model adoption. The complete
   rerun and human review did not produce a passing candidate.
 - No fitted action, argument, source-role, authority, or task-drift probe
-- Pilot sample, stop rules and runtime are frozen; runner implementation, synthetic
-  tests, native controls and fixed-prefix token checks are complete.
-  Attention/resource repair passed targeted engineering checks. Task 14's human
-  suspicion review is approved. Actual-trajectory pilot validation and verified
-  supply of unseen Banking clusters remain outstanding. Tasks 5/6 remain on
+- Pilot lead stage completed with 2/6 strict clean success and a failed frozen
+  continuation gate. The post-gate exploratory continuation is decided but its
+  72 conditions are not yet run. Actual-trajectory feasibility across the full
+  sample and verified supply of unseen Banking clusters remain outstanding.
+  Tasks 5/6 remain on
   hold, and task 11 requires recipient audit.
 - New development/test families, their AgentDojo compatibility and evaluator
   validation, and their final connected-component split are not implemented.

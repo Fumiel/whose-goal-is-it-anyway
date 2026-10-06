@@ -67,6 +67,7 @@ def build_parser() -> argparse.ArgumentParser:
     pilot.add_argument("--stage", choices=("lead", "expansion"), default="lead")
     pilot.add_argument("--artifact-root")
     pilot.add_argument("--audit")
+    pilot.add_argument("--post-gate-continuation")
     detail = subparsers.add_parser(
         "pilot-detail-capture", help="derive declared full-sequence residual bundles"
     )
@@ -308,6 +309,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     stage=args.stage,
                     artifact_root=args.artifact_root,
                     audit_path=args.audit,
+                    continuation_path=args.post_gate_continuation,
                 )
                 for path in paths:
                     print(f"created: {path}")

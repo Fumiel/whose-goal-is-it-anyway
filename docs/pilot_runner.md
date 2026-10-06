@@ -5,6 +5,9 @@
 [プロトコル第5.3節](experimental_protocol.md)と
 [RDR-2026-10-01-03](decisions/2026-10-01_banking_pilot_sample_freeze.md)と
 [RDR-2026-10-02-01](decisions/2026-10-02_pilot_capture_resource_revision.md)である。
+先行18件の結果閲覧後に決めた残り72件の探索的継続は、
+[RDR-2026-10-07-01](decisions/2026-10-07_banking_pilot_post_gate_exploratory_continuation.md)
+と[継続許可ファイル](../configs/experiments/banking_pilot_post_gate_continuation_v1.json)に記録する。
 
 ## 実装と検証範囲
 
@@ -102,6 +105,27 @@ goal-takeover agentdojo-pilot configs/experiments/banking_pilot_v1.yaml \
   --run-prefix banking-pilot-001 --stage expansion \
   --audit artifacts/pilot-lead-audit.json
 ```
+
+上記の通常拡張コマンドは、今回の先行ゲート不合格では引き続き停止する。
+RDR-2026-10-07-01による探索的継続には、更新した実行codeをcommitした後、
+旧runtime freezeを保持して、同じcapture・model・tool schema・task 14 reviewを用いる
+**新しい**`artifacts/pilot-runtime-continuation.freeze.json`を作る。
+`git_commit`を新commitに、`files_sha256`を新commitの全対象ファイルの値に更新し、
+cleanな作業treeで`load_runtime_freeze`の検証を通す。先行stageと新stageのruntime checksumは
+別々に記録され、元のruntime freezeは書き換えない。
+
+```bash
+goal-takeover agentdojo-pilot configs/experiments/banking_pilot_v1.yaml \
+  --runtime-freeze artifacts/pilot-runtime-continuation.freeze.json \
+  --run-prefix banking-pilot-001 --stage expansion \
+  --audit artifacts/pilot-lead-audit.json \
+  --post-gate-continuation configs/experiments/banking_pilot_post_gate_continuation_v1.json
+```
+
+継続経路は旧報告のclean 2/6・ゲート不合格、監査と固定prefix診断の完了、
+先行run・stageと許可ファイルのchecksum、残り72件のIDをweights読込前に照合する。
+元の`lead_to_expansion`はfalseのままである。継続後の通常`pilot-report`も
+元のPhase 2移行判定を合格へ変更しない。収集結果と次段階の判断は別に記録する。
 
 `pilot-detail-capture`は先行run後、事前指定4条件の固定prefixから全層・全系列残差を
 `artifacts/processed/pilot_detail_v1/runs/`へ不変bundleとして保存する。sourceの

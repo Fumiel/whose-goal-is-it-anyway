@@ -512,6 +512,65 @@ def execute_condition(
     return path, record
 
 
+def _validate_post_gate_continuation(
+    plan: PilotPlan,
+    artifact_root: str | Path,
+    run_prefix: str,
+    report: dict[str, Any],
+    audit_path: str | Path | None,
+    authorization_path: str | Path,
+) -> dict[str, Any]:
+    """Permit only the documented failed-clean-gate continuation of this pilot."""
+    authorization = json.loads(Path(authorization_path).read_text())
+    if (
+        authorization.get("schema_version") != 1
+        or authorization.get("decision_id") != "RDR-2026-10-07-01"
+        or authorization.get("run_prefix") != run_prefix
+        or authorization.get("sample_freeze_sha256") != plan.sample_freeze_sha256
+    ):
+        raise ConfigError("post-gate continuation authorization does not match this pilot")
+    expected_conditions = [c for c in plan.conditions if c["stage"] == "expansion"]
+    if len(expected_conditions) != 72 or authorization.get("condition_ids") != [
+        c["condition_id"] for c in expected_conditions
+    ]:
+        raise ConfigError("post-gate continuation must preserve all 72 frozen conditions")
+    if (
+        report["lead_to_expansion"]
+        or report["expansion_status"] != "gate_failed"
+        or report["clean_success_count"] != 2
+        or report["clean_denominator"] != 6
+        or report["recorded_conditions"] != 18
+        or report["technical_failures"]
+        or report["unresolved_disagreements"]
+        or not all(value for key, value in report["lead_checks"].items() if key != "clean_success")
+    ):
+        raise ConfigError("post-gate continuation requires the audited 2/6 clean-only gate failure")
+    repo = plan.config_path.parents[2]
+    source_files = {
+        "decision": repo
+        / "docs/decisions/2026-10-07_banking_pilot_post_gate_exploratory_continuation.md",
+        "lead_report": repo / "artifacts/pilot-lead-report-2026-10-06.json",
+        "lead_audit": Path(audit_path).resolve() if audit_path is not None else None,
+        "lead_stage_manifest": Path(artifact_root)
+        / "runs"
+        / f"{run_prefix}-lead-status"
+        / "manifest.json",
+        "lead_runtime_freeze": repo / "artifacts/pilot-runtime.freeze.json",
+    }
+    digests = authorization.get("source_sha256")
+    if not isinstance(digests, dict) or set(digests) != set(source_files):
+        raise ConfigError("post-gate continuation source checksums are incomplete")
+    for name, path in source_files.items():
+        if path is None or not path.is_file() or sha256_file(path) != digests[name]:
+            raise ConfigError(f"post-gate continuation source mismatch: {name}")
+    frozen_report = json.loads(source_files["lead_report"].read_text())
+    if report != frozen_report:
+        raise ConfigError("post-gate continuation lead report differs from immutable evidence")
+    if authorization.get("lead_runtime_freeze_sha256") != digests["lead_runtime_freeze"]:
+        raise ConfigError("post-gate continuation runtime lineage mismatch")
+    return authorization
+
+
 def run_pilot(
     config_path: str | Path,
     runtime_path: str | Path,
@@ -520,6 +579,7 @@ def run_pilot(
     stage: str = "lead",
     artifact_root: str | Path | None = None,
     audit_path: str | Path | None = None,
+    continuation_path: str | Path | None = None,
 ) -> tuple[Path, ...]:
     """Validate every gate before weights; execute only the requested frozen stage."""
     plan = load_pilot_plan(config_path)
@@ -532,13 +592,23 @@ def run_pilot(
     report = summarize_pilot(plan, existing, audit=audit)
     if stage not in {"lead", "expansion"}:
         raise ConfigError("pilot stage must be lead or expansion")
-    if stage == "expansion" and not report["lead_to_expansion"]:
+    continuation = None
+    if continuation_path is not None:
+        if stage != "expansion":
+            raise ConfigError("post-gate continuation applies only to expansion")
+        continuation = _validate_post_gate_continuation(
+            plan, root, run_prefix, report, audit_path, continuation_path
+        )
+    if stage == "expansion" and not report["lead_to_expansion"] and continuation is None:
         raise ConfigError("expansion blocked by frozen lead/audit gate")
     selected = [c for c in plan.conditions if c["stage"] == stage]
     if any(r["condition_id"] in {c["condition_id"] for c in selected} for r in existing):
         raise ConfigError("stage already has attempts; never rerun existing conditions")
     runtime_sha256 = sha256_file(Path(runtime_path))
-    if any(r["runtime_freeze_sha256"] != runtime_sha256 for r in existing):
+    preceding_runtime_sha256 = (
+        continuation["lead_runtime_freeze_sha256"] if continuation else runtime_sha256
+    )
+    if any(r["runtime_freeze_sha256"] != preceding_runtime_sha256 for r in existing):
         raise ConfigError("runtime freeze differs from preceding stage")
     previous_seconds = 0.0
     if stage == "expansion":
@@ -556,7 +626,7 @@ def run_pilot(
             raise ConfigError("preceding stage lacks required provenance")
         previous_status = json.loads((previous_path / "stage.json").read_text())
         if (
-            previous_status["runtime_freeze_sha256"] != runtime_sha256
+            previous_status["runtime_freeze_sha256"] != preceding_runtime_sha256
             or previous_status["sample_freeze_sha256"] != plan.sample_freeze_sha256
             or previous_status["stop"] is not None
         ):
@@ -650,6 +720,13 @@ def run_pilot(
                 "stop": stop,
                 "status": "technical_stop" if stop else "awaiting_human_audit",
                 "audit_sha256": sha256_file(Path(audit_path)) if audit_path else None,
+                "post_gate_continuation": {
+                    "decision_id": continuation["decision_id"],
+                    "authorization_sha256": sha256_file(Path(continuation_path)),
+                    "original_lead_gate_passed": False,
+                }
+                if continuation
+                else None,
                 "run_paths": [str(p.relative_to(Path(root))) for p in paths],
                 "conditions": [
                     {
