@@ -24,12 +24,15 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   the failed gate or task 12's baseline-failure label. This is 60 IPI and 12
   lexical controls, with no additional clean conditions. Continuation ran under
   commit `b7df23f41b47b0eae529ebe261d46d41ab29701c` and stopped at condition
-  51 when actual capture exceeded the frozen 12 GiB GPU ceiling. Across all 90
-  conditions, 50 are completed, one is a technical failure, and 39 are not run.
+  51 when actual capture exceeded the frozen 12 GiB GPU ceiling. At that stop,
+  50 conditions were complete, one was a technical failure, and 39 were not run.
   See [technical stop log](docs/experiment_logs/2026-10-07_post_gate_continuation_technical_stop.md).
   RDR-2026-10-07-02は保存済み51番prefixでのGPU工学計測を根拠に、12 GiB上限を
   維持したCUDAキャッシュ解放と、旧失敗を保持する51～90の専用再開経路を決定した。
-  新codeの検証・commitとruntime freeze作成後に実行する。新しい結果はまだない。
+  code commit `9fa8985ace6642e466f334524054cad61656675b`と新runtime freezeで
+  51番の新試行と52～90を完了した。全90条件はcompleted、総attemptは91。
+  recovery stageは`awaiting_human_audit`、追加の技術停止はない。
+  [再開実行記録](docs/experiment_logs/2026-10-07_pilot_gpu_recovery_execution.md)を参照。
 - Pilot runner: implemented with separate actual-trajectory/fixed-prefix paths,
   immutable partial failures, native/strict labels, checksummed audits and staged
   gates. Synthetic orchestration tests cover all 90 conditions. On 2026-10-02,
@@ -43,8 +46,8 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   suspicion review was approved on 2026-10-02 for transaction ID 4, with a
   strict rubric fixed in `data/audits/2026-10-02_task14_password_suspicion_review.json`.
   The lead-stage runtime freeze is recorded separately under
-  `artifacts/pilot-runtime.freeze.json`; the continuation needs a new runtime
-  freeze tied to its execution code.
+  `artifacts/pilot-runtime.freeze.json`; the continuation and recovery each used
+  a separate runtime freeze tied to their execution code.
   See [initial measurements](docs/experiment_logs/2026-10-02_pilot_preflight_measurements.md)
   and [capture repair](docs/experiment_logs/2026-10-02_capture_repair_preflight.md).
 - Confirmatory test set: not created or inspected
@@ -114,11 +117,11 @@ Before the post-gate exploratory continuation:
    [RDR-2026-10-01-01](docs/decisions/2026-10-01_banking_task_feasibility_review.md)
    and [RDR-2026-10-01-02](docs/decisions/2026-10-01_existing_tasks_pilot_new_families_test.md).
 5. Preserve the 2026-10-06 lead report's failed gate and all six clean labels.
-   The post-gate continuation was stopped by the frozen GPU ceiling. Under
-   RDR-2026-10-07-02 only, condition 51 may be collected as a new a2 attempt,
-   followed by the 39 unrun conditions, after code verification and new runtime
-   freeze. Old bundles must remain immutable. Completion
-   would remain exploratory and would not automatically authorize Phase 2 or test.
+   The post-gate continuation stopped at condition 51 under the frozen GPU ceiling;
+   RDR-2026-10-07-02 authorized the separate recovery stage, which completed
+   condition 51 as a2 and the 39 previously unrun conditions. Old bundles remain
+   immutable. Expansion human audit is outstanding. The 90-condition collection
+   remains exploratory and does not automatically authorize Phase 2 or test.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -153,9 +156,10 @@ reuse of engineering bundles as research data.
 - No fitted action, argument, source-role, authority, or task-drift probe
 - Pilot lead stage completed with 2/6 strict clean success and a failed frozen
   continuation gate. The authorized post-gate exploratory continuation recorded
-  32 new completions and stopped at condition 51 due to the 12 GiB GPU ceiling.
-  Another 39 conditions remain unrun. Actual-trajectory feasibility across the
-  full sample and verified supply of unseen Banking clusters remain outstanding.
+  32 new completions and stopped at condition 51 due to the 12 GiB GPU ceiling;
+  the separately authorized recovery collected condition 51 as a2 and the 39
+  previously unrun conditions. All 90 conditions have complete bundles; expansion
+  audit and verified supply of unseen Banking clusters remain outstanding.
   Tasks 5/6 remain on
   hold, and task 11 requires recipient audit.
 - New development/test families, their AgentDojo compatibility and evaluator
