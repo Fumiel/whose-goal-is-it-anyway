@@ -6,7 +6,7 @@ Indirect Prompt Injectionを受けたツール利用型LLMエージェントに�
 
 ## 現在の状態
 
-現在はPilot実験前の基盤整備段階です。モデルと主対象ドメインはまだ確定しておらず、`configs/**/example.yaml`は選定候補を記入するための雛形です。合成fixtureに加え、AgentDojo 0.1.35 / Banking v1.2.2用adapterとQwen3 Transformers runnerを実装済みです。Qwen3-8B int8とQwen3-4B BF16のWindows GPU工学shakedownは各3 fixtureを完走し、WSL上のraw bundle監査も記録しました。これらは正式な候補評価や研究結果ではありません。測定値と確認範囲は[技術記録一覧](docs/experiment_logs/README.md)を、作業時点の状態は[`PROJECT_STATE.md`](PROJECT_STATE.md)を参照してください。
+現在はBankingの探索的pilotを90条件収集した後の監査待ち段階です。主モデルと主ドメインはまだ採用していません。Qwen3-8B int8 / AgentDojo Banking v1.2.2は暫定構成です。先行18条件の監査後clean成功は2/6で、凍結した拡張ゲートには不合格でした。結果閲覧後に認めた探索的継続は51番のGPU資源上限で一度停止し、別の判断記録とruntime freezeに基づく再開で90条件すべてのbundleを収集しました（総attempt 91、旧51番は技術的失敗として保持）。拡張分の人手監査、Phase 2への判断、新系列と確認的testは未完了です。[実行記録](docs/experiment_logs/2026-10-07_pilot_gpu_recovery_execution.md)と[`PROJECT_STATE.md`](PROJECT_STATE.md)に現状を記録しています。
 
 ## ディレクトリ
 
@@ -114,7 +114,7 @@ goal-takeover selection-report configs/selection/integration_gate.yaml \
 タスク5・6は限定的なソース関数検査で無操作でもutilityがtrueとなるため、成功率・主解析の
 標本としては保留します。タスク11も宛先を判定しない評価器の監査が必要です。
 初回pilot標本・停止規則・評価仕様は下記のRDR-2026-10-01-03で固定しました。
-native環境での評価器対照検証は実行前gateとして残っています。
+初回pilotの全90条件についてnative環境でのmodel-free対照検証は完了しました。タスク5・6の評価器保留とタスク11の宛先監査は残っています。
 判断と検証範囲は[RDR-2026-10-01-01](docs/decisions/2026-10-01_banking_task_feasibility_review.md)を参照してください。
 
 [RDR-2026-10-01-02](docs/decisions/2026-10-01_existing_tasks_pilot_new_families_test.md)により、
@@ -127,11 +127,9 @@ native環境での評価器対照検証は実行前gateとして残っていま�
 
 [RDR-2026-10-01-03](docs/decisions/2026-10-01_banking_pilot_sample_freeze.md)により、
 初回pilotは14/0/3/4/2/12の6task・4系列、最大90条件（clean6・IPI72・対照12）を凍結しました。
-先行18件の後、厳密clean成功3/6以上・2系列以上と測定・監査基準を満たせば残りへ進みます。
+元の規則では、先行18件の後、厳密clean成功3/6以上・2系列以上と測定・監査基準を満たせば残りへ進む予定でした。実際はclean成功2/6で不合格でした。
 この標本は共有攻撃形式等で1連結成分です。全条件pilot_onlyとしてtestから除外します。
-runnerと合成adapterによるテストを実装しました。[実行・監査コマンド](docs/pilot_runner.md)と、
-標本の照合・未完了のnative検証・capture・runtime凍結は
-[Banking pilot v1](docs/banking_pilot_v1.md)を参照してください。新しいモデルrunは未実行です。
+残り72条件は[RDR-2026-10-07-01](docs/decisions/2026-10-07_banking_pilot_post_gate_exploratory_continuation.md)に基づく結果閲覧後の探索的継続として収集しました。51番の技術的失敗後は[RDR-2026-10-07-02](docs/decisions/2026-10-07_pilot_gpu_recovery.md)に基づき、旧失敗を保持して再取得しました。[Banking pilot v1](docs/banking_pilot_v1.md)に標本と実施状況、[実行・監査コマンド](docs/pilot_runner.md)に再現手順を記載しています。未監査の機械集計を最終研究結果とは扱いません。
 
 ## 実験出力
 

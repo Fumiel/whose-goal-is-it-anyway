@@ -8,6 +8,9 @@
 先行18件の結果閲覧後に決めた残り72件の探索的継続は、
 [RDR-2026-10-07-01](decisions/2026-10-07_banking_pilot_post_gate_exploratory_continuation.md)
 と[継続許可ファイル](../configs/experiments/banking_pilot_post_gate_continuation_v1.json)に記録する。
+継続中の51番GPU停止と限定的な再開は
+[RDR-2026-10-07-02](decisions/2026-10-07_pilot_gpu_recovery.md)に記録した。
+再開後、全90条件のbundle収集は完了し、拡張分の人手監査を待っている。
 
 ## 実装と検証範囲
 
@@ -181,9 +184,11 @@ goal-takeover agentdojo-pilot configs/experiments/banking_pilot_v1.yaml \
   --technical-recovery configs/experiments/banking_pilot_technical_recovery_v1.json
 ```
 
-この経路は旧拡張stageの`technical_stop`、50完了・51番の3出力後の
-`actual_capture`失敗・52～90未実行を照合し、別のimmutable recovery stageを残す。
-追加の停止は自動再開しない。元の2/6ゲート不合格とPhase 2未許可を保持する。
+実行時には旧拡張stageの`technical_stop`、50完了・51番の3出力後の
+`actual_capture`失敗・52～90未実行を照合し、別のimmutable recovery stageを残した。
+新規40条件はすべて完了し、追加の技術停止はなかった。旧51番の失敗を保持した
+総attemptは91である。[再開実行記録](experiment_logs/2026-10-07_pilot_gpu_recovery_execution.md)を参照する。
+元の2/6ゲート不合格とPhase 2未許可を保持し、拡張分の人手監査を待つ。
 
 最終reportはclean分母6、native outcomeとbaseline_failure、技術的失敗、監査欠測、
 実軌跡で接触・取得・採点できたtask系列を保持する。

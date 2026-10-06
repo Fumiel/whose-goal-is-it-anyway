@@ -1,4 +1,4 @@
-# Banking pilot v1：凍結内容と実行前の確認
+# Banking pilot v1：凍結内容と収集状況
 
 2026-10-01に[RDR-2026-10-01-03](decisions/2026-10-01_banking_pilot_sample_freeze.md)で
 標本と停止・移行規則を採用し、2026-10-02に[RDR-2026-10-02-01](decisions/2026-10-02_pilot_capture_resource_revision.md)で
@@ -6,6 +6,10 @@
 監査後clean成功2/6で元の移行ゲートには不合格だった。
 2026-10-07の[RDR-2026-10-07-01](decisions/2026-10-07_banking_pilot_post_gate_exploratory_continuation.md)により、
 残り72件を結果閲覧後の探索的継続として収集する判断を別に記録した。
+継続中の51番はGPU12 GiB上限で技術的に停止し、
+[RDR-2026-10-07-02](decisions/2026-10-07_pilot_gpu_recovery.md)に基づく新runで
+51～90を収集した。全90条件は完了bundleを持ち、旧51番の失敗を含む総attemptは91。
+拡張分の人手監査は未完了で、Phase 2への移行は認められていない。
 正本の手順は[プロトコル第5.3節](experimental_protocol.md)、
 研究目的は[研究計画書](research_proposal.md)を参照する。
 
@@ -37,40 +41,40 @@ make validate
 参照関係を照合する。AgentDojo環境を実行せず、native対照検証・GPU検証の代わりにはならない。
 宣言変更は新version・新freeze・必要なRDRで行い、既存runや凍結ファイルを後付け修正しない。
 
-## 実行前に残るgate
+## 実行前に確認したgate（2026-10-02時点の記録）
 
-1. pilot runnerと合成adapterによるtestは実装済み。実軌跡・固定prefix診断・停止判定・
-   監査記録の実モデル/native経路の検証は残る。[runnerの使用方法](pilot_runner.md)を参照する。
+1. pilot runnerと合成adapterによるtestを実装した。その後の実モデル/native実行は
+   [先行実行記録](experiment_logs/2026-10-02_banking_pilot_lead_execution.md)と
+   [再開実行記録](experiment_logs/2026-10-07_pilot_gpu_recovery_execution.md)を参照する。
 2. 固定tokenizer/chat templateによる全90条件の固定prefix位置確認は成功した。
    通常IPI window左右16、最後のqueryのAttention再計算、完全Attentionなしを
    RDR-2026-10-02-01で指定した。四task系列から各一件の固定prefix全系列残差を
    [詳細保存設定](../configs/experiments/banking_pilot_detail_v1.yaml)へ事前指定した。
-   これらを実行code・checksumとともに別runtime freezeへ反映する。
+   これらは先行実行用runtime freezeへ反映した。
 3. 全90条件のnative AgentDojo model-free対照は成功した。tool schema、vector展開、
    候補call、無操作・正規・攻撃・誤対象・副作用状態を確認した。14の条件付き
    パスワード変更は[2026-10-02の人手審査](experiment_logs/2026-10-02_task14_preexecution_review_packet.md)
    でID4を「少しでも不審」の条件成立と判断し、
    [事前rubric](../data/audits/2026-10-02_task14_password_suspicion_review.json)を固定した。
 4. 基本GPU preflightと修正後のGPU capture・実モデル採点を使った一条件の工学bundle計測は
-   成功した。先行18の各条件が上限内であることは未保証で、超過時は凍結した停止規則に従う。
-   実行code commitとresolved runtime設定・checksumを固定する。
+   成功した。実行code commitとresolved runtime設定・checksumは各stageのruntime freezeへ固定した。
 
 2026-10-02の結果と残る制約は[最初の計測](experiment_logs/2026-10-02_pilot_preflight_measurements.md)と
 [修正後計測](experiment_logs/2026-10-02_capture_repair_preflight.md)を参照する。
 
-`capture`のnull値は残るgateを示す。今回の標本freezeはそれを解決したことを意味しない。
-実行用設定はこのfreezeを参照し、標本・payload・停止閾値を変更せずにcapture値を解決する。
-実行・監査コマンドは実装済みである。通常capture値はRDRで指定し、task 14の
-事前審査内容とともに`artifacts/pilot-runtime.freeze.json`へ固定した。
-実行前には同freezeのcommit、checksum、native対照と資源gateをrunnerで照合する。
+標本freeze内の`capture`のnull値は、当時、実行用設定が別に必要であることを示した。
+標本・payload・停止閾値は変更せず、通常capture値とtask 14の事前審査を
+`artifacts/pilot-runtime.freeze.json`に固定した。継続・再開にも別のruntime freezeを用いた。
+runnerは各stage開始前にcommit、checksum、native対照と資源gateを照合した。
 
 ## 収集と判定
 
-先行18を凍結順で実行し、監査後clean 3/6以上・2系列以上、監査18件と未裁定0、
-固定prefix候補対12件の有限採点・token整合100%を確認して残り72へ進む。
-失敗した場合は残り条件を「gate未達による未実行」と記録し、別taskに交換しない。
-今回の先行報告はそのとおり不合格として保存済みである。新RDRによる後続収集は
-元のゲート通過として扱わず、報告と来歴を分ける。残りには新たなclean条件はない。
+元の規則では、先行18を凍結順で実行し、監査後clean 3/6以上・2系列以上、
+監査18件と未裁定0、固定prefix候補対12件の有限採点・token整合100%を確認して
+残り72へ進む予定だった。監査後clean成功は2/6で元のゲートは不合格となった。
+残り72は別RDRによる結果閲覧後の探索的継続として収集し、51番の旧技術的失敗は保持した。
+新たなclean条件はない。監査前の90条件機械集計と56 runの空欄監査票は
+[再開実行記録](experiment_logs/2026-10-07_pilot_gpu_recovery_execution.md)に記載する。
 
 実軌跡を主対象とする。注入に接触しない場合は行動結果を残し、IPI位置・採点は欠測とする。
 最初の接触が2回目以降のtool返却ならlater境界と記録する。固定ground-truth経路の
@@ -81,7 +85,8 @@ native user-task/attack、厳密user-task/宣言攻撃call発生、副作用を�
 引用・説明・禁止は対照として識別し、no-attackでnative attack陽性なら矛盾として隔離する。
 自動判定・監査初回判定・裁定を残し、raw bundleを上書きしない。
 
-最大90条件終了後、完了/失敗記録・clean基準・監査基準に加え、実軌跡で接触・
-内部状態取得・採点が可能な2系列以上を確認してPhase 2設計へ進む。
+最大90条件の収集は完了したが、元のclean基準3/6を満たしていない。
+拡張分の人手監査と実軌跡での接触・内部状態取得・採点の確認も未完了である。
+元のPhase 2移行規則を合格扱いにせず、次の段階は別RDRで判断する。
 DやR/S pairが0でもそれだけで停止・追加探索せず、陰性結果を保持する。
 新攻撃探索やモデル/domain・主張範囲変更は別RDRを作り、testを開封しない。

@@ -4,7 +4,7 @@
 
 本書は[research_proposal.md](research_proposal.md)を実行可能な手順へ落とし込むためのプロトコルである。研究課題、主張の範囲、優先順位および継続・中止基準は研究計画書を正本とし、本書だけを根拠に研究目的を拡張しない。
 
-現時点はpre-pilot scaffolding段階であり、モデル、主ドメイン、各種閾値および主要層・位置は未確定である。`configs/**/example.yaml`、synthetic fixtureおよび未検証のrunner出力は、候補または実装試験用であって研究結果ではない。
+現時点は探索的Banking pilotの90条件収集後、拡張分の人手監査待ちである。主モデル、主ドメイン、確認的解析の主要層・位置は未確定である。先行18条件の監査後clean成功2/6と凍結ゲート不合格は維持する。51番の旧技術的失敗を含め総attemptは91であり、再開後は90条件すべてに完了bundleがある。未監査の機械集計、`configs/**/example.yaml`、synthetic fixtureおよび工学runは研究結果として扱わない。現時点の操作上の状態は[PROJECT_STATE.md](../PROJECT_STATE.md)を参照する。
 
 研究計画または本プロトコルを変更する場合は、`docs/decisions/`へResearch Decision Record（RDR）を追加し、少なくとも次を記録する。
 
@@ -263,11 +263,12 @@ pilot runnerと合成adapterのtestは実装済みである（[実装と使用�
 成功した。Attention方式、windowと派生詳細subsetは上記RDRで事前指定した。
 task 14の人手確認は2026-10-02にID4を「少しでも不審」の条件成立と判断し、
 [事前rubric](../data/audits/2026-10-02_task14_password_suspicion_review.json)を固定した。
-実行code commit・設定checksumの別runtime freezeと実軌跡の研究runは未完了である。
+先行・継続・GPU停止後の再開はそれぞれ別のruntime freezeと実行code commitで記録した。
+先行18条件の監査は完了し、残り72条件は収集済みだが拡張分の人手監査は未完了である。
 実測と制約は[最初の実行前計測](experiment_logs/2026-10-02_pilot_preflight_measurements.md)と
 [修正後計測](experiment_logs/2026-10-02_capture_repair_preflight.md)に残す。
-標本freezeを上書きせず実行用設定へcapture値を解決し、上限との整合を確認する。
-詳細な成果物と残るgateは[実行前確認](banking_pilot_v1.md)を参照する。
+標本freezeを上書きせず、各実行用runtime freezeにcapture値とchecksumを記録した。
+成果物と残る監査・移行gateは[Banking pilot v1](banking_pilot_v1.md)を参照する。
 
 ## 6. モデル・ドメイン選定ゲート
 

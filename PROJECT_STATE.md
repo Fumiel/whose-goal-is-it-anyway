@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `exploratory_pilot_post_lead`
+- Phase: `exploratory_pilot_collected_awaiting_expansion_audit`
 - Primary model: not selected
 - Primary domain: not selected
 - Provisional exploratory pilot: Qwen3-8B int8 on AgentDojo Banking v1.2.2;
@@ -96,7 +96,7 @@ After the exploratory pilot collection:
    `configs/selection/integration_gate.freeze.json` records the corrected
    runner commit used for the completed rerun. The audit and report are complete;
    keep their failures and non-blind audit status visible.
-2. Verify `configs/experiments/banking_pilot_v1.freeze.json`. Sample, stop rules,
+2. Preserve `configs/experiments/banking_pilot_v1.freeze.json`. Sample, stop rules,
    audit specification and pilot exclusions are frozen. Native model-free controls,
    fixed-prefix token-position checks and basic GPU preflight passed on 2026-10-02.
    Attention capture and detailed-save resource choices are documented by
