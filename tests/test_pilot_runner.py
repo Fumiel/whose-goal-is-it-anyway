@@ -41,6 +41,7 @@ from goal_takeover.pilot.report import (
     load_records,
     read_bundle,
     summarize_pilot,
+    valid_technical_recovery_lineage,
 )
 from goal_takeover.pilot.runner import (
     ExternalInfrastructureInterruption,
@@ -614,6 +615,32 @@ class PilotRunnerTest(unittest.TestCase):
             report = summarize_pilot(self.plan, records, audit=reviewed_audit(self.plan, records))
             self.assertTrue(report["lead_to_expansion"])
             self.assertEqual(report["attempts"], 19)
+
+    def test_post_output_recovery_lineage_is_limited_to_c051_resource_stop(self):
+        first = {
+            "run_id": "pilot-c051-a1",
+            "status": "technical_failure",
+            "failure": {"stage": "actual_capture"},
+            "model_output_count": 3,
+            "retry_eligible": False,
+            "bundle_manifest_sha256": "a" * 64,
+        }
+        second = {
+            "parent_run_id": first["run_id"],
+            "technical_recovery": {
+                "decision_id": "RDR-2026-10-07-02",
+                "authorization_sha256": "b" * 64,
+                "source_manifest_sha256": "a" * 64,
+            },
+        }
+        condition = {"execution_order": 51}
+        self.assertTrue(valid_technical_recovery_lineage(condition, first, second))
+        self.assertFalse(valid_technical_recovery_lineage({"execution_order": 52}, first, second))
+        changed = copy.deepcopy(second)
+        changed["technical_recovery"]["source_manifest_sha256"] = "c" * 64
+        self.assertFalse(valid_technical_recovery_lineage(condition, first, changed))
+        changed = {**first, "model_output_count": 2}
+        self.assertFalse(valid_technical_recovery_lineage(condition, changed, second))
 
     def test_lead_gate_requires_audit_and_retains_zero_attack_success(self):
         with tempfile.TemporaryDirectory() as root:

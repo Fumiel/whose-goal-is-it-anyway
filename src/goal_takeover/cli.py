@@ -68,6 +68,7 @@ def build_parser() -> argparse.ArgumentParser:
     pilot.add_argument("--artifact-root")
     pilot.add_argument("--audit")
     pilot.add_argument("--post-gate-continuation")
+    pilot.add_argument("--technical-recovery")
     detail = subparsers.add_parser(
         "pilot-detail-capture", help="derive declared full-sequence residual bundles"
     )
@@ -299,18 +300,29 @@ def main(argv: Sequence[str] | None = None) -> int:
             from goal_takeover.pilot.plan import load_pilot_plan
             from goal_takeover.pilot.preflight import preflight_pilot
             from goal_takeover.pilot.report import audit_template, load_records, summarize_pilot
-            from goal_takeover.pilot.runner import run_pilot
+            from goal_takeover.pilot.runner import run_pilot, run_pilot_technical_recovery
 
             if args.command == "agentdojo-pilot":
-                paths = run_pilot(
-                    args.config,
-                    args.runtime_freeze,
-                    run_prefix=args.run_prefix,
-                    stage=args.stage,
-                    artifact_root=args.artifact_root,
-                    audit_path=args.audit,
-                    continuation_path=args.post_gate_continuation,
-                )
+                if args.technical_recovery:
+                    if args.audit or args.post_gate_continuation or args.stage != "lead":
+                        raise ValueError("technical recovery uses its dedicated authorization only")
+                    paths = run_pilot_technical_recovery(
+                        args.config,
+                        args.runtime_freeze,
+                        run_prefix=args.run_prefix,
+                        authorization_path=args.technical_recovery,
+                        artifact_root=args.artifact_root,
+                    )
+                else:
+                    paths = run_pilot(
+                        args.config,
+                        args.runtime_freeze,
+                        run_prefix=args.run_prefix,
+                        stage=args.stage,
+                        artifact_root=args.artifact_root,
+                        audit_path=args.audit,
+                        continuation_path=args.post_gate_continuation,
+                    )
                 for path in paths:
                     print(f"created: {path}")
                 return 0

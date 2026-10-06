@@ -27,6 +27,9 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   51 when actual capture exceeded the frozen 12 GiB GPU ceiling. Across all 90
   conditions, 50 are completed, one is a technical failure, and 39 are not run.
   See [technical stop log](docs/experiment_logs/2026-10-07_post_gate_continuation_technical_stop.md).
+  RDR-2026-10-07-02は保存済み51番prefixでのGPU工学計測を根拠に、12 GiB上限を
+  維持したCUDAキャッシュ解放と、旧失敗を保持する51～90の専用再開経路を決定した。
+  新codeの検証・commitとruntime freeze作成後に実行する。新しい結果はまだない。
 - Pilot runner: implemented with separate actual-trajectory/fixed-prefix paths,
   immutable partial failures, native/strict labels, checksummed audits and staged
   gates. Synthetic orchestration tests cover all 90 conditions. On 2026-10-02,
@@ -111,9 +114,10 @@ Before the post-gate exploratory continuation:
    [RDR-2026-10-01-01](docs/decisions/2026-10-01_banking_task_feasibility_review.md)
    and [RDR-2026-10-01-02](docs/decisions/2026-10-01_existing_tasks_pilot_new_families_test.md).
 5. Preserve the 2026-10-06 lead report's failed gate and all six clean labels.
-   The post-gate continuation was stopped by the frozen GPU ceiling. No automatic
-   retry or stage resume is authorized. A further RDR and new code/runtime freeze
-   are needed to address condition 51 and the 39 unrun conditions. Completion
+   The post-gate continuation was stopped by the frozen GPU ceiling. Under
+   RDR-2026-10-07-02 only, condition 51 may be collected as a new a2 attempt,
+   followed by the 39 unrun conditions, after code verification and new runtime
+   freeze. Old bundles must remain immutable. Completion
    would remain exploratory and would not automatically authorize Phase 2 or test.
 
 A pre-gate, non-selection engineering shakedown is allowed only under

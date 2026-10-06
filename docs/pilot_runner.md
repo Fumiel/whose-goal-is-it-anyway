@@ -166,6 +166,25 @@ parse不成立、未知tool、tool error、最大step到達はモデルの実験
 既存stageの自動再開や別prefixによる同条件の都合のよい再生成は提供しない。
 停止後の変更・再収集はプロトコルに従ってRDRと新freezeで判断する。
 
+51番のGPU上限停止については
+[RDR-2026-10-07-02](decisions/2026-10-07_pilot_gpu_recovery.md)により、
+旧bundleを保持した`c051-a2`と52～90の収集を一度だけ認める。
+`configs/experiments/banking_pilot_technical_recovery_v1.json`は旧manifestと
+RDRのchecksum、および凍結した40条件の順序を固定する。修正codeをcommitした後、
+旧runtimeを保持し、新commitと全対象checksumを記した別runtime freeze
+`artifacts/pilot-runtime-recovery.freeze.json`を作る。実行経路は以下のみとする。
+
+```bash
+goal-takeover agentdojo-pilot configs/experiments/banking_pilot_v1.yaml \
+  --runtime-freeze artifacts/pilot-runtime-recovery.freeze.json \
+  --run-prefix banking-pilot-001 \
+  --technical-recovery configs/experiments/banking_pilot_technical_recovery_v1.json
+```
+
+この経路は旧拡張stageの`technical_stop`、50完了・51番の3出力後の
+`actual_capture`失敗・52～90未実行を照合し、別のimmutable recovery stageを残す。
+追加の停止は自動再開しない。元の2/6ゲート不合格とPhase 2未許可を保持する。
+
 最終reportはclean分母6、native outcomeとbaseline_failure、技術的失敗、監査欠測、
 実軌跡で接触・取得・採点できたtask系列を保持する。
 Phase 2設計への移行は主モデル採用や確認的testの実行許可を意味しない。

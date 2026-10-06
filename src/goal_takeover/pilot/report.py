@@ -85,6 +85,25 @@ def read_bundle(path: Path) -> dict[str, Any]:
     return record
 
 
+def valid_technical_recovery_lineage(
+    condition: dict[str, Any], first: dict[str, Any], second: dict[str, Any]
+) -> bool:
+    """Only the recorded c051 resource stop has a post-output replay exception."""
+    recovery = second.get("technical_recovery")
+    return bool(
+        condition["execution_order"] == 51
+        and second["parent_run_id"] == first["run_id"]
+        and first["status"] == "technical_failure"
+        and (first.get("failure") or {}).get("stage") == "actual_capture"
+        and first.get("model_output_count") == 3
+        and not first.get("retry_eligible")
+        and isinstance(recovery, dict)
+        and recovery.get("decision_id") == "RDR-2026-10-07-02"
+        and len(recovery.get("authorization_sha256", "")) == 64
+        and recovery.get("source_manifest_sha256") == first["bundle_manifest_sha256"]
+    )
+
+
 def load_records(
     plan: PilotPlan, artifact_root: str | Path, run_prefix: str
 ) -> list[dict[str, Any]]:
@@ -102,11 +121,17 @@ def load_records(
                     raise ConfigError("run does not belong to this frozen condition")
                 attempts.append(record)
         if len(attempts) == 2:
-            if (
-                attempts[1]["parent_run_id"] != attempts[0]["run_id"]
-                or not attempts[0].get("retry_eligible")
-                or attempts[0].get("model_output_count", 0) != 0
-                or attempts[0]["runtime_freeze_sha256"] != attempts[1]["runtime_freeze_sha256"]
+            ordinary_retry = (
+                attempts[0].get("retry_eligible")
+                and attempts[0].get("model_output_count", 0) == 0
+                and attempts[0]["runtime_freeze_sha256"] == attempts[1]["runtime_freeze_sha256"]
+                and attempts[1].get("technical_recovery") is None
+            )
+            authorized_recovery = valid_technical_recovery_lineage(
+                condition, attempts[0], attempts[1]
+            )
+            if attempts[1]["parent_run_id"] != attempts[0]["run_id"] or not (
+                ordinary_retry or authorized_recovery
             ):
                 raise ConfigError("invalid pilot retry lineage")
         elif attempts and attempts[0]["parent_run_id"] is not None:
