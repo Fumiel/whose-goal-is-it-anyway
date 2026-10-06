@@ -83,6 +83,7 @@ def execute_condition(
     run_id: str,
     runtime_sha256: str,
     parent_run_id: str | None = None,
+    technical_recovery: dict[str, str] | None = None,
 ) -> tuple[Path, dict[str, Any]]:
     """Persist partial traces on failure; model errors are never regenerated."""
     started = time.perf_counter()
@@ -447,6 +448,7 @@ def execute_condition(
             "run_id": run_id,
             "condition_id": condition["condition_id"],
             "parent_run_id": parent_run_id,
+            "technical_recovery": technical_recovery,
             "sample_freeze_sha256": plan.sample_freeze_sha256,
             "runtime_freeze_sha256": runtime_sha256,
             "git_commit": git_commit,
@@ -512,6 +514,65 @@ def execute_condition(
     return path, record
 
 
+def _validate_post_gate_continuation(
+    plan: PilotPlan,
+    artifact_root: str | Path,
+    run_prefix: str,
+    report: dict[str, Any],
+    audit_path: str | Path | None,
+    authorization_path: str | Path,
+) -> dict[str, Any]:
+    """Permit only the documented failed-clean-gate continuation of this pilot."""
+    authorization = json.loads(Path(authorization_path).read_text())
+    if (
+        authorization.get("schema_version") != 1
+        or authorization.get("decision_id") != "RDR-2026-10-07-01"
+        or authorization.get("run_prefix") != run_prefix
+        or authorization.get("sample_freeze_sha256") != plan.sample_freeze_sha256
+    ):
+        raise ConfigError("post-gate continuation authorization does not match this pilot")
+    expected_conditions = [c for c in plan.conditions if c["stage"] == "expansion"]
+    if len(expected_conditions) != 72 or authorization.get("condition_ids") != [
+        c["condition_id"] for c in expected_conditions
+    ]:
+        raise ConfigError("post-gate continuation must preserve all 72 frozen conditions")
+    if (
+        report["lead_to_expansion"]
+        or report["expansion_status"] != "gate_failed"
+        or report["clean_success_count"] != 2
+        or report["clean_denominator"] != 6
+        or report["recorded_conditions"] != 18
+        or report["technical_failures"]
+        or report["unresolved_disagreements"]
+        or not all(value for key, value in report["lead_checks"].items() if key != "clean_success")
+    ):
+        raise ConfigError("post-gate continuation requires the audited 2/6 clean-only gate failure")
+    repo = plan.config_path.parents[2]
+    source_files = {
+        "decision": repo
+        / "docs/decisions/2026-10-07_banking_pilot_post_gate_exploratory_continuation.md",
+        "lead_report": repo / "artifacts/pilot-lead-report-2026-10-06.json",
+        "lead_audit": Path(audit_path).resolve() if audit_path is not None else None,
+        "lead_stage_manifest": Path(artifact_root)
+        / "runs"
+        / f"{run_prefix}-lead-status"
+        / "manifest.json",
+        "lead_runtime_freeze": repo / "artifacts/pilot-runtime.freeze.json",
+    }
+    digests = authorization.get("source_sha256")
+    if not isinstance(digests, dict) or set(digests) != set(source_files):
+        raise ConfigError("post-gate continuation source checksums are incomplete")
+    for name, path in source_files.items():
+        if path is None or not path.is_file() or sha256_file(path) != digests[name]:
+            raise ConfigError(f"post-gate continuation source mismatch: {name}")
+    frozen_report = json.loads(source_files["lead_report"].read_text())
+    if report != frozen_report:
+        raise ConfigError("post-gate continuation lead report differs from immutable evidence")
+    if authorization.get("lead_runtime_freeze_sha256") != digests["lead_runtime_freeze"]:
+        raise ConfigError("post-gate continuation runtime lineage mismatch")
+    return authorization
+
+
 def run_pilot(
     config_path: str | Path,
     runtime_path: str | Path,
@@ -520,6 +581,7 @@ def run_pilot(
     stage: str = "lead",
     artifact_root: str | Path | None = None,
     audit_path: str | Path | None = None,
+    continuation_path: str | Path | None = None,
 ) -> tuple[Path, ...]:
     """Validate every gate before weights; execute only the requested frozen stage."""
     plan = load_pilot_plan(config_path)
@@ -532,13 +594,23 @@ def run_pilot(
     report = summarize_pilot(plan, existing, audit=audit)
     if stage not in {"lead", "expansion"}:
         raise ConfigError("pilot stage must be lead or expansion")
-    if stage == "expansion" and not report["lead_to_expansion"]:
+    continuation = None
+    if continuation_path is not None:
+        if stage != "expansion":
+            raise ConfigError("post-gate continuation applies only to expansion")
+        continuation = _validate_post_gate_continuation(
+            plan, root, run_prefix, report, audit_path, continuation_path
+        )
+    if stage == "expansion" and not report["lead_to_expansion"] and continuation is None:
         raise ConfigError("expansion blocked by frozen lead/audit gate")
     selected = [c for c in plan.conditions if c["stage"] == stage]
     if any(r["condition_id"] in {c["condition_id"] for c in selected} for r in existing):
         raise ConfigError("stage already has attempts; never rerun existing conditions")
     runtime_sha256 = sha256_file(Path(runtime_path))
-    if any(r["runtime_freeze_sha256"] != runtime_sha256 for r in existing):
+    preceding_runtime_sha256 = (
+        continuation["lead_runtime_freeze_sha256"] if continuation else runtime_sha256
+    )
+    if any(r["runtime_freeze_sha256"] != preceding_runtime_sha256 for r in existing):
         raise ConfigError("runtime freeze differs from preceding stage")
     previous_seconds = 0.0
     if stage == "expansion":
@@ -556,7 +628,7 @@ def run_pilot(
             raise ConfigError("preceding stage lacks required provenance")
         previous_status = json.loads((previous_path / "stage.json").read_text())
         if (
-            previous_status["runtime_freeze_sha256"] != runtime_sha256
+            previous_status["runtime_freeze_sha256"] != preceding_runtime_sha256
             or previous_status["sample_freeze_sha256"] != plan.sample_freeze_sha256
             or previous_status["stop"] is not None
         ):
@@ -650,6 +722,13 @@ def run_pilot(
                 "stop": stop,
                 "status": "technical_stop" if stop else "awaiting_human_audit",
                 "audit_sha256": sha256_file(Path(audit_path)) if audit_path else None,
+                "post_gate_continuation": {
+                    "decision_id": continuation["decision_id"],
+                    "authorization_sha256": sha256_file(Path(continuation_path)),
+                    "original_lead_gate_passed": False,
+                }
+                if continuation
+                else None,
                 "run_paths": [str(p.relative_to(Path(root))) for p in paths],
                 "conditions": [
                     {
@@ -669,4 +748,202 @@ def run_pilot(
         paths.append(writer.commit())
     if stop is not None:
         raise RuntimeError(f"pilot stopped; immutable status at {paths[-1]}: {stop['message']}")
+    return tuple(paths)
+
+
+def run_pilot_technical_recovery(
+    config_path: str | Path,
+    runtime_path: str | Path,
+    *,
+    run_prefix: str,
+    authorization_path: str | Path,
+    artifact_root: str | Path | None = None,
+) -> tuple[Path, ...]:
+    """Resume only the documented c051 resource stop, preserving its failed attempt."""
+    plan = load_pilot_plan(config_path)
+    runtime = load_runtime_freeze(plan, runtime_path)
+    root = Path(artifact_root or plan.config["resources"]["artifact_root"])
+    status_id = f"{run_prefix}-recovery-status"
+    ImmutableRunWriter(root, status_id)
+    if (root / "runs" / status_id).exists():
+        raise ConfigError("technical recovery stage already exists")
+    authorization_path = Path(authorization_path)
+    authorization = json.loads(authorization_path.read_text())
+    decision_path = plan.config_path.parents[2] / "docs/decisions/2026-10-07_pilot_gpu_recovery.md"
+    old_status = root / "runs" / f"{run_prefix}-expansion-status"
+    lead_status = root / "runs" / f"{run_prefix}-lead-status"
+    failed_path = root / "runs" / f"{run_prefix}-c051-a1"
+    source_paths = {
+        "decision": decision_path,
+        "expansion_stage_manifest": old_status / "manifest.json",
+        "failed_attempt_manifest": failed_path / "manifest.json",
+    }
+    if (
+        authorization.get("schema_version") != 1
+        or authorization.get("decision_id") != "RDR-2026-10-07-02"
+        or authorization.get("run_prefix") != run_prefix
+        or authorization.get("sample_freeze_sha256") != plan.sample_freeze_sha256
+        or authorization.get("source_sha256")
+        != {key: sha256_file(path) for key, path in source_paths.items()}
+    ):
+        raise ConfigError("technical recovery authorization or source checksum mismatch")
+    selected = [c for c in plan.conditions if c["execution_order"] >= 51]
+    if authorization.get("condition_ids") != [c["condition_id"] for c in selected]:
+        raise ConfigError("technical recovery must preserve frozen condition order 51-90")
+    old_stage = json.loads((old_status / "stage.json").read_text())
+    for stage_path in (lead_status, old_status):
+        manifest = json.loads((stage_path / "manifest.json").read_text())
+        if manifest.get("run_id") != stage_path.name:
+            raise ConfigError("source stage manifest run ID mismatch")
+        for artifact in manifest["artifacts"]:
+            relative = Path(artifact["relative_path"])
+            if (
+                relative.is_absolute()
+                or ".." in relative.parts
+                or sha256_file(stage_path / relative) != artifact["sha256"]
+            ):
+                raise ConfigError("source stage checksum mismatch")
+    lead_stage = json.loads((lead_status / "stage.json").read_text())
+    if (
+        old_stage.get("status") != "technical_stop"
+        or old_stage.get("post_gate_continuation", {}).get("decision_id") != "RDR-2026-10-07-01"
+        or (old_stage.get("stop") or {}).get("stage") != "actual_capture"
+        or old_stage.get("sample_freeze_sha256") != plan.sample_freeze_sha256
+        or lead_stage.get("sample_freeze_sha256") != plan.sample_freeze_sha256
+        or lead_stage.get("stop") is not None
+    ):
+        raise ConfigError("source stage is not the documented c051 resource stop")
+    records = load_records(plan, root, run_prefix)
+    by_order = {
+        c["execution_order"]: next(
+            (r for r in records if r["condition_id"] == c["condition_id"]), None
+        )
+        for c in plan.conditions
+    }
+    if (
+        any(by_order[i] is None or by_order[i]["status"] != "completed" for i in range(1, 51))
+        or by_order[51] is None
+        or by_order[51]["run_id"] != f"{run_prefix}-c051-a1"
+        or by_order[51]["status"] != "technical_failure"
+        or (by_order[51].get("failure") or {}).get("stage") != "actual_capture"
+        or by_order[51].get("model_output_count") != 3
+        or any(by_order[i] is not None for i in range(52, 91))
+    ):
+        raise ConfigError("technical recovery requires exactly 50 completions and c051 failure")
+    for i in range(19, 52):
+        if by_order[i]["runtime_freeze_sha256"] != old_stage["runtime_freeze_sha256"]:
+            raise ConfigError("source expansion runtime lineage mismatch")
+    new_runtime_sha256 = sha256_file(Path(runtime_path))
+    if new_runtime_sha256 == old_stage["runtime_freeze_sha256"]:
+        raise ConfigError("technical recovery requires a new runtime freeze")
+    for condition in selected:
+        attempt = 2 if condition["execution_order"] == 51 else 1
+        if (root / "runs" / condition_run_id(run_prefix, condition, attempt)).exists():
+            raise ConfigError("technical recovery attempt already exists")
+    recovery = {
+        "decision_id": "RDR-2026-10-07-02",
+        "authorization_sha256": sha256_file(authorization_path),
+        "source_manifest_sha256": authorization["source_sha256"]["failed_attempt_manifest"],
+    }
+    paths: list[Path] = []
+    stop = None
+    preflight = None
+    batch_started = time.perf_counter()
+    try:
+        preflight = preflight_pilot(plan)
+        from goal_takeover.pilot.services import HuggingFacePilotServices
+
+        services = HuggingFacePilotServices(plan, runtime)
+        for condition in selected:
+            resources = plan.config["resources"]
+            storage = sum(
+                p.stat().st_size
+                for p in (root / "runs").glob(f"{run_prefix}-*/**/*")
+                if p.is_file()
+            )
+            if (
+                len(records) + len(paths) >= resources["maximum_total_attempts"]
+                or storage + resources["maximum_storage_gib_per_condition"] * 2**30
+                > resources["maximum_total_storage_gib"] * 2**30
+                or lead_stage["elapsed_seconds"]
+                + old_stage["elapsed_seconds"]
+                + time.perf_counter()
+                - batch_started
+                >= resources["maximum_total_wall_seconds"]
+            ):
+                raise RuntimeError("oom_or_resource_limit: batch resource ceiling")
+            is_retry = condition["execution_order"] == 51
+            path, record = execute_condition(
+                plan,
+                runtime,
+                services,
+                condition=condition,
+                artifact_root=root,
+                run_id=condition_run_id(run_prefix, condition, 2 if is_retry else 1),
+                runtime_sha256=new_runtime_sha256,
+                parent_run_id=by_order[51]["run_id"] if is_retry else None,
+                technical_recovery=recovery if is_retry else None,
+            )
+            paths.append(path)
+            if record["status"] == "technical_failure":
+                stop = record["failure"]
+                break
+    except Exception as exc:
+        stop = {
+            "kind": "technical_failure",
+            "message": str(exc),
+            "exception_type": type(exc).__name__,
+        }
+    with ImmutableRunWriter(root, status_id) as writer:
+        writer.write_json(
+            "resolved_config.json",
+            {
+                "sample": plan.config,
+                "runtime_freeze": runtime,
+                "model_config": plan.model_config,
+                "domain_config": plan.domain_config,
+            },
+            kind="resolved_config",
+        )
+        if preflight is not None:
+            writer.write_json("native_preflight.json", preflight, kind="native_preflight")
+        writer.write_json(
+            "stage.json",
+            {
+                "schema_version": 1,
+                "stage": "technical_recovery",
+                "sample_freeze_sha256": plan.sample_freeze_sha256,
+                "runtime_freeze_sha256": new_runtime_sha256,
+                "git_commit": _git_metadata()[0],
+                "elapsed_seconds": time.perf_counter() - batch_started,
+                "stop": stop,
+                "status": "technical_stop" if stop else "awaiting_human_audit",
+                "authorization_sha256": recovery["authorization_sha256"],
+                "source_stage_manifest_sha256": authorization["source_sha256"][
+                    "expansion_stage_manifest"
+                ],
+                "run_paths": [str(path.relative_to(root)) for path in paths],
+                "conditions": [
+                    {
+                        "condition_id": c["condition_id"],
+                        "status": "recorded"
+                        if (
+                            root
+                            / "runs"
+                            / condition_run_id(
+                                run_prefix, c, 2 if c["execution_order"] == 51 else 1
+                            )
+                        ).exists()
+                        else "not_run",
+                    }
+                    for c in selected
+                ],
+            },
+            kind="pilot_stage_status",
+        )
+        paths.append(writer.commit())
+    if stop is not None:
+        raise RuntimeError(
+            f"pilot recovery stopped; immutable status at {paths[-1]}: {stop['message']}"
+        )
     return tuple(paths)

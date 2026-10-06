@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `pilot_lead_awaiting_human_audit`
+- Phase: `exploratory_pilot_post_lead`
 - Primary model: not selected
 - Primary domain: not selected
 - Provisional exploratory pilot: Qwen3-8B int8 on AgentDojo Banking v1.2.2;
@@ -15,8 +15,24 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   four task families, maximum 90 conditions (6 clean / 72 IPI / 12 controls),
   with an 18-condition lead stage. The declared relationship graph has one
   connected component; all conditions are pilot_only and test-excluded.
-  See [pilot preparation](docs/banking_pilot_v1.md). The 18-condition lead stage
-  completed under `banking-pilot-001`; the remaining 72 conditions have not begun.
+  See [pilot preparation](docs/banking_pilot_v1.md). The lead 18 conditions ran
+  on 2026-10-06. Audited strict clean success was 2/6, so the frozen lead gate
+  failed; 18 audits and 12 fixed-prefix diagnostics were complete, with no
+  technical failures or unresolved disagreements. The immutable lead report is
+  `artifacts/pilot-lead-report-2026-10-06.json`. RDR-2026-10-07-01 authorizes
+  the remaining 72 as a post-result exploratory continuation, without changing
+  the failed gate or task 12's baseline-failure label. This is 60 IPI and 12
+  lexical controls, with no additional clean conditions. Continuation ran under
+  commit `b7df23f41b47b0eae529ebe261d46d41ab29701c` and stopped at condition
+  51 when actual capture exceeded the frozen 12 GiB GPU ceiling. At that stop,
+  50 conditions were complete, one was a technical failure, and 39 were not run.
+  See [technical stop log](docs/experiment_logs/2026-10-07_post_gate_continuation_technical_stop.md).
+  RDR-2026-10-07-02は保存済み51番prefixでのGPU工学計測を根拠に、12 GiB上限を
+  維持したCUDAキャッシュ解放と、旧失敗を保持する51～90の専用再開経路を決定した。
+  code commit `9fa8985ace6642e466f334524054cad61656675b`と新runtime freezeで
+  51番の新試行と52～90を完了した。全90条件はcompleted、総attemptは91。
+  recovery stageは`awaiting_human_audit`、追加の技術停止はない。
+  [再開実行記録](docs/experiment_logs/2026-10-07_pilot_gpu_recovery_execution.md)を参照。
 - Pilot runner: implemented with separate actual-trajectory/fixed-prefix paths,
   immutable partial failures, native/strict labels, checksummed audits and staged
   gates. Synthetic orchestration tests cover all 90 conditions. On 2026-10-02,
@@ -29,12 +45,14 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   Engineering GPU checks of the revised path passed. Task 14's pre-pilot
   suspicion review was approved on 2026-10-02 for transaction ID 4, with a
   strict rubric fixed in `data/audits/2026-10-02_task14_password_suspicion_review.json`.
-  The pilot runtime freeze is recorded separately under
-  `artifacts/pilot-runtime.freeze.json`. All 18 lead bundles are complete and
-  the stage awaits human audit. The blank 18-record audit form and raw-trace
-  guide are under `artifacts/`; see the [lead execution log](docs/experiment_logs/2026-10-02_banking_pilot_lead_execution.md).
-  One of four planned derived full-sequence captures completed; the second
-  exceeded the frozen 12 GiB GPU ceiling, and the remaining two were not tried.
+  The lead-stage runtime freeze is recorded separately under
+  `artifacts/pilot-runtime.freeze.json`; the continuation and recovery each used
+  a separate runtime freeze tied to their execution code.
+  The [lead execution log](docs/experiment_logs/2026-10-02_banking_pilot_lead_execution.md)
+  and [small manifest](data/manifests/2026-10-02_banking_pilot_lead.json) retain
+  the pre-audit handoff and checksum history. Of four planned derived
+  full-sequence captures, one completed and the second stopped at 12 GiB;
+  the remaining two were not attempted.
   See [initial measurements](docs/experiment_logs/2026-10-02_pilot_preflight_measurements.md)
   and [capture repair](docs/experiment_logs/2026-10-02_capture_repair_preflight.md).
 - Confirmatory test set: not created or inspected
@@ -72,7 +90,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current gate
 
-Before expanding the pilot beyond the completed lead stage:
+After the exploratory pilot collection:
 
 1. The seven-condition Banking selection gate remains fixed. The current
    `configs/selection/integration_gate.freeze.json` records the corrected
@@ -103,6 +121,12 @@ Before expanding the pilot beyond the completed lead stage:
    the pilot starts. See
    [RDR-2026-10-01-01](docs/decisions/2026-10-01_banking_task_feasibility_review.md)
    and [RDR-2026-10-01-02](docs/decisions/2026-10-01_existing_tasks_pilot_new_families_test.md).
+5. Preserve the 2026-10-06 lead report's failed gate and all six clean labels.
+   The post-gate continuation stopped at condition 51 under the frozen GPU ceiling;
+   RDR-2026-10-07-02 authorized the separate recovery stage, which completed
+   condition 51 as a2 and the 39 previously unrun conditions. Old bundles remain
+   immutable. Expansion human audit is outstanding. The 90-condition collection
+   remains exploratory and does not automatically authorize Phase 2 or test.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -135,16 +159,14 @@ reuse of engineering bundles as research data.
   incomplete for audit and must not be used for model adoption. The complete
   rerun and human review did not produce a passing candidate.
 - No fitted action, argument, source-role, authority, or task-drift probe
-- The pilot lead has 18 completed immutable raw bundles and a blank human audit
-  form. No audited transition decision exists. Derived full-sequence capture
-  stopped at the second of four declared conditions on the GPU ceiling.
-- Pilot sample, stop rules and runtime are frozen; runner implementation, synthetic
-  tests, native controls and fixed-prefix token checks are complete.
-  Attention/resource repair passed targeted engineering checks. Task 14's human
-  suspicion review is approved. The lead actual-trajectory bundles need human
-  audit and a transition report; derived detail capture needs a separate
-  resource decision. Verified supply of unseen Banking clusters remains
-  outstanding. Tasks 5/6 remain on hold, and task 11 requires recipient audit.
+- Pilot lead stage completed with 2/6 strict clean success and a failed frozen
+  continuation gate. The authorized post-gate exploratory continuation recorded
+  32 new completions and stopped at condition 51 due to the 12 GiB GPU ceiling;
+  the separately authorized recovery collected condition 51 as a2 and the 39
+  previously unrun conditions. All 90 conditions have complete bundles; expansion
+  audit and verified supply of unseen Banking clusters remain outstanding.
+  Tasks 5/6 remain on
+  hold, and task 11 requires recipient audit.
 - New development/test families, their AgentDojo compatibility and evaluator
   validation, and their final connected-component split are not implemented.
 - No confirmatory data and no research result

@@ -25,6 +25,8 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-10-07 | [RDR-2026-10-07-02](2026-10-07_pilot_gpu_recovery.md) | accepted | 51番の12 GiB資源停止に対しキャッシュ解放を検証し、旧失敗を保持した新runで51～90の探索的収集を再開する |
+| 2026-10-07 | [RDR-2026-10-07-01](2026-10-07_banking_pilot_post_gate_exploratory_continuation.md) | accepted | 先行clean 2/6・ゲート不合格を維持し、残り72条件を結果閲覧後の探索的継続として収集する部分改訂 |
 | 2026-10-02 | [RDR-2026-10-02-01](2026-10-02_pilot_capture_resource_revision.md) | accepted | pilotの通常Attentionをlast-query集約へ変更し、固定prefix診断を採点専用にする。全sequence詳細保存を事前指定の別immutable派生取得へ移す部分改訂 |
 | 2026-10-01 | [RDR-2026-10-01-03](2026-10-01_banking_pilot_sample_freeze.md) | accepted | 初回pilotの6task・4系列・90条件と停止規則を凍結。実行前gateは未完了 |
 | 2026-10-01 | [RDR-2026-10-01-02](2026-10-01_existing_tasks_pilot_new_families_test.md) | accepted | 既存系列を予備実験へ、新系列を開発・確認用へ配分。shakedown系列の新規pilot実行を許す部分改訂 |

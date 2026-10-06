@@ -41,9 +41,11 @@ from goal_takeover.pilot.report import (
     load_records,
     read_bundle,
     summarize_pilot,
+    valid_technical_recovery_lineage,
 )
 from goal_takeover.pilot.runner import (
     ExternalInfrastructureInterruption,
+    _validate_post_gate_continuation,
     condition_deadline,
     execute_condition,
     run_pilot,
@@ -614,6 +616,32 @@ class PilotRunnerTest(unittest.TestCase):
             self.assertTrue(report["lead_to_expansion"])
             self.assertEqual(report["attempts"], 19)
 
+    def test_post_output_recovery_lineage_is_limited_to_c051_resource_stop(self):
+        first = {
+            "run_id": "pilot-c051-a1",
+            "status": "technical_failure",
+            "failure": {"stage": "actual_capture"},
+            "model_output_count": 3,
+            "retry_eligible": False,
+            "bundle_manifest_sha256": "a" * 64,
+        }
+        second = {
+            "parent_run_id": first["run_id"],
+            "technical_recovery": {
+                "decision_id": "RDR-2026-10-07-02",
+                "authorization_sha256": "b" * 64,
+                "source_manifest_sha256": "a" * 64,
+            },
+        }
+        condition = {"execution_order": 51}
+        self.assertTrue(valid_technical_recovery_lineage(condition, first, second))
+        self.assertFalse(valid_technical_recovery_lineage({"execution_order": 52}, first, second))
+        changed = copy.deepcopy(second)
+        changed["technical_recovery"]["source_manifest_sha256"] = "c" * 64
+        self.assertFalse(valid_technical_recovery_lineage(condition, first, changed))
+        changed = {**first, "model_output_count": 2}
+        self.assertFalse(valid_technical_recovery_lineage(condition, changed, second))
+
     def test_lead_gate_requires_audit_and_retains_zero_attack_success(self):
         with tempfile.TemporaryDirectory() as root:
             for condition in self.plan.conditions[:18]:
@@ -743,6 +771,85 @@ class PilotRunnerTest(unittest.TestCase):
                 path.write_text(json.dumps(runtime))
                 with self.assertRaisesRegex(ConfigError, "checksum mismatch"):
                     load_runtime_freeze(self.plan, path)
+
+    def test_post_gate_continuation_requires_exact_evidence_and_conditions(self):
+        with tempfile.TemporaryDirectory() as root:
+            repo = Path(root)
+            config = repo / "configs/experiments/banking_pilot_v1.yaml"
+            config.parent.mkdir(parents=True)
+            plan = replace(self.plan, config_path=config)
+            report = {
+                "lead_to_expansion": False,
+                "expansion_status": "gate_failed",
+                "clean_success_count": 2,
+                "clean_denominator": 6,
+                "recorded_conditions": 18,
+                "technical_failures": [],
+                "unresolved_disagreements": [],
+                "lead_checks": {"clean_success": False, "audit_complete": True},
+            }
+            sources = {
+                "decision": repo
+                / "docs/decisions/2026-10-07_banking_pilot_post_gate_exploratory_continuation.md",
+                "lead_report": repo / "artifacts/pilot-lead-report-2026-10-06.json",
+                "lead_audit": repo / "artifacts/pilot-lead-audit.json",
+                "lead_stage_manifest": repo
+                / "artifacts/runs/continuation-lead-status/manifest.json",
+                "lead_runtime_freeze": repo / "artifacts/pilot-runtime.freeze.json",
+            }
+            for path in sources.values():
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("test-only")
+            sources["lead_report"].write_text(json.dumps(report))
+            digests = {key: sha256_file(path) for key, path in sources.items()}
+            authorization = {
+                "schema_version": 1,
+                "decision_id": "RDR-2026-10-07-01",
+                "run_prefix": "continuation",
+                "sample_freeze_sha256": plan.sample_freeze_sha256,
+                "condition_ids": [
+                    condition["condition_id"]
+                    for condition in plan.conditions
+                    if condition["stage"] == "expansion"
+                ],
+                "lead_runtime_freeze_sha256": digests["lead_runtime_freeze"],
+                "source_sha256": digests,
+            }
+            auth_path = repo / "continuation.json"
+            auth_path.write_text(json.dumps(authorization))
+            self.assertEqual(
+                _validate_post_gate_continuation(
+                    plan,
+                    repo / "artifacts",
+                    "continuation",
+                    report,
+                    sources["lead_audit"],
+                    auth_path,
+                ),
+                authorization,
+            )
+            sources["lead_audit"].write_text("changed")
+            with self.assertRaisesRegex(ConfigError, "lead_audit"):
+                _validate_post_gate_continuation(
+                    plan,
+                    repo / "artifacts",
+                    "continuation",
+                    report,
+                    sources["lead_audit"],
+                    auth_path,
+                )
+            sources["lead_audit"].write_text("test-only")
+            authorization["condition_ids"][0] = "replaced-after-lead"
+            auth_path.write_text(json.dumps(authorization))
+            with self.assertRaisesRegex(ConfigError, "all 72"):
+                _validate_post_gate_continuation(
+                    plan,
+                    repo / "artifacts",
+                    "continuation",
+                    report,
+                    sources["lead_audit"],
+                    auth_path,
+                )
 
     def test_posix_deadline_interrupts_a_condition(self):
         import time
