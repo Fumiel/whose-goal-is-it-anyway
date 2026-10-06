@@ -22,7 +22,11 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   `artifacts/pilot-lead-report-2026-10-06.json`. RDR-2026-10-07-01 authorizes
   the remaining 72 as a post-result exploratory continuation, without changing
   the failed gate or task 12's baseline-failure label. This is 60 IPI and 12
-  lexical controls, with no additional clean conditions. Execution is pending.
+  lexical controls, with no additional clean conditions. Continuation ran under
+  commit `b7df23f41b47b0eae529ebe261d46d41ab29701c` and stopped at condition
+  51 when actual capture exceeded the frozen 12 GiB GPU ceiling. Across all 90
+  conditions, 50 are completed, one is a technical failure, and 39 are not run.
+  See [technical stop log](docs/experiment_logs/2026-10-07_post_gate_continuation_technical_stop.md).
 - Pilot runner: implemented with separate actual-trajectory/fixed-prefix paths,
   immutable partial failures, native/strict labels, checksummed audits and staged
   gates. Synthetic orchestration tests cover all 90 conditions. On 2026-10-02,
@@ -107,9 +111,10 @@ Before the post-gate exploratory continuation:
    [RDR-2026-10-01-01](docs/decisions/2026-10-01_banking_task_feasibility_review.md)
    and [RDR-2026-10-01-02](docs/decisions/2026-10-01_existing_tasks_pilot_new_families_test.md).
 5. Preserve the 2026-10-06 lead report's failed gate and all six clean labels.
-   The remaining 72 conditions require the explicit post-gate continuation
-   path, lead evidence checksums and a new code/runtime freeze. Completion will
-   remain exploratory and will not automatically authorize Phase 2 or test.
+   The post-gate continuation was stopped by the frozen GPU ceiling. No automatic
+   retry or stage resume is authorized. A further RDR and new code/runtime freeze
+   are needed to address condition 51 and the 39 unrun conditions. Completion
+   would remain exploratory and would not automatically authorize Phase 2 or test.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -143,9 +148,10 @@ reuse of engineering bundles as research data.
   rerun and human review did not produce a passing candidate.
 - No fitted action, argument, source-role, authority, or task-drift probe
 - Pilot lead stage completed with 2/6 strict clean success and a failed frozen
-  continuation gate. The post-gate exploratory continuation is decided but its
-  72 conditions are not yet run. Actual-trajectory feasibility across the full
-  sample and verified supply of unseen Banking clusters remain outstanding.
+  continuation gate. The authorized post-gate exploratory continuation recorded
+  32 new completions and stopped at condition 51 due to the 12 GiB GPU ceiling.
+  Another 39 conditions remain unrun. Actual-trajectory feasibility across the
+  full sample and verified supply of unseen Banking clusters remain outstanding.
   Tasks 5/6 remain on
   hold, and task 11 requires recipient audit.
 - New development/test families, their AgentDojo compatibility and evaluator
