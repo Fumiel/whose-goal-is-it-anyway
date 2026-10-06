@@ -56,6 +56,10 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   See [initial measurements](docs/experiment_logs/2026-10-02_pilot_preflight_measurements.md)
   and [capture repair](docs/experiment_logs/2026-10-02_capture_repair_preflight.md).
 - Confirmatory test set: not created or inspected
+- Confirmatory claim scope: same-tool argument hijacking within the selected
+  single model and domain; cross-tool attacks are secondary or exploratory.
+  This post-pilot clarification is recorded in
+  [RDR-2026-10-07-03](docs/decisions/2026-10-07_argument_hijacking_scope_clarification.md).
 - Task allocation: use existing Banking families, including previously used
   selection/shakedown families, in fresh exploratory pilot runs. Design new
   semantic families alongside the pilot and assign connected components to
