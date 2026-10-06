@@ -11,6 +11,7 @@ raw run、モデルweight、生activationなどの大きなデータはここに
 
 ## Index
 
+- [2026-10-02 Banking pilot先行18件の実行と人手監査への引き継ぎ](2026-10-02_banking_pilot_lead_execution.md)
 - [2026-09-24 Banking選定再実行の自己監査用引き継ぎ](2026-09-24_banking_selection_self_audit_handoff.md)
 - [2026-09-24 Banking選定試験の初回run監査](2026-09-24_banking_selection_first_run_audit.md)
 - [2026-09-24 shakedown raw run 監査](2026-09-24_shakedown_raw_audit.md)
