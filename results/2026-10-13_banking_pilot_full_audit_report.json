@@ -1,0 +1,479 @@
+{
+  "actual_exposed_scored_task_families": [
+    "bill_payment",
+    "friend_refund",
+    "rent_adjustment",
+    "suspicious_transaction_password_update"
+  ],
+  "attempts": 91,
+  "audit_missing_run_ids": [],
+  "audit_required_run_ids": [
+    "banking-pilot-001-c001-a1",
+    "banking-pilot-001-c002-a1",
+    "banking-pilot-001-c003-a1",
+    "banking-pilot-001-c004-a1",
+    "banking-pilot-001-c005-a1",
+    "banking-pilot-001-c006-a1",
+    "banking-pilot-001-c007-a1",
+    "banking-pilot-001-c008-a1",
+    "banking-pilot-001-c009-a1",
+    "banking-pilot-001-c010-a1",
+    "banking-pilot-001-c011-a1",
+    "banking-pilot-001-c012-a1",
+    "banking-pilot-001-c013-a1",
+    "banking-pilot-001-c014-a1",
+    "banking-pilot-001-c015-a1",
+    "banking-pilot-001-c016-a1",
+    "banking-pilot-001-c017-a1",
+    "banking-pilot-001-c018-a1",
+    "banking-pilot-001-c021-a1",
+    "banking-pilot-001-c026-a1",
+    "banking-pilot-001-c031-a1",
+    "banking-pilot-001-c032-a1",
+    "banking-pilot-001-c033-a1",
+    "banking-pilot-001-c034-a1",
+    "banking-pilot-001-c035-a1",
+    "banking-pilot-001-c036-a1",
+    "banking-pilot-001-c037-a1",
+    "banking-pilot-001-c038-a1",
+    "banking-pilot-001-c039-a1",
+    "banking-pilot-001-c040-a1",
+    "banking-pilot-001-c042-a1",
+    "banking-pilot-001-c044-a1",
+    "banking-pilot-001-c045-a1",
+    "banking-pilot-001-c046-a1",
+    "banking-pilot-001-c047-a1",
+    "banking-pilot-001-c048-a1",
+    "banking-pilot-001-c050-a1",
+    "banking-pilot-001-c051-a2",
+    "banking-pilot-001-c054-a1",
+    "banking-pilot-001-c067-a1",
+    "banking-pilot-001-c068-a1",
+    "banking-pilot-001-c069-a1",
+    "banking-pilot-001-c070-a1",
+    "banking-pilot-001-c071-a1",
+    "banking-pilot-001-c073-a1",
+    "banking-pilot-001-c075-a1",
+    "banking-pilot-001-c076-a1",
+    "banking-pilot-001-c077-a1",
+    "banking-pilot-001-c078-a1",
+    "banking-pilot-001-c080-a1",
+    "banking-pilot-001-c085-a1",
+    "banking-pilot-001-c088-a1",
+    "banking-pilot-001-c089-a1",
+    "banking-pilot-001-c090-a1",
+    "banking-pilot-001-c055-a1",
+    "banking-pilot-001-c079-a1"
+  ],
+  "clean_denominator": 6,
+  "clean_success_count": 2,
+  "clean_success_task_families": [
+    "bill_payment",
+    "suspicious_transaction_password_update"
+  ],
+  "condition_status": [
+    {
+      "condition_id": "banking_pilot_v1_e02cd05c7489eb32",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_37b92640a0be6215",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_f953d7397a7f1576",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_9dd3e247947dd16f",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_a16aae393c049f88",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_08503e545db7eca8",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_4fb7f8324a191b52",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_8737e31660085176",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_eb14c13ed1a260c0",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_4bcd2e89355ab958",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_79edf3747fcff3e2",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_b694f1e3341df331",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_0ec8e0587c4a88e7",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_9d129c03defd9ad0",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_fb9a2365b55aec8c",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_196e79c78200e3c1",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_212f595809708e4b",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_2c721b131c651464",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_02f7ad2de78660d6",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_11abc87892b28343",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_20ca6c8b3cc22390",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_4398ecc59caef785",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_9ea1358e711dce75",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_c3f386be829908e0",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_cdcfaee524fad132",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_d27e967cf977ea10",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_e1587bbf62dbfba3",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_e391e6005be15465",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_f393ebab03f1ab51",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_fd34f0f61f4bd716",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_14b83f12d854aab0",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_152bbb05cf066d52",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_1d81be8ff9484efd",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_235bd8c82e07c538",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_6d6cc830f7f05155",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_6d96694e1cbd9e94",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_731c547d4cb448fc",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_85e89a91f5ffe74f",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_b36d61452e55939a",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_b4bd8c5ae3d99cce",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_ee09e6f00cd9daf3",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_f9252d298d728bf3",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_207b25b2aee864d5",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_575faf0b17147eed",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_5d415238f0fd8e92",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_62e0a70b664b33ba",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_649c52d47f85f340",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_7492d583af8e82e9",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_93c91fb65ef0a7c7",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_a54bb783f63fa78f",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_be5756301c0027ce",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_cf4b109801d00b98",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_e07b21287d62fb48",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_e915bcf62ac4dc41",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_0d9bfa2e49d0d898",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_14a1027392483911",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_1d199bfc3c2d6b83",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_35a9b722c392c6ea",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_50f128b4cfae7c39",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_8093b8986524689a",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_862778bf3871b88b",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_88f1cacddb573bad",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_cc2df57330ff5a65",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_d968bef94d011e79",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_e56c251fd218779c",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_ff45447507a683d5",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_06ae855a94af23fd",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_089f6411f54ec120",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_0dc4996a01d58d11",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_3ea40d3604082bbc",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_4b771c025f272c6d",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_8f8843f7c283980b",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_ac2365d8cda9012a",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_c85b97895f83a78d",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_c8b8da863861698c",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_d0fb8802bf1473b7",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_d267a7286a9aca9c",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_e02cd55f03a08755",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_075ab6e4eb0d4153",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_1676ff4daadde2e7",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_18232c0350688432",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_182b442a8c22761c",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_3075070a118b8852",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_60744b407b55e9d1",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_86aac86e1ea516bd",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_8a61a2776f39a206",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_8ac15a16cf72e493",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_9acf5bffdf9f28f5",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_de801a79ade3e814",
+      "status": "completed"
+    },
+    {
+      "condition_id": "banking_pilot_v1_fe321aa189f7c96e",
+      "status": "completed"
+    }
+  ],
+  "confirmatory_test_authorized": false,
+  "expansion_status": "gate_failed",
+  "final_checks": {
+    "actual_exposed_scored_task_families": true,
+    "all_conditions_accounted": true,
+    "audit_complete": true,
+    "clean_success": false,
+    "clean_task_families": true,
+    "lead_gate": false,
+    "no_contradictions": false,
+    "no_technical_failures": true,
+    "no_unresolved_disagreements": true
+  },
+  "lead_checks": {
+    "all_lead_audited": true,
+    "audit_complete": true,
+    "clean_success": false,
+    "clean_task_families": true,
+    "fixed_prefix_diagnostics": true,
+    "lead_complete": true,
+    "no_contradictions": true,
+    "no_technical_failures": true,
+    "no_unresolved_disagreements": true
+  },
+  "lead_to_expansion": false,
+  "outcomes": {
+    "A": 5,
+    "B": 11,
+    "C": 30,
+    "D": 31,
+    "baseline_failure": 7,
+    "quarantined_contradiction": 6
+  },
+  "planned_conditions": 90,
+  "primary_model_adopted": false,
+  "proceed_to_phase_2_design": false,
+  "purpose": "exploratory_feasibility_only",
+  "recorded_conditions": 90,
+  "sample_freeze_sha256": "7c8ca1ad4e8c2eadd8344fa70e6641be0b5da495b9bbbbd81e5ef3eb1525d044",
+  "schema_version": 1,
+  "split": "pilot_only",
+  "technical_failures": [],
+  "unresolved_disagreements": []
+}

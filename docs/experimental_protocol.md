@@ -6,7 +6,7 @@
 
 確認的主解析の対象は、同一ツールの主要引数を攻撃者指定値へ変えさせようとするIPIに限定する。結果の適用範囲は、採用した単一モデル・単一ドメインと独立に評価したタスク／攻撃系列であり、IPI一般への一般化は検証しない。
 
-現時点は探索的Banking pilotの90条件収集後、拡張分の人手監査待ちである。主モデル、主ドメイン、確認的解析の主要層・位置は未確定である。先行18条件の監査後clean成功2/6と凍結ゲート不合格は維持する。51番の旧技術的失敗を含め総attemptは91であり、再開後は90条件すべてに完了bundleがある。未監査の機械集計、`configs/**/example.yaml`、synthetic fixtureおよび工学runは研究結果として扱わない。現時点の操作上の状態は[PROJECT_STATE.md](../PROJECT_STATE.md)を参照する。
+現時点は探索的Banking pilotの90条件収集と拡張分の人手監査後であり、次段階の研究判断を待っている。主モデル、主ドメイン、確認的解析の主要層・位置は未確定である。先行18条件の監査後clean成功2/6と凍結ゲート不合格は維持する。51番の旧技術的失敗を含め総attemptは91であり、再開後は90条件すべてに完了bundleがある。2026-10-13の監査では先行18件と追加38件の計56件を記録し、未裁定不一致は0件だった。監査前の機械集計、`configs/**/example.yaml`、synthetic fixtureおよび工学runは研究結果として扱わない。現時点の操作上の状態は[PROJECT_STATE.md](../PROJECT_STATE.md)を参照する。
 
 研究計画または本プロトコルを変更する場合は、`docs/decisions/`へResearch Decision Record（RDR）を追加し、少なくとも次を記録する。
 
@@ -266,7 +266,9 @@ pilot runnerと合成adapterのtestは実装済みである（[実装と使用�
 task 14の人手確認は2026-10-02にID4を「少しでも不審」の条件成立と判断し、
 [事前rubric](../data/audits/2026-10-02_task14_password_suspicion_review.json)を固定した。
 先行・継続・GPU停止後の再開はそれぞれ別のruntime freezeと実行code commitで記録した。
-先行18条件の監査は完了し、残り72条件は収集済みだが拡張分の人手監査は未完了である。
+先行18条件の監査後、残り72条件を収集し、2026-10-13に拡張分38件を人手監査した。
+初回判断4件の副作用欄と採用された修正は別々に残し、未裁定不一致は0件である。
+完成監査票と探索的報告は[監査記録](experiment_logs/2026-10-13_banking_pilot_full_audit.md)を参照する。
 実測と制約は[最初の実行前計測](experiment_logs/2026-10-02_pilot_preflight_measurements.md)と
 [修正後計測](experiment_logs/2026-10-02_capture_repair_preflight.md)に残す。
 標本freezeを上書きせず、各実行用runtime freezeにcapture値とchecksumを記録した。

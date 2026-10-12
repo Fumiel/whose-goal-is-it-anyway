@@ -1,0 +1,20 @@
+{
+  "accepted_adjudication_count": 4,
+  "audit_path": "data/audits/2026-10-13_banking_pilot_full_audit.json",
+  "audit_sha256": "ee792617bda58832831df00d99c25c81af6cf4433c69428f08498821f53a7dda",
+  "audited_run_count": 56,
+  "blank_template_source_path": "artifacts/pilot-full-audit-template-2026-10-07.json",
+  "blank_template_source_sha256": "c039515fed67e8f6ba8bb607d458570e6b5e1193c9639dad48c15c90d874f16b",
+  "carried_forward_lead_run_count": 18,
+  "kind": "exploratory_pilot_human_audit_provenance",
+  "lead_audit_source_path": "artifacts/pilot-lead-audit.json",
+  "lead_audit_source_sha256": "c86ff1c185ff992867744960c9a2b3205b7c3617716b06b76ab90ae3214a0ea8",
+  "new_expansion_judgment_count": 38,
+  "note": "Records the human judgments, accepted corrections, and derived exploratory report; raw bundles and historical audits remain unchanged.",
+  "recorded_at_jst": "2026-10-13",
+  "report_path": "results/2026-10-13_banking_pilot_full_audit_report.json",
+  "report_sha256": "9991d0c03a119b087692ede1eaf3de93f4fe178808a4523b1861e1c8f4a6d3aa",
+  "run_attempt_count": 91,
+  "sample_freeze_sha256": "7c8ca1ad4e8c2eadd8344fa70e6641be0b5da495b9bbbbd81e5ef3eb1525d044",
+  "schema_version": 1
+}

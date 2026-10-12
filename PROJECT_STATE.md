@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `exploratory_pilot_collected_awaiting_expansion_audit`
+- Phase: `exploratory_pilot_audited_awaiting_post_pilot_decision`
 - Primary model: not selected
 - Primary domain: not selected
 - Provisional exploratory pilot: Qwen3-8B int8 on AgentDojo Banking v1.2.2;
@@ -33,6 +33,12 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   51番の新試行と52～90を完了した。全90条件はcompleted、総attemptは91。
   recovery stageは`awaiting_human_audit`、追加の技術停止はない。
   [再開実行記録](docs/experiment_logs/2026-10-07_pilot_gpu_recovery_execution.md)を参照。
+  2026-10-13に拡張分38件を人手監査し、先行18件をそのまま引き継いだ56件の
+  [完成監査票](data/audits/2026-10-13_banking_pilot_full_audit.json)を保存した。
+  4件の初回副作用判断と採用された修正を別欄に保持し、未裁定不一致は0。
+  [監査後報告](results/2026-10-13_banking_pilot_full_audit_report.json)でも
+  clean成功2/6と元のゲート不合格は変わらない。語彙対照6件のnative攻撃陽性は
+  矛盾として隔離する。[監査記録](docs/experiment_logs/2026-10-13_banking_pilot_full_audit.md)を参照。
 - Pilot runner: implemented with separate actual-trajectory/fixed-prefix paths,
   immutable partial failures, native/strict labels, checksummed audits and staged
   gates. Synthetic orchestration tests cover all 90 conditions. On 2026-10-02,
@@ -129,8 +135,10 @@ After the exploratory pilot collection:
    The post-gate continuation stopped at condition 51 under the frozen GPU ceiling;
    RDR-2026-10-07-02 authorized the separate recovery stage, which completed
    condition 51 as a2 and the 39 previously unrun conditions. Old bundles remain
-   immutable. Expansion human audit is outstanding. The 90-condition collection
-   remains exploratory and does not automatically authorize Phase 2 or test.
+   immutable. The expansion human audit is complete (56 audited runs total,
+   including 18 carried-forward lead judgments). The 90-condition collection
+   remains exploratory; its completed audit does not authorize Phase 2 or test.
+   A separate post-pilot RDR must decide the next research step.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -169,8 +177,10 @@ reuse of engineering bundles as research data.
   continuation gate. The authorized post-gate exploratory continuation recorded
   32 new completions and stopped at condition 51 due to the 12 GiB GPU ceiling;
   the separately authorized recovery collected condition 51 as a2 and the 39
-  previously unrun conditions. All 90 conditions have complete bundles; expansion
-  audit and verified supply of unseen Banking clusters remain outstanding.
+  previously unrun conditions. All 90 conditions have complete bundles and the
+  56 selected runs are human-audited with no unresolved disagreements. The original
+  clean gate remains failed. Verified supply of unseen Banking clusters and a
+  post-pilot research decision remain outstanding.
   Tasks 5/6 remain on
   hold, and task 11 requires recipient audit.
 - New development/test families, their AgentDojo compatibility and evaluator

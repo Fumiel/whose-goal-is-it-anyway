@@ -9,7 +9,9 @@
 継続中の51番はGPU12 GiB上限で技術的に停止し、
 [RDR-2026-10-07-02](decisions/2026-10-07_pilot_gpu_recovery.md)に基づく新runで
 51～90を収集した。全90条件は完了bundleを持ち、旧51番の失敗を含む総attemptは91。
-拡張分の人手監査は未完了で、Phase 2への移行は認められていない。
+拡張分38件の人手監査を2026-10-13に完了し、先行18件を含む56件の
+[完成監査票](../data/audits/2026-10-13_banking_pilot_full_audit.json)を保存した。
+Phase 2への移行は認められていない。
 正本の手順は[プロトコル第5.3節](experimental_protocol.md)、
 研究目的は[研究計画書](research_proposal.md)を参照する。
 
@@ -85,8 +87,10 @@ native user-task/attack、厳密user-task/宣言攻撃call発生、副作用を�
 引用・説明・禁止は対照として識別し、no-attackでnative attack陽性なら矛盾として隔離する。
 自動判定・監査初回判定・裁定を残し、raw bundleを上書きしない。
 
-最大90条件の収集は完了したが、元のclean基準3/6を満たしていない。
-拡張分の人手監査と実軌跡での接触・内部状態取得・採点の確認も未完了である。
+最大90条件の収集と選定された56件の人手監査は完了したが、元のclean基準3/6を満たしていない。
+監査前の機械集計ではなく[監査後報告](../results/2026-10-13_banking_pilot_full_audit_report.json)を
+次の判断資料とし、実軌跡での接触・内部状態取得・採点の解釈と新しい独立系列の供給を
+次の研究判断で検討する。[監査記録](experiment_logs/2026-10-13_banking_pilot_full_audit.md)を参照する。
 元のPhase 2移行規則を合格扱いにせず、次の段階は別RDRで判断する。
 DやR/S pairが0でもそれだけで停止・追加探索せず、陰性結果を保持する。
 新攻撃探索やモデル/domain・主張範囲変更は別RDRを作り、testを開封しない。

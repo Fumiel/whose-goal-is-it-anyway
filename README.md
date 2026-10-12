@@ -6,7 +6,7 @@ Indirect Prompt Injectionを受けたツール利用型LLMエージェントに�
 
 ## 現在の状態
 
-現在はBankingの探索的pilotを90条件収集した後の監査待ち段階です。主モデルと主ドメインはまだ採用していません。Qwen3-8B int8 / AgentDojo Banking v1.2.2は暫定構成です。先行18条件の監査後clean成功は2/6で、凍結した拡張ゲートには不合格でした。結果閲覧後に認めた探索的継続は51番のGPU資源上限で一度停止し、別の判断記録とruntime freezeに基づく再開で90条件すべてのbundleを収集しました（総attempt 91、旧51番は技術的失敗として保持）。拡張分の人手監査、Phase 2への判断、新系列と確認的testは未完了です。[実行記録](docs/experiment_logs/2026-10-07_pilot_gpu_recovery_execution.md)と[`PROJECT_STATE.md`](PROJECT_STATE.md)に現状を記録しています。
+現在はBankingの探索的pilotを90条件収集し、拡張分の人手監査を完了した後の研究判断待ち段階です。主モデルと主ドメインはまだ採用していません。Qwen3-8B int8 / AgentDojo Banking v1.2.2は暫定構成です。先行18条件の監査後clean成功は2/6で、凍結した拡張ゲートには不合格でした。結果閲覧後に認めた探索的継続は51番のGPU資源上限で一度停止し、別の判断記録とruntime freezeに基づく再開で90条件すべてのbundleを収集しました（総attempt 91、旧51番は技術的失敗として保持）。2026-10-13に先行分を含む56件の監査を記録し、未裁定不一致は0件です。元のゲート不合格は維持し、Phase 2への判断、新系列と確認的testは未完了です。[監査記録](docs/experiment_logs/2026-10-13_banking_pilot_full_audit.md)と[`PROJECT_STATE.md`](PROJECT_STATE.md)に現状を記録しています。
 
 ## ディレクトリ
 
