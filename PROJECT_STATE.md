@@ -152,6 +152,8 @@ reuse of engineering bundles as research data.
 - Pilot runner/report/audit commands and runtime freeze contract: [runner usage](docs/pilot_runner.md)
 - Derived pilot detail capture: `goal-takeover pilot-detail-capture configs/experiments/banking_pilot_detail_v1.yaml --run-prefix <pilot-prefix>` after the lead stage
 - Windows GPU preflight: `make gpu-preflight`
+- Windows/WSL-only protected artifact inventory (dated snapshot, not a live
+  filesystem check): [2026-10-13 inventory](data/manifests/windows_wsl_protected_artifacts_2026-10-13.json)
 
 ## Known intentional gaps
 

@@ -54,4 +54,8 @@ wsl.exe -d Ubuntu-24.04 -- bash -lc "cd ~/whose-goal-is-it-anyway && tmux new -A
 ```
 
 コードの同期はGitで行う。モデルweight、生activation、raw run bundleをMacへコピーしない。
+Git管理外の記入済み人手監査票、実行に使用したruntime freeze、確定済みreport、
+実行環境lock、不変の派生capture bundleもWSL側の研究記録として保持する。
+AIエージェントは、これらと既存のraw runをユーザーの明示的な許可なく編集・上書き・移動・削除しない。
+確認時は読み取り専用とし、修正や再実行には元記録を残して来歴のある新しい保存先を使う。
 

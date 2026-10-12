@@ -1,0 +1,1132 @@
+{
+  "schema_version": 1,
+  "inventory_kind": "protected_git_ignored_artifacts_snapshot",
+  "storage_host": "windows_pc_wsl_ubuntu",
+  "availability_status": "present_at_snapshot",
+  "observed_at_utc": "2026-10-12T15:47:46Z",
+  "snapshot_date_jst": "2026-10-13",
+  "scope": "Existing protected records under artifacts/ in this WSL checkout; excludes disposable files, blank templates, pending freezes, model weights, caches, and files outside the repository.",
+  "interpretation": "Each path existed on WSL at observed_at_utc. This is not proof of current availability or of a copy on Mac.",
+  "checksum_scope": "evidence_sha256 hashes evidence_path only. For a bundle, evidence_path is manifest.json; payload checksums were not reverified for this inventory.",
+  "record_count": 141,
+  "records": [
+    {
+      "path": "artifacts/environment-lock.txt",
+      "kind": "execution_environment_lock",
+      "evidence_path": "artifacts/environment-lock.txt",
+      "evidence_bytes": 2753,
+      "evidence_sha256": "6369ae681981c87689d1aae8d88a0423ecb56f6d1d7630fcc30584fd7fe8c6dd"
+    },
+    {
+      "path": "artifacts/pilot-expansion-partial-report-2026-10-07.json",
+      "kind": "historical_report",
+      "evidence_path": "artifacts/pilot-expansion-partial-report-2026-10-07.json",
+      "evidence_bytes": 13722,
+      "evidence_sha256": "085e333117118b0ac9a880db7c9b3f6fcf368cc0c82da26144e6f2a49b8bfcb8"
+    },
+    {
+      "path": "artifacts/pilot-full-unaudited-report-2026-10-07.json",
+      "kind": "unaudited_report",
+      "evidence_path": "artifacts/pilot-full-unaudited-report-2026-10-07.json",
+      "evidence_bytes": 14333,
+      "evidence_sha256": "815df1f0d47131e9c18467bd4b0e7d059529e9f36f3ce4dc9c9ead73b8442fed"
+    },
+    {
+      "path": "artifacts/pilot-lead-audit-guide.md",
+      "kind": "human_audit_guide",
+      "evidence_path": "artifacts/pilot-lead-audit-guide.md",
+      "evidence_bytes": 7528,
+      "evidence_sha256": "8193d26a519a0aabe338922d3d550fa77ec558308b1d2007cc6cf4036913fc9c"
+    },
+    {
+      "path": "artifacts/pilot-lead-audit.json",
+      "kind": "human_audit_record",
+      "evidence_path": "artifacts/pilot-lead-audit.json",
+      "evidence_bytes": 18564,
+      "evidence_sha256": "c86ff1c185ff992867744960c9a2b3205b7c3617716b06b76ab90ae3214a0ea8"
+    },
+    {
+      "path": "artifacts/pilot-lead-report-2026-10-06.json",
+      "kind": "historical_report",
+      "evidence_path": "artifacts/pilot-lead-report-2026-10-06.json",
+      "evidence_bytes": 13339,
+      "evidence_sha256": "06dc309a05260597a29813289cf1c68665678819f596160f61950c9bdeed5577"
+    },
+    {
+      "path": "artifacts/pilot-runtime-continuation.freeze.json",
+      "kind": "used_runtime_freeze",
+      "evidence_path": "artifacts/pilot-runtime-continuation.freeze.json",
+      "evidence_bytes": 13651,
+      "evidence_sha256": "1fce5812b554586c7887b2b925680c37ec28793345150614bfdb77bc794bea5b"
+    },
+    {
+      "path": "artifacts/pilot-runtime-recovery.freeze.json",
+      "kind": "used_runtime_freeze",
+      "evidence_path": "artifacts/pilot-runtime-recovery.freeze.json",
+      "evidence_bytes": 14078,
+      "evidence_sha256": "480e5d582dc09b4fe47679c048003bc1272c84fd3ee27c56217c83dac690a536"
+    },
+    {
+      "path": "artifacts/pilot-runtime.freeze.json",
+      "kind": "used_runtime_freeze",
+      "evidence_path": "artifacts/pilot-runtime.freeze.json",
+      "evidence_bytes": 13080,
+      "evidence_sha256": "baff4e5a01b645fd346d6a6f0fec679b06dbef25b04cf6ec8d1cca5003980c72"
+    },
+    {
+      "path": "artifacts/processed/pilot_detail_v1/detail-stop-banking-pilot-001.json",
+      "kind": "derived_capture_stop_record",
+      "evidence_path": "artifacts/processed/pilot_detail_v1/detail-stop-banking-pilot-001.json",
+      "evidence_bytes": 959,
+      "evidence_sha256": "0d7f24647bf2e42dda25cc12ada87bee9c0c14e835c1345080b70152fc0db976"
+    },
+    {
+      "path": "artifacts/processed/pilot_detail_v1/runs/banking-pilot-001-detail-banking_pilot_v1_4fb7f8324a191b52",
+      "kind": "immutable_derived_bundle",
+      "run_id": "banking-pilot-001-detail-banking_pilot_v1_4fb7f8324a191b52",
+      "evidence_path": "artifacts/processed/pilot_detail_v1/runs/banking-pilot-001-detail-banking_pilot_v1_4fb7f8324a191b52/manifest.json",
+      "evidence_bytes": 1016,
+      "evidence_sha256": "985ea3048f708de33b134bff9ca33d81c576c37f47425862d7dccf650f8bba2f"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c001-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c001-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c001-a1/manifest.json",
+      "evidence_bytes": 6752,
+      "evidence_sha256": "a5f1ffcf9e31398bdc77d541c296e4daa71be801b450f8b34e55da24825b73b8"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c002-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c002-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c002-a1/manifest.json",
+      "evidence_bytes": 6752,
+      "evidence_sha256": "2ae406e5a8e7bad877d213eae49102ec5f235fb6246fd68b5aeb1d40d21d59fd"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c003-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c003-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c003-a1/manifest.json",
+      "evidence_bytes": 5516,
+      "evidence_sha256": "05ec3dee4b139eb9700715b493daebc9b5137f2e447caa4bd2568f98a256e538"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c004-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c004-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c004-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "3eea2f7052af9a1255d69d617204df1cc4e2b741a2137f6a4e716ee60ce6e7a9"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c005-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c005-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c005-a1/manifest.json",
+      "evidence_bytes": 5515,
+      "evidence_sha256": "19c682c1b294cef1cc5ff27ca76bfd34d468c15314db81a15577fad38d178ea7"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c006-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c006-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c006-a1/manifest.json",
+      "evidence_bytes": 5515,
+      "evidence_sha256": "b8561d91580302c6fb83cc3995c1ed2a8c5b6822991f4d2b31818b6b76b266ca"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c007-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c007-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c007-a1/manifest.json",
+      "evidence_bytes": 7931,
+      "evidence_sha256": "7da07e8e6d83b8022d89f117cd3c25dda6e4460ce5950dcf2fbecb4fdca04daf"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c008-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c008-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c008-a1/manifest.json",
+      "evidence_bytes": 7931,
+      "evidence_sha256": "b1b015a611c9212ccdcf830534a6289046abcca11dfab462b5ee53966284510a"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c009-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c009-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c009-a1/manifest.json",
+      "evidence_bytes": 7931,
+      "evidence_sha256": "a2dfea14886d75309735420ada5bf58af746a0d96e8f6f41c6da657b33fc975d"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c010-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c010-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c010-a1/manifest.json",
+      "evidence_bytes": 7930,
+      "evidence_sha256": "65f29f5d11497216b88edd4e0c9d8f5c120a99a28bde1c7432e1e228e6136eaf"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c011-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c011-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c011-a1/manifest.json",
+      "evidence_bytes": 7930,
+      "evidence_sha256": "f40ba2295af68242cff06b6594b8a350a11f4751c92739335536be5d8fcc7e7a"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c012-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c012-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c012-a1/manifest.json",
+      "evidence_bytes": 7930,
+      "evidence_sha256": "5b77163f7da1471e858a0e3e97bd886b21de8ec8c881541574c7870745dba0fb"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c013-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c013-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c013-a1/manifest.json",
+      "evidence_bytes": 6695,
+      "evidence_sha256": "36eed28ed40f405b2104d94537470c8511d91250d376bea85390f06ba46c19e0"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c014-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c014-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c014-a1/manifest.json",
+      "evidence_bytes": 7931,
+      "evidence_sha256": "565698893436dc6f42dc7249e4cec0bba57e30a11c038fd9756e75aaa021d806"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c015-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c015-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c015-a1/manifest.json",
+      "evidence_bytes": 7931,
+      "evidence_sha256": "2d66c9d92aba03af1ff19dc35828bcfe4008a66d12e0ed98a47d5729e6a6a6f5"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c016-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c016-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c016-a1/manifest.json",
+      "evidence_bytes": 7930,
+      "evidence_sha256": "d1b89cec8806986ac8df4afd9e71a104c39d2b503b5c3be46f53cd9ea8d5ad49"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c017-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c017-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c017-a1/manifest.json",
+      "evidence_bytes": 6694,
+      "evidence_sha256": "0fd21222f215e1e79f4fd9b8804500a0d134814622f9a5dc942ec532ee364c98"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c018-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c018-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c018-a1/manifest.json",
+      "evidence_bytes": 6694,
+      "evidence_sha256": "ac39b1138d6d7b0e284bf790f9b51a195785ef5f9c5ab049898497335e505203"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c019-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c019-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c019-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "c4cf5a47b87069b0dd74d8923dedaa7dbbd985fecb17083c3fc5e7c1a67f35e3"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c020-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c020-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c020-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "e4aa184908e18f0082d7331beb07f8446a89095c8b11f517dd6a64a5fde196d7"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c021-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c021-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c021-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "d9d2124a1a572f73bd1eb1ecb025f01b414934cc8ded4d9ee36e54cf3a44cef9"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c022-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c022-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c022-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "73df8bd034a32abe5065ac859444c3a1da79faed8cc07adf975b390ba7925e4b"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c023-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c023-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c023-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "f9f32173cb32625bf7759e6eaaf5b5898ad70470e73d3b95f1470acdd8dc52b4"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c024-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c024-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c024-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "74882dc7295fa0305030a24b601d1257730c31ce3c0df9d4d3f45763774b29fd"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c025-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c025-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c025-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "850e05377cb9c3ec19245e5dc540bc69fdff14d5d0a64e883a030d38e5f29396"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c026-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c026-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c026-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "15ce3d4be551670eb6e82de55325989e53b1ef72ca2772a0ecc8bc16b4de8e9c"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c027-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c027-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c027-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "8196b7615387ac31a06c0169281a16b77b6c3f3e8be5cd8f47130dc4a675002f"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c028-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c028-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c028-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "934fc005f53ecdfc6c80925f6c3c321bc340767ac512454b903658e96d0d0115"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c029-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c029-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c029-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "1720afadfdc61fc50123a52f75c0edad2eb5cde809d8a056e14721f6f0acfb9b"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c030-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c030-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c030-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "08abfac4014864d7527bfba648e860d37fff339c03acc672be38df0c0eb107be"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c031-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c031-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c031-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "ffa297fe1cdae0a51de7f72cd3e592f6ebfa53a908988b422ba51aa4560b638f"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c032-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c032-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c032-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "86edc2d01d81b43f87e8d81fe8bfaf76661a6e97234e822cca43a5371c8fddea"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c033-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c033-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c033-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "e03c3965a230640ba5ad9da2520337c82d220fad271247bc6d0daf820f6e9b39"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c034-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c034-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c034-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "d58cc0ca779b6e5148f4f154b6a8d94d5c7d2f9c10689669b3493217e2288b87"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c035-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c035-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c035-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "f3e6053635da011d68bae55ade5b18ca656b841e75df23fe75b264292faa1f7a"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c036-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c036-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c036-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "a4b46d1fecc4be7973426af90e1e3a9e4629c252510c2bd857b32f2049530658"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c037-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c037-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c037-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "263981a0c43093691267774c5a4399cb561e347024855831f6571828a3189376"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c038-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c038-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c038-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "ce13f6681478fe2ce0d4d9ae9db9d13e50ea624e2d1ac20778a48f0123d7b2ed"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c039-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c039-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c039-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "249acadd8e083816ed66add09646cd28b3335a7bf7c664c5f271246d23ee770e"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c040-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c040-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c040-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "56efd43ac8034d16d85f437bdebaac98b9e0fa779d19234adcfdd80adaaad0de"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c041-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c041-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c041-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "6146f7857bdef41b44def9d1fca43cfaa02839b207c209f0b669bfc1ad764106"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c042-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c042-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c042-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "90231bae9fa8ec078f74f86f1f64d12f5e6b3b33e39f66fd727e2ad5289fc6c2"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c043-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c043-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c043-a1/manifest.json",
+      "evidence_bytes": 5916,
+      "evidence_sha256": "8d1a4bcd0b9db864be7e323a44ae36cd4731f8fb40d275ecbc8fbe67ce4fb24f"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c044-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c044-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c044-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "3fa300b7d733f1c10eafce2fa114f6d51a65fe3464d999a9b34714468d4cf55b"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c045-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c045-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c045-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "65f62ef035bfd5d3e31355ea01832ac06e6dd4db1d551c49fc66f163cedce7f8"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c046-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c046-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c046-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "8905f8fc313810e0c1515d8fc5e1bdf2a7e9857c88e1680f45065050009a5f38"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c047-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c047-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c047-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "590b5a6bccf13f09e9a72d20d5d72c7e2d3222226b9912e4272ac3611af2b741"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c048-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c048-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c048-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "c1bdbd388d808d942687275acd57ead8022b99b967d50aaeb74abb9a89e652e5"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c049-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c049-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c049-a1/manifest.json",
+      "evidence_bytes": 5916,
+      "evidence_sha256": "031234e95c3ca919dc848de02b033b78489a4b896f3e940806f389605787db57"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c050-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c050-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c050-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "d72e567b4eec7d33b8f338992ce2b83a4bdeb2da4c7f8a4c40c310ff6bc173d3"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c051-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c051-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c051-a1/manifest.json",
+      "evidence_bytes": 7152,
+      "evidence_sha256": "b89140ae7e9f4fbf34551cb29c5a104181890d9536a9f101a92a47849fd3eb15"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c051-a2",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c051-a2",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c051-a2/manifest.json",
+      "evidence_bytes": 8387,
+      "evidence_sha256": "867d16a7acbb2b85d55b4e716f57c876b97d74cbecee14c4c170d40c1e528ba3"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c052-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c052-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c052-a1/manifest.json",
+      "evidence_bytes": 5916,
+      "evidence_sha256": "6e9929917353481ae3be49b07ced1a3d4933b25b0c7268063567c9064bd8c78f"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c053-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c053-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c053-a1/manifest.json",
+      "evidence_bytes": 5916,
+      "evidence_sha256": "8357f144037fbbb40124953f517594eebe917b2d795cb26226d3c63a096c6646"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c054-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c054-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c054-a1/manifest.json",
+      "evidence_bytes": 8387,
+      "evidence_sha256": "db215a7d17846289c72cfaa52cf5384c385671e3ac54e47fecb0db365d5450fa"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c055-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c055-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c055-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "ed51ebb05431708283c954f2a64da799c5d551073ca88e56de2604d891590016"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c056-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c056-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c056-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "f85beb3df4d7d742cc7a60f8e8a1479a5a4500e3d91a1d9444ca2203dd28a403"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c057-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c057-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c057-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "5654505f54f0580dc712628f53773a9a33353f39f5a9cc2cd6fb593d5487f4b0"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c058-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c058-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c058-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "766bfb41cdaa617a766915dbbaf0f0b37142571643dfe6a141d2312f1817088c"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c059-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c059-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c059-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "09b601c4376b372a0f5ecb70d05bfbcf5dbd348a9c22ad3ee612b0ab0aeee249"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c060-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c060-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c060-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "d1ade0d4533be7a2a6dcd0db01937457b1c12ebd9ca8bff6cedcf729f80fce66"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c061-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c061-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c061-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "d0ad1ce0135d19f2e51bfd18d3803484eb33309c3e513a09204475914e440c86"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c062-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c062-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c062-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "0baf0223bea62f1a8d2e1df424fbaebe214e14091ac8f0d0812bdfb8e635cc1c"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c063-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c063-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c063-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "735bac8486e1ba512da31a4ccb5872f1b24bd06b3e12416e56e0a76b97fcc015"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c064-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c064-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c064-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "479e9fb81350f900b02a86587e820ffe4f878f1b0ca48897c32f57471c84750b"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c065-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c065-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c065-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "64e9c7f8e463c21f123bcc871aa1d08433fa02f0ce4964dc2c2333bfc676a159"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c066-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c066-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c066-a1/manifest.json",
+      "evidence_bytes": 4276,
+      "evidence_sha256": "26f095f0998641317eae351c41d53a056eeb4ecf1a9d8d7f8e0fcaa86bd40299"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c067-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c067-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c067-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "6db0e1ab49f35a5f70fcf18287063397574c6b9032e13ac0ddbc1926b9622305"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c068-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c068-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c068-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "b22243db358174c0dd90321c4b20fc408148cbd1e8b55d6dd4f5c612906344bc"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c069-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c069-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c069-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "fbb20ec529ef885cd484e36080a806fa77d9567a4b081268e995662766d9b1f9"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c070-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c070-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c070-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "f3d1aa9b9708bef245aacd2ee8cf3916122ecce3075ab62947ffcc61b7ebb9a0"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c071-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c071-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c071-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "b5d68ff810c57c20f30e48ce21619f8798b7d64a3ff4527f0ae0cc1b86a884bf"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c072-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c072-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c072-a1/manifest.json",
+      "evidence_bytes": 5915,
+      "evidence_sha256": "442cd77f290b417665bf8d141ccae29e968e033198cdb3cae9ba1cfca6fe8aaa"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c073-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c073-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c073-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "f1dba32fdf939e497e9e5b1c27076754200263433d6c01c642f86c142b93b28b"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c074-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c074-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c074-a1/manifest.json",
+      "evidence_bytes": 5915,
+      "evidence_sha256": "4d347749562d0703558e4dc2313d90a62ea9363836c75c0fd0eb121a63159ae5"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c075-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c075-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c075-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "71b6d1ee5b55abb83d4bdd5d35f3198acaddabc4874eeb13fc4e0cb1fc271660"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c076-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c076-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c076-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "741e4ce0418fa4b0b290da4c4972797299ccb1302a00bc58b6429f33e342fb4b"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c077-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c077-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c077-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "368c373e00919b6457c549eb31b4c95e0f1b31650a1e3e6199ec881f106522ba"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c078-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c078-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c078-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "42b7a75857aa4302dcf54f7c9c7d2238ffbc26f3d95b391838dbdba21e86812f"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c079-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c079-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c079-a1/manifest.json",
+      "evidence_bytes": 5915,
+      "evidence_sha256": "d7bf4d9f888be031a8d17fc8e26faed9fe10cda022c9fa466621cdfbc6da75b1"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c080-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c080-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c080-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "fcbb109b63f334891485c702d1afdaa363c1b063e18f515843e95cae13be4e36"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c081-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c081-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c081-a1/manifest.json",
+      "evidence_bytes": 5915,
+      "evidence_sha256": "a7a297b0e45004fc6428d7c0b2077d48a772fa48e63695f69f8362e65441edc4"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c082-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c082-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c082-a1/manifest.json",
+      "evidence_bytes": 5915,
+      "evidence_sha256": "189dc3c66c020ef526c57c0e4b6cfffd83d4bbf55baca3ec29d91ced45cbdec9"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c083-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c083-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c083-a1/manifest.json",
+      "evidence_bytes": 5915,
+      "evidence_sha256": "c2f87c65e4bc8a809b4575dabf182cace926d871d39a09c60629f25cbd7aff85"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c084-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c084-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c084-a1/manifest.json",
+      "evidence_bytes": 5915,
+      "evidence_sha256": "dbf8f01ebe44e39f587aec3ee3febbee5ac80ed28420d55cb4a5921e72fc0dba"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c085-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c085-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c085-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "d9eef7a9d6400f57cacddd132b4e5d89b7ceb6ee23288b3963226ab2c60066ca"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c086-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c086-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c086-a1/manifest.json",
+      "evidence_bytes": 5915,
+      "evidence_sha256": "699f70aa8962c0677532a94e08d7070efd3569e66e5ca8f17db237e293cb6133"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c087-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c087-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c087-a1/manifest.json",
+      "evidence_bytes": 5915,
+      "evidence_sha256": "b87d5c38dc9376dbe39bc4c468828363db3b50b4bf925bf83c538acc1d179db5"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c088-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c088-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c088-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "dda9d9e9198a43f72892a147743536c79aaf385cbd86bdb0d7ddf5349cfffe7f"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c089-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c089-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c089-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "cd8a9536d42ad08f1f5afb3c49b710384591633d366a7f47f47614ebb1b2ebc3"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-c090-a1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-pilot-001-c090-a1",
+      "evidence_path": "artifacts/runs/banking-pilot-001-c090-a1/manifest.json",
+      "evidence_bytes": 7151,
+      "evidence_sha256": "ef1f61570811faf92d64c0da08445d24be21653c19d0396da0280b50433be6be"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-expansion-status",
+      "kind": "stage_bundle",
+      "run_id": "banking-pilot-001-expansion-status",
+      "evidence_path": "artifacts/runs/banking-pilot-001-expansion-status/manifest.json",
+      "evidence_bytes": 1290,
+      "evidence_sha256": "49112686827da6bdcdb468b21fe11845bbcb58c999c3f33a65608afcaf8492ee"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-lead-status",
+      "kind": "stage_bundle",
+      "run_id": "banking-pilot-001-lead-status",
+      "evidence_path": "artifacts/runs/banking-pilot-001-lead-status/manifest.json",
+      "evidence_bytes": 1255,
+      "evidence_sha256": "8dcb18f736ff6ce4ebd69380b3a262895283b956c7ae138958b473e0d0acc7c5"
+    },
+    {
+      "path": "artifacts/runs/banking-pilot-001-recovery-status",
+      "kind": "stage_bundle",
+      "run_id": "banking-pilot-001-recovery-status",
+      "evidence_path": "artifacts/runs/banking-pilot-001-recovery-status/manifest.json",
+      "evidence_bytes": 1282,
+      "evidence_sha256": "f0f671628830a962b6cbff1d17ad0c3572a4d5632add11147150b9f07e238e85"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_address_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m1-selection_banking_address_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_address_clean_v1/manifest.json",
+      "evidence_bytes": 5310,
+      "evidence_sha256": "4f48289b5721c41c2fa19ac85a40fdc1b2b088888d5ff7b8eba9f2bbaa94653a"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_gift_lookup_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m1-selection_banking_gift_lookup_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_gift_lookup_clean_v1/manifest.json",
+      "evidence_bytes": 5403,
+      "evidence_sha256": "8467a88455edf3b0cc199fd6d2ae29da4813dac81b5d5c73f6e4e9143fb7fcf6"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_password_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m1-selection_banking_password_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_password_clean_v1/manifest.json",
+      "evidence_bytes": 5335,
+      "evidence_sha256": "c38b9ec62bd6b0b7f9694b0fb5af14b3936eba7f43851642c56bf37b06554be6"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_password_ipi_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m1-selection_banking_password_ipi_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_password_ipi_v1/manifest.json",
+      "evidence_bytes": 5741,
+      "evidence_sha256": "87b39b55b73dee2443ff6bffd0df9f422c4ab8384804da19cc32e3d7d2b46098"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_rent_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m1-selection_banking_rent_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_rent_clean_v1/manifest.json",
+      "evidence_bytes": 5240,
+      "evidence_sha256": "fa1b64d784d42180fa0048862677cef388692f3fd26200e179e07b35c8bc5e77"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_rent_delegated_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m1-selection_banking_rent_delegated_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_rent_delegated_clean_v1/manifest.json",
+      "evidence_bytes": 5470,
+      "evidence_sha256": "ff4ade5677be29bcf295b821a104102dedd15963550f1e40413c8dc1e168761c"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_rent_recipient_ipi_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m1-selection_banking_rent_recipient_ipi_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m1-selection_banking_rent_recipient_ipi_v1/manifest.json",
+      "evidence_bytes": 5890,
+      "evidence_sha256": "ff4d9b565a3ee74c7e527ed093aa2a8b131080eb7d2621b37a201b8d212b7ff1"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_address_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m2-selection_banking_address_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_address_clean_v1/manifest.json",
+      "evidence_bytes": 5310,
+      "evidence_sha256": "97d755269733cd29699dbadcb64e7113292c60c7e6b90c57db00db16dba6f07a"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_gift_lookup_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m2-selection_banking_gift_lookup_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_gift_lookup_clean_v1/manifest.json",
+      "evidence_bytes": 5402,
+      "evidence_sha256": "ce54b2c35531b37f0b98b5b109deb19b236637c87233819e5c09b016598d97ff"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_password_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m2-selection_banking_password_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_password_clean_v1/manifest.json",
+      "evidence_bytes": 5335,
+      "evidence_sha256": "a989437cb6ebd051185c0b2bf7f2c025a0cd94c111b7d721603c2bd3533b3d08"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_password_ipi_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m2-selection_banking_password_ipi_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_password_ipi_v1/manifest.json",
+      "evidence_bytes": 5740,
+      "evidence_sha256": "6283731a62f21243e87a32f8e54499767a07e8db65641231861b05df5e9fcfb8"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_rent_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m2-selection_banking_rent_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_rent_clean_v1/manifest.json",
+      "evidence_bytes": 5240,
+      "evidence_sha256": "53520c2bdc6f423708e88ae910d25260bd427666c7c0216f612943b384fd622d"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_rent_delegated_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m2-selection_banking_rent_delegated_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_rent_delegated_clean_v1/manifest.json",
+      "evidence_bytes": 5470,
+      "evidence_sha256": "6ec8504f728cb87f41ad36933746a5f41bc2d11645db54aa10640569cf1a270c"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_rent_recipient_ipi_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-001-m2-selection_banking_rent_recipient_ipi_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-001-m2-selection_banking_rent_recipient_ipi_v1/manifest.json",
+      "evidence_bytes": 5887,
+      "evidence_sha256": "b60c33734ab07b01bf6a62da51a95820891711a6b4f2c5abfb141bee35b2902a"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_address_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m1-selection_banking_address_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_address_clean_v1/manifest.json",
+      "evidence_bytes": 6256,
+      "evidence_sha256": "f1d2aa6d53b7cbc4ede2c379318784a2a3194ed1e934739ae39f37d1be977b3b"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_gift_lookup_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m1-selection_banking_gift_lookup_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_gift_lookup_clean_v1/manifest.json",
+      "evidence_bytes": 6364,
+      "evidence_sha256": "b2f80c0fc527a44d23cb6652090d4de9295045b15d6b212e5d02bb755a99999b"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_password_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m1-selection_banking_password_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_password_clean_v1/manifest.json",
+      "evidence_bytes": 6285,
+      "evidence_sha256": "9720f7e9179410bcd3e2b802ee3df89cc737612de5caa446d47dbac1ea8aa51d"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_password_ipi_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m1-selection_banking_password_ipi_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_password_ipi_v1/manifest.json",
+      "evidence_bytes": 6683,
+      "evidence_sha256": "88e05f9abbc49025b49f433397128a9537577d9690dac7991296d4e3e8e57d45"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_rent_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m1-selection_banking_rent_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_rent_clean_v1/manifest.json",
+      "evidence_bytes": 6176,
+      "evidence_sha256": "ada7a15c2d63d4d83dba2569b05dfd55249510e093b868838e0b188e4f9a444a"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_rent_delegated_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m1-selection_banking_rent_delegated_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_rent_delegated_clean_v1/manifest.json",
+      "evidence_bytes": 6445,
+      "evidence_sha256": "289c6dcd0337a348229e228170ac021b10cb586377d6758e47a39c29ca5d3248"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_rent_recipient_ipi_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m1-selection_banking_rent_recipient_ipi_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m1-selection_banking_rent_recipient_ipi_v1/manifest.json",
+      "evidence_bytes": 6856,
+      "evidence_sha256": "a456e531ab00e7a533e6e8d6270fc09bbc8a7bb1d1d2d03347fc63d253fa8e50"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_address_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m2-selection_banking_address_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_address_clean_v1/manifest.json",
+      "evidence_bytes": 6256,
+      "evidence_sha256": "71bb3903e247e429e581ec20ba7d448a2926f944184ac3afab2e3adcc7a11132"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_gift_lookup_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m2-selection_banking_gift_lookup_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_gift_lookup_clean_v1/manifest.json",
+      "evidence_bytes": 6364,
+      "evidence_sha256": "fad35b551135b7cc9965b76cca82d8dd00feec6ebcb2a4f59d36bd5738ba40d9"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_password_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m2-selection_banking_password_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_password_clean_v1/manifest.json",
+      "evidence_bytes": 6285,
+      "evidence_sha256": "fbafafd4137731e92b0b783d38a507ab24eb1a7842169ba036636e42580d9164"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_password_ipi_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m2-selection_banking_password_ipi_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_password_ipi_v1/manifest.json",
+      "evidence_bytes": 6682,
+      "evidence_sha256": "dc92c2632970c5f22f27576cb2d56f5d1068079e4761339cf79aa1b41e6bbc59"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_rent_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m2-selection_banking_rent_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_rent_clean_v1/manifest.json",
+      "evidence_bytes": 6175,
+      "evidence_sha256": "788de009122d9bd4e31047cc8b60a77bd98d053eb6e46fc1fbe40e996a90ac9f"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_rent_delegated_clean_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m2-selection_banking_rent_delegated_clean_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_rent_delegated_clean_v1/manifest.json",
+      "evidence_bytes": 6444,
+      "evidence_sha256": "9d66f8a6d1bc7cf1e8ef19d0a2c0c4ee5590c6026fad091175cc35c58b330ba6"
+    },
+    {
+      "path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_rent_recipient_ipi_v1",
+      "kind": "raw_run_bundle",
+      "run_id": "banking-selection-20260924-002-m2-selection_banking_rent_recipient_ipi_v1",
+      "evidence_path": "artifacts/runs/banking-selection-20260924-002-m2-selection_banking_rent_recipient_ipi_v1/manifest.json",
+      "evidence_bytes": 6854,
+      "evidence_sha256": "672d2fd3ce9ab80b85fe7be8b9f2a97c4ff99aee82808e17646524f0d7afe731"
+    },
+    {
+      "path": "artifacts/runs/qwen3-4b-bf16-shakedown-001-banking_multistep_user_task_3",
+      "kind": "raw_run_bundle",
+      "run_id": "qwen3-4b-bf16-shakedown-001-banking_multistep_user_task_3",
+      "evidence_path": "artifacts/runs/qwen3-4b-bf16-shakedown-001-banking_multistep_user_task_3/manifest.json",
+      "evidence_bytes": 3675,
+      "evidence_sha256": "3d09ac5caa7422aadc4bf4de55118604ebecbd6043398ad99e232af2e266eb86"
+    },
+    {
+      "path": "artifacts/runs/qwen3-4b-bf16-shakedown-001-banking_read_only_user_task_1",
+      "kind": "raw_run_bundle",
+      "run_id": "qwen3-4b-bf16-shakedown-001-banking_read_only_user_task_1",
+      "evidence_path": "artifacts/runs/qwen3-4b-bf16-shakedown-001-banking_read_only_user_task_1/manifest.json",
+      "evidence_bytes": 3674,
+      "evidence_sha256": "8971f8c4913e7697ace20c1d282729afe32475c561de28cd86fbd5a4606ec3ba"
+    },
+    {
+      "path": "artifacts/runs/qwen3-4b-bf16-shakedown-001-banking_same_tool_args_user_task_0_injection_0",
+      "kind": "raw_run_bundle",
+      "run_id": "qwen3-4b-bf16-shakedown-001-banking_same_tool_args_user_task_0_injection_0",
+      "evidence_path": "artifacts/runs/qwen3-4b-bf16-shakedown-001-banking_same_tool_args_user_task_0_injection_0/manifest.json",
+      "evidence_bytes": 4428,
+      "evidence_sha256": "4d04901ac56ab309ca669507446667872a093c61beb64373cb0a0e22ba5e25f6"
+    },
+    {
+      "path": "artifacts/runs/qwen3-8b-int8-shakedown-001-banking_read_only_user_task_1",
+      "kind": "raw_run_bundle",
+      "run_id": "qwen3-8b-int8-shakedown-001-banking_read_only_user_task_1",
+      "evidence_path": "artifacts/runs/qwen3-8b-int8-shakedown-001-banking_read_only_user_task_1/manifest.json",
+      "evidence_bytes": 3674,
+      "evidence_sha256": "b066dbbb42721486630555a9b91da30cbc7679518e37ad38044c62cfbdd1087e"
+    },
+    {
+      "path": "artifacts/runs/qwen3-8b-int8-shakedown-001-technical-failure",
+      "kind": "raw_run_bundle",
+      "run_id": "qwen3-8b-int8-shakedown-001-technical-failure",
+      "evidence_path": "artifacts/runs/qwen3-8b-int8-shakedown-001-technical-failure/manifest.json",
+      "evidence_bytes": 516,
+      "evidence_sha256": "5b874ebb394db3805d9f893892b8443a77adffc3547ab86f7f442cea5d000fe0"
+    },
+    {
+      "path": "artifacts/runs/qwen3-8b-int8-shakedown-002-banking_multistep_user_task_3",
+      "kind": "raw_run_bundle",
+      "run_id": "qwen3-8b-int8-shakedown-002-banking_multistep_user_task_3",
+      "evidence_path": "artifacts/runs/qwen3-8b-int8-shakedown-002-banking_multistep_user_task_3/manifest.json",
+      "evidence_bytes": 3676,
+      "evidence_sha256": "4f96a8bcc9ae1e1e1f6ca41a3e06d958045aaa4eda0feb765928186348b43233"
+    },
+    {
+      "path": "artifacts/runs/qwen3-8b-int8-shakedown-002-banking_read_only_user_task_1",
+      "kind": "raw_run_bundle",
+      "run_id": "qwen3-8b-int8-shakedown-002-banking_read_only_user_task_1",
+      "evidence_path": "artifacts/runs/qwen3-8b-int8-shakedown-002-banking_read_only_user_task_1/manifest.json",
+      "evidence_bytes": 3674,
+      "evidence_sha256": "524c25831d843dd3400c7150ea58e83fb7bc28184cdf9c88af0f9c29061503cd"
+    },
+    {
+      "path": "artifacts/runs/qwen3-8b-int8-shakedown-002-banking_same_tool_args_user_task_0_injection_0",
+      "kind": "raw_run_bundle",
+      "run_id": "qwen3-8b-int8-shakedown-002-banking_same_tool_args_user_task_0_injection_0",
+      "evidence_path": "artifacts/runs/qwen3-8b-int8-shakedown-002-banking_same_tool_args_user_task_0_injection_0/manifest.json",
+      "evidence_bytes": 4431,
+      "evidence_sha256": "36b2ff61e1a08d9bce16124ff4e349b1797cec15b206c9adca53d9284251a33c"
+    }
+  ]
+}

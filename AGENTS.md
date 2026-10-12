@@ -115,6 +115,22 @@ missing values, and deterministic behavior.
 - Preserve the dated proposal PDF as a fixed snapshot.
 - Do not modify or delete existing research data without explicit user
   authorization.
+- Git-ignored files are not disposable by default. On the Windows PC's WSL
+  Ubuntu checkout, protect these existing records from agent-initiated edits,
+  overwrites, moves, and deletion unless the user explicitly authorizes the
+  specific change:
+  - Raw run and stage bundles under `artifacts/runs/`, including failed runs.
+  - Completed human audit records, including `artifacts/pilot-lead-audit.json`.
+  - Runtime freezes used for an execution (`artifacts/*runtime*.freeze.json`),
+    finalized audit or stage reports, and the environment lock used for a run.
+  - Immutable derived capture bundles under `artifacts/processed/`.
+  Consult the dated Windows/WSL artifact inventory linked from `PROJECT_STATE.md`
+  for observed paths and checksums. An absent path on Mac does not mean that the
+  WSL record is missing; the inventory is a snapshot, not a live verification.
+  Read-only inspection and checksum verification are allowed. For corrections
+  or reruns, create a new record with provenance and keep the original. Blank
+  audit templates, disposable caches, and virtual environments are not research
+  records merely because Git ignores them.
 - If a pilot result motivates a protocol change, document the date, evidence,
   affected hypotheses, and whether the change occurred before inspecting the
   final test set.
