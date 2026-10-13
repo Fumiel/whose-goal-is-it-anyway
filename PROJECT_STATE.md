@@ -164,6 +164,8 @@ reuse of engineering bundles as research data.
 
 ## Stable entry points
 
+- Professor-facing progress reports: [template](docs/reports/progress_report_template.md)
+  and [writing rules](docs/reports/progress_report_rules.md).
 - Fast checks: `make check-fast`
 - Full checks after development dependencies are installed: `make check`
 - Validate repository declarations: `make validate`

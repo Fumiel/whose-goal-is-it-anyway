@@ -26,6 +26,10 @@ changing the intended experiment.
    scope of any partial revision; follow referenced predecessor records as
    needed to identify constraints that remain in force. Do not infer current
    permission from a record's date, index summary, or `accepted` status alone.
+4. When creating a professor-facing progress report, follow
+   `docs/reports/progress_report_template.md` and
+   `docs/reports/progress_report_rules.md`. Do not put internal phase labels in
+   the report as a substitute for explaining the current research situation.
 
 RDRs document the reasons and scope of decisions; they do not replace the
 canonical plan or protocol. If these documents disagree in a way that affects

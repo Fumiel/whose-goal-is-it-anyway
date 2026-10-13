@@ -8,4 +8,8 @@
 - `reports/` contains professor-facing progress reports and other submitted or
   shared documents. `experiment_logs/` contains dated execution and engineering
   records. Neither is automatically current protocol.
+- When creating a professor-facing progress report, read
+  `reports/progress_report_template.md` and `reports/progress_report_rules.md`.
+  Keep the report understandable without internal phase names, and verify
+  current facts against the operational and research sources named in the rules.
 - Verify unstable citations and software compatibility before relying on them.

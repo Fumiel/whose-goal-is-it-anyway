@@ -3,6 +3,7 @@
 Indirect Prompt Injectionを受けたツール利用型LLMエージェントについて、ユーザー目的と攻撃者目的の内部表現が、外部データの読み取りからツール選択までにどう変化するかを調べる卒業研究リポジトリです。
 
 研究計画の詳細は [`docs/research_proposal.md`](docs/research_proposal.md) を参照してください。
+指導教員向けの進捗報告には、[共通テンプレート](docs/reports/progress_report_template.md)と[作成ルール](docs/reports/progress_report_rules.md)を使用します。
 
 ## 現在の状態
 
@@ -30,7 +31,7 @@ Bankingの探索的pilotを90条件収集し、拡張分の人手監査を完了
 └── docs/                    # 研究計画と手順、および判断・実施の記録
     ├── decisions/           # 研究設計・実験手順の変更判断（RDR）
     ├── experiment_logs/     # 実験と工学的shakedownの実施記録
-    ├── reports/             # 教授向けの進捗報告など
+    ├── reports/             # 教授向けの進捗報告、共通テンプレートと作成ルール
     └── snapshots/           # 日付付き研究計画の固定PDF
 ```
 
