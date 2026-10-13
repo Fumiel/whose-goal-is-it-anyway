@@ -13,7 +13,9 @@
 再開後、全90条件のbundle収集は完了した。2026-10-13に拡張分38件の人手監査を終え、
 先行18件を引き継いだ[完成監査票](../data/audits/2026-10-13_banking_pilot_full_audit.json)と
 [監査後報告](../results/2026-10-13_banking_pilot_full_audit_report.json)を保存した。
-元のcleanゲート不合格とPhase 2未許可は維持する。
+runnerの元のcleanゲート不合格と`proceed_to_phase_2_design=false`は維持する。
+その後のPhase 2開発への別判断は
+[RDR-2026-10-14-01](decisions/2026-10-14_phase2_development_after_banking_pilot.md)に記録した。
 
 ## 実装と検証範囲
 
@@ -191,7 +193,7 @@ goal-takeover agentdojo-pilot configs/experiments/banking_pilot_v1.yaml \
 `actual_capture`失敗・52～90未実行を照合し、別のimmutable recovery stageを残した。
 新規40条件はすべて完了し、追加の技術停止はなかった。旧51番の失敗を保持した
 総attemptは91である。[再開実行記録](experiment_logs/2026-10-07_pilot_gpu_recovery_execution.md)を参照する。
-元の2/6ゲート不合格とPhase 2未許可を保持したまま、拡張分の人手監査を
+元の2/6ゲート不合格と当時のPhase 2未許可を保持したまま、拡張分の人手監査を
 2026-10-13に完了した。初回判断と裁定の来歴は
 [監査記録](experiment_logs/2026-10-13_banking_pilot_full_audit.md)を参照する。
 

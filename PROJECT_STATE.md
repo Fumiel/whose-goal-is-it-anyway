@@ -6,9 +6,15 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `exploratory_pilot_audited_awaiting_post_pilot_decision`
+- Phase: `phase2_development_authorized_pending_new_run_specification`
 - Primary model: not selected
 - Primary domain: not selected
+- Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
+  authorizes Phase 2 design, implementation, and new training / validation runs
+  with provisional Qwen3-8B int8 / Banking, after the new conditions, evaluator,
+  split, and runtime specification are fixed. The failed clean gate, pilot_only
+  status, and unselected primary model/domain remain unchanged. No Phase 2
+  model runs or confirmatory test runs have been recorded under this decision.
 - Provisional exploratory pilot: Qwen3-8B int8 on AgentDojo Banking v1.2.2;
   see `docs/decisions/2026-09-24_provisional_qwen3_8b_banking_pilot.md`.
 - Initial pilot sample: frozen by RDR-2026-10-01-03. Tasks 14/0/3/4/2/12,
@@ -137,8 +143,17 @@ After the exploratory pilot collection:
    condition 51 as a2 and the 39 previously unrun conditions. Old bundles remain
    immutable. The expansion human audit is complete (56 audited runs total,
    including 18 carried-forward lead judgments). The 90-condition collection
-   remains exploratory; its completed audit does not authorize Phase 2 or test.
-   A separate post-pilot RDR must decide the next research step.
+   remains exploratory; its completed audit did not itself authorize Phase 2 or
+   test. RDR-2026-10-14-01 separately authorizes Phase 2 development and new
+   training / validation collection with the provisional configuration. It does
+   not adopt a primary model/domain or authorize pilot reuse or confirmatory test.
+6. Before new Phase 2 model runs, fix the new conditions, model-free evaluator
+   checks, relationship graph and development split, audit rules, model/tokenizer
+   revisions, deterministic decoding, capture/scoring configuration, resource
+   ceiling, and runtime provenance. Investigate the six quarantined lexical
+   control contradictions; do not use their labels for probe training. Decide
+   primary model/domain and confirmatory feasibility in a separate RDR before
+   Phase 3 freeze.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -179,8 +194,8 @@ reuse of engineering bundles as research data.
   the separately authorized recovery collected condition 51 as a2 and the 39
   previously unrun conditions. All 90 conditions have complete bundles and the
   56 selected runs are human-audited with no unresolved disagreements. The original
-  clean gate remains failed. Verified supply of unseen Banking clusters and a
-  post-pilot research decision remain outstanding.
+  clean gate remains failed. A post-pilot decision now permits Phase 2
+  development, while verified supply of unseen Banking clusters remains outstanding.
   Tasks 5/6 remain on
   hold, and task 11 requires recipient audit.
 - New development/test families, their AgentDojo compatibility and evaluator

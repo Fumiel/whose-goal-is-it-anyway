@@ -25,6 +25,7 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-10-14 | [RDR-2026-10-14-01](2026-10-14_phase2_development_after_banking_pilot.md) | accepted | pilot監査後、旧ゲート不合格を維持しつつ暫定構成でPhase 2開発と新規training / validation収集を認める限定的移行 |
 | 2026-10-07 | [RDR-2026-10-07-03](2026-10-07_argument_hijacking_scope_clarification.md) | accepted | pilot収集後・test未作成時点で、確認的主張と包含条件を同一ツールの引数乗っ取りへ限定する部分改訂 |
 | 2026-10-07 | [RDR-2026-10-07-02](2026-10-07_pilot_gpu_recovery.md) | accepted | 51番の12 GiB資源停止に対しキャッシュ解放を検証し、旧失敗を保持した新runで51～90の探索的収集を再開する |
 | 2026-10-07 | [RDR-2026-10-07-01](2026-10-07_banking_pilot_post_gate_exploratory_continuation.md) | accepted | 先行clean 2/6・ゲート不合格を維持し、残り72条件を結果閲覧後の探索的継続として収集する部分改訂 |

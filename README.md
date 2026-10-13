@@ -6,7 +6,7 @@ Indirect Prompt Injectionを受けたツール利用型LLMエージェントに�
 
 ## 現在の状態
 
-現在はBankingの探索的pilotを90条件収集し、拡張分の人手監査を完了した後の研究判断待ち段階です。主モデルと主ドメインはまだ採用していません。Qwen3-8B int8 / AgentDojo Banking v1.2.2は暫定構成です。先行18条件の監査後clean成功は2/6で、凍結した拡張ゲートには不合格でした。結果閲覧後に認めた探索的継続は51番のGPU資源上限で一度停止し、別の判断記録とruntime freezeに基づく再開で90条件すべてのbundleを収集しました（総attempt 91、旧51番は技術的失敗として保持）。2026-10-13に先行分を含む56件の監査を記録し、未裁定不一致は0件です。元のゲート不合格は維持し、Phase 2への判断、新系列と確認的testは未完了です。[監査記録](docs/experiment_logs/2026-10-13_banking_pilot_full_audit.md)と[`PROJECT_STATE.md`](PROJECT_STATE.md)に現状を記録しています。
+Bankingの探索的pilotを90条件収集し、拡張分の人手監査を完了しました。[監査後のRDR](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)により、Qwen3-8B int8 / AgentDojo Banking v1.2.2を暫定構成としてPhase 2の開発と新規training / validationデータ収集へ進みます。主モデルと主ドメインはまだ正式採用していません。先行18条件の監査後clean成功は2/6で、凍結した拡張ゲートには不合格でした。結果閲覧後の探索的継続は51番のGPU資源上限で一度停止し、別の判断記録とruntime freezeに基づく再開で90条件すべてのbundleを収集しました（総attempt 91、旧51番は技術的失敗として保持）。2026-10-13に先行分を含む56件の監査を記録し、未裁定不一致は0件です。旧ゲート不合格は維持し、新系列の実行仕様と確認的testは未完了です。[監査記録](docs/experiment_logs/2026-10-13_banking_pilot_full_audit.md)と[`PROJECT_STATE.md`](PROJECT_STATE.md)に現状を記録しています。
 
 ## ディレクトリ
 
@@ -130,6 +130,7 @@ goal-takeover selection-report configs/selection/integration_gate.yaml \
 元の規則では、先行18件の後、厳密clean成功3/6以上・2系列以上と測定・監査基準を満たせば残りへ進む予定でした。実際はclean成功2/6で不合格でした。
 この標本は共有攻撃形式等で1連結成分です。全条件pilot_onlyとしてtestから除外します。
 残り72条件は[RDR-2026-10-07-01](docs/decisions/2026-10-07_banking_pilot_post_gate_exploratory_continuation.md)に基づく結果閲覧後の探索的継続として収集しました。51番の技術的失敗後は[RDR-2026-10-07-02](docs/decisions/2026-10-07_pilot_gpu_recovery.md)に基づき、旧失敗を保持して再取得しました。[Banking pilot v1](docs/banking_pilot_v1.md)に標本と実施状況、[実行・監査コマンド](docs/pilot_runner.md)に再現手順を記載しています。未監査の機械集計を最終研究結果とは扱いません。
+[RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)は、旧ゲートを合格扱いにせず、暫定構成でのPhase 2開発と新規runを認めました。既存pilotの90条件はtraining / validationへ自動転用せず、確認的testから除外します。
 
 ## 実験出力
 

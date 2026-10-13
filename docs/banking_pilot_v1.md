@@ -11,7 +11,9 @@
 51～90を収集した。全90条件は完了bundleを持ち、旧51番の失敗を含む総attemptは91。
 拡張分38件の人手監査を2026-10-13に完了し、先行18件を含む56件の
 [完成監査票](../data/audits/2026-10-13_banking_pilot_full_audit.json)を保存した。
-Phase 2への移行は認められていない。
+pilot自体は旧Phase 2移行ゲートに不合格だった。
+その後の[RDR-2026-10-14-01](decisions/2026-10-14_phase2_development_after_banking_pilot.md)は、
+別判断として暫定構成でのPhase 2開発と新規training / validation収集を認めた。
 正本の手順は[プロトコル第5.3節](experimental_protocol.md)、
 研究目的は[研究計画書](research_proposal.md)を参照する。
 
@@ -91,6 +93,6 @@ native user-task/attack、厳密user-task/宣言攻撃call発生、副作用を�
 監査前の機械集計ではなく[監査後報告](../results/2026-10-13_banking_pilot_full_audit_report.json)を
 次の判断資料とし、実軌跡での接触・内部状態取得・採点の解釈と新しい独立系列の供給を
 次の研究判断で検討する。[監査記録](experiment_logs/2026-10-13_banking_pilot_full_audit.md)を参照する。
-元のPhase 2移行規則を合格扱いにせず、次の段階は別RDRで判断する。
+元のPhase 2移行規則を合格扱いにせず、次の段階はRDR-2026-10-14-01で別途判断した。
 DやR/S pairが0でもそれだけで停止・追加探索せず、陰性結果を保持する。
 新攻撃探索やモデル/domain・主張範囲変更は別RDRを作り、testを開封しない。
