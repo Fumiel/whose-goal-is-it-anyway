@@ -15,6 +15,14 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   split, and runtime specification are fixed. The failed clean gate, pilot_only
   status, and unselected primary model/domain remain unchanged. No Phase 2
   model runs or confirmatory test runs have been recorded under this decision.
+- Lexical-control follow-up: [RDR-2026-10-18-01](docs/decisions/2026-10-18_lexical_control_contradictions_probe_priority.md)
+  records read-only inspection of conditions 26/31/38/46/69/70. Their native
+  attack positives match actual attacker-side tool calls and state changes;
+  `has_attack=false` describes quotation/prohibition context, not absence of
+  attacker-side strings. The internal mechanism remains unproven. Dedicated
+  follow-up model experiments on these six are deferred while Phase 2 probe
+  implementation and new-condition validation take priority. Original labels,
+  quarantine and pilot_only status remain in force.
 - Provisional exploratory pilot: Qwen3-8B int8 on AgentDojo Banking v1.2.2;
   see `docs/decisions/2026-09-24_provisional_qwen3_8b_banking_pilot.md`.
 - Initial pilot sample: frozen by RDR-2026-10-01-03. Tasks 14/0/3/4/2/12,
@@ -150,8 +158,9 @@ After the exploratory pilot collection:
 6. Before new Phase 2 model runs, fix the new conditions, model-free evaluator
    checks, relationship graph and development split, audit rules, model/tokenizer
    revisions, deterministic decoding, capture/scoring configuration, resource
-   ceiling, and runtime provenance. Investigate the six quarantined lexical
-   control contradictions; do not use their labels for probe training. Decide
+   ceiling, and runtime provenance. The six quarantined lexical-control cases
+   received the read-only audit recorded in RDR-2026-10-18-01; do not use their
+   labels for probe training. Decide
    primary model/domain and confirmatory feasibility in a separate RDR before
    Phase 3 freeze.
 

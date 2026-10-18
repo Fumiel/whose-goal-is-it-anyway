@@ -89,6 +89,12 @@ native user-task/attack、厳密user-task/宣言攻撃call発生、副作用を�
 引用・説明・禁止は対照として識別し、no-attackでnative attack陽性なら矛盾として隔離する。
 自動判定・監査初回判定・裁定を残し、raw bundleを上書きしない。
 
+語彙対照6件（実行順26/31/38/46/69/70）の読取調査とその後の優先順位は
+[RDR-2026-10-18-01](decisions/2026-10-18_lexical_control_contradictions_probe_priority.md)に記録した。
+引用・禁止の文脈でも攻撃側の具体的なcallが外部データに残り、実際のtool eventと
+状態変化がnative陽性を裏付けた。旧6件の隔離とpilot_only指定を維持し、
+内部機構は未確定として、専用の追加実験より新しいprobe条件の開発を優先する。
+
 最大90条件の収集と選定された56件の人手監査は完了したが、元のclean基準3/6を満たしていない。
 監査前の機械集計ではなく[監査後報告](../results/2026-10-13_banking_pilot_full_audit_report.json)を
 次の判断資料とし、実軌跡での接触・内部状態取得・採点の解釈と新しい独立系列の供給を

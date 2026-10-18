@@ -248,8 +248,14 @@ cleanを先に、task順14/0/3/4/2/12とcondition ID順をmanifestに保存す�
 暫定構成でのPhase 2開発と新規training / validation収集を認める。
 これは旧ゲート合格、主モデル・主ドメインの正式採用、既存pilot runの学習・検証への転用、
 確認的testの開始ではない。語彙対照6件の判定矛盾は隔離し、評価器・監査規則の検証対象とする。
+[RDR-2026-10-18-01](decisions/2026-10-18_lexical_control_contradictions_probe_priority.md)は、
+6件の条件・tool event・状態を読み取りで照合し、native陽性を実際の攻撃側操作が
+裏付けると記録した。`has_attack=false`は引用・禁止の文脈上の分類であり、
+攻撃側の値が入力から除かれた意味ではない。内部機構は未確定のまま、
+6件専用の追加モデル実験よりPhase 2のprobe実装と新しい対応条件の検証を優先する。
+旧ラベルの隔離、教師データ不使用、新規run前の固定条件は維持する。
 
-同日の[RDR-2026-10-07-02](decisions/2026-10-07_pilot_gpu_recovery.md)は、
+また、2026-10-07の[RDR-2026-10-07-02](decisions/2026-10-07_pilot_gpu_recovery.md)は、
 51番が3回のモデル出力後に12 GiB資源上限で停止したため、この一件だけを新run IDで
 再取得し、52～90を凍結順に続ける例外を定める。旧失敗bundleとstageを保持し、
 工学計測で確認した未使用CUDAキャッシュ解放を各取得前に行う。
