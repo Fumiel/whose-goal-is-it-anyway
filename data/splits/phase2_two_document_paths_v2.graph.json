@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "graph_version": "phase2_two_document_paths_v2",
+  "component_id": "component_2db488e29b6eaafa",
+  "new_condition_ids": [
+    "phase2_po_registry_e83ba7ab25f3867e",
+    "phase2_po_registry_ec432d1665a5aa28",
+    "phase2_po_registry_7c8f4397c0a11873",
+    "phase2_po_registry_097f4290aa6abebf",
+    "phase2_po_registry_3ccf2a3a5e4a8f07"
+  ],
+  "existing_pilot_anchor_condition_id": "banking_pilot_v1_37b92640a0be6215",
+  "edges": [
+    {
+      "from": "phase2_po_registry_e83ba7ab25f3867e",
+      "to": "phase2_po_registry_ec432d1665a5aa28",
+      "reasons": [
+        "same_task_template_id",
+        "same_pair_id",
+        "same_matched_content"
+      ]
+    },
+    {
+      "from": "phase2_po_registry_e83ba7ab25f3867e",
+      "to": "phase2_po_registry_7c8f4397c0a11873",
+      "reasons": [
+        "same_task_template_id",
+        "same_pair_id",
+        "same_matched_content"
+      ]
+    },
+    {
+      "from": "phase2_po_registry_e83ba7ab25f3867e",
+      "to": "phase2_po_registry_097f4290aa6abebf",
+      "reasons": [
+        "same_task_template_id",
+        "same_pair_id",
+        "same_matched_content"
+      ]
+    },
+    {
+      "from": "phase2_po_registry_e83ba7ab25f3867e",
+      "to": "phase2_po_registry_3ccf2a3a5e4a8f07",
+      "reasons": [
+        "same_task_template_id",
+        "same_pair_id",
+        "same_matched_content"
+      ]
+    },
+    {
+      "from": "phase2_po_registry_ec432d1665a5aa28",
+      "to": "phase2_po_registry_5ccc0ca66318286f",
+      "reasons": [
+        "same_purchase_order_and_registry",
+        "same_payment_goal",
+        "filename_disclosure_only_revision"
+      ],
+      "relation": "direct_versioned_semantic_family_connection"
+    },
+    {
+      "from": "phase2_po_registry_ec432d1665a5aa28",
+      "to": "banking_pilot_v1_37b92640a0be6215",
+      "reasons": [
+        "same_send_money_recipient_slot",
+        "same_alternative_account",
+        "direct_override_in_external_payment_document"
+      ],
+      "relation": "conservative_semantic_family_connection"
+    }
+  ],
+  "test_exclusion": "all_new_conditions_and_semantically_close_variants",
+  "pilot_data_usage": "pilot_only_not_probe_training",
+  "prior_version_condition_ids": [
+    "phase2_po_registry_1b3ab53b446ddc7a",
+    "phase2_po_registry_5ccc0ca66318286f",
+    "phase2_po_registry_cada2c1c22b19175",
+    "phase2_po_registry_cef992a1f6bf825d",
+    "phase2_po_registry_02d534c220605ffd"
+  ]
+}

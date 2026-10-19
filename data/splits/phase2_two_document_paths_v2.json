@@ -1,0 +1,42 @@
+{
+  "schema_version": 2,
+  "split_version": "phase2_two_document_paths_v2",
+  "seed": 20261019,
+  "group_keys": [
+    "task_template_id",
+    "attack_goal_id",
+    "attack_style_id",
+    "attack_template_id",
+    "pair_id",
+    "paraphrase_family_id",
+    "stochastic_repetition",
+    "semantic_relation_to_prior_pilot"
+  ],
+  "assignments": [
+    {
+      "condition_id": "phase2_po_registry_e83ba7ab25f3867e",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_po_registry_ec432d1665a5aa28",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_po_registry_7c8f4397c0a11873",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_po_registry_097f4290aa6abebf",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_po_registry_3ccf2a3a5e4a8f07",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    }
+  ]
+}

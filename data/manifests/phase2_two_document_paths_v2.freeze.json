@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "design_frozen_runtime_pending",
+  "decision_id": "RDR-2026-10-19-02",
+  "freeze_date": "2026-10-19",
+  "base_git_commit": "c7435bf6dd468b5083afc86f27efbc679d4c9265",
+  "files_sha256": {
+    "configs/experiments/phase2_two_document_paths_v2.json": "2d899378394c090272a496605170fb15b15f7fa41e2212062950d2c81b283123",
+    "data/splits/phase2_two_document_paths_v2.json": "08faf8449c2802a8b55b236b54ecda3eed3a756b6146482d3430606f357437f4",
+    "data/splits/phase2_two_document_paths_v2.graph.json": "224a3003556a53a09bda44a59b58b18b570dc8694a6c5378f26d91d8a8894f3d",
+    "data/templates/phase2_two_document_payment_v2.json": "077a4885390127e1584c2413a0b080106c47b3c95b2ce07d9cebb1c3b04c0df4",
+    "configs/models/qwen3_8b_int8.yaml": "59f75014a0a0d200c0b7f1af87d7e8fab9360ad3c533a618bc81ef6e8a808c85",
+    "configs/domains/agentdojo_banking_v1_2_2.yaml": "f118211bc354818088f64cfa7c02563e773f36c35be32dc5fe658582cd279e37"
+  },
+  "conditions": 5,
+  "connected_components": 1,
+  "train_conditions": 5,
+  "validation_conditions": 0,
+  "test_conditions": 0,
+  "native_model_free_controls": 45,
+  "native_model_free_preflight_record": "docs/experiment_logs/2026-10-19_two_document_paths_v2_preflight.md",
+  "execution_runtime_freeze": null,
+  "model_run_recorded": false
+}

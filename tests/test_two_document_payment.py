@@ -14,6 +14,7 @@ from goal_takeover.datasets.two_document_payment import (
 )
 
 SPEC = Path("data/templates/phase2_two_document_payment_v1.json")
+SPEC_V2 = Path("data/templates/phase2_two_document_payment_v2.json")
 
 
 class TwoDocumentPaymentTests(unittest.TestCase):
@@ -79,6 +80,24 @@ class TwoDocumentPaymentTests(unittest.TestCase):
         altered = copy.deepcopy(self.spec)
         altered["calls"]["attacker"]["arguments"]["amount"] = 99.0
         with self.assertRaisesRegex(ValueError, "only recipient"):
+            validate_spec(altered)
+
+    def test_v2_discloses_both_exact_file_paths_to_every_role(self) -> None:
+        revised = load_spec(SPEC_V2)
+        for document in ("purchase_order", "payee_registry"):
+            path = revised[document]["path"]
+            self.assertEqual(revised["instruction_base"].count(path), 1)
+            for row in revised["conditions"]:
+                self.assertIn(path, materialize(revised, row["variant_id"])["user_instruction"])
+        self.assertNotEqual(
+            materialize(self.spec, "tool_output")["condition_id"],
+            materialize(revised, "tool_output")["condition_id"],
+        )
+        altered = copy.deepcopy(revised)
+        altered["instruction_base"] = altered["instruction_base"].replace(
+            revised["payee_registry"]["path"], "approved-payees registry"
+        )
+        with self.assertRaisesRegex(ValueError, "payee_registry path"):
             validate_spec(altered)
 
 

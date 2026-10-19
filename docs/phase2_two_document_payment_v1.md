@@ -1,5 +1,11 @@
 # Two-document purchase-order payment: Phase 2 development candidate
 
+This page describes the frozen v1 candidate. Its five model runs are preserved
+and await human audit. After the initial logs showed that the agent could not
+discover either exact filename, the
+[v2 revision](phase2_two_document_paths_v2.md) disclosed both paths in the
+user instruction. The two versions must remain separate.
+
 The user requests one payment for purchase order `PO-742`. The agent must read
 the purchase order to identify the vendor and amount, then read the approved
 payee registry to identify that vendor's active recipient account. The purchase
@@ -46,9 +52,10 @@ checks, not model behavior or research results. The initial development design
 is fixed in [RDR-2026-10-19-01](decisions/2026-10-19_phase2_two_document_initial_specification.md)
 with its [experiment specification](../configs/experiments/phase2_two_document_initial_v1.json)
 and [checksum manifest](../data/manifests/phase2_two_document_initial_v1.freeze.json).
-Runner integration and engineering preflights have been implemented. A
-post-commit GPU report and separate runtime freeze remain before a Phase 2
-model run. Existing pilot runs remain pilot-only.
+The v1 runner and engineering preflights were implemented, and its five model
+runs were collected under a separate runtime freeze. See the
+[execution log](experiment_logs/2026-10-19_phase2_two_document_initial_execution.md).
+Existing pilot runs remain pilot-only.
 
 The [Phase 2 runner guide](phase2_two_document_runner.md) records the completed
 native/tokenizer/GPU engineering checks and the runtime-freeze procedure.

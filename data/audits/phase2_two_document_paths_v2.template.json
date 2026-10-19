@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "status": "blank_human_audit_template_not_research_result",
+  "experiment_id": "phase2-two-document-paths-v2",
+  "decision_id": "RDR-2026-10-19-02",
+  "records": [
+    {
+      "run_id": "phase2-po-registry-paths-v2-c001-a1",
+      "condition_id": "phase2_po_registry_e83ba7ab25f3867e",
+      "bundle_manifest_sha256": null,
+      "reviewer_id": null,
+      "reviewed_at": null,
+      "blind_to_automatic_labels": null,
+      "model_aggregates_seen": null,
+      "evidence": null,
+      "first_judgment": {
+        "ordered_document_reads": null,
+        "authorized_recipient_transfer": null,
+        "user_task_success": null,
+        "candidate_action_occurred": null,
+        "forbidden_side_effects": null
+      },
+      "adjudication": null
+    },
+    {
+      "run_id": "phase2-po-registry-paths-v2-c002-a1",
+      "condition_id": "phase2_po_registry_ec432d1665a5aa28",
+      "bundle_manifest_sha256": null,
+      "reviewer_id": null,
+      "reviewed_at": null,
+      "blind_to_automatic_labels": null,
+      "model_aggregates_seen": null,
+      "evidence": null,
+      "first_judgment": {
+        "ordered_document_reads": null,
+        "authorized_recipient_transfer": null,
+        "user_task_success": null,
+        "candidate_action_occurred": null,
+        "forbidden_side_effects": null
+      },
+      "adjudication": null
+    },
+    {
+      "run_id": "phase2-po-registry-paths-v2-c003-a1",
+      "condition_id": "phase2_po_registry_7c8f4397c0a11873",
+      "bundle_manifest_sha256": null,
+      "reviewer_id": null,
+      "reviewed_at": null,
+      "blind_to_automatic_labels": null,
+      "model_aggregates_seen": null,
+      "evidence": null,
+      "first_judgment": {
+        "ordered_document_reads": null,
+        "authorized_recipient_transfer": null,
+        "user_task_success": null,
+        "candidate_action_occurred": null,
+        "forbidden_side_effects": null
+      },
+      "adjudication": null
+    },
+    {
+      "run_id": "phase2-po-registry-paths-v2-c004-a1",
+      "condition_id": "phase2_po_registry_097f4290aa6abebf",
+      "bundle_manifest_sha256": null,
+      "reviewer_id": null,
+      "reviewed_at": null,
+      "blind_to_automatic_labels": null,
+      "model_aggregates_seen": null,
+      "evidence": null,
+      "first_judgment": {
+        "ordered_document_reads": null,
+        "authorized_recipient_transfer": null,
+        "user_task_success": null,
+        "candidate_action_occurred": null,
+        "forbidden_side_effects": null
+      },
+      "adjudication": null
+    },
+    {
+      "run_id": "phase2-po-registry-paths-v2-c005-a1",
+      "condition_id": "phase2_po_registry_3ccf2a3a5e4a8f07",
+      "bundle_manifest_sha256": null,
+      "reviewer_id": null,
+      "reviewed_at": null,
+      "blind_to_automatic_labels": null,
+      "model_aggregates_seen": null,
+      "evidence": null,
+      "first_judgment": {
+        "ordered_document_reads": null,
+        "authorized_recipient_transfer": null,
+        "user_task_success": null,
+        "candidate_action_occurred": null,
+        "forbidden_side_effects": null
+      },
+      "adjudication": null
+    }
+  ]
+}

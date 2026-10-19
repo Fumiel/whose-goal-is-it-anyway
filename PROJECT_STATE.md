@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `phase2_initial_collection_awaiting_human_audit`
+- Phase: `phase2_path_disclosure_v2_preflight_passed`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
@@ -34,6 +34,19 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   executed behavior and do not replace the condition. See the
   [execution log](docs/experiment_logs/2026-10-19_phase2_two_document_initial_execution.md)
   and [collection manifest](data/manifests/2026-10-19_phase2_two_document_initial_collection.json).
+  All five v1 runs requested wrong `read_file` paths and received empty file
+  content; none read the declared registry. The exact filenames were absent from
+  the user prompt, and the Banking tool set has no file listing or search tool.
+  The researcher's post-run [RDR-2026-10-19-02](docs/decisions/2026-10-19_phase2_two_document_path_disclosure_revision.md)
+  keeps v1 immutable and creates a separate [v2 task](data/templates/phase2_two_document_payment_v2.json)
+  that gives both filenames in every user instruction. The five new IDs have a
+  [train-only split](data/splits/phase2_two_document_paths_v2.json),
+  [conservative graph](data/splits/phase2_two_document_paths_v2.graph.json),
+  [design freeze](data/manifests/phase2_two_document_paths_v2.freeze.json), and
+  [runner guide](docs/phase2_two_document_paths_v2.md). Synthetic, native
+  AgentDojo model-free (45 controls), and fixed-tokenizer preflight passed. A
+  clean execution commit, same-commit GPU report and separate runtime freeze
+  remain required before any v2 model run. No v2 model behavior has been observed.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
@@ -196,6 +209,11 @@ After the exploratory pilot collection:
    labels for probe training. Decide
    primary model/domain and confirmatory feasibility in a separate RDR before
    Phase 3 freeze.
+7. Keep the completed v1 bundles and pending human audit unchanged. The new
+   filename-disclosed v2 conditions are separate train runs in the same
+   conservative component, not independent validation. Before a v2 model run,
+   complete the clean-commit GPU/storage report and a new same-commit runtime
+   freeze. See RDR-2026-10-19-02 and the v2 runner guide.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -247,6 +265,8 @@ reuse of engineering bundles as research data.
   and five completed immutable model-run bundles. Human audit is outstanding;
   no audited outcome report or independent validation exists. The tool-output
   IPI condition did not expose the declared attack vector on its actual path.
+  The path-disclosed v2 design and model-free/tokenizer preflight are complete;
+  v2 GPU/runtime freeze and model runs are not complete.
   Additional development/test families and the final connected-component split
   are not implemented.
 - No confirmatory data and no research result

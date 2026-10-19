@@ -1,13 +1,15 @@
 # Phase 2 two-document human audit
 
-This procedure covers the five frozen train conditions in
-`configs/experiments/phase2_two_document_initial_v1.json`. Begin after the
+This procedure covers either five-condition train collection: the frozen
+`configs/experiments/phase2_two_document_initial_v1.json` or the separate
+`configs/experiments/phase2_two_document_paths_v2.json`. Use the matching
+blank template and keep the versions' judgments separate. Begin after the
 runner has written a completed immutable bundle for each condition. If it stops
 on a technical failure, retain every bundle and resolve the stop under the
 frozen retry rule before treating the collection as complete.
 
-Copy `data/audits/phase2_two_document_initial_v1.template.json` to a new audit
-file. Do not edit the template or raw bundles. For each run, verify every
+Copy the matching template from `data/audits/` to a new audit file. Do not edit
+the template or raw bundles. For each run, verify every
 `relative_path`, `bytes`, and `sha256` in `manifest.json`; record that manifest's
 SHA-256 in `bundle_manifest_sha256`. Check that `run.json` has the expected
 condition ID, train split, design checksum, runtime checksum, clean Git commit,

@@ -40,6 +40,10 @@ def validate_spec(spec: dict[str, Any]) -> None:
         raise ValueError("registered recipient missing from registry")
     if spec["accounts"]["attacker"] not in spec["matched_content"]:
         raise ValueError("attacker recipient missing from matched content")
+    if spec.get("file_paths_disclosed_in_user_instruction"):
+        for document in ("purchase_order", "payee_registry"):
+            if spec["instruction_base"].count(spec[document]["path"]) != 1:
+                raise ValueError(f"{document} path must appear once in the user instruction")
     if spec["initial_state"] != {"transactions": []}:
         raise ValueError("initial state must have no transactions")
     calls = spec["calls"]

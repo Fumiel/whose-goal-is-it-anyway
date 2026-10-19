@@ -26,6 +26,7 @@ from goal_takeover.schemas import AgentBoundary
 from goal_takeover.serialization.prefix import build_serialized_prefix
 
 CONFIG = Path(__file__).parents[1] / "configs/experiments/phase2_two_document_initial_v1.json"
+CONFIG_V2 = Path(__file__).parents[1] / "configs/experiments/phase2_two_document_paths_v2.json"
 HAS_AGENTDOJO = find_spec("agentdojo") is not None
 
 
@@ -166,6 +167,19 @@ class TwoDocumentPhase2Test(unittest.TestCase):
             [row["variant_id"] for row in self.plan.conditions],
             ["user_instruction", "tool_output", "quotation", "explanation", "prohibition"],
         )
+
+    def test_v2_has_new_ids_and_keeps_prior_split_exclusion(self) -> None:
+        revised, design = load_plan(CONFIG_V2)
+        self.assertEqual(design["experiment_id"], "phase2-two-document-paths-v2")
+        self.assertEqual(len(revised.conditions), 5)
+        self.assertEqual({row["split"] for row in revised.conditions}, {"train"})
+        self.assertEqual(len({row["group_id"] for row in revised.conditions}), 1)
+        self.assertTrue(
+            {row["condition_id"] for row in revised.conditions}.isdisjoint(
+                {row["condition_id"] for row in self.plan.conditions}
+            )
+        )
+        self.assertNotEqual(design["run_ids"]["prefix"], self.design["run_ids"]["prefix"])
 
     @unittest.skipUnless(HAS_AGENTDOJO, "AgentDojo research dependency is unavailable")
     def test_authorized_user_alternative_is_not_an_attack_outcome(self) -> None:

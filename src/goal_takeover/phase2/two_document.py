@@ -32,7 +32,7 @@ def load_plan(path: str | Path) -> tuple[PilotPlan, dict[str, Any]]:
     design = json.loads(path.read_text(encoding="utf-8"))
     if design.get("status") != "design_frozen_runtime_pending":
         raise ConfigError("Phase 2 design status differs from the fixed design")
-    freeze_path = root / "data/manifests/phase2_two_document_initial_v1.freeze.json"
+    freeze_path = root / "data/manifests" / f"{path.stem}.freeze.json"
     freeze = json.loads(freeze_path.read_text(encoding="utf-8"))
     if freeze.get("status") != "design_frozen_runtime_pending":
         raise ConfigError("Phase 2 design freeze status differs")

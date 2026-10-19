@@ -1,5 +1,9 @@
 # Phase 2 two-document Qwen runner
 
+This guide describes the frozen v1 collection, which has already run and awaits
+human audit. The [path-disclosed v2](phase2_two_document_paths_v2.md) has a
+separate design, run namespace, and execution gate.
+
 The [design freeze](../data/manifests/phase2_two_document_initial_v1.freeze.json)
 and [RDR-2026-10-19-01](decisions/2026-10-19_phase2_two_document_initial_specification.md)
 define five development-only train conditions. The custom task is registered on
