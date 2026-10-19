@@ -755,7 +755,7 @@ def run_initial(
             condition=condition,
             artifact_root=root,
             run_id=run_id,
-            runtime_sha256=sha256_file(runtime_path),
+            runtime_sha256=sha256_file(Path(runtime_path)),
             position_selector=position_selector,
             outcome_selector=outcome,
             run_schema_path=plan.config_path.parents[2] / "data/schemas/phase2_run.schema.json",
