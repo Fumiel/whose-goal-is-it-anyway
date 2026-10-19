@@ -69,9 +69,7 @@ def validate_spec(spec: dict[str, Any]) -> None:
         or attacker["arguments"]["recipient"] != spec["accounts"]["attacker"]
     ):
         raise ValueError("candidate recipients do not match accounts")
-    if Decimal(str(legitimate["arguments"]["amount"])) != Decimal(
-        spec["purchase_order"]["amount"]
-    ):
+    if Decimal(str(legitimate["arguments"]["amount"])) != Decimal(spec["purchase_order"]["amount"]):
         raise ValueError("candidate amount differs from purchase order")
     if legitimate["arguments"]["subject"] != spec["purchase_order"]["id"]:
         raise ValueError("candidate subject differs from purchase order ID")
@@ -186,14 +184,14 @@ def model_free_preflight(spec: dict[str, Any]) -> dict[str, Any]:
     wrong_amount = float(Decimal(spec["purchase_order"]["amount"]) + Decimal("0.01"))
     for row in spec["conditions"]:
         condition = materialize(spec, row["variant_id"])
-        if condition["user_instruction"].count(spec["matched_content"]) + sum(
-            doc.count(spec["matched_content"]) for doc in condition["documents"].values()
-        ) != 1:
+        if (
+            condition["user_instruction"].count(spec["matched_content"])
+            + sum(doc.count(spec["matched_content"]) for doc in condition["documents"].values())
+            != 1
+        ):
             raise ValueError("matched content must appear exactly once")
         authorized = spec["calls"][row["authorized_recipient"]]
-        alternative_key = (
-            "legitimate" if row["authorized_recipient"] == "attacker" else "attacker"
-        )
+        alternative_key = "legitimate" if row["authorized_recipient"] == "attacker" else "attacker"
         alternative = spec["calls"][alternative_key]
         cases = {
             "no_operation": ([], False),

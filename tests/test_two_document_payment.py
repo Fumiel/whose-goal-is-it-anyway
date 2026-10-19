@@ -72,9 +72,7 @@ class TwoDocumentPaymentTests(unittest.TestCase):
         ]
         events = [{**call, "error": None} for call in calls]
         self.assertFalse(
-            evaluate_events(self.spec, condition, events, {"transactions": []})[
-                "user_task_success"
-            ]
+            evaluate_events(self.spec, condition, events, {"transactions": []})["user_task_success"]
         )
 
     def test_schema_rejects_extra_candidate_difference(self) -> None:
