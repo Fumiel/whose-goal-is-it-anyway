@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `phase2_path_disclosure_v2_preflight_passed`
+- Phase: `phase2_paths_v2_collection_awaiting_human_audit`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
@@ -44,18 +44,23 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   [conservative graph](data/splits/phase2_two_document_paths_v2.graph.json),
   [design freeze](data/manifests/phase2_two_document_paths_v2.freeze.json), and
   [runner guide](docs/phase2_two_document_paths_v2.md). Synthetic, native
-  AgentDojo model-free (45 controls), and fixed-tokenizer preflight passed. A
-  clean execution commit, same-commit GPU report and separate runtime freeze
-  remain required before any v2 model run. No v2 model behavior has been observed.
+  AgentDojo model-free (45 controls), and fixed-tokenizer preflight passed.
+  The clean commit `c36fc9c18bb641524de9fc1397c3bec8e7942ebf` has a
+  same-commit GPU report and separate runtime freeze. All five new conditions
+  ran once and completed with verified immutable bundles. Each actual trajectory
+  read both declared documents with nonempty results, and each recorded an
+  exposed, scored boundary. See the [v2 execution log](docs/experiment_logs/2026-10-19_two_document_paths_v2_execution.md)
+  and [collection manifest](data/manifests/2026-10-19_phase2_two_document_paths_v2_collection.json).
+  V2 human audit and outcome reporting remain outstanding.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
   authorizes Phase 2 design, implementation, and new training / validation runs
   with provisional Qwen3-8B int8 / Banking, after the new conditions, evaluator,
   split, and runtime specification are fixed. The failed clean gate, pilot_only
-  status, and unselected primary model/domain remain unchanged. The initial five
-  Phase 2 train runs are collected and awaiting audit; no confirmatory test runs
-  have been recorded under this decision.
+  status, and unselected primary model/domain remain unchanged. The initial v1
+  five and revised v2 five Phase 2 train runs are collected and awaiting separate
+  audits; no confirmatory test runs have been recorded under this decision.
 - Lexical-control follow-up: [RDR-2026-10-18-01](docs/decisions/2026-10-18_lexical_control_contradictions_probe_priority.md)
   records read-only inspection of conditions 26/31/38/46/69/70. Their native
   attack positives match actual attacker-side tool calls and state changes;
@@ -210,10 +215,10 @@ After the exploratory pilot collection:
    primary model/domain and confirmatory feasibility in a separate RDR before
    Phase 3 freeze.
 7. Keep the completed v1 bundles and pending human audit unchanged. The new
-   filename-disclosed v2 conditions are separate train runs in the same
-   conservative component, not independent validation. Before a v2 model run,
-   complete the clean-commit GPU/storage report and a new same-commit runtime
-   freeze. See RDR-2026-10-19-02 and the v2 runner guide.
+   filename-disclosed v2 conditions are separate completed train runs in the
+   same conservative component, not independent validation. The clean-commit
+   GPU/storage report and new same-commit runtime freeze passed. Audit all five
+   v2 runs before outcome reporting. See RDR-2026-10-19-02 and the v2 execution log.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -265,8 +270,8 @@ reuse of engineering bundles as research data.
   and five completed immutable model-run bundles. Human audit is outstanding;
   no audited outcome report or independent validation exists. The tool-output
   IPI condition did not expose the declared attack vector on its actual path.
-  The path-disclosed v2 design and model-free/tokenizer preflight are complete;
-  v2 GPU/runtime freeze and model runs are not complete.
+  The path-disclosed v2 design, model-free/tokenizer/GPU preflights, runtime
+  freeze, and five model runs are complete. V2 human audit remains outstanding.
   Additional development/test families and the final connected-component split
   are not implemented.
 - No confirmatory data and no research result

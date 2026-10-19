@@ -25,3 +25,6 @@ No v2 GPU resource preflight, runtime freeze, model behavior run, or human audit
 has been made at this point. An execution needs a clean code commit and a new
 GPU report and runtime freeze from that same commit. The old v1 bundles and
 pending human audit remain separate.
+
+The later [v2 execution record](2026-10-19_two_document_paths_v2_execution.md)
+documents completion of those execution gates and the five new run bundles.

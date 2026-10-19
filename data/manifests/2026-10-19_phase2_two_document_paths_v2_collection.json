@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "status": "collected_awaiting_human_audit",
+  "experiment_id": "phase2-two-document-paths-v2",
+  "decision_id": "RDR-2026-10-19-02",
+  "execution_git_commit": "c36fc9c18bb641524de9fc1397c3bec8e7942ebf",
+  "preflight_report": {
+    "path": "artifacts/preflight/2026-10-19_phase2_two_document_paths_v2_gpu_commit_c36fc9c.json",
+    "sha256": "bb54f85e339d8df628ffe2f660636a77db7fdde333a67631134dde3efabf2915"
+  },
+  "runtime_freeze": {
+    "path": "artifacts/phase2-two-document-paths-v2-runtime-c36fc9c.freeze.json",
+    "sha256": "d1a4f9ffa9b068fe7ccc04f6b3ca2616c484615ed800a711bb2101ecc078ded5"
+  },
+  "blank_audit_handoff": {
+    "path": "artifacts/phase2-two-document-paths-v2-audit-blank-2026-10-19.json",
+    "sha256": "98dde63c3453ee64304295b1b910d67e6ca22af876bae9ccc70a5aeda14c32e7"
+  },
+  "runs": [
+    {"run_id": "phase2-po-registry-paths-v2-c001-a1", "manifest_sha256": "7bea2cac9bcd2d42eafc41baacb5f6362077187c532e281aed306c93ec4a71e0", "status": "completed", "actual_exposed_scored": true},
+    {"run_id": "phase2-po-registry-paths-v2-c002-a1", "manifest_sha256": "7fd34d5caf909ce830026d9c696236311eedf785be0151ba7e7a3d0b0d1c9f7e", "status": "completed", "actual_exposed_scored": true},
+    {"run_id": "phase2-po-registry-paths-v2-c003-a1", "manifest_sha256": "1c8392a682d9a8432690086229207c6dc1021669cec43fc57fc17ad98bffe5af", "status": "completed", "actual_exposed_scored": true},
+    {"run_id": "phase2-po-registry-paths-v2-c004-a1", "manifest_sha256": "37a9a9bbe869f05c6af275223769f488ff6942facbe21e78df72742ccfadef37", "status": "completed", "actual_exposed_scored": true},
+    {"run_id": "phase2-po-registry-paths-v2-c005-a1", "manifest_sha256": "b59e89aa0ac2f2f30e26863e394b3645abf94a59a3cab796ca5f4838d95d24dc", "status": "completed", "actual_exposed_scored": true}
+  ]
+}

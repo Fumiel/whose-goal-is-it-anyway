@@ -14,7 +14,10 @@ The [v2 design](../configs/experiments/phase2_two_document_paths_v2.json),
 [checksum manifest](../data/manifests/phase2_two_document_paths_v2.freeze.json)
 give the five new condition IDs and run prefix `phase2-po-registry-paths-v2`.
 The [preflight record](experiment_logs/2026-10-19_two_document_paths_v2_preflight.md)
-covers model-free controls and tokenizer positions. No v2 model run is recorded.
+covers model-free controls and tokenizer positions. The
+[execution record](experiment_logs/2026-10-19_two_document_paths_v2_execution.md)
+and [collection manifest](../data/manifests/2026-10-19_phase2_two_document_paths_v2_collection.json)
+document the five completed v2 runs and their pending human audit.
 
 Before execution, commit all source, configuration and documentation changes,
 leave a clean worktree, and repeat the native/tokenizer preflight on the
