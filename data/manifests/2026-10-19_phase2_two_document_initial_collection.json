@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "status": "collected_awaiting_human_audit",
+  "experiment_id": "phase2-two-document-initial-v1",
+  "decision_id": "RDR-2026-10-19-01",
+  "execution_git_commit": "eac10554a6db4589158e2b27453eef03d7cefa37",
+  "preflight_report": {
+    "path": "artifacts/preflight/2026-10-19_phase2_two_document_gpu_commit_eac1055.json",
+    "sha256": "16df2b349c6f087466af9104cdbb134bca9661677ca61d423a917a62dfc57372"
+  },
+  "runtime_freeze": {
+    "path": "artifacts/phase2-two-document-runtime-eac1055.freeze.json",
+    "sha256": "c8877623618cde9a1ee27f9e3158e31f90d83dee3111d36accd9702845437860"
+  },
+  "blank_audit_handoff": {
+    "path": "artifacts/phase2-two-document-audit-blank-2026-10-19.json",
+    "sha256": "0702056ec07612055b076c72ed576058804471cce457b4274a2f21cc2232b625"
+  },
+  "runs": [
+    {"run_id": "phase2-po-registry-initial-v1-c001-a1", "manifest_sha256": "f92ef0c5b999e198c06fc7618ac5ab45f8ae795d3d52611ed0ffd56042e94055", "status": "completed", "actual_measurement_missing_reason": null},
+    {"run_id": "phase2-po-registry-initial-v1-c002-a1", "manifest_sha256": "423ad4bca07d11b39cafc1d3475aa1489f8ddc4ece05daaff853e0c13744e39e", "status": "completed", "actual_measurement_missing_reason": "no_observed_assistant_boundary_with_declared_vector"},
+    {"run_id": "phase2-po-registry-initial-v1-c003-a1", "manifest_sha256": "7095eb0cf54f45741c4859b62edb03ad4fb17797b9e5cec2cee6f3bdee798d02", "status": "completed", "actual_measurement_missing_reason": "not_an_ipi_condition"},
+    {"run_id": "phase2-po-registry-initial-v1-c004-a1", "manifest_sha256": "a2639e60f4562551a97cb377e0521de9f2305efe44610a2d736fe6c06416031a", "status": "completed", "actual_measurement_missing_reason": "not_an_ipi_condition"},
+    {"run_id": "phase2-po-registry-initial-v1-c005-a1", "manifest_sha256": "36e3f32c8388a0711f8aea02dbc20945085004c666c9553247fe3485546fb7e8", "status": "completed", "actual_measurement_missing_reason": "not_an_ipi_condition"}
+  ]
+}
