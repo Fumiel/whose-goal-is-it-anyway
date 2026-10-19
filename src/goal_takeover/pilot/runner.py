@@ -84,6 +84,9 @@ def execute_condition(
     runtime_sha256: str,
     parent_run_id: str | None = None,
     technical_recovery: dict[str, str] | None = None,
+    position_selector: Any = measurement_positions,
+    outcome_selector: Any = None,
+    run_schema_path: Path | None = None,
 ) -> tuple[Path, dict[str, Any]]:
     """Persist partial traces on failure; model errors are never regenerated."""
     started = time.perf_counter()
@@ -141,7 +144,7 @@ def execute_condition(
             prefix = current_backend.serialize(current_messages)
             if prefix.metadata["tool_schema_sha256"] != runtime["tool_schema_sha256"]:
                 raise ValueError("runtime tool schema checksum mismatch")
-            positions_doc, indices, ranges = measurement_positions(
+            positions_doc, indices, ranges = position_selector(
                 prefix,
                 current_messages,
                 condition,
@@ -257,8 +260,8 @@ def execute_condition(
                         )
                         if measured["positions"]["exposed"]:
                             exposure_captured = True
-                            actual_exposed_scored = (
-                                condition["has_attack"] and measured["scores"] is not None
+                            actual_exposed_scored = measured["scores"] is not None and (
+                                outcome_selector is not None or condition["has_attack"]
                             )
                         stage = "actual_generation"
                         count_before = len(backend.generations)
@@ -319,10 +322,13 @@ def execute_condition(
                 final = state_document(session.environment)
                 final_answer = actual.final_answer if actual else None
                 native = session.evaluate(final_answer)
-                strict = strict_evaluation(
-                    condition, plan.evaluator, initial, final, recorder.events
-                )
-                outcome = outcome_document(condition, native, strict)
+                if outcome_selector is None:
+                    strict = strict_evaluation(
+                        condition, plan.evaluator, initial, final, recorder.events
+                    )
+                    outcome = outcome_document(condition, native, strict)
+                else:
+                    outcome = outcome_selector(condition, native, initial, final, recorder.events)
                 if model_error:
                     failure = {
                         "kind": "model_failure",
@@ -332,7 +338,11 @@ def execute_condition(
                     }
                 last_stage = stage
                 # Only the 12 declared lead IPI require a separate fixed-prefix diagnostic.
-                if condition["stage"] == "lead" and condition["has_attack"]:
+                if (
+                    condition["stage"] == "lead"
+                    and condition["has_attack"]
+                    and outcome_selector is None
+                ):
                     stage = "diagnostic_setup"
                     diag_session = services.session(condition)
                     diag_recorder = RecordingSession(diag_session)
@@ -490,7 +500,9 @@ def execute_condition(
         }
         from jsonschema import validate
 
-        schema_path = plan.config_path.parents[2] / "data/schemas/pilot_run.schema.json"
+        schema_path = (
+            run_schema_path or plan.config_path.parents[2] / "data/schemas/pilot_run.schema.json"
+        )
         validate(record, json.loads(schema_path.read_text()))
         write_json("run.json", record, "run_record")
         # Include record and manifest overhead in the final storage check.

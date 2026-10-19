@@ -69,6 +69,30 @@ def build_parser() -> argparse.ArgumentParser:
     pilot.add_argument("--audit")
     pilot.add_argument("--post-gate-continuation")
     pilot.add_argument("--technical-recovery")
+    phase2_preflight = subparsers.add_parser(
+        "phase2-two-document-preflight",
+        help="verify frozen custom-task conditions and tokenizer without model weights",
+    )
+    phase2_preflight.add_argument("config")
+    phase2_gpu = subparsers.add_parser(
+        "phase2-two-document-gpu-preflight",
+        help="measure frozen Qwen capture and scoring without generating behavior",
+    )
+    phase2_gpu.add_argument("config")
+    phase2_gpu.add_argument("--output")
+    phase2_freeze = subparsers.add_parser(
+        "phase2-two-document-freeze-runtime",
+        help="bind the measured GPU preflight to a clean execution commit",
+    )
+    phase2_freeze.add_argument("config")
+    phase2_freeze.add_argument("--gpu-report", required=True)
+    phase2_freeze.add_argument("--output", required=True)
+    phase2_run = subparsers.add_parser(
+        "phase2-two-document-run", help="collect the five frozen Phase 2 train conditions"
+    )
+    phase2_run.add_argument("config")
+    phase2_run.add_argument("--runtime-freeze", required=True)
+    phase2_run.add_argument("--artifact-root", default="artifacts")
     detail = subparsers.add_parser(
         "pilot-detail-capture", help="derive declared full-sequence residual bundles"
     )
@@ -289,6 +313,61 @@ def main(argv: Sequence[str] | None = None) -> int:
             return 1
         for path in paths:
             print(f"created: {path}")
+        return 0
+    if args.command in {
+        "phase2-two-document-preflight",
+        "phase2-two-document-gpu-preflight",
+        "phase2-two-document-freeze-runtime",
+        "phase2-two-document-run",
+    }:
+        try:
+            from goal_takeover.phase2.two_document import (
+                create_runtime_freeze,
+                gpu_preflight,
+                load_plan,
+                preflight,
+                run_initial,
+            )
+
+            plan, design = load_plan(args.config)
+            if args.command == "phase2-two-document-preflight":
+                from transformers import AutoTokenizer
+
+                model = plan.model_config["model"]
+                tokenizer = AutoTokenizer.from_pretrained(
+                    model["name"],
+                    revision=model["tokenizer_revision"],
+                    local_files_only=True,
+                )
+                result = preflight(plan, design, tokenizer=tokenizer)
+                print(json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2))
+            elif args.command == "phase2-two-document-gpu-preflight":
+                result = gpu_preflight(plan, design)
+                if args.output:
+                    with Path(args.output).open("x", encoding="utf-8") as stream:
+                        json.dump(result, stream, ensure_ascii=False, sort_keys=True, indent=2)
+                        stream.write("\n")
+                    print(f"created: {args.output}")
+                    for row in result["conditions"]:
+                        print(
+                            f"{row['variant_id']}: peak={row['peak_gpu_memory_bytes']} "
+                            f"residual={row['residual_bytes']}"
+                        )
+                else:
+                    print(json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2))
+            elif args.command == "phase2-two-document-freeze-runtime":
+                frozen = create_runtime_freeze(plan, design, args.gpu_report, args.output)
+                print(f"created: {args.output}")
+                print(f"git_commit: {frozen['git_commit']}")
+            else:
+                paths = run_initial(
+                    plan, design, args.runtime_freeze, artifact_root=args.artifact_root
+                )
+                for path in paths:
+                    print(f"created: {path}")
+        except (ConfigError, KeyError, OSError, RuntimeError, ValueError) as exc:
+            print(f"failed: {exc}")
+            return 1
         return 0
     if args.command in {
         "pilot-preflight",

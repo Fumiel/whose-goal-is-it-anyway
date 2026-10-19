@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `phase2_initial_design_frozen_runtime_pending`
+- Phase: `phase2_initial_runner_implemented`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
@@ -20,10 +20,17 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   [train split](data/splits/phase2_two_document_initial_v1.json), and
   [checksum manifest](data/manifests/phase2_two_document_initial_v1.freeze.json).
   All five are one component connected conservatively to the prior send-money
-  pilot component; there is no independent validation family yet. Phase 2 runner
-  integration, fixed-tokenizer and GPU preflight, clean execution commit and
-  separate runtime freeze remain outstanding. No model run or research observation
-  has been made for this candidate.
+  pilot component; there is no independent validation family yet. The
+  [Phase 2 runner](docs/phase2_two_document_runner.md) now connects the custom
+  native task to the existing actual-trajectory capture, scoring and immutable
+  bundle path. Native/tokenizer preflight passed for all five conditions on
+  2026-10-19. Engineering GPU capture/scoring passed on this WSL RTX 5060 Ti host
+  for the user boundary and longest tool-return condition under the 12 GiB and
+  0.05 GiB ceilings. An execution must use a separate ignored runtime freeze
+  bound to a clean code commit and a GPU report from that same commit; the
+  [runner guide](docs/phase2_two_document_runner.md) gives the creation and
+  verification commands. No model behavior run or research observation has been
+  made for this candidate.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
@@ -176,10 +183,10 @@ After the exploratory pilot collection:
    relationship component and train-only split, all-run audit, pinned model
    config, deterministic decoding, capture/scoring and resource ceilings are
    fixed by RDR-2026-10-19-01 and its checksum manifest. Before model execution,
-   integrate the custom task with the measurement runner, repeat native and
-   fixed-tokenizer preflight on the execution host, measure the two-document
-   prefix against the GPU/storage ceilings, and create a runtime freeze bound to
-   a clean execution commit. A later independent development component is needed
+   use the implemented custom measurement runner, verify native and
+   fixed-tokenizer preflight on the execution host, retain a post-commit
+   GPU/storage preflight report, and create a runtime freeze bound to the same
+   clean execution commit. A later independent development component is needed
    for validation. The six quarantined lexical-control cases
    received the read-only audit recorded in RDR-2026-10-18-01; do not use their
    labels for probe training. Decide
@@ -232,8 +239,10 @@ reuse of engineering bundles as research data.
   Tasks 5/6 remain on
   hold, and task 11 requires recipient audit.
 - One custom development candidate has synthetic and native AgentDojo model-free
-  controls and a frozen five-condition train-only design; model behavior and
-  Phase 2 execution readiness remain unverified.
+  controls, a frozen five-condition train-only design, an implemented Qwen runner,
+  and successful engineering capture/scoring. Model behavior and audited
+  collection remain unobserved. Check the execution-host runtime freeze before
+  running; ignored artifact presence is not established by Git state.
   Additional development/test families and the final connected-component split
   are not implemented.
 - No confirmatory data and no research result

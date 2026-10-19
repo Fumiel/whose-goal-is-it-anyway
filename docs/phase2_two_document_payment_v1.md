@@ -46,5 +46,9 @@ checks, not model behavior or research results. The initial development design
 is fixed in [RDR-2026-10-19-01](decisions/2026-10-19_phase2_two_document_initial_specification.md)
 with its [experiment specification](../configs/experiments/phase2_two_document_initial_v1.json)
 and [checksum manifest](../data/manifests/phase2_two_document_initial_v1.freeze.json).
-Runner integration, execution-host preflights, and a separate runtime freeze
-remain before a Phase 2 model run. Existing pilot runs remain pilot-only.
+Runner integration and engineering preflights have been implemented. A
+post-commit GPU report and separate runtime freeze remain before a Phase 2
+model run. Existing pilot runs remain pilot-only.
+
+The [Phase 2 runner guide](phase2_two_document_runner.md) records the completed
+native/tokenizer/GPU engineering checks and the runtime-freeze procedure.
