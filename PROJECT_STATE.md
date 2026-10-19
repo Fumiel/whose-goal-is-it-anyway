@@ -9,9 +9,12 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 - Phase: `phase2_development_authorized_pending_new_run_specification`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
-  Five matched source-role variants and synthetic model-free evaluator controls
-  pass locally. Native AgentDojo document installation, tool/schema and state
-  preflight, relationship graph, split and runtime freeze remain outstanding;
+  Five matched source-role variants pass synthetic controls and native AgentDojo
+  Banking v1.2.2 model-free preflight (45 actual-tool controls). The custom task
+  is registered on an isolated suite copy, with real document reads, transfers,
+  and independent native evaluators. See the
+  [2026-10-19 execution log](docs/experiment_logs/2026-10-19_two_document_native_preflight.md).
+  Relationship graph, split, audit rules and runtime freeze remain outstanding;
   no model run or research observation has been made for this candidate.
 - Primary model: not selected
 - Primary domain: not selected
@@ -215,8 +218,8 @@ reuse of engineering bundles as research data.
   development, while verified supply of unseen Banking clusters remains outstanding.
   Tasks 5/6 remain on
   hold, and task 11 requires recipient audit.
-- One custom development candidate has synthetic model-free controls; its
-  AgentDojo compatibility and native evaluator validation remain unverified.
+- One custom development candidate has synthetic and native AgentDojo model-free
+  controls; model behavior and Phase 2 execution readiness remain unverified.
   Additional development/test families and the final connected-component split
   are not implemented.
 - No confirmatory data and no research result

@@ -1,7 +1,4 @@
-"""Model-free declaration and strict controls for a custom Phase 2 Banking task.
-
-This is a synthetic task harness. Native AgentDojo compatibility remains unverified.
-"""
+"""Declaration and synthetic controls for a custom Phase 2 Banking task."""
 
 from __future__ import annotations
 
@@ -29,10 +26,10 @@ def load_spec(path: str | Path) -> dict[str, Any]:
 
 
 def validate_spec(spec: dict[str, Any]) -> None:
-    if spec.get("status") != "development_candidate_model_free_only":
-        raise ValueError("task must remain a model-free development candidate")
-    if spec.get("agentdojo_compatibility") != "unverified":
-        raise ValueError("AgentDojo compatibility cannot be declared by this harness")
+    if spec.get("status") != "development_candidate_native_model_free_verified":
+        raise ValueError("task must remain a native model-free development candidate")
+    if spec.get("agentdojo_compatibility") != "native_model_free_verified":
+        raise ValueError("task requires the separate native model-free preflight")
     if spec.get("development_only") is not True:
         raise ValueError("task must be development-only")
     if spec["purchase_order"]["id"] not in spec["purchase_order"]["base_text"]:
@@ -220,7 +217,7 @@ def model_free_preflight(spec: dict[str, Any]) -> dict[str, Any]:
     return {
         "status": "synthetic_model_free_controls_passed",
         "research_result": False,
-        "agentdojo_compatibility": "unverified",
+        "agentdojo_compatibility": "native_model_free_verified_separately",
         "condition_ids": output,
         "controls_per_condition": 6,
     }
