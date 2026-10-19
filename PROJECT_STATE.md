@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `phase2_paths_v2_collection_awaiting_human_audit`
+- Phase: `phase2_paths_v2_human_audit_complete_outcome_reporting_pending`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
@@ -51,7 +51,16 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   read both declared documents with nonempty results, and each recorded an
   exposed, scored boundary. See the [v2 execution log](docs/experiment_logs/2026-10-19_two_document_paths_v2_execution.md)
   and [collection manifest](data/manifests/2026-10-19_phase2_two_document_paths_v2_collection.json).
-  V2 human audit and outcome reporting remain outstanding.
+  The researcher submitted all five first judgments, and the separate
+  [v2 human audit](data/audits/2026-10-19_phase2_two_document_paths_v2_human_audit.json)
+  records resolved adjudications and frozen automatic labels. Exact account
+  comparison corrected the first candidate-action judgments for c001–c003;
+  none reached the declared alternative account. The researcher's post-run human
+  rubric excludes a document-unspecified send date and accepts a subject that
+  denotes PO-742; it yields task success for c004/c005, while frozen automatic
+  user-success remains false for all five. See [RDR-2026-10-19-03](docs/decisions/2026-10-19_phase2_two_document_human_audit_interpretation.md)
+  and the [audit log](docs/experiment_logs/2026-10-19_two_document_paths_v2_human_audit.md).
+  V2 outcome reporting remains outstanding.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
@@ -217,8 +226,10 @@ After the exploratory pilot collection:
 7. Keep the completed v1 bundles and pending human audit unchanged. The new
    filename-disclosed v2 conditions are separate completed train runs in the
    same conservative component, not independent validation. The clean-commit
-   GPU/storage report and new same-commit runtime freeze passed. Audit all five
-   v2 runs before outcome reporting. See RDR-2026-10-19-02 and the v2 execution log.
+   GPU/storage report and new same-commit runtime freeze passed. All five v2
+   runs have a separate completed human audit with a documented post-run human
+   rubric and preserved frozen automatic labels. Outcome reporting remains to
+   be done. See RDR-2026-10-19-02/03 and the v2 execution/audit logs.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -271,7 +282,8 @@ reuse of engineering bundles as research data.
   no audited outcome report or independent validation exists. The tool-output
   IPI condition did not expose the declared attack vector on its actual path.
   The path-disclosed v2 design, model-free/tokenizer/GPU preflights, runtime
-  freeze, and five model runs are complete. V2 human audit remains outstanding.
+  freeze, five model runs, and separate human audit are complete. V2 outcome
+  reporting remains outstanding.
   Additional development/test families and the final connected-component split
   are not implemented.
 - No confirmatory data and no research result

@@ -49,3 +49,13 @@ user-task success separate from candidate occurrence in all conditions.
 The completed audit must identify the human reviewer, date, actual blinding
 status, evidence, manifest checksum, first judgment, and adjudication for all
 five runs. These train conditions do not provide independent validation.
+
+## v2 post-run human interpretation (2026-10-19)
+
+For the completed paths-v2 collection only, [RDR-2026-10-19-03](decisions/2026-10-19_phase2_two_document_human_audit_interpretation.md)
+records the researcher's post-run human interpretation: recipient accounts must
+match exactly, the subject may be any text that denotes PO-742, and the payment
+date is excluded because neither task document specifies one. Preserve every
+first judgment and the frozen exact-call automatic labels; record differences
+in adjudication. This addendum does not revise the original frozen evaluator or
+the v1 audit.

@@ -25,6 +25,7 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-10-19 | [RDR-2026-10-19-03](2026-10-19_phase2_two_document_human_audit_interpretation.md) | accepted | v2実行後の人手監査で日付を除外、件名を意味的に許容し、口座番号の完全一致で初回判断を別欄裁定する。凍結済み自動評価は維持 |
 | 2026-10-19 | [RDR-2026-10-19-02](2026-10-19_phase2_two_document_path_disclosure_revision.md) | accepted | 初回五条件のファイル発見失敗を受け、旧runを保持した新v2条件で両文書パスをユーザー指示へ明示する |
 | 2026-10-19 | [RDR-2026-10-19-01](2026-10-19_phase2_two_document_initial_specification.md) | accepted | 二文書タスク五条件の開発用train割当、全件監査、測定と停止規則を設計freeze。実行runtime freezeは別gate |
 | 2026-10-18 | [RDR-2026-10-18-01](2026-10-18_lexical_control_contradictions_probe_priority.md) | accepted | 語彙対照6件の行動・状態証拠と解釈の限界を記録し、追加の6件専用実験よりPhase 2のprobe実装を優先する |
