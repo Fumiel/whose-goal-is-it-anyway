@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `phase2_paths_v2_human_audit_complete_outcome_reporting_pending`
+- Phase: `phase2_paths_v2_outcome_report_complete_independent_validation_pending`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
@@ -60,7 +60,10 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   denotes PO-742; it yields task success for c004/c005, while frozen automatic
   user-success remains false for all five. See [RDR-2026-10-19-03](docs/decisions/2026-10-19_phase2_two_document_human_audit_interpretation.md)
   and the [audit log](docs/experiment_logs/2026-10-19_two_document_paths_v2_human_audit.md).
-  V2 outcome reporting remains outstanding.
+  The v2 [outcome report](results/2026-10-19_phase2_two_document_paths_v2_outcome_report.json)
+  (human and frozen automatic labels in separate fields, A–D only for the IPI
+  condition, counts without rates) is recorded in the
+  [report log](docs/experiment_logs/2026-10-19_two_document_paths_v2_outcome_report.md).
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
@@ -228,8 +231,9 @@ After the exploratory pilot collection:
    same conservative component, not independent validation. The clean-commit
    GPU/storage report and new same-commit runtime freeze passed. All five v2
    runs have a separate completed human audit with a documented post-run human
-   rubric and preserved frozen automatic labels. Outcome reporting remains to
-   be done. See RDR-2026-10-19-02/03 and the v2 execution/audit logs.
+   rubric and preserved frozen automatic labels. The v2 outcome report is
+   complete; no independent validation exists. See RDR-2026-10-19-02/03 and the
+   v2 execution, audit and outcome-report logs.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -278,12 +282,12 @@ reuse of engineering bundles as research data.
   hold, and task 11 requires recipient audit.
 - One custom development candidate has synthetic and native AgentDojo model-free
   controls, a frozen five-condition train-only design, an implemented Qwen runner,
-  and five completed immutable model-run bundles. Human audit is outstanding;
-  no audited outcome report or independent validation exists. The tool-output
-  IPI condition did not expose the declared attack vector on its actual path.
+  and five completed immutable v1 model-run bundles. The v1 human audit is
+  outstanding. The v1 tool-output IPI condition did not expose the declared
+  attack vector on its actual path.
   The path-disclosed v2 design, model-free/tokenizer/GPU preflights, runtime
-  freeze, five model runs, and separate human audit are complete. V2 outcome
-  reporting remains outstanding.
+  freeze, five model runs, separate human audit and outcome report are complete.
+  No independent validation exists.
   Additional development/test families and the final connected-component split
   are not implemented.
 - No confirmatory data and no research result

@@ -93,6 +93,14 @@ def build_parser() -> argparse.ArgumentParser:
     phase2_run.add_argument("config")
     phase2_run.add_argument("--runtime-freeze", required=True)
     phase2_run.add_argument("--artifact-root", default="artifacts")
+    phase2_report = subparsers.add_parser(
+        "phase2-outcome-report",
+        help="summarize an audited Phase 2 two-document collection without overwriting",
+    )
+    phase2_report.add_argument("collection_manifest")
+    phase2_report.add_argument("audit")
+    phase2_report.add_argument("--output", required=True)
+    phase2_report.add_argument("--artifact-root", default="artifacts")
     detail = subparsers.add_parser(
         "pilot-detail-capture", help="derive declared full-sequence residual bundles"
     )
@@ -313,6 +321,21 @@ def main(argv: Sequence[str] | None = None) -> int:
             return 1
         for path in paths:
             print(f"created: {path}")
+        return 0
+    if args.command == "phase2-outcome-report":
+        try:
+            from goal_takeover.phase2.outcome_report import (
+                build_outcome_report,
+                write_outcome_report,
+            )
+
+            report = build_outcome_report(
+                args.collection_manifest, args.audit, artifact_root=args.artifact_root
+            )
+            print(f"created: {write_outcome_report(report, args.output)}")
+        except (ConfigError, KeyError, OSError, RuntimeError, ValueError) as exc:
+            print(f"failed: {exc}")
+            return 1
         return 0
     if args.command in {
         "phase2-two-document-preflight",

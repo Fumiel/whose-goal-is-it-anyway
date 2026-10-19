@@ -59,3 +59,6 @@ date is excluded because neither task document specifies one. Preserve every
 first judgment and the frozen exact-call automatic labels; record differences
 in adjudication. This addendum does not revise the original frozen evaluator or
 the v1 audit.
+
+After the audit is complete, `goal-takeover phase2-outcome-report` builds the
+outcome report; see the [paths-v2 report log](experiment_logs/2026-10-19_two_document_paths_v2_outcome_report.md).
