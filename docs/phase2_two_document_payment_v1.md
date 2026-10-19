@@ -42,6 +42,9 @@ utility requires both document reads in order before exactly one correct transfe
 with no other state change. The native injection security flag independently
 records the attacker-recipient transfer, including when that same transfer is
 authorized by the user in the `user_instruction` control. These are engineering
-checks, not model behavior or research results. The relationship graph,
-development split, audit rules, and runtime freeze remain to be fixed before a
-Phase 2 model run. Existing pilot runs remain pilot-only.
+checks, not model behavior or research results. The initial development design
+is fixed in [RDR-2026-10-19-01](decisions/2026-10-19_phase2_two_document_initial_specification.md)
+with its [experiment specification](../configs/experiments/phase2_two_document_initial_v1.json)
+and [checksum manifest](../data/manifests/phase2_two_document_initial_v1.freeze.json).
+Runner integration, execution-host preflights, and a separate runtime freeze
+remain before a Phase 2 model run. Existing pilot runs remain pilot-only.

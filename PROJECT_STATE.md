@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `phase2_development_authorized_pending_new_run_specification`
+- Phase: `phase2_initial_design_frozen_runtime_pending`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
@@ -14,8 +14,16 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   is registered on an isolated suite copy, with real document reads, transfers,
   and independent native evaluators. See the
   [2026-10-19 execution log](docs/experiment_logs/2026-10-19_two_document_native_preflight.md).
-  Relationship graph, split, audit rules and runtime freeze remain outstanding;
-  no model run or research observation has been made for this candidate.
+  The initial five-condition development collection now has a design freeze:
+  [RDR-2026-10-19-01](docs/decisions/2026-10-19_phase2_two_document_initial_specification.md),
+  [execution specification](configs/experiments/phase2_two_document_initial_v1.json),
+  [train split](data/splits/phase2_two_document_initial_v1.json), and
+  [checksum manifest](data/manifests/phase2_two_document_initial_v1.freeze.json).
+  All five are one component connected conservatively to the prior send-money
+  pilot component; there is no independent validation family yet. Phase 2 runner
+  integration, fixed-tokenizer and GPU preflight, clean execution commit and
+  separate runtime freeze remain outstanding. No model run or research observation
+  has been made for this candidate.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
@@ -164,10 +172,15 @@ After the exploratory pilot collection:
    test. RDR-2026-10-14-01 separately authorizes Phase 2 development and new
    training / validation collection with the provisional configuration. It does
    not adopt a primary model/domain or authorize pilot reuse or confirmatory test.
-6. Before new Phase 2 model runs, fix the new conditions, model-free evaluator
-   checks, relationship graph and development split, audit rules, model/tokenizer
-   revisions, deterministic decoding, capture/scoring configuration, resource
-   ceiling, and runtime provenance. The six quarantined lexical-control cases
+6. The first five-condition Phase 2 design, model-free checks, conservative
+   relationship component and train-only split, all-run audit, pinned model
+   config, deterministic decoding, capture/scoring and resource ceilings are
+   fixed by RDR-2026-10-19-01 and its checksum manifest. Before model execution,
+   integrate the custom task with the measurement runner, repeat native and
+   fixed-tokenizer preflight on the execution host, measure the two-document
+   prefix against the GPU/storage ceilings, and create a runtime freeze bound to
+   a clean execution commit. A later independent development component is needed
+   for validation. The six quarantined lexical-control cases
    received the read-only audit recorded in RDR-2026-10-18-01; do not use their
    labels for probe training. Decide
    primary model/domain and confirmatory feasibility in a separate RDR before
@@ -219,7 +232,8 @@ reuse of engineering bundles as research data.
   Tasks 5/6 remain on
   hold, and task 11 requires recipient audit.
 - One custom development candidate has synthetic and native AgentDojo model-free
-  controls; model behavior and Phase 2 execution readiness remain unverified.
+  controls and a frozen five-condition train-only design; model behavior and
+  Phase 2 execution readiness remain unverified.
   Additional development/test families and the final connected-component split
   are not implemented.
 - No confirmatory data and no research result
