@@ -53,7 +53,7 @@ PYTHONPATH=src .venv/bin/python -m goal_takeover.cli \
   phase2-two-document-freeze-runtime \
   configs/experiments/phase2_two_document_initial_v1.json \
   --gpu-report artifacts/preflight/<new-unique-name>.json \
-  --output artifacts/phase2-two-document-runtime.freeze.json
+  --output artifacts/phase2-two-document-runtime-<short-commit>.freeze.json
 ```
 
 The freeze records hashes of the design, all importable source and schemas,
@@ -72,7 +72,7 @@ conditions:
 PYTHONPATH=src .venv/bin/python -m goal_takeover.cli \
   phase2-two-document-run \
   configs/experiments/phase2_two_document_initial_v1.json \
-  --runtime-freeze artifacts/phase2-two-document-runtime.freeze.json
+  --runtime-freeze artifacts/phase2-two-document-runtime-<short-commit>.freeze.json
 ```
 
 The command checks all run IDs for collisions before loading Qwen. It writes

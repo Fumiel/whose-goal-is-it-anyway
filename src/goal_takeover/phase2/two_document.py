@@ -20,7 +20,7 @@ from goal_takeover.pilot.measurement import measurement_positions
 from goal_takeover.pilot.plan import PilotPlan
 from goal_takeover.pilot.runner import execute_condition
 from goal_takeover.pilot.services import HuggingFacePilotServices
-from goal_takeover.runtime import gpu_runtime_report
+from goal_takeover.runtime import gpu_runtime_report, package_version
 from goal_takeover.shakedown import _git_metadata
 from goal_takeover.storage.run_writer import sha256_file
 
@@ -701,9 +701,15 @@ def load_runtime(plan: PilotPlan, design: dict[str, Any], path: str | Path) -> d
         raise ConfigError("runtime tool schema differs from measured native suite")
     measured = report["runtime_report"]
     current = gpu_runtime_report()
-    for key in ("device_name", "compute_capability", "torch", "torch_cuda", "versions"):
+    for key in ("device_name", "compute_capability", "torch", "torch_cuda"):
         if current.get(key) != measured.get(key):
             raise ConfigError(f"execution environment differs from GPU preflight: {key}")
+    measured_versions = measured.get("versions")
+    if (
+        not isinstance(measured_versions, dict)
+        or {name: package_version(name) for name in measured_versions} != measured_versions
+    ):
+        raise ConfigError("execution environment differs from GPU preflight: versions")
     if current["total_memory_bytes"] < measured["total_memory_bytes"]:
         raise ConfigError("execution GPU memory is below the preflight capacity")
     return runtime
