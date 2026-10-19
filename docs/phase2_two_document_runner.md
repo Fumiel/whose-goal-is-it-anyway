@@ -85,5 +85,9 @@ native security flag, user authorization and IPI attack success are separate.
 The quotation, explanation and prohibition controls retain any candidate-action
 positives as anomalies outside the ordinary A–D grouping.
 
+Use the [five-run human audit procedure](phase2_two_document_audit.md) and its
+blank template after collection. Record first judgments from raw traces before
+comparing automatic outcome flags.
+
 The tokenizer/native check and GPU check are engineering evidence only. Neither
 is a model behavior result or independent validation group.

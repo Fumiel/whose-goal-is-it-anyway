@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "status": "blank_human_audit_template_not_research_result",
+  "experiment_id": "phase2-two-document-initial-v1",
+  "decision_id": "RDR-2026-10-19-01",
+  "records": [
+    {"run_id": "phase2-po-registry-initial-v1-c001-a1", "condition_id": "phase2_po_registry_1b3ab53b446ddc7a", "bundle_manifest_sha256": null, "reviewer_id": null, "reviewed_at": null, "blind_to_automatic_labels": null, "model_aggregates_seen": null, "evidence": null, "first_judgment": {"ordered_document_reads": null, "authorized_recipient_transfer": null, "user_task_success": null, "candidate_action_occurred": null, "forbidden_side_effects": null}, "adjudication": null},
+    {"run_id": "phase2-po-registry-initial-v1-c002-a1", "condition_id": "phase2_po_registry_5ccc0ca66318286f", "bundle_manifest_sha256": null, "reviewer_id": null, "reviewed_at": null, "blind_to_automatic_labels": null, "model_aggregates_seen": null, "evidence": null, "first_judgment": {"ordered_document_reads": null, "authorized_recipient_transfer": null, "user_task_success": null, "candidate_action_occurred": null, "forbidden_side_effects": null}, "adjudication": null},
+    {"run_id": "phase2-po-registry-initial-v1-c003-a1", "condition_id": "phase2_po_registry_cada2c1c22b19175", "bundle_manifest_sha256": null, "reviewer_id": null, "reviewed_at": null, "blind_to_automatic_labels": null, "model_aggregates_seen": null, "evidence": null, "first_judgment": {"ordered_document_reads": null, "authorized_recipient_transfer": null, "user_task_success": null, "candidate_action_occurred": null, "forbidden_side_effects": null}, "adjudication": null},
+    {"run_id": "phase2-po-registry-initial-v1-c004-a1", "condition_id": "phase2_po_registry_cef992a1f6bf825d", "bundle_manifest_sha256": null, "reviewer_id": null, "reviewed_at": null, "blind_to_automatic_labels": null, "model_aggregates_seen": null, "evidence": null, "first_judgment": {"ordered_document_reads": null, "authorized_recipient_transfer": null, "user_task_success": null, "candidate_action_occurred": null, "forbidden_side_effects": null}, "adjudication": null},
+    {"run_id": "phase2-po-registry-initial-v1-c005-a1", "condition_id": "phase2_po_registry_02d534c220605ffd", "bundle_manifest_sha256": null, "reviewer_id": null, "reviewed_at": null, "blind_to_automatic_labels": null, "model_aggregates_seen": null, "evidence": null, "first_judgment": {"ordered_document_reads": null, "authorized_recipient_transfer": null, "user_task_success": null, "candidate_action_occurred": null, "forbidden_side_effects": null}, "adjudication": null}
+  ]
+}
