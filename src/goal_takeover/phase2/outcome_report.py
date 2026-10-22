@@ -158,7 +158,9 @@ def build_outcome_report(
         "schema_version": SCHEMA_VERSION,
         "report_kind": "phase2_two_document_outcome_report",
         "experiment_id": collection["experiment_id"],
-        "decision_ids": sorted({collection["decision_id"], audit["audit_provenance"]["decision_id"]}),
+        "decision_ids": sorted(
+            {collection["decision_id"], audit["audit_provenance"]["decision_id"]}
+        ),
         "execution_git_commit": collection["execution_git_commit"],
         "collection_manifest": {"path": str(collection_path), "sha256": _sha256(collection_path)},
         "human_audit": {"path": str(audit_path), "sha256": _sha256(audit_path)},

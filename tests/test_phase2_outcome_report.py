@@ -36,23 +36,36 @@ def _build_fixture(root: Path, *, human_user=(False, True, False)) -> tuple[Path
         bundle = root / "artifacts" / "runs" / run_id
         group = "C" if role == "tool_output" else None
         automatic = _automatic(group)
-        _write(bundle / "condition.json", {
-            "condition_id": f"cond{index}", "source_role": role,
-            "has_attack": role == "tool_output",
-        })
-        _write(bundle / "run.json", {
-            "status": "completed", "split": "train", "git_commit": COMMIT,
-            "git_dirty": False, "condition_id": f"cond{index}",
-            "actual_exposed_scored": True,
-            "outcome": {**automatic, "baseline_failure": False},
-        })
+        _write(
+            bundle / "condition.json",
+            {
+                "condition_id": f"cond{index}",
+                "source_role": role,
+                "has_attack": role == "tool_output",
+            },
+        )
+        _write(
+            bundle / "run.json",
+            {
+                "status": "completed",
+                "split": "train",
+                "git_commit": COMMIT,
+                "git_dirty": False,
+                "condition_id": f"cond{index}",
+                "actual_exposed_scored": True,
+                "outcome": {**automatic, "baseline_failure": False},
+            },
+        )
         artifacts = []
         for name in ("condition.json", "run.json"):
             target = bundle / name
-            artifacts.append({
-                "relative_path": name, "bytes": target.stat().st_size,
-                "sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
-            })
+            artifacts.append(
+                {
+                    "relative_path": name,
+                    "bytes": target.stat().st_size,
+                    "sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
+                }
+            )
         manifest_sha = _write(bundle / "manifest.json", {"artifacts": artifacts})
         runs.append({"run_id": run_id, "manifest_sha256": manifest_sha})
         final = {
@@ -62,29 +75,46 @@ def _build_fixture(root: Path, *, human_user=(False, True, False)) -> tuple[Path
             "candidate_action_occurred": False,
             "forbidden_side_effects": not human_user[index - 1],
         }
-        records.append({
-            "run_id": run_id, "condition_id": f"cond{index}",
-            "bundle_manifest_sha256": manifest_sha,
-            "adjudication": {
-                "status": "resolved", "final_judgment": final,
-                "first_to_final_changes": {},
-                "automatic_comparison": automatic,
-                "automatic_disagreement_explanation": "synthetic",
-            },
-        })
+        records.append(
+            {
+                "run_id": run_id,
+                "condition_id": f"cond{index}",
+                "bundle_manifest_sha256": manifest_sha,
+                "adjudication": {
+                    "status": "resolved",
+                    "final_judgment": final,
+                    "first_to_final_changes": {},
+                    "automatic_comparison": automatic,
+                    "automatic_disagreement_explanation": "synthetic",
+                },
+            }
+        )
     collection = root / "collection.json"
-    collection.write_text(json.dumps({
-        "experiment_id": "synthetic", "decision_id": "RDR-S-02",
-        "execution_git_commit": COMMIT, "runs": runs,
-    }), encoding="utf-8")
+    collection.write_text(
+        json.dumps(
+            {
+                "experiment_id": "synthetic",
+                "decision_id": "RDR-S-02",
+                "execution_git_commit": COMMIT,
+                "runs": runs,
+            }
+        ),
+        encoding="utf-8",
+    )
     audit = root / "audit.json"
-    audit.write_text(json.dumps({
-        "experiment_id": "synthetic",
-        "audit_provenance": {
-            "decision_id": "RDR-S-03", "confirmatory_test_status": "not_created_or_inspected",
-        },
-        "records": records,
-    }), encoding="utf-8")
+    audit.write_text(
+        json.dumps(
+            {
+                "experiment_id": "synthetic",
+                "audit_provenance": {
+                    "decision_id": "RDR-S-03",
+                    "confirmatory_test_status": "not_created_or_inspected",
+                },
+                "records": records,
+            }
+        ),
+        encoding="utf-8",
+    )
     return collection, audit
 
 
@@ -103,7 +133,9 @@ class OutcomeReportTest(unittest.TestCase):
             self.assertEqual(rows[role]["group_applicability"], "not_applicable")
         self.assertEqual(rows["user_instruction"]["role_class"], "authorized_alternative_control")
         self.assertTrue(rows["tool_output"]["human_post_run"]["user_task_success"])
-        self.assertFalse(rows["tool_output"]["frozen_automatic"]["automatic_strict_user_task_success"])
+        self.assertFalse(
+            rows["tool_output"]["frozen_automatic"]["automatic_strict_user_task_success"]
+        )
 
     def test_difference_counts_and_no_rates(self):
         with TemporaryDirectory() as tmp:
