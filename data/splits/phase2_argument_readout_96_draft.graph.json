@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "status": "preliminary_task_level_review_not_split_freeze",
+  "source_template": "data/templates/phase2_argument_readout_96_draft.json",
+  "existing_train_component_id": "component_2db488e29b6eaafa",
+  "node_scope": "Each new task node represents its four A-D draft conditions; all four share one draft_pair_id.",
+  "series_split_candidates": {
+    "INV": "train",
+    "REF": "train",
+    "PRD": "train",
+    "EXP": "train",
+    "REC": "validation",
+    "DON": "validation"
+  },
+  "edges": [
+    {
+      "from": "INV-1",
+      "to": "INV-2",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "INV-1",
+      "to": "INV-3",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "INV-1",
+      "to": "INV-4",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "REF-1",
+      "to": "REF-2",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "REF-1",
+      "to": "REF-3",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "REF-1",
+      "to": "REF-4",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "PRD-1",
+      "to": "PRD-2",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "PRD-1",
+      "to": "PRD-3",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "PRD-1",
+      "to": "PRD-4",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "EXP-1",
+      "to": "EXP-2",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "EXP-1",
+      "to": "EXP-3",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "EXP-1",
+      "to": "EXP-4",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "REC-1",
+      "to": "REC-2",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "REC-1",
+      "to": "REC-3",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "REC-1",
+      "to": "REC-4",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "DON-1",
+      "to": "DON-2",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "DON-1",
+      "to": "DON-3",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "DON-1",
+      "to": "DON-4",
+      "reason": "same_semantic_series"
+    },
+    {
+      "from": "INV-1",
+      "to": "component_2db488e29b6eaafa",
+      "reason": "near_pilot_bill_payment"
+    },
+    {
+      "from": "INV-4",
+      "to": "component_2db488e29b6eaafa",
+      "reason": "near_two_document_v2_reconciliation"
+    },
+    {
+      "from": "REF-1",
+      "to": "component_2db488e29b6eaafa",
+      "reason": "near_pilot_friend_refund"
+    },
+    {
+      "from": "PRD-4",
+      "to": "component_2db488e29b6eaafa",
+      "reason": "near_purchase_order_and_document_reconciliation"
+    },
+    {
+      "from": "EXP-1",
+      "to": "REF-1",
+      "reason": "near_reimbursement_and_personal_settlement"
+    }
+  ],
+  "reviewed_non_edges_requiring_freeze_recheck": [
+    {
+      "from": "REC-3",
+      "to": "component_2db488e29b6eaafa",
+      "reason": "Current membership-tier selection and one-time current-period transfer differ from prior rent schedule update; fee-revision draft was removed."
+    },
+    {
+      "from": "DON-3",
+      "to": "EXP-4",
+      "reason": "Grant allocation and expense reimbursement both now select one item by a numeric threshold (fund balance vs allocation; approval limit vs approved amount) but differ in objective, beneficiary rule, and source record. Recheck at freeze."
+    },
+    {
+      "from": "train_phrases_R1_R2_R5_R6_S1_S2_S5_S6",
+      "to": "validation_tasks_with_train_seen_phrasing (REC-1, DON-1) and partially novel phrasing",
+      "reason": "The train tasks use 8 phrases in a 4x4 Latin square; validation tasks reuse train phrases in 2 train_seen, 2 recipient_novel and 2 reference_novel tasks. Decide at freeze whether shared boilerplate is a paraphrase edge; if so, count only both_novel validation tasks (REC-4, DON-4) as unseen-phrasing evidence and the others as series-novel only."
+    }
+  ],
+  "preliminary_components": [
+    {
+      "member_series": [
+        "INV",
+        "REF",
+        "PRD",
+        "EXP"
+      ],
+      "includes_existing_train_component": true,
+      "split_candidate": "train"
+    },
+    {
+      "member_series": [
+        "REC"
+      ],
+      "includes_existing_train_component": false,
+      "split_candidate": "validation"
+    },
+    {
+      "member_series": [
+        "DON"
+      ],
+      "includes_existing_train_component": false,
+      "split_candidate": "validation"
+    }
+  ],
+  "interpretation": "Three provisional task-level components in the current concrete draft, including one train component and two validation candidates. Recheck all edges with final semantic IDs and native fixtures; no condition-level split is frozen.",
+  "revision": "2026-10-22: tasks INV-3, INV-4, EXP-4 and DON-3 were redesigned (rule-applying selection) and instruction phrasing was diversified after a Claude Code review approved by the researcher; edges below were reviewed against the revised draft but are not recomputed from final IDs."
+}
