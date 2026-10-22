@@ -9,6 +9,8 @@ Indirect Prompt Injectionを受けたツール利用型LLMエージェントに�
 
 Bankingの探索的pilotを90条件収集し、拡張分の人手監査を完了しました。[監査後のRDR](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)により、Qwen3-8B int8 / AgentDojo Banking v1.2.2を暫定構成としてPhase 2の開発と新規training / validationデータ収集へ進みます。主モデルと主ドメインはまだ正式採用していません。先行18条件の監査後clean成功は2/6で、凍結した拡張ゲートには不合格でした。結果閲覧後の探索的継続は51番のGPU資源上限で一度停止し、別の判断記録とruntime freezeに基づく再開で90条件すべてのbundleを収集しました（総attempt 91、旧51番は技術的失敗として保持）。2026-10-13に先行分を含む56件の監査を記録し、未裁定不一致は0件です。旧ゲート不合格は維持し、新系列の実行仕様と確認的testは未完了です。[監査記録](docs/experiment_logs/2026-10-13_banking_pilot_full_audit.md)と[`PROJECT_STATE.md`](PROJECT_STATE.md)に現状を記録しています。
 
+Phase 2の二文書タスクはv2の五件を実行・人手監査し、開発用outcome reportを作成しました。v1は実行後にファイル発見不能というタスク設計上の欠陥が分かったため、[後続判断](docs/decisions/2026-10-22_phase2_v1_audit_disposition.md)により人手監査せず、rawを保持してprobeデータから除外します。次は`argument_readout` probeの実装です。[タスク設計方針](docs/phase2_argument_readout_task_design.md)は`send_money.recipient`と既知候補値での未知系列validationに絞っています。独立した開発用validation系列と確認的testはまだありません。詳しい現状は[PROJECT_STATE.md](PROJECT_STATE.md)を参照してください。
+
 ## ディレクトリ
 
 ```text

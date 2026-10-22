@@ -1,8 +1,10 @@
 # Two-document purchase-order payment: Phase 2 development candidate
 
 This page describes the frozen v1 candidate. Its five model runs are preserved
-and await human audit. After the initial logs showed that the agent could not
-discover either exact filename, the
+without human audit under the later
+[v1 disposition](decisions/2026-10-22_phase2_v1_audit_disposition.md).
+After the initial logs showed that the agent could not discover either exact
+filename, the
 [v2 revision](phase2_two_document_paths_v2.md) disclosed both paths in the
 user instruction. The two versions must remain separate.
 
@@ -55,7 +57,9 @@ and [checksum manifest](../data/manifests/phase2_two_document_initial_v1.freeze.
 The v1 runner and engineering preflights were implemented, and its five model
 runs were collected under a separate runtime freeze. See the
 [execution log](experiment_logs/2026-10-19_phase2_two_document_initial_execution.md).
-Existing pilot runs remain pilot-only.
+Existing pilot runs remain pilot-only. The unaudited v1 runs are retained as
+task-feasibility evidence and excluded from probe training, validation, outcome
+reporting and confirmatory analysis.
 
 The [Phase 2 runner guide](phase2_two_document_runner.md) records the completed
 native/tokenizer/GPU engineering checks and the runtime-freeze procedure.

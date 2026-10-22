@@ -33,3 +33,12 @@ contains the five bundle-manifest checksums and no human judgments. All five
 runs remain awaiting human audit. No outcome summary or probe performance is
 reported here. The five conditions are train-only and form one connected
 component, so this collection is not an independent validation set.
+
+## Later disposition (2026-10-22)
+
+The statement above records the 2026-10-19 handoff status. After the task-design
+defect was confirmed and v2 was audited, the researcher decided not to audit
+v1. [RDR-2026-10-22-01](../decisions/2026-10-22_phase2_v1_audit_disposition.md)
+records this partial revision. The v1 bundles and blank audit form remain
+unchanged; v1 is an unaudited feasibility record excluded from probe training,
+validation and outcome reporting.

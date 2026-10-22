@@ -109,6 +109,14 @@ Phase 2の教師・対照データ開発を暫定構成で並行させる。
 
 正常な単一目的実行およびsource / role対応条件を収集し、プローブを学習・検証する。攻撃成否または最終ツール選択を教師ラベルにしない。初回Banking pilotは`pilot_only`のままであり、新規条件・評価器・split・runtime freezeを固定してから開発用runを開始する。
 
+二文書タスクv1の五件は、モデル実行後に判明したファイル発見不能のため人手監査を
+実施せず、設計上の失敗記録として保存する。v1をprobe教師・validationや行動成功率の
+根拠に使わない。この監査規則の事後的な部分改訂は
+[RDR-2026-10-22-01](decisions/2026-10-22_phase2_v1_audit_disposition.md)に記録する。
+別versionのv2は五件の人手監査とoutcome reportを完了したtrain条件であり、
+独立validationではない。次に`argument_readout` probeの実装へ着手するが、
+学習・妥当性評価には追加の独立した開発用系列が必要である。
+
 Exit criteria: 未知系列での性能、語彙ベースライン、ランダムラベル対照、較正および欠測率をvalidationまで確認できること。
 
 ### Phase 3: 解析仕様の凍結
@@ -614,6 +622,8 @@ slotの区切り記号を含めるかは正準仕様で固定する。複数slot
 
 `action_readout`と`argument_readout`の教師データには、目的が一つだけ明示された正常な単一目的条件と対応対照を使う。ラベルは実験条件として定義したaction identityまたはargument identity / conditionであり、攻撃成否、A～D、生成されたtool callまたは最終環境状態ではない。
 
+最初の`argument_readout`開発では、[RDR-2026-10-22-02](decisions/2026-10-22_argument_readout_task_design.md)に従い、Bankingの`send_money.recipient`を単独の対象slotとする。既知の候補値ごとに、その値が送金操作のrecipient内容として提示されたかを条件から多ラベルで定義する。禁止・引用・情報源・正規／攻撃の別は内容ラベルへ混ぜず、同じ候補の役割と文脈を入れ替える。両候補が同時に提示された条件と、同じ語彙を別slotへ置いた条件を含める。未知の意味的系列で検証し、候補値自体のzero-shot復号は必須としない。具体的な条件設計と未固定項目は[設計方針書](phase2_argument_readout_task_design.md)に記す。
+
 `source_role_readout`には、可能な限り同一または厳密に対応する内容を次の文脈へ置いた条件を使う。
 
 - user instruction
@@ -639,6 +649,7 @@ PCA等を可視化に使う場合も、確認的な比較ではtrainでfitした
 ### 14.3 probe学習と選択
 
 基本probeは正則化付き線形モデルとする。モデル種類、正則化候補、class weight、最大反復、乱数seedおよび多クラス方式を設定化する。
+初回のrecipient内容probeは、複数候補が同時に正例となるため、候補ごとの線形二値分類と連続decision scoreを第一候補とする。単一目的条件から両候補提示IPIへの適用妥当性は、独立validationの対応条件で確かめる。最終的なscore、較正および選択規則はtest確認前に固定する。
 
 1. trainだけで各候補probeをfitする。
 2. validationでlayer、位置、正則化、threshold、score変換および較正方法を選ぶ。

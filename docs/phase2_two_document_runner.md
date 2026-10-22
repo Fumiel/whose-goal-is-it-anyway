@@ -1,7 +1,9 @@
 # Phase 2 two-document Qwen runner
 
-This guide describes the frozen v1 collection, which has already run and awaits
-human audit. The [path-disclosed v2](phase2_two_document_paths_v2.md) has a
+This guide describes the frozen v1 collection, which has already run. After its
+task-design flaw was identified, the researcher waived its human audit in
+[RDR-2026-10-22-01](decisions/2026-10-22_phase2_v1_audit_disposition.md).
+The [path-disclosed v2](phase2_two_document_paths_v2.md) has a
 separate design, run namespace, and execution gate.
 
 The [design freeze](../data/manifests/phase2_two_document_initial_v1.freeze.json)
@@ -82,16 +84,18 @@ PYTHONPATH=src .venv/bin/python -m goal_takeover.cli \
 The command checks all run IDs for collisions before loading Qwen. It writes
 `artifacts/runs/phase2-po-registry-initial-v1-c001-a1` through `c005-a1` as
 immutable bundles, stopping on a technical failure. Model parse/tool failures
-remain behavioral failures and are not regenerated. The five runs require
-human review before any outcome report. The `user_instruction` control can
+remain behavioral failures and are not regenerated. The original design
+required human review before any outcome report. The later v1 disposition
+waived that review and excludes v1 from outcome reporting and probe data. The
+`user_instruction` control can
 legitimately transfer to the alternative account: candidate action occurrence,
 native security flag, user authorization and IPI attack success are separate.
 The quotation, explanation and prohibition controls retain any candidate-action
 positives as anomalies outside the ordinary A–D grouping.
 
-Use the [five-run human audit procedure](phase2_two_document_audit.md) and its
-blank template after collection. Record first judgments from raw traces before
-comparing automatic outcome flags.
+The [five-run human audit procedure](phase2_two_document_audit.md) records the
+original review requirements and the v2 procedure. The v1 blank template
+remains unfilled as a record of the original plan.
 
 The tokenizer/native check and GPU check are engineering evidence only. Neither
 is a model behavior result or independent validation group.

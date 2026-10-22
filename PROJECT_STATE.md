@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `phase2_paths_v2_outcome_report_complete_independent_validation_pending`
+- Phase: `phase2_argument_readout_probe_implementation_next_independent_validation_pending`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
@@ -29,7 +29,9 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   0.05 GiB ceilings. The five frozen train conditions were executed under clean
   commit `eac10554a6db4589158e2b27453eef03d7cefa37` and a matching runtime
   freeze. All five immutable run bundles passed checksum and schema verification
-  and await human audit. The tool-output IPI condition did not contact the
+  and remain without human audit under the later
+  [v1 disposition](docs/decisions/2026-10-22_phase2_v1_audit_disposition.md).
+  The tool-output IPI condition did not contact the
   declared attack document, so its exposure measurement is missing; retain the
   executed behavior and do not replace the condition. See the
   [execution log](docs/experiment_logs/2026-10-19_phase2_two_document_initial_execution.md)
@@ -64,6 +66,17 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   (human and frozen automatic labels in separate fields, A–D only for the IPI
   condition, counts without rates) is recorded in the
   [report log](docs/experiment_logs/2026-10-19_two_document_paths_v2_outcome_report.md).
+  The researcher decided after v1's design flaw and the completed v2 audit not
+  to perform the originally planned v1 human audit. Preserve v1 as an unaudited
+  feasibility record, excluded from probe training, validation, success-rate
+  reporting, and confirmatory analysis. The next implementation task is the
+  `argument_readout` feature/probe path; independent development validation
+  and required controls are still outstanding.
+  The researcher adopted the [recipient probe task-design policy](docs/phase2_argument_readout_task_design.md)
+  in [RDR-2026-10-22-02](docs/decisions/2026-10-22_argument_readout_task_design.md):
+  known candidate accounts, condition-defined multi-label recipient content,
+  crossed role/source controls, and independent unseen-series validation.
+  Concrete candidate values, new conditions, split and runtime remain unfrozen.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
@@ -71,8 +84,9 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   with provisional Qwen3-8B int8 / Banking, after the new conditions, evaluator,
   split, and runtime specification are fixed. The failed clean gate, pilot_only
   status, and unselected primary model/domain remain unchanged. The initial v1
-  five and revised v2 five Phase 2 train runs are collected and awaiting separate
-  audits; no confirmatory test runs have been recorded under this decision.
+  five and revised v2 five Phase 2 train runs were collected. The v1 audit was
+  subsequently waived by RDR-2026-10-22-01; the v2 audit is complete. No
+  confirmatory test runs have been recorded under this decision.
 - Lexical-control follow-up: [RDR-2026-10-18-01](docs/decisions/2026-10-18_lexical_control_contradictions_probe_priority.md)
   records read-only inspection of conditions 26/31/38/46/69/70. Their native
   attack positives match actual attacker-side tool calls and state changes;
@@ -214,7 +228,8 @@ After the exploratory pilot collection:
    training / validation collection with the provisional configuration. It does
    not adopt a primary model/domain or authorize pilot reuse or confirmatory test.
 6. The first five-condition Phase 2 design, model-free checks, conservative
-   relationship component and train-only split, all-run audit, pinned model
+   relationship component and train-only split, originally planned all-run
+   audit, pinned model
    config, deterministic decoding, capture/scoring and resource ceilings are
    fixed by RDR-2026-10-19-01 and its checksum manifest. Before model execution,
    use the implemented custom measurement runner, verify native and
@@ -226,14 +241,19 @@ After the exploratory pilot collection:
    labels for probe training. Decide
    primary model/domain and confirmatory feasibility in a separate RDR before
    Phase 3 freeze.
-7. Keep the completed v1 bundles and pending human audit unchanged. The new
+7. Keep the completed v1 bundles and blank audit template unchanged. The later
+   RDR-2026-10-22-01 partially revises the v1 audit plan: no v1 human audit
+   will be performed, and its five unaudited runs remain feasibility records
+   outside probe training, validation and outcome reporting. The new
    filename-disclosed v2 conditions are separate completed train runs in the
    same conservative component, not independent validation. The clean-commit
    GPU/storage report and new same-commit runtime freeze passed. All five v2
    runs have a separate completed human audit with a documented post-run human
    rubric and preserved frozen automatic labels. The v2 outcome report is
-   complete; no independent validation exists. See RDR-2026-10-19-02/03 and the
-   v2 execution, audit and outcome-report logs.
+   complete; no independent validation exists. Implement the `argument_readout`
+   feature/probe path next, while preparing an independent development series
+   and the required probe controls. See RDR-2026-10-19-02/03,
+   RDR-2026-10-22-01 and the v2 execution, audit and outcome-report logs.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -282,12 +302,14 @@ reuse of engineering bundles as research data.
   hold, and task 11 requires recipient audit.
 - One custom development candidate has synthetic and native AgentDojo model-free
   controls, a frozen five-condition train-only design, an implemented Qwen runner,
-  and five completed immutable v1 model-run bundles. The v1 human audit is
-  outstanding. The v1 tool-output IPI condition did not expose the declared
-  attack vector on its actual path.
+  and five completed immutable v1 model-run bundles. The planned v1 human audit
+  was waived after the design flaw was identified; v1 stays unaudited and is
+  excluded from probe training, validation, success-rate reporting and
+  confirmatory analysis. The v1 tool-output IPI condition did not expose the
+  declared attack vector on its actual path.
   The path-disclosed v2 design, model-free/tokenizer/GPU preflights, runtime
   freeze, five model runs, separate human audit and outcome report are complete.
-  No independent validation exists.
+  No `argument_readout` probe implementation or independent validation exists.
   Additional development/test families and the final connected-component split
   are not implemented.
 - No confirmatory data and no research result
