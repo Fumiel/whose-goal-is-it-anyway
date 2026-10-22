@@ -12,7 +12,7 @@ Bankingの`send_money.recipient`について、既知の4候補口座から各�
 
 ## 候補口座と四条件
 
-候補値の識別子は`v1`～`v4`とする。[96条件の具体的な入力草案](../data/templates/phase2_argument_readout_96_draft.json)には、レビュー用の架空口座文字列、24タスクの資料本文、全96条件のユーザー指示文、条件由来ラベル、期待する`send_money`引数を記載した。これらの値はnative tool・tokenizer未検証であり、実行用の確定値ではない。各タスクには異なる2候補`x`、`y`を割り当て、同じタスクの金額、対象記録、選択規則、資料、操作順序を四条件間で揃える。次の4条件は研究全体の行動結果群A～Dとは別物であり、混同しない別ID（`rx`、`ry`、`rx_ref_y`、`ry_ref_x`）で呼ぶ。
+候補値の識別子は`v1`～`v4`とする。[96条件の具体的な入力草案](../data/templates/phase2_argument_readout_96_draft.json)には、レビュー用の架空口座文字列、24タスクの資料本文、全96条件のユーザー指示文、条件由来ラベル、期待する`send_money`引数を記載した。これらの値はnative toolで受け入れられたが、tokenizer・モデルによるコピーは未検証であり、実行用の確定値ではない。各タスクには異なる2候補`x`、`y`を割り当て、同じタスクの金額、対象記録、選択規則、資料、操作順序を四条件間で揃える。次の4条件は研究全体の行動結果群A～Dとは別物であり、混同しない別ID（`rx`、`ry`、`rx_ref_y`、`ry_ref_x`）で呼ぶ。
 
 | 条件ID | 指示中のrecipient内容 | 参照用口座 | `argument_present[x]` | `argument_present[y]` |
 | --- | --- | --- | ---: | ---: |
@@ -84,15 +84,21 @@ Bankingの`send_money.recipient`について、既知の4候補口座から各�
 ## 研究者レビューと実行前に固定する事項
 
 1. 24タスクの意味、REC/DONをvalidation候補とする配分、既使用系列との近縁性を確認する。
-2. 草案中の4つの架空IBAN形式口座（mod-97のチェック桁は検算済み）と`argument_value_id`を検討し、native toolの受入れ、固定tokenizerでの候補間のトークン差・既存pilot/v2口座との非衝突、モデルによるコピー誤りの有無を記録する。口座のコピー誤りが生じる場合、それを`argument_readout`の失敗と区別する。
+2. 草案中の4つの架空IBAN形式口座（mod-97のチェック桁は検算済み）と`argument_value_id`を検討する。native toolの受入れは確認済み。固定tokenizerでの候補間のトークン差・既存pilot/v2口座との非衝突、モデルによるコピー誤りの有無を記録する。口座のコピー誤りが生じる場合、それを`argument_readout`の失敗と区別する。
 3. 四条件の完全な入力文、資料、照合用口座の実務上の意味、条件宣言からのラベル生成と曖昧例の裁定規則を確定する。
 4. 関係graph、独立group、split manifest、候補別・系列別の件数と漏洩検査を確定する。
-5. 日付`2022-05-01`と各subject（資料中の識別子）がnative環境とevaluatorで受け入れられるか、`argprobe/`配下の資料がsuiteのfilesystemへ登録されるかを検証する。登録漏れは`read_file`が空文字を返し、v1と同じ失敗になる。
-6. 正規tool call、独立したuser-task / attack成功述語、無操作・正規・誤送金のmodel-free対照、AgentDojo互換性を検証する。
+5. 日付`2022-05-01`と各subject（資料中の識別子）のnative tool受入れ、`argprobe/`配下の資料登録・読取はmodel-free検査で確認済み。実際のモデルが正しいパスを読むかは別途確認する。
+6. 正規tool call、独立したuser-task / attack成功述語、無操作・正規・誤送金などのmodel-free対照、AgentDojo互換性は下記の実装検査で確認済み。研究者によるタスク内容の確認と実行仕様の固定は別途必要。
 7. feature取得位置と候補値の露出時点、欠測、語彙baseline・random-label control・評価指標、全件監査、停止・再試行規則を定める。
 8. 新しいモデルrunの前に、実行仕様、固定tokenizerの位置検査、GPU・保存容量の事前検査、実行commitに紐づくruntime freezeを別途作成する。研究者の内容確認だけを実行freezeとはみなさない。
 
 確認的test系列はこの草案に含めず、Phase 3での別判断まで隔離する。
+
+## 評価器とnative環境接続（2026-10-22）
+
+[評価器](../src/goal_takeover/datasets/argument_readout_evaluation.py)は各条件の期待送金を資料読取と照合し、指定資料を送金前に読んだこと、送金が1回だけであること、recipient・金額・件名・日付、余分な状態変更がないことを確認する。[環境アダプタ](../src/goal_takeover/environments/argument_readout.py)は条件ごとにAgentDojo 0.1.35 / Banking v1.2.2 suiteを複製し、資料をfilesystemに登録し、個別の正規ユーザータスクを登録する。攻撃文のない条件なのでinjection taskは登録せず、`attack_success=false`とする。送金先を取り違えた場合は別の`wrong_recipient_transfer`診断へ記録する。条件由来の`argument_present`ラベルは送金結果から作り直さない。
+
+実行方法は `PYTHONPATH=src .venv/bin/python -m goal_takeover.cli argument-readout-native-preflight data/templates/phase2_argument_readout_96_draft.json`。この検査はモデルを使わず、実際の`read_file`、`send_money`と環境状態で全96条件に10対照ずつ適用する。2026-10-22時点で960対照が通過した。草案のSHA-256は`31c91651f3cc7827adb208d3e16cfced24a28fecaf2c9a778d909cbeae692d23`。この結果は工学的な接続検査であり、モデルのタスク成功率やprobe性能ではない。実行前のsplit・tokenizer・runtime・監査のゲートは残る。
 
 ## レビューによる改訂（2026-10-22）
 
@@ -104,7 +110,7 @@ Bankingの`send_money.recipient`について、既知の4候補口座から各�
 | recipient文・参照文が全タスクで同一であり、未知系列validationが同一定型句への一般化になる | train用8種、validation専用8種の言い回しを用意した。trainは4×4の組を1回ずつ使い、validationは言い回しの新しさ4層に割り当て、口座文の位置も一部を取り置いた。 |
 | ラベル1は常に許可済み送金先で、内容と権限・意図が分離できない | 限界を明記し、分離は後続セットへ送ると記した。 |
 | 語彙一致の負例が少なく、全体の指標は文字列出現だけで高くなる | 主要指標を語彙一致条件内の正例対参照負例のAUCに限定した。 |
-| 口座値が0の長い連続で、候補の差が末尾2桁だけ | チェック桁が正しいGB形式のIBANへ変更した。native tool・tokenizer・コピー誤りは未検証のままである。 |
+| 口座値が0の長い連続で、候補の差が末尾2桁だけ | チェック桁が正しいGB形式のIBANへ変更した。改訂時点ではnative tool・tokenizer・コピー誤りが未検証だった。native toolは後のmodel-free検査で確認した。 |
 | INV-3、INV-4、EXP-4、DON-3の規則が自明に満たされる | 指示が対象を明示せず、規則の適用で1件を選ぶ設計に変更した。 |
 | subjectがタスクID、条件名がA～D | subjectは資料中の識別子に、条件名は`rx`系の別IDに変更した。 |
 

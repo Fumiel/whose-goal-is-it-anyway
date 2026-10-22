@@ -101,6 +101,11 @@ def build_parser() -> argparse.ArgumentParser:
     phase2_report.add_argument("audit")
     phase2_report.add_argument("--output", required=True)
     phase2_report.add_argument("--artifact-root", default="artifacts")
+    argument_native = subparsers.add_parser(
+        "argument-readout-native-preflight",
+        help="check all 96 draft conditions with actual AgentDojo Banking tools, without a model",
+    )
+    argument_native.add_argument("draft")
     detail = subparsers.add_parser(
         "pilot-detail-capture", help="derive declared full-sequence residual bundles"
     )
@@ -321,6 +326,19 @@ def main(argv: Sequence[str] | None = None) -> int:
             return 1
         for path in paths:
             print(f"created: {path}")
+        return 0
+    if args.command == "argument-readout-native-preflight":
+        try:
+            from goal_takeover.datasets.argument_readout_evaluation import load_draft
+            from goal_takeover.datasets.argument_readout_native import native_preflight
+            from goal_takeover.storage.run_writer import sha256_file
+
+            result = native_preflight(load_draft(args.draft))
+            result["draft_sha256"] = sha256_file(Path(args.draft))
+            print(json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2))
+        except (KeyError, OSError, RuntimeError, ValueError) as exc:
+            print(f"failed: {exc}")
+            return 1
         return 0
     if args.command == "phase2-outcome-report":
         try:

@@ -89,8 +89,13 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   validation candidate set. It found invoice/refund links to the existing
   pilot/train component. The [24-task, 96-condition input draft](data/templates/phase2_argument_readout_96_draft.json)
   now contains document text, full user prompts, labels and proposed calls;
-  its account values and validation independence remain unverified, and no
-  model-free or model run has been performed for it. On 2026-10-22 the draft,
+  its validation independence remains unverified, and no model run has been
+  performed for it. The custom evaluator and isolated native AgentDojo Banking
+  adapter now register all 96 clean user tasks; a model-free preflight passed
+  960 real-tool controls (10 per condition), including document reads and
+  `send_money` calls with all four account values. This verifies native tool
+  acceptance, not tokenizer behavior or model copying. The task contents,
+  split, runtime and audit rules remain unfrozen. On 2026-10-22 the draft,
   initially written with Codex, was revised after a Claude Code review that
   the researcher approved (affirmative reference wording, held-out phrasing,
   checksum-valid IBAN-format accounts, rule-applying INV-3/INV-4/EXP-4/DON-3,
