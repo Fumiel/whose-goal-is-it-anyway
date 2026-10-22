@@ -77,6 +77,12 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   known candidate accounts, condition-defined multi-label recipient content,
   crossed role/source controls, and independent unseen-series validation.
   Concrete candidate values, new conditions, split and runtime remain unfrozen.
+  [RDR-2026-10-22-03](docs/decisions/2026-10-22_argument_probe_staged_controls.md)
+  stages a proposed 6-series, 24-task, 96-condition user-instruction recipient
+  content set before separate IPI, quotation/prohibition and dual-recipient
+  controls. The [review draft](docs/phase2_argument_readout_96_condition_draft.md)
+  is not a condition or split freeze. Its four training and two validation
+  series still require a relationship-graph audit and researcher review.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)

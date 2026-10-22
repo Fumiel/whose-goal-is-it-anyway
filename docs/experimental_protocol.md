@@ -624,6 +624,8 @@ slotの区切り記号を含めるかは正準仕様で固定する。複数slot
 
 最初の`argument_readout`開発では、[RDR-2026-10-22-02](decisions/2026-10-22_argument_readout_task_design.md)に従い、Bankingの`send_money.recipient`を単独の対象slotとする。既知の候補値ごとに、その値が送金操作のrecipient内容として提示されたかを条件から多ラベルで定義する。禁止・引用・情報源・正規／攻撃の別は内容ラベルへ混ぜず、同じ候補の役割と文脈を入れ替える。両候補が同時に提示された条件と、同じ語彙を別slotへ置いた条件を含める。未知の意味的系列で検証し、候補値自体のzero-shot復号は必須としない。具体的な条件設計と未固定項目は[設計方針書](phase2_argument_readout_task_design.md)に記す。
 
+[RDR-2026-10-22-03](decisions/2026-10-22_argument_probe_staged_controls.md)は、この対応対照の収集順序を部分改訂する。まず6系列・24タスク・96条件のユーザー指示中recipient内容セットを設計し、tool出力IPI、引用・禁止、両recipient候補提示は追加セットで検証する。初回セットの性能だけでIPIへの適用を妥当化せず、Phase 2終了条件を達成済みとみなさない。96条件の具体案は[レビュー用草案](phase2_argument_readout_96_condition_draft.md)に置く。
+
 `source_role_readout`には、可能な限り同一または厳密に対応する内容を次の文脈へ置いた条件を使う。
 
 - user instruction

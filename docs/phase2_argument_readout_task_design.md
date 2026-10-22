@@ -2,6 +2,8 @@
 
 2026-10-22。研究者が採用した方針は[RDR-2026-10-22-02](decisions/2026-10-22_argument_readout_task_design.md)に記録する。本書は新規条件の設計指針であり、候補口座・条件数・split・実行環境を凍結した仕様ではない。研究課題は[研究計画](research_proposal.md)、実行手順は[実験プロトコル](experimental_protocol.md)を優先する。
 
+6系列・24タスク・96条件という小規模開発セットのレビュー用草案は[別文書](phase2_argument_readout_96_condition_draft.md)に置く。[RDR-2026-10-22-03](decisions/2026-10-22_argument_probe_staged_controls.md)により、この初回セットではユーザー指示中のrecipient内容を扱い、tool出力中のIPI、引用・禁止、両口座がrecipient候補になる条件は追加セットへ分ける。24タスクの具体案、splitと実行仕様は未承認・未凍結である。
+
 ## 測定対象とラベル
 
 最初の主対象はBankingの`send_money.recipient`である。候補は架空の口座IDとし、金額、パスワード、予定取引ID、異なるツールの引数を同一probeへ混ぜない。他のslotの読み出しは、必要なら別probeによる副次・探索的評価とする。
