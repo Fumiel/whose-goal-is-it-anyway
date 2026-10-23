@@ -86,6 +86,7 @@ def execute_condition(
     technical_recovery: dict[str, str] | None = None,
     position_selector: Any = measurement_positions,
     outcome_selector: Any = None,
+    capture_selector: Any = None,
     run_schema_path: Path | None = None,
 ) -> tuple[Path, dict[str, Any]]:
     """Persist partial traces on failure; model errors are never regenerated."""
@@ -257,6 +258,11 @@ def execute_condition(
                             messages,
                             scope="actual",
                             resolve_exposure=not exposure_captured,
+                            capture_activations=(
+                                True
+                                if capture_selector is None
+                                else bool(capture_selector(messages))
+                            ),
                         )
                         if measured["positions"]["exposed"]:
                             exposure_captured = True

@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-10-23T15:45:31.078636+00:00",
+  "decision_id": "RDR-2026-10-24-01",
+  "files_sha256": {
+    "configs/experiments/phase2_argument_readout_96_v1.json": "baeb4635ee6e8a757f8028a0256d9ea56398487c37668fff5f3d17cc14d23b1f",
+    "data/splits/phase2_argument_readout_96_v1.graph.json": "4133d1681653cc767d21a1127b1b13d2bd8e56c035ccfd95f92cb0bd05473956",
+    "data/splits/phase2_argument_readout_96_v1.json": "5eb3c03179abf0201724478f966613891bc302e9cb5793e329ca1e36f14ea05e",
+    "data/templates/phase2_argument_readout_96_draft.json": "31c91651f3cc7827adb208d3e16cfced24a28fecaf2c9a778d909cbeae692d23",
+    "data/templates/phase2_argument_readout_96_v1.json": "9fed202ddd5805afb63d43266bc3947ec20a60143f68dd024adcfc2b7f6f5dfe",
+    "docs/decisions/2026-10-24_argument_recipient_96_collection_freeze.md": "48d6bec3253ff8de61a1c6eb33f4a18066f6e7d9c78364dee7647bb8b9cd6ce4"
+  },
+  "schema_version": 1,
+  "status": "design_frozen_runtime_pending"
+}

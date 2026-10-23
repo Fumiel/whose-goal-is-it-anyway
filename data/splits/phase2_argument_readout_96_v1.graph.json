@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "status": "design_frozen_runtime_pending",
+  "existing_train_component_id": "component_2db488e29b6eaafa",
+  "component_by_series": {
+    "invoice_payment": "component_2db488e29b6eaafa",
+    "personal_refund": "component_2db488e29b6eaafa",
+    "product_payment": "component_2db488e29b6eaafa",
+    "expense_reimbursement": "component_2db488e29b6eaafa",
+    "recurring_payment": "component_0bb81a7a4a45e9ee",
+    "donation_transfer": "component_793e36b0cefb3ebb"
+  },
+  "edges": [
+    {
+      "from": "invoice_payment",
+      "to": "component_2db488e29b6eaafa",
+      "reason": "near_pilot_bill_payment_and_two_document_v2"
+    },
+    {
+      "from": "personal_refund",
+      "to": "component_2db488e29b6eaafa",
+      "reason": "near_pilot_friend_refund"
+    },
+    {
+      "from": "product_payment",
+      "to": "component_2db488e29b6eaafa",
+      "reason": "near_purchase_order_reconciliation"
+    },
+    {
+      "from": "expense_reimbursement",
+      "to": "personal_refund",
+      "reason": "near_reimbursement_and_personal_settlement"
+    }
+  ],
+  "reviewed_non_edges": [
+    {
+      "from": "recurring_payment",
+      "to": "component_2db488e29b6eaafa",
+      "reason": "current-period one-time membership transfer differs from prior schedule updates"
+    },
+    {
+      "from": "donation_transfer",
+      "to": "expense_reimbursement",
+      "reason": "grant allocation and expense reimbursement differ in objective, beneficiary and source record"
+    },
+    {
+      "from": "shared_account_phrasing",
+      "to": "cross_series_tasks",
+      "reason": "short recipient/reference sentence scaffold is a lexical control, not a close paraphrase of the task objective or document"
+    }
+  ],
+  "condition_ids_by_series": {
+    "invoice_payment": [
+      "phase2_arg_recipient_c3e840a0178338cb",
+      "phase2_arg_recipient_daafead3d3a881a0",
+      "phase2_arg_recipient_26d3be401b73f841",
+      "phase2_arg_recipient_7902de2f0d025933",
+      "phase2_arg_recipient_ba053fa76a9ab0ca",
+      "phase2_arg_recipient_18dbb8442b22fd21",
+      "phase2_arg_recipient_fdda5fbd9ef75f07",
+      "phase2_arg_recipient_771547cf5abdcfe1",
+      "phase2_arg_recipient_051056f02030b113",
+      "phase2_arg_recipient_8d988bd6b0ca29b1",
+      "phase2_arg_recipient_e672ffa1ee6a4d97",
+      "phase2_arg_recipient_8fddd8263160cdd3",
+      "phase2_arg_recipient_12fd99567c38e1f0",
+      "phase2_arg_recipient_80725f7a03591d9e",
+      "phase2_arg_recipient_2f70e7023acdf20b",
+      "phase2_arg_recipient_92c3d1b15221b789"
+    ],
+    "personal_refund": [
+      "phase2_arg_recipient_c18eaf351299c216",
+      "phase2_arg_recipient_28497fe8572aa252",
+      "phase2_arg_recipient_b573c40c9a03f356",
+      "phase2_arg_recipient_1baf1df1df338a81",
+      "phase2_arg_recipient_9e65adc380f023f5",
+      "phase2_arg_recipient_da9a9d990590f3d0",
+      "phase2_arg_recipient_c8ee0ff86ab9e03f",
+      "phase2_arg_recipient_4630f4168694d1c9",
+      "phase2_arg_recipient_99f553e6d56fad8e",
+      "phase2_arg_recipient_d98186e21839f395",
+      "phase2_arg_recipient_e0920feaf2e8ae2c",
+      "phase2_arg_recipient_b33d24a99d8cffce",
+      "phase2_arg_recipient_c11cc105c08128f7",
+      "phase2_arg_recipient_0b790da0fcd4b19f",
+      "phase2_arg_recipient_d03ab89ff0ed0bb8",
+      "phase2_arg_recipient_8b7ba29552670af1"
+    ],
+    "product_payment": [
+      "phase2_arg_recipient_875702a1afa39f3b",
+      "phase2_arg_recipient_80dd1bc979d769cc",
+      "phase2_arg_recipient_17279f1c97e244a4",
+      "phase2_arg_recipient_5c7346045dff1269",
+      "phase2_arg_recipient_7f4bd414ee675a3e",
+      "phase2_arg_recipient_c2ee56a4a62566af",
+      "phase2_arg_recipient_3f2c07e62f6abad1",
+      "phase2_arg_recipient_e92dfc4b01436813",
+      "phase2_arg_recipient_9a79ad76cd52632f",
+      "phase2_arg_recipient_2658bc8eb6c67d71",
+      "phase2_arg_recipient_2fc74d62e4071ae8",
+      "phase2_arg_recipient_dde9c32988ef6852",
+      "phase2_arg_recipient_17fe2b92a10d9ece",
+      "phase2_arg_recipient_83975fb39d234871",
+      "phase2_arg_recipient_47ded4210292cc5e",
+      "phase2_arg_recipient_70d33cd1d67ab153"
+    ],
+    "expense_reimbursement": [
+      "phase2_arg_recipient_3fc57a5b5cb53ad1",
+      "phase2_arg_recipient_93ea8c2144ba10f8",
+      "phase2_arg_recipient_e7b90187d09fe25d",
+      "phase2_arg_recipient_36955f2342c4c429",
+      "phase2_arg_recipient_a6359dc9d6b56e13",
+      "phase2_arg_recipient_ebf570a19c064657",
+      "phase2_arg_recipient_fbb88e65202955fe",
+      "phase2_arg_recipient_df42f6edf9fd2845",
+      "phase2_arg_recipient_24b895885f889037",
+      "phase2_arg_recipient_1fac7374fcbbe2bc",
+      "phase2_arg_recipient_e0324d71bc66f2ca",
+      "phase2_arg_recipient_b817f314b7ac1e50",
+      "phase2_arg_recipient_b8d066f42969fb63",
+      "phase2_arg_recipient_de072b140bcf2d24",
+      "phase2_arg_recipient_4e0578c1a6a3361e",
+      "phase2_arg_recipient_17543b8debcbb238"
+    ],
+    "recurring_payment": [
+      "phase2_arg_recipient_03b1ba9d7aef9427",
+      "phase2_arg_recipient_c44981bbd55e7b03",
+      "phase2_arg_recipient_9d2192ef9bd68e62",
+      "phase2_arg_recipient_d0ccba32170f5268",
+      "phase2_arg_recipient_b74714c1169f4eb7",
+      "phase2_arg_recipient_315dc3f137594a5f",
+      "phase2_arg_recipient_37c65288298227ad",
+      "phase2_arg_recipient_e6392692ef1632e1",
+      "phase2_arg_recipient_2ccc22a76d42f90d",
+      "phase2_arg_recipient_25f38b8c52c8626e",
+      "phase2_arg_recipient_13cda9f07a879888",
+      "phase2_arg_recipient_6357d77fa7bd0ad0",
+      "phase2_arg_recipient_f5d0fe51fdfd06ab",
+      "phase2_arg_recipient_67d481ed07e89548",
+      "phase2_arg_recipient_ced3bce0750d28e9",
+      "phase2_arg_recipient_ccd8f3b4ded4e65b"
+    ],
+    "donation_transfer": [
+      "phase2_arg_recipient_762d625cda6aa6d1",
+      "phase2_arg_recipient_c41af96fcf27abb5",
+      "phase2_arg_recipient_54ed3f51d1eb0761",
+      "phase2_arg_recipient_d8f2de2b369a56ef",
+      "phase2_arg_recipient_b1145efbac5caa90",
+      "phase2_arg_recipient_01e221990328b26f",
+      "phase2_arg_recipient_4a9029364f3f6810",
+      "phase2_arg_recipient_7913073329ec337b",
+      "phase2_arg_recipient_56f2295ea7bea8b3",
+      "phase2_arg_recipient_6fba3302cb2301a0",
+      "phase2_arg_recipient_e06ee356dc483955",
+      "phase2_arg_recipient_d181e4975c395bdf",
+      "phase2_arg_recipient_55503345cfdae03c",
+      "phase2_arg_recipient_aada67aada8f8f9b",
+      "phase2_arg_recipient_757dd088d4c6e71d",
+      "phase2_arg_recipient_9fc7838c202448ed"
+    ]
+  },
+  "split_counts": {
+    "train": 64,
+    "validation": 32
+  }
+}

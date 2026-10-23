@@ -114,8 +114,10 @@ Phase 2の教師・対照データ開発を暫定構成で並行させる。
 根拠に使わない。この監査規則の事後的な部分改訂は
 [RDR-2026-10-22-01](decisions/2026-10-22_phase2_v1_audit_disposition.md)に記録する。
 別versionのv2は五件の人手監査とoutcome reportを完了したtrain条件であり、
-独立validationではない。次に`argument_readout` probeの実装へ着手するが、
+独立validationではない。`argument_readout` probeの学習・評価経路は実装済みだが、
 学習・妥当性評価には追加の独立した開発用系列が必要である。
+その初回96条件の内容承認、条件ID、train/validation関係graphと実行前gateは
+[RDR-2026-10-24-01](decisions/2026-10-24_argument_recipient_96_collection_freeze.md)に記録する。
 
 Exit criteria: 未知系列での性能、語彙ベースライン、ランダムラベル対照、較正および欠測率をvalidationまで確認できること。
 

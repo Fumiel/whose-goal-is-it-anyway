@@ -1,0 +1,18 @@
+{
+  "artifact_relative_path": "artifacts/preflight/phase2-argument-recipient-96-v1-native-tokenizer-20261024.json",
+  "artifact_sha256": "04f896bc28b34b1e08d4797231265cf602b7f73c6b42b83f6c7ef062bd33a6cb",
+  "candidate_token_max": 81,
+  "candidate_token_min": 70,
+  "condition_count": 96,
+  "date": "2026-10-24",
+  "design_freeze_sha256": "15f31b0dbbf01dfb96dd7b37a99f58aae6619cc03f77698c628f4e2d6170b2f1",
+  "native_control_count": 960,
+  "prefix_token_max": 1614,
+  "prefix_token_min": 1559,
+  "recipient_token_count_values": [
+    19
+  ],
+  "research_result": false,
+  "schema_version": 1,
+  "status": "native_and_tokenizer_preflight_passed"
+}

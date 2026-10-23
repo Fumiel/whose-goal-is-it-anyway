@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `phase2_argument_readout_probe_path_implemented_independent_validation_pending`
+- Phase: `phase2_argument_recipient_96_execution_preflight_pending`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
@@ -108,8 +108,18 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   `src/goal_takeover/phase2/argument_probe.py` and documented in
   [the implementation guide](docs/phase2_argument_probe_implementation.md).
   Synthetic bundle tests verify alignment and fitting, but no research probe
-  has been fitted: the 96-condition draft still lacks frozen split/runtime and
+  has been fitted: the approved collection still lacks a runtime freeze and
   model runs, and independent validation remains pending.
+  On 2026-10-24, the researcher approved the 24 task texts, four fictional
+  accounts and REC/DON validation candidates. [RDR-2026-10-24-01](docs/decisions/2026-10-24_argument_recipient_96_collection_freeze.md)
+  records the separate 96-condition development collection, its 64 train / 32
+  validation assignments and conservative links to the existing train
+  component. The new [runner guide](docs/phase2_argument_readout_96_runner.md)
+  lists the remaining execution gates. Native model-free controls passed for
+  all 96 conditions (960 cases), and fixed-tokenizer preflight passed for all
+  96 user boundaries on this WSL host. A clean execution commit, same-commit
+  GPU/storage report and runtime freeze remain pending; no new model run has
+  started.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
@@ -288,6 +298,12 @@ After the exploratory pilot collection:
    been performed. Prepare the frozen new-condition collection, an independent
    development validation series and the required probe controls. See RDR-2026-10-19-02/03,
    RDR-2026-10-22-01 and the v2 execution, audit and outcome-report logs.
+8. The approved 96-condition recipient collection has 64 train and 32
+   development validation conditions. Its design and native/tokenizer checks
+   are recorded, with no model run yet. Before execution, commit a clean source
+   and design state, obtain a same-commit GPU/storage preflight report, and
+   create a matching runtime freeze. Preserve every planned outcome and
+   complete the all-run audit before research outcome reporting.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -345,6 +361,7 @@ reuse of engineering bundles as research data.
   freeze, five model runs, separate human audit and outcome report are complete.
   The `argument_readout` probe path has synthetic-only tests; no research-data
   fit or independent validation exists.
-  Additional development/test families and the final connected-component split
-  are not implemented.
+  The 96-condition development collection has a declared graph and split but
+  no model runs; further IPI controls, confirmatory test families and the final
+  cross-collection split are not implemented.
 - No confirmatory data and no research result

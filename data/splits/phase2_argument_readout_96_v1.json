@@ -1,0 +1,494 @@
+{
+  "schema_version": 2,
+  "split_version": "phase2_argument_readout_96_v1",
+  "seed": 20261024,
+  "group_keys": [
+    "task_template_id",
+    "pair_id",
+    "paraphrase_family_id",
+    "semantic_series_id",
+    "semantic_relation_to_prior_pilot"
+  ],
+  "assignments": [
+    {
+      "condition_id": "phase2_arg_recipient_c3e840a0178338cb",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_daafead3d3a881a0",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_26d3be401b73f841",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_7902de2f0d025933",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_ba053fa76a9ab0ca",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_18dbb8442b22fd21",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_fdda5fbd9ef75f07",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_771547cf5abdcfe1",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_051056f02030b113",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_8d988bd6b0ca29b1",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e672ffa1ee6a4d97",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_8fddd8263160cdd3",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_12fd99567c38e1f0",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_80725f7a03591d9e",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_2f70e7023acdf20b",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_92c3d1b15221b789",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_c18eaf351299c216",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_28497fe8572aa252",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_b573c40c9a03f356",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_1baf1df1df338a81",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_9e65adc380f023f5",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_da9a9d990590f3d0",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_c8ee0ff86ab9e03f",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_4630f4168694d1c9",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_99f553e6d56fad8e",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_d98186e21839f395",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e0920feaf2e8ae2c",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_b33d24a99d8cffce",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_c11cc105c08128f7",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_0b790da0fcd4b19f",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_d03ab89ff0ed0bb8",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_8b7ba29552670af1",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_875702a1afa39f3b",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_80dd1bc979d769cc",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_17279f1c97e244a4",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_5c7346045dff1269",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_7f4bd414ee675a3e",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_c2ee56a4a62566af",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_3f2c07e62f6abad1",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e92dfc4b01436813",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_9a79ad76cd52632f",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_2658bc8eb6c67d71",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_2fc74d62e4071ae8",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_dde9c32988ef6852",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_17fe2b92a10d9ece",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_83975fb39d234871",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_47ded4210292cc5e",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_70d33cd1d67ab153",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_3fc57a5b5cb53ad1",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_93ea8c2144ba10f8",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e7b90187d09fe25d",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_36955f2342c4c429",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_a6359dc9d6b56e13",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_ebf570a19c064657",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_fbb88e65202955fe",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_df42f6edf9fd2845",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_24b895885f889037",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_1fac7374fcbbe2bc",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e0324d71bc66f2ca",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_b817f314b7ac1e50",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_b8d066f42969fb63",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_de072b140bcf2d24",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_4e0578c1a6a3361e",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_17543b8debcbb238",
+      "component_id": "component_2db488e29b6eaafa",
+      "split": "train"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_03b1ba9d7aef9427",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_c44981bbd55e7b03",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_9d2192ef9bd68e62",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_d0ccba32170f5268",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_b74714c1169f4eb7",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_315dc3f137594a5f",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_37c65288298227ad",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e6392692ef1632e1",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_2ccc22a76d42f90d",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_25f38b8c52c8626e",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_13cda9f07a879888",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_6357d77fa7bd0ad0",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_f5d0fe51fdfd06ab",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_67d481ed07e89548",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_ced3bce0750d28e9",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_ccd8f3b4ded4e65b",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_762d625cda6aa6d1",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_c41af96fcf27abb5",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_54ed3f51d1eb0761",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_d8f2de2b369a56ef",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_b1145efbac5caa90",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_01e221990328b26f",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_4a9029364f3f6810",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_7913073329ec337b",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_56f2295ea7bea8b3",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_6fba3302cb2301a0",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e06ee356dc483955",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_d181e4975c395bdf",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_55503345cfdae03c",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_aada67aada8f8f9b",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_757dd088d4c6e71d",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    },
+    {
+      "condition_id": "phase2_arg_recipient_9fc7838c202448ed",
+      "component_id": "component_793e36b0cefb3ebb",
+      "split": "validation"
+    }
+  ]
+}

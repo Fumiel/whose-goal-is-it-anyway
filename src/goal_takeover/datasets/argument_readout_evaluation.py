@@ -125,8 +125,11 @@ def evaluate_calls(
 def validate_execution_declarations(draft: dict[str, Any]) -> None:
     """Check the declarations that the native evaluator and fixture consume."""
     validate_draft(draft)
-    if draft["status"] != "review_draft_not_validated_or_frozen":
-        raise ValueError("expected the reviewed, unfrozen draft")
+    if draft["status"] not in {
+        "review_draft_not_validated_or_frozen",
+        "design_frozen_runtime_pending",
+    }:
+        raise ValueError("expected the reviewed draft or frozen collection")
     if len(draft["task_specs"]) != 24 or len(draft["condition_specs"]) != 96:
         raise ValueError("the development set must contain 24 tasks and 96 conditions")
     task_ids = [t["draft_task_id"] for t in draft["task_specs"]]

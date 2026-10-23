@@ -25,6 +25,7 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-10-24 | [RDR-2026-10-24-01](2026-10-24_argument_recipient_96_collection_freeze.md) | accepted | 研究者が96条件草案の内容と開発内配分候補を承認。独立graph、64 train / 32 validationと新規run前gateを具体化 |
 | 2026-10-22 | [RDR-2026-10-22-03](2026-10-22_argument_probe_staged_controls.md) | accepted | 初回96条件をユーザー指示中のrecipient内容probe用に設計し、IPI・引用／禁止・両recipient候補の対応対照を後続セットへ分ける部分改訂 |
 | 2026-10-22 | [RDR-2026-10-22-02](2026-10-22_argument_readout_task_design.md) | accepted | 初回argument probeを`send_money.recipient`へ絞り、多ラベルの内容ラベル、役割・文脈の交差、既知候補での未知系列validationを方針化 |
 | 2026-10-22 | [RDR-2026-10-22-01](2026-10-22_phase2_v1_audit_disposition.md) | accepted | v1の監査省略を記録し、未監査v1を設計上の失敗記録として保持。v2監査を維持し、次にargument_readout probe実装へ進む |
