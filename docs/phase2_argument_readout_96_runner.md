@@ -1,5 +1,12 @@
 # Recipient content 96-condition collection
 
+The planned collection ran on 2026-10-24 under commit `b7e0244` and its
+same-commit runtime freeze. All 96 raw bundles passed integrity checks; see
+the [execution log](experiment_logs/2026-10-24_argument_recipient_96_collection.md)
+and [manifest](../data/manifests/phase2_argument_readout_96_v1_collection.json).
+The commands below document that execution and are not instructions to reuse
+existing immutable run IDs.
+
 The researcher approved the 24 task texts, four fictional accounts, and the
 REC/DON development validation candidates on 2026-10-24. The separate
 [decision](decisions/2026-10-24_argument_recipient_96_collection_freeze.md),

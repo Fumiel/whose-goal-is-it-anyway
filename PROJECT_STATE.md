@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `phase2_argument_recipient_96_execution_preflight_pending`
+- Phase: `phase2_argument_recipient_96_human_audit_pending`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
@@ -69,33 +69,33 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   The researcher decided after v1's design flaw and the completed v2 audit not
   to perform the originally planned v1 human audit. Preserve v1 as an unaudited
   feasibility record, excluded from probe training, validation, success-rate
-  reporting, and confirmatory analysis. The next implementation task is the
-  `argument_readout` feature/probe path; independent development validation
-  and required controls are still outstanding.
+  reporting, and confirmatory analysis. The `argument_readout` feature/probe
+  path is implemented; the separate 96-condition development collection has
+  now been recorded. Human audit, probe fitting and later controls remain.
   The researcher adopted the [recipient probe task-design policy](docs/phase2_argument_readout_task_design.md)
   in [RDR-2026-10-22-02](docs/decisions/2026-10-22_argument_readout_task_design.md):
   known candidate accounts, condition-defined multi-label recipient content,
   crossed role/source controls, and independent unseen-series validation.
-  Concrete candidate values, new conditions, split and runtime remain unfrozen.
+  The subsequent 96-condition user-instruction collection now has separate
+  fixed values, conditions, split and execution runtime.
   [RDR-2026-10-22-03](docs/decisions/2026-10-22_argument_probe_staged_controls.md)
   stages a proposed 6-series, 24-task, 96-condition user-instruction recipient
   content set before separate IPI, quotation/prohibition and dual-recipient
   controls. The [review draft](docs/phase2_argument_readout_96_condition_draft.md)
-  is not a condition or split freeze. Its four training and two validation
-  series still require a relationship-graph audit and researcher review.
+  was not itself a condition or split freeze. Its four training and two
+  validation series received a relationship-graph audit and researcher review.
   A [preliminary graph audit](docs/phase2_argument_readout_96_graph_audit.md)
   moved expense reimbursement to the train candidate set because of its
   semantic overlap with refunds, and moved recurring payments to the
   validation candidate set. It found invoice/refund links to the existing
   pilot/train component. The [24-task, 96-condition input draft](data/templates/phase2_argument_readout_96_draft.json)
   now contains document text, full user prompts, labels and proposed calls;
-  its validation independence remains unverified, and no model run has been
-  performed for it. The custom evaluator and isolated native AgentDojo Banking
+  its REC/DON series are now separate development validation components in the
+  frozen split. The custom evaluator and isolated native AgentDojo Banking
   adapter now register all 96 clean user tasks; a model-free preflight passed
   960 real-tool controls (10 per condition), including document reads and
   `send_money` calls with all four account values. This verifies native tool
-  acceptance, not tokenizer behavior or model copying. The task contents,
-  split, runtime and audit rules remain unfrozen. On 2026-10-22 the draft,
+  acceptance, not tokenizer behavior or model copying. On 2026-10-22 the draft,
   initially written with Codex, was revised after a Claude Code review that
   the researcher approved (affirmative reference wording, held-out phrasing,
   checksum-valid IBAN-format accounts, rule-applying INV-3/INV-4/EXP-4/DON-3,
@@ -107,19 +107,23 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   validation diagnostics are now implemented in
   `src/goal_takeover/phase2/argument_probe.py` and documented in
   [the implementation guide](docs/phase2_argument_probe_implementation.md).
-  Synthetic bundle tests verify alignment and fitting, but no research probe
-  has been fitted: the approved collection still lacks a runtime freeze and
-  model runs, and independent validation remains pending.
+  Synthetic bundle tests verify alignment and fitting. No research probe has
+  been fitted; the new model runs require their planned human audit first.
   On 2026-10-24, the researcher approved the 24 task texts, four fictional
   accounts and REC/DON validation candidates. [RDR-2026-10-24-01](docs/decisions/2026-10-24_argument_recipient_96_collection_freeze.md)
   records the separate 96-condition development collection, its 64 train / 32
   validation assignments and conservative links to the existing train
   component. The new [runner guide](docs/phase2_argument_readout_96_runner.md)
-  lists the remaining execution gates. Native model-free controls passed for
-  all 96 conditions (960 cases), and fixed-tokenizer preflight passed for all
-  96 user boundaries on this WSL host. A clean execution commit, same-commit
-  GPU/storage report and runtime freeze remain pending; no new model run has
-  started.
+  records the execution procedure. Native model-free controls passed for all
+  96 conditions (960 cases), and fixed-tokenizer preflight passed for all 96
+  user boundaries on this WSL host. Execution commit `b7e0244e07875733e17e34db9cab018dea9dcd21`,
+  same-commit GPU/storage preflight and runtime freeze preceded collection.
+  All 96 immutable bundles passed checksum, schema, ID, position and resource
+  verification: 94 completed and two retained model failures, with no technical
+  failure. The [collection manifest](data/manifests/phase2_argument_readout_96_v1_collection.json)
+  and [execution log](docs/experiment_logs/2026-10-24_argument_recipient_96_collection.md)
+  preserve provenance. These are execution statuses, not audited task outcomes.
+  The all-run human audit and probe fit remain pending.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
@@ -293,17 +297,19 @@ After the exploratory pilot collection:
    GPU/storage report and new same-commit runtime freeze passed. All five v2
    runs have a separate completed human audit with a documented post-run human
    rubric and preserved frozen automatic labels. The v2 outcome report is
-   complete; no independent validation exists. The `argument_readout`
+   complete; v2 itself has no independent validation. The `argument_readout`
    feature/probe code now passes synthetic tests, but no research-data fit has
-   been performed. Prepare the frozen new-condition collection, an independent
-   development validation series and the required probe controls. See RDR-2026-10-19-02/03,
+   been performed. The new 96-condition development collection has independent
+   validation components; complete its audit before outcome reporting, and
+   implement the remaining source-role and quotation controls. See RDR-2026-10-19-02/03,
    RDR-2026-10-22-01 and the v2 execution, audit and outcome-report logs.
 8. The approved 96-condition recipient collection has 64 train and 32
-   development validation conditions. Its design and native/tokenizer checks
-   are recorded, with no model run yet. Before execution, commit a clean source
-   and design state, obtain a same-commit GPU/storage preflight report, and
-   create a matching runtime freeze. Preserve every planned outcome and
-   complete the all-run audit before research outcome reporting.
+   development validation conditions. Its design, native/tokenizer and GPU
+   checks, execution commit and runtime freeze are recorded. All 96 planned
+   runs were collected once and passed artifact integrity checks. Preserve
+   both model failures and every raw bundle. Complete the all-run human audit
+   before research outcome reporting; the IPI,
+   quotation/prohibition and dual-recipient controls remain separate work.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
 `RDR-2026-09-22-01`. It may be used for interface debugging and resource
@@ -360,8 +366,9 @@ reuse of engineering bundles as research data.
   The path-disclosed v2 design, model-free/tokenizer/GPU preflights, runtime
   freeze, five model runs, separate human audit and outcome report are complete.
   The `argument_readout` probe path has synthetic-only tests; no research-data
-  fit or independent validation exists.
-  The 96-condition development collection has a declared graph and split but
-  no model runs; further IPI controls, confirmatory test families and the final
+  fit or evaluated independent validation exists.
+  The 96-condition development collection has verified raw model runs and
+  separate REC/DON validation components, but its human audit is pending;
+  further IPI controls, confirmatory test families and the final
   cross-collection split are not implemented.
 - No confirmatory data and no research result
