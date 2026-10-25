@@ -1,5 +1,8 @@
 # Phase 2 recipient argument probe implementation
 
+For the research design, data, training, validation and interpretation in one
+place, see the [Japanese end-to-end account](phase2_argument_probe_end_to_end_2026-10-26.md).
+
 The development implementation is `goal_takeover.phase2.argument_probe`. It
 reads completed immutable run bundles and creates a new directory of derived
 probe parameters and validation diagnostics. It does not run the model or
