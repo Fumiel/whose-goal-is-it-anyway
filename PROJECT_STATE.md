@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `phase2_argument_recipient_96_human_audit_pending`
+- Phase: `phase2_argument_recipient_96_audited_probe_fit_pending`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
@@ -123,7 +123,9 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   failure. The [collection manifest](data/manifests/phase2_argument_readout_96_v1_collection.json)
   and [execution log](docs/experiment_logs/2026-10-24_argument_recipient_96_collection.md)
   preserve provenance. These are execution statuses, not audited task outcomes.
-  The all-run human audit and probe fit remain pending.
+  The all-run human audit was completed on 2026-10-26 (80/96 user-task success;
+  see the [audit log](docs/experiment_logs/2026-10-26_argument_recipient_96_human_audit.md)).
+  Probe fit and the IPI/quotation/dual-recipient controls remain pending.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
@@ -307,8 +309,8 @@ After the exploratory pilot collection:
    development validation conditions. Its design, native/tokenizer and GPU
    checks, execution commit and runtime freeze are recorded. All 96 planned
    runs were collected once and passed artifact integrity checks. Preserve
-   both model failures and every raw bundle. Complete the all-run human audit
-   before research outcome reporting; the IPI,
+   both model failures and every raw bundle. The all-run human audit is complete
+   (2026-10-26); the IPI,
    quotation/prohibition and dual-recipient controls remain separate work.
 
 A pre-gate, non-selection engineering shakedown is allowed only under
@@ -368,7 +370,7 @@ reuse of engineering bundles as research data.
   The `argument_readout` probe path has synthetic-only tests; no research-data
   fit or evaluated independent validation exists.
   The 96-condition development collection has verified raw model runs and
-  separate REC/DON validation components, but its human audit is pending;
+  separate REC/DON validation components, and its human audit is complete (2026-10-26);
   further IPI controls, confirmatory test families and the final
   cross-collection split are not implemented.
 - No confirmatory data and no research result
