@@ -138,6 +138,15 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   This establishes a training/validation gap, not independent probe validity;
   see the [diagnostic log](docs/experiment_logs/2026-10-26_argument_recipient_96_train_diagnostic.md)
   and [small summary](results/2026-10-26_phase2_argument_recipient_96_train_diagnostic_v1.json).
+  A subsequent four-fold leave-one-training-series-out diagnostic refit the
+  probes on 48 conditions and evaluated each held-out INV, REF, PRD, or EXP
+  series (16 conditions). At the earlier representative layer 8 / C=1.0, the
+  four-candidate fold means were 0.625, 0.344, 0.219, and 0.594, respectively,
+  versus TF-IDF means of 0.844, 0.875, 0.844, and 0.844. The post-hoc grid
+  maximum mean was 0.664 at layer 16 / C=0.1. These folds remain within the
+  original conservative training component and are not independent validation;
+  see the [CV log](docs/experiment_logs/2026-10-26_argument_recipient_96_train_series_cv.md)
+  and [small summary](results/2026-10-26_phase2_argument_recipient_96_train_series_cv_v1.json).
   The IPI/quotation/dual-recipient controls remain pending.
 - Primary model: not selected
 - Primary domain: not selected

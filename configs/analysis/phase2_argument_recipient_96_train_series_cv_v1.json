@@ -1,0 +1,18 @@
+{
+  "status": "post_result_exploratory_train_series_cv",
+  "input_spec": "configs/analysis/phase2_argument_recipient_96_probe_v1.json",
+  "original_fit_report": "artifacts/processed/phase2_argument_recipient_96_probe_v1/report.json",
+  "folds": {
+    "INV": "invoice_payment",
+    "REF": "personal_refund",
+    "PRD": "product_payment",
+    "EXP": "expense_reimbursement"
+  },
+  "metric": "candidate_wise_auc_with_lexical_presence_equal_1",
+  "baseline": "char_tfidf_2_to_5_logistic_regression_c_1",
+  "random_label_control": "within_training_task_first_c_10_repeats",
+  "representative_setting": {
+    "feature_id": "layer8_tend_assistant",
+    "regularization_c": 1.0
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "status": "post_result_exploratory_train_series_cross_validation",
+  "date": "2026-10-26",
+  "experiment_id": "phase2-argument-recipient-96-v1",
+  "analysis_config": "configs/analysis/phase2_argument_recipient_96_train_series_cv_v1.json",
+  "analysis_config_sha256": "79b0c7f03eaa3e4ec8c8640710f28b76606d0d4166e9212545aa05bc0ad1600a",
+  "input_spec": "configs/analysis/phase2_argument_recipient_96_probe_v1.json",
+  "processed_bundle": "artifacts/processed/phase2_argument_recipient_96_train_series_cv_v1",
+  "processed_report_sha256": "24b9e38c25db4b95bd3e40176f8fd8bf6e2ac92e6eb8667cfac8f1f40dbf4fe8",
+  "processed_parameters_sha256": "a75565b7290d28578d7c8dc11dbac8ba4ef992ef5875ac628d7405cdd2ebfa17",
+  "metric": "candidate_wise_auc_with_lexical_presence_equal_1",
+  "positive": "candidate_account_is_send_money_recipient_in_user_instruction",
+  "negative": "candidate_account_is_reference_account_in_user_instruction",
+  "fold_count": 4,
+  "train_conditions_per_fold": 48,
+  "validation_conditions_per_fold": 16,
+  "training_tasks_per_fold": 12,
+  "validation_tasks_per_fold": 4,
+  "per_candidate_validation_positives": 4,
+  "per_candidate_validation_reference_negatives": 2,
+  "evaluated_layers": [0, 8, 16, 24, 32, 35],
+  "evaluated_regularization_c": [0.01, 0.1, 1.0],
+  "previously_reported_representative_setting": {"layer": 8, "regularization_c": 1.0},
+  "representative_four_candidate_mean_auc_by_held_out_series": {
+    "INV": {"probe": 0.625, "tfidf": 0.84375},
+    "REF": {"probe": 0.34375, "tfidf": 0.875},
+    "PRD": {"probe": 0.21875, "tfidf": 0.84375},
+    "EXP": {"probe": 0.59375, "tfidf": 0.84375}
+  },
+  "representative_candidate_probe_auc_by_held_out_series": {
+    "INV": {"v1": 0.5, "v2": 0.75, "v3": 0.5, "v4": 0.75},
+    "REF": {"v1": 0.25, "v2": 0.625, "v3": 0.125, "v4": 0.375},
+    "PRD": {"v1": 0.5, "v2": 0.0, "v3": 0.25, "v4": 0.125},
+    "EXP": {"v1": 0.75, "v2": 0.375, "v3": 0.75, "v4": 0.5}
+  },
+  "representative_four_fold_mean_auc": {"probe": 0.4453125, "tfidf": 0.8515625},
+  "exploratory_grid_maximum": {
+    "layer": 16,
+    "regularization_c": 0.1,
+    "four_fold_four_candidate_mean_auc": 0.6640625,
+    "by_held_out_series": {
+      "INV": 0.5625,
+      "REF": 0.84375,
+      "PRD": 0.4375,
+      "EXP": 0.8125
+    }
+  },
+  "interpretation": "The previously reported representative probe setting has weak leave-one-training-series-out performance, especially for REF and PRD. Layer 16/C=0.1 is a post-hoc maximum over this diagnostic grid and remains below the text baseline; these folds are all part of one conservative original training component and are not independent development validation."
+}
