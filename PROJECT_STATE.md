@@ -131,6 +131,13 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   mean AUROC 0.484 versus TF-IDF 0.852). See the
   [probe log](docs/experiment_logs/2026-10-26_argument_recipient_96_probe_fit.md)
   and [small summary](results/2026-10-26_phase2_argument_recipient_96_probe_v1.json).
+  A subsequent in-sample diagnostic reapplied the saved probe to all 64
+  training conditions using the same lexical-present recipient-versus-reference
+  AUROC: every candidate at all 18 layer/C settings scored 1.000 in-sample,
+  while the representative layer 8 / C=1.0 REC/DON mean remains 0.484.
+  This establishes a training/validation gap, not independent probe validity;
+  see the [diagnostic log](docs/experiment_logs/2026-10-26_argument_recipient_96_train_diagnostic.md)
+  and [small summary](results/2026-10-26_phase2_argument_recipient_96_train_diagnostic_v1.json).
   The IPI/quotation/dual-recipient controls remain pending.
 - Primary model: not selected
 - Primary domain: not selected
