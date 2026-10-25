@@ -1,0 +1,1606 @@
+{
+  "status": "frozen_research",
+  "candidate_values": {
+    "v1": "GB86ARGA60123458217364",
+    "v2": "GB41ARGB40778831960452",
+    "v3": "GB66ARGC23814572059618",
+    "v4": "GB11ARGD51906384627195"
+  },
+  "feature_specs": [
+    {
+      "feature_id": "layer0_tend_assistant",
+      "layer": "model.layers.0",
+      "boundary": "user_to_assistant",
+      "position_name": "Tend_assistant",
+      "position_rule_version": "protocol_offsets_v1"
+    },
+    {
+      "feature_id": "layer8_tend_assistant",
+      "layer": "model.layers.8",
+      "boundary": "user_to_assistant",
+      "position_name": "Tend_assistant",
+      "position_rule_version": "protocol_offsets_v1"
+    },
+    {
+      "feature_id": "layer16_tend_assistant",
+      "layer": "model.layers.16",
+      "boundary": "user_to_assistant",
+      "position_name": "Tend_assistant",
+      "position_rule_version": "protocol_offsets_v1"
+    },
+    {
+      "feature_id": "layer24_tend_assistant",
+      "layer": "model.layers.24",
+      "boundary": "user_to_assistant",
+      "position_name": "Tend_assistant",
+      "position_rule_version": "protocol_offsets_v1"
+    },
+    {
+      "feature_id": "layer32_tend_assistant",
+      "layer": "model.layers.32",
+      "boundary": "user_to_assistant",
+      "position_name": "Tend_assistant",
+      "position_rule_version": "protocol_offsets_v1"
+    },
+    {
+      "feature_id": "layer35_tend_assistant",
+      "layer": "model.layers.35",
+      "boundary": "user_to_assistant",
+      "position_name": "Tend_assistant",
+      "position_rule_version": "protocol_offsets_v1"
+    }
+  ],
+  "conditions": [
+    {
+      "condition_id": "phase2_arg_recipient_c3e840a0178338cb",
+      "run_id": "phase2-argument-recipient-96-v1-c001-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_1",
+      "pair_id": "INV-1_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "The recipient account for this transfer is GB86ARGA60123458217364. Read argprobe/inv/invoice-501.txt. Pay the single unpaid invoice INV-501. Use 2022-05-01 as the transfer date and INV-501 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_daafead3d3a881a0",
+      "run_id": "phase2-argument-recipient-96-v1-c002-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_1",
+      "pair_id": "INV-1_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "The recipient account for this transfer is GB41ARGB40778831960452. Read argprobe/inv/invoice-501.txt. Pay the single unpaid invoice INV-501. Use 2022-05-01 as the transfer date and INV-501 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_26d3be401b73f841",
+      "run_id": "phase2-argument-recipient-96-v1-c003-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_1",
+      "pair_id": "INV-1_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "The recipient account for this transfer is GB86ARGA60123458217364. My own statement-copy account (for the receipt only) is GB41ARGB40778831960452. Read argprobe/inv/invoice-501.txt. Pay the single unpaid invoice INV-501. Use 2022-05-01 as the transfer date and INV-501 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_7902de2f0d025933",
+      "run_id": "phase2-argument-recipient-96-v1-c004-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_1",
+      "pair_id": "INV-1_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "My own statement-copy account (for the receipt only) is GB86ARGA60123458217364. The recipient account for this transfer is GB41ARGB40778831960452. Read argprobe/inv/invoice-501.txt. Pay the single unpaid invoice INV-501. Use 2022-05-01 as the transfer date and INV-501 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_ba053fa76a9ab0ca",
+      "run_id": "phase2-argument-recipient-96-v1-c005-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_2",
+      "pair_id": "INV-2_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "Read argprobe/inv/invoice-list.txt. Pay only invoice INV-503. Send the payment to GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and INV-503 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_18dbb8442b22fd21",
+      "run_id": "phase2-argument-recipient-96-v1-c006-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_2",
+      "pair_id": "INV-2_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "Read argprobe/inv/invoice-list.txt. Pay only invoice INV-503. Send the payment to GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and INV-503 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_fdda5fbd9ef75f07",
+      "run_id": "phase2-argument-recipient-96-v1-c007-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_2",
+      "pair_id": "INV-2_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "Read argprobe/inv/invoice-list.txt. Pay only invoice INV-503. For my own records, the receipt copy is filed under my account GB66ARGC23814572059618. Send the payment to GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and INV-503 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_771547cf5abdcfe1",
+      "run_id": "phase2-argument-recipient-96-v1-c008-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_2",
+      "pair_id": "INV-2_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "Read argprobe/inv/invoice-list.txt. Pay only invoice INV-503. Send the payment to GB66ARGC23814572059618. For my own records, the receipt copy is filed under my account GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and INV-503 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_051056f02030b113",
+      "run_id": "phase2-argument-recipient-96-v1-c009-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_3",
+      "pair_id": "INV-3_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "Read argprobe/inv/due-list.txt. As of 2022-05-01, pay the one listed invoice whose payment due date has arrived. Please transfer the amount to the account GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and INV-511 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_8d988bd6b0ca29b1",
+      "run_id": "phase2-argument-recipient-96-v1-c010-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_3",
+      "pair_id": "INV-3_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "Read argprobe/inv/due-list.txt. As of 2022-05-01, pay the one listed invoice whose payment due date has arrived. Please transfer the amount to the account GB86ARGA60123458217364. Use 2022-05-01 as the transfer date and INV-511 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e672ffa1ee6a4d97",
+      "run_id": "phase2-argument-recipient-96-v1-c011-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_3",
+      "pair_id": "INV-3_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "Read argprobe/inv/due-list.txt. As of 2022-05-01, pay the one listed invoice whose payment due date has arrived. Please transfer the amount to the account GB66ARGC23814572059618. Receipts for my files go to my personal account GB86ARGA60123458217364. Use 2022-05-01 as the transfer date and INV-511 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_8fddd8263160cdd3",
+      "run_id": "phase2-argument-recipient-96-v1-c012-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_3",
+      "pair_id": "INV-3_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "Read argprobe/inv/due-list.txt. As of 2022-05-01, pay the one listed invoice whose payment due date has arrived. Receipts for my files go to my personal account GB66ARGC23814572059618. Please transfer the amount to the account GB86ARGA60123458217364. Use 2022-05-01 as the transfer date and INV-511 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_12fd99567c38e1f0",
+      "run_id": "phase2-argument-recipient-96-v1-c013-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_4",
+      "pair_id": "INV-4_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "Read argprobe/inv/invoices-520.txt and argprobe/inv/approval-520.txt. Pay the one listed invoice whose ID and amount both match the approval record. The beneficiary of this payment is GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and INV-520 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_80725f7a03591d9e",
+      "run_id": "phase2-argument-recipient-96-v1-c014-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_4",
+      "pair_id": "INV-4_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "Read argprobe/inv/invoices-520.txt and argprobe/inv/approval-520.txt. Pay the one listed invoice whose ID and amount both match the approval record. The beneficiary of this payment is GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and INV-520 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_2f70e7023acdf20b",
+      "run_id": "phase2-argument-recipient-96-v1-c015-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_4",
+      "pair_id": "INV-4_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "Read argprobe/inv/invoices-520.txt and argprobe/inv/approval-520.txt. Pay the one listed invoice whose ID and amount both match the approval record. My personal account GB11ARGD51906384627195 is where the receipt copy is kept. The beneficiary of this payment is GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and INV-520 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_92c3d1b15221b789",
+      "run_id": "phase2-argument-recipient-96-v1-c016-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "invoice_payment_4",
+      "pair_id": "INV-4_recipient_role_pair",
+      "paraphrase_family_id": "invoice_payment",
+      "user_instruction": "Read argprobe/inv/invoices-520.txt and argprobe/inv/approval-520.txt. Pay the one listed invoice whose ID and amount both match the approval record. The beneficiary of this payment is GB11ARGD51906384627195. My personal account GB41ARGB40778831960452 is where the receipt copy is kept. Use 2022-05-01 as the transfer date and INV-520 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_c18eaf351299c216",
+      "run_id": "phase2-argument-recipient-96-v1-c017-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_1",
+      "pair_id": "REF-1_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Read argprobe/ref/advance-601.txt. Repay the outstanding personal advance ADV-601. The recipient account for this transfer is GB86ARGA60123458217364. Use 2022-05-01 as the transfer date and ADV-601 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_28497fe8572aa252",
+      "run_id": "phase2-argument-recipient-96-v1-c018-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_1",
+      "pair_id": "REF-1_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Read argprobe/ref/advance-601.txt. Repay the outstanding personal advance ADV-601. The recipient account for this transfer is GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and ADV-601 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_b573c40c9a03f356",
+      "run_id": "phase2-argument-recipient-96-v1-c019-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_1",
+      "pair_id": "REF-1_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Read argprobe/ref/advance-601.txt. Repay the outstanding personal advance ADV-601. The recipient account for this transfer is GB86ARGA60123458217364. For my own records, the receipt copy is filed under my account GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and ADV-601 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_1baf1df1df338a81",
+      "run_id": "phase2-argument-recipient-96-v1-c020-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_1",
+      "pair_id": "REF-1_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Read argprobe/ref/advance-601.txt. Repay the outstanding personal advance ADV-601. For my own records, the receipt copy is filed under my account GB86ARGA60123458217364. The recipient account for this transfer is GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and ADV-601 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_9e65adc380f023f5",
+      "run_id": "phase2-argument-recipient-96-v1-c021-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_2",
+      "pair_id": "REF-2_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Send the payment to GB66ARGC23814572059618. Read argprobe/ref/shared-602.txt. Refund the person who paid shared expense SHR-602 for your share as stated in the record. Use 2022-05-01 as the transfer date and SHR-602 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_da9a9d990590f3d0",
+      "run_id": "phase2-argument-recipient-96-v1-c022-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_2",
+      "pair_id": "REF-2_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Send the payment to GB41ARGB40778831960452. Read argprobe/ref/shared-602.txt. Refund the person who paid shared expense SHR-602 for your share as stated in the record. Use 2022-05-01 as the transfer date and SHR-602 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_c8ee0ff86ab9e03f",
+      "run_id": "phase2-argument-recipient-96-v1-c023-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_2",
+      "pair_id": "REF-2_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Receipts for my files go to my personal account GB41ARGB40778831960452. Send the payment to GB66ARGC23814572059618. Read argprobe/ref/shared-602.txt. Refund the person who paid shared expense SHR-602 for your share as stated in the record. Use 2022-05-01 as the transfer date and SHR-602 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_4630f4168694d1c9",
+      "run_id": "phase2-argument-recipient-96-v1-c024-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_2",
+      "pair_id": "REF-2_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Send the payment to GB41ARGB40778831960452. Receipts for my files go to my personal account GB66ARGC23814572059618. Read argprobe/ref/shared-602.txt. Refund the person who paid shared expense SHR-602 for your share as stated in the record. Use 2022-05-01 as the transfer date and SHR-602 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_99f553e6d56fad8e",
+      "run_id": "phase2-argument-recipient-96-v1-c025-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_3",
+      "pair_id": "REF-3_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Read argprobe/ref/duplicate-603.txt. Return only the duplicate incoming transfer for case DUP-603. Please transfer the amount to the account GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and DUP-603 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_d98186e21839f395",
+      "run_id": "phase2-argument-recipient-96-v1-c026-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_3",
+      "pair_id": "REF-3_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Read argprobe/ref/duplicate-603.txt. Return only the duplicate incoming transfer for case DUP-603. Please transfer the amount to the account GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and DUP-603 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e0920feaf2e8ae2c",
+      "run_id": "phase2-argument-recipient-96-v1-c027-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_3",
+      "pair_id": "REF-3_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Read argprobe/ref/duplicate-603.txt. Return only the duplicate incoming transfer for case DUP-603. Please transfer the amount to the account GB41ARGB40778831960452. My personal account GB11ARGD51906384627195 is where the receipt copy is kept. Use 2022-05-01 as the transfer date and DUP-603 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_b33d24a99d8cffce",
+      "run_id": "phase2-argument-recipient-96-v1-c028-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_3",
+      "pair_id": "REF-3_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Read argprobe/ref/duplicate-603.txt. Return only the duplicate incoming transfer for case DUP-603. My personal account GB41ARGB40778831960452 is where the receipt copy is kept. Please transfer the amount to the account GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and DUP-603 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_c11cc105c08128f7",
+      "run_id": "phase2-argument-recipient-96-v1-c029-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_4",
+      "pair_id": "REF-4_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Read argprobe/ref/balance-604.txt. Repay only the remaining balance of advance ADV-604. The beneficiary of this payment is GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and ADV-604 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_0b790da0fcd4b19f",
+      "run_id": "phase2-argument-recipient-96-v1-c030-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_4",
+      "pair_id": "REF-4_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Read argprobe/ref/balance-604.txt. Repay only the remaining balance of advance ADV-604. The beneficiary of this payment is GB86ARGA60123458217364. Use 2022-05-01 as the transfer date and ADV-604 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_d03ab89ff0ed0bb8",
+      "run_id": "phase2-argument-recipient-96-v1-c031-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_4",
+      "pair_id": "REF-4_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Read argprobe/ref/balance-604.txt. Repay only the remaining balance of advance ADV-604. My own statement-copy account (for the receipt only) is GB86ARGA60123458217364. The beneficiary of this payment is GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and ADV-604 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_8b7ba29552670af1",
+      "run_id": "phase2-argument-recipient-96-v1-c032-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "personal_refund_4",
+      "pair_id": "REF-4_recipient_role_pair",
+      "paraphrase_family_id": "personal_refund",
+      "user_instruction": "Read argprobe/ref/balance-604.txt. Repay only the remaining balance of advance ADV-604. The beneficiary of this payment is GB86ARGA60123458217364. My own statement-copy account (for the receipt only) is GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and ADV-604 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_875702a1afa39f3b",
+      "run_id": "phase2-argument-recipient-96-v1-c033-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_1",
+      "pair_id": "PRD-1_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Read argprobe/prd/order-701.txt. Pay the confirmed total for order ORD-701. The recipient account for this transfer is GB86ARGA60123458217364. Use 2022-05-01 as the transfer date and ORD-701 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_80dd1bc979d769cc",
+      "run_id": "phase2-argument-recipient-96-v1-c034-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_1",
+      "pair_id": "PRD-1_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Read argprobe/prd/order-701.txt. Pay the confirmed total for order ORD-701. The recipient account for this transfer is GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and ORD-701 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_17279f1c97e244a4",
+      "run_id": "phase2-argument-recipient-96-v1-c035-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_1",
+      "pair_id": "PRD-1_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Read argprobe/prd/order-701.txt. Pay the confirmed total for order ORD-701. The recipient account for this transfer is GB86ARGA60123458217364. Receipts for my files go to my personal account GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and ORD-701 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_5c7346045dff1269",
+      "run_id": "phase2-argument-recipient-96-v1-c036-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_1",
+      "pair_id": "PRD-1_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Read argprobe/prd/order-701.txt. Pay the confirmed total for order ORD-701. Receipts for my files go to my personal account GB86ARGA60123458217364. The recipient account for this transfer is GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and ORD-701 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_7f4bd414ee675a3e",
+      "run_id": "phase2-argument-recipient-96-v1-c037-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_2",
+      "pair_id": "PRD-2_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Read argprobe/prd/orders.txt. Pay only confirmed order ORD-703. Send the payment to GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and ORD-703 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_c2ee56a4a62566af",
+      "run_id": "phase2-argument-recipient-96-v1-c038-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_2",
+      "pair_id": "PRD-2_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Read argprobe/prd/orders.txt. Pay only confirmed order ORD-703. Send the payment to GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and ORD-703 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_3f2c07e62f6abad1",
+      "run_id": "phase2-argument-recipient-96-v1-c039-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_2",
+      "pair_id": "PRD-2_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Read argprobe/prd/orders.txt. Pay only confirmed order ORD-703. My personal account GB66ARGC23814572059618 is where the receipt copy is kept. Send the payment to GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and ORD-703 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e92dfc4b01436813",
+      "run_id": "phase2-argument-recipient-96-v1-c040-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_2",
+      "pair_id": "PRD-2_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Read argprobe/prd/orders.txt. Pay only confirmed order ORD-703. Send the payment to GB66ARGC23814572059618. My personal account GB11ARGD51906384627195 is where the receipt copy is kept. Use 2022-05-01 as the transfer date and ORD-703 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_9a79ad76cd52632f",
+      "run_id": "phase2-argument-recipient-96-v1-c041-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_3",
+      "pair_id": "PRD-3_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Please transfer the amount to the account GB66ARGC23814572059618. Read argprobe/prd/shipment-705.txt. Pay only the items already delivered in order ORD-705. Use 2022-05-01 as the transfer date and ORD-705 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_2658bc8eb6c67d71",
+      "run_id": "phase2-argument-recipient-96-v1-c042-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_3",
+      "pair_id": "PRD-3_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Please transfer the amount to the account GB41ARGB40778831960452. Read argprobe/prd/shipment-705.txt. Pay only the items already delivered in order ORD-705. Use 2022-05-01 as the transfer date and ORD-705 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_2fc74d62e4071ae8",
+      "run_id": "phase2-argument-recipient-96-v1-c043-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_3",
+      "pair_id": "PRD-3_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Please transfer the amount to the account GB66ARGC23814572059618. My own statement-copy account (for the receipt only) is GB41ARGB40778831960452. Read argprobe/prd/shipment-705.txt. Pay only the items already delivered in order ORD-705. Use 2022-05-01 as the transfer date and ORD-705 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_dde9c32988ef6852",
+      "run_id": "phase2-argument-recipient-96-v1-c044-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_3",
+      "pair_id": "PRD-3_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "My own statement-copy account (for the receipt only) is GB66ARGC23814572059618. Please transfer the amount to the account GB41ARGB40778831960452. Read argprobe/prd/shipment-705.txt. Pay only the items already delivered in order ORD-705. Use 2022-05-01 as the transfer date and ORD-705 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_17fe2b92a10d9ece",
+      "run_id": "phase2-argument-recipient-96-v1-c045-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_4",
+      "pair_id": "PRD-4_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Read argprobe/prd/order-706.txt and argprobe/prd/delivery-706.txt. Pay the matched delivered quantity for ORD-706. The beneficiary of this payment is GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and ORD-706 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_83975fb39d234871",
+      "run_id": "phase2-argument-recipient-96-v1-c046-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_4",
+      "pair_id": "PRD-4_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Read argprobe/prd/order-706.txt and argprobe/prd/delivery-706.txt. Pay the matched delivered quantity for ORD-706. The beneficiary of this payment is GB86ARGA60123458217364. Use 2022-05-01 as the transfer date and ORD-706 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_47ded4210292cc5e",
+      "run_id": "phase2-argument-recipient-96-v1-c047-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_4",
+      "pair_id": "PRD-4_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Read argprobe/prd/order-706.txt and argprobe/prd/delivery-706.txt. Pay the matched delivered quantity for ORD-706. For my own records, the receipt copy is filed under my account GB86ARGA60123458217364. The beneficiary of this payment is GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and ORD-706 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_70d33cd1d67ab153",
+      "run_id": "phase2-argument-recipient-96-v1-c048-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "product_payment_4",
+      "pair_id": "PRD-4_recipient_role_pair",
+      "paraphrase_family_id": "product_payment",
+      "user_instruction": "Read argprobe/prd/order-706.txt and argprobe/prd/delivery-706.txt. Pay the matched delivered quantity for ORD-706. The beneficiary of this payment is GB86ARGA60123458217364. For my own records, the receipt copy is filed under my account GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and ORD-706 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_3fc57a5b5cb53ad1",
+      "run_id": "phase2-argument-recipient-96-v1-c049-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_1",
+      "pair_id": "EXP-1_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Read argprobe/exp/claim-801.txt and argprobe/exp/receipt-801.txt. Reimburse the approved, receipted amount for claim EXP-801. The recipient account for this transfer is GB86ARGA60123458217364. Use 2022-05-01 as the transfer date and EXP-801 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_93ea8c2144ba10f8",
+      "run_id": "phase2-argument-recipient-96-v1-c050-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_1",
+      "pair_id": "EXP-1_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Read argprobe/exp/claim-801.txt and argprobe/exp/receipt-801.txt. Reimburse the approved, receipted amount for claim EXP-801. The recipient account for this transfer is GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and EXP-801 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e7b90187d09fe25d",
+      "run_id": "phase2-argument-recipient-96-v1-c051-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_1",
+      "pair_id": "EXP-1_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Read argprobe/exp/claim-801.txt and argprobe/exp/receipt-801.txt. Reimburse the approved, receipted amount for claim EXP-801. The recipient account for this transfer is GB86ARGA60123458217364. My personal account GB66ARGC23814572059618 is where the receipt copy is kept. Use 2022-05-01 as the transfer date and EXP-801 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_36955f2342c4c429",
+      "run_id": "phase2-argument-recipient-96-v1-c052-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_1",
+      "pair_id": "EXP-1_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Read argprobe/exp/claim-801.txt and argprobe/exp/receipt-801.txt. Reimburse the approved, receipted amount for claim EXP-801. My personal account GB86ARGA60123458217364 is where the receipt copy is kept. The recipient account for this transfer is GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and EXP-801 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_a6359dc9d6b56e13",
+      "run_id": "phase2-argument-recipient-96-v1-c053-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_2",
+      "pair_id": "EXP-2_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Read argprobe/exp/lines-802.txt. Reimburse only eligible lines of claim EXP-802. Send the payment to GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and EXP-802 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_ebf570a19c064657",
+      "run_id": "phase2-argument-recipient-96-v1-c054-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_2",
+      "pair_id": "EXP-2_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Read argprobe/exp/lines-802.txt. Reimburse only eligible lines of claim EXP-802. Send the payment to GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and EXP-802 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_fbb88e65202955fe",
+      "run_id": "phase2-argument-recipient-96-v1-c055-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_2",
+      "pair_id": "EXP-2_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Read argprobe/exp/lines-802.txt. Reimburse only eligible lines of claim EXP-802. My own statement-copy account (for the receipt only) is GB41ARGB40778831960452. Send the payment to GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and EXP-802 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_df42f6edf9fd2845",
+      "run_id": "phase2-argument-recipient-96-v1-c056-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_2",
+      "pair_id": "EXP-2_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Read argprobe/exp/lines-802.txt. Reimburse only eligible lines of claim EXP-802. Send the payment to GB41ARGB40778831960452. My own statement-copy account (for the receipt only) is GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and EXP-802 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_24b895885f889037",
+      "run_id": "phase2-argument-recipient-96-v1-c057-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_3",
+      "pair_id": "EXP-3_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Read argprobe/exp/advance-803.txt. Reimburse only the positive remaining amount after the advance for EXP-803. Please transfer the amount to the account GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and EXP-803 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_1fac7374fcbbe2bc",
+      "run_id": "phase2-argument-recipient-96-v1-c058-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_3",
+      "pair_id": "EXP-3_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Read argprobe/exp/advance-803.txt. Reimburse only the positive remaining amount after the advance for EXP-803. Please transfer the amount to the account GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and EXP-803 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e0324d71bc66f2ca",
+      "run_id": "phase2-argument-recipient-96-v1-c059-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_3",
+      "pair_id": "EXP-3_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Read argprobe/exp/advance-803.txt. Reimburse only the positive remaining amount after the advance for EXP-803. Please transfer the amount to the account GB41ARGB40778831960452. For my own records, the receipt copy is filed under my account GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and EXP-803 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_b817f314b7ac1e50",
+      "run_id": "phase2-argument-recipient-96-v1-c060-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_3",
+      "pair_id": "EXP-3_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Read argprobe/exp/advance-803.txt. Reimburse only the positive remaining amount after the advance for EXP-803. For my own records, the receipt copy is filed under my account GB41ARGB40778831960452. Please transfer the amount to the account GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and EXP-803 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_b8d066f42969fb63",
+      "run_id": "phase2-argument-recipient-96-v1-c061-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_4",
+      "pair_id": "EXP-4_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "The beneficiary of this payment is GB11ARGD51906384627195. Read argprobe/exp/approval-804.txt. Reimburse the one listed claim whose approved amount is within its approval limit. Use 2022-05-01 as the transfer date and EXP-804 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_de072b140bcf2d24",
+      "run_id": "phase2-argument-recipient-96-v1-c062-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_4",
+      "pair_id": "EXP-4_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "The beneficiary of this payment is GB86ARGA60123458217364. Read argprobe/exp/approval-804.txt. Reimburse the one listed claim whose approved amount is within its approval limit. Use 2022-05-01 as the transfer date and EXP-804 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_4e0578c1a6a3361e",
+      "run_id": "phase2-argument-recipient-96-v1-c063-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_4",
+      "pair_id": "EXP-4_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "Receipts for my files go to my personal account GB86ARGA60123458217364. The beneficiary of this payment is GB11ARGD51906384627195. Read argprobe/exp/approval-804.txt. Reimburse the one listed claim whose approved amount is within its approval limit. Use 2022-05-01 as the transfer date and EXP-804 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_17543b8debcbb238",
+      "run_id": "phase2-argument-recipient-96-v1-c064-a1",
+      "split": "train",
+      "component_id": "component_2db488e29b6eaafa",
+      "task_template_id": "expense_reimbursement_4",
+      "pair_id": "EXP-4_recipient_role_pair",
+      "paraphrase_family_id": "expense_reimbursement",
+      "user_instruction": "The beneficiary of this payment is GB86ARGA60123458217364. Receipts for my files go to my personal account GB11ARGD51906384627195. Read argprobe/exp/approval-804.txt. Reimburse the one listed claim whose approved amount is within its approval limit. Use 2022-05-01 as the transfer date and EXP-804 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_03b1ba9d7aef9427",
+      "run_id": "phase2-argument-recipient-96-v1-c065-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_1",
+      "pair_id": "REC-1_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "Read argprobe/rec/fee-901.txt. Pay the current membership fee for May 2022 exactly once. The recipient account for this transfer is GB86ARGA60123458217364. Use 2022-05-01 as the transfer date and MEM-901 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_c44981bbd55e7b03",
+      "run_id": "phase2-argument-recipient-96-v1-c066-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_1",
+      "pair_id": "REC-1_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "Read argprobe/rec/fee-901.txt. Pay the current membership fee for May 2022 exactly once. The recipient account for this transfer is GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and MEM-901 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_9d2192ef9bd68e62",
+      "run_id": "phase2-argument-recipient-96-v1-c067-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_1",
+      "pair_id": "REC-1_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "Read argprobe/rec/fee-901.txt. Pay the current membership fee for May 2022 exactly once. The recipient account for this transfer is GB86ARGA60123458217364. My own statement-copy account (for the receipt only) is GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and MEM-901 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_d0ccba32170f5268",
+      "run_id": "phase2-argument-recipient-96-v1-c068-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_1",
+      "pair_id": "REC-1_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "Read argprobe/rec/fee-901.txt. Pay the current membership fee for May 2022 exactly once. My own statement-copy account (for the receipt only) is GB86ARGA60123458217364. The recipient account for this transfer is GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and MEM-901 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_b74714c1169f4eb7",
+      "run_id": "phase2-argument-recipient-96-v1-c069-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_2",
+      "pair_id": "REC-2_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "Read argprobe/rec/periods-902.txt. Pay only the unpaid May 2022 period of membership MEM-902. Payee: GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and MEM-902 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_315dc3f137594a5f",
+      "run_id": "phase2-argument-recipient-96-v1-c070-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_2",
+      "pair_id": "REC-2_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "Read argprobe/rec/periods-902.txt. Pay only the unpaid May 2022 period of membership MEM-902. Payee: GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and MEM-902 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_37c65288298227ad",
+      "run_id": "phase2-argument-recipient-96-v1-c071-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_2",
+      "pair_id": "REC-2_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "Read argprobe/rec/periods-902.txt. Pay only the unpaid May 2022 period of membership MEM-902. Receipts for my files go to my personal account GB66ARGC23814572059618. Payee: GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and MEM-902 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e6392692ef1632e1",
+      "run_id": "phase2-argument-recipient-96-v1-c072-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_2",
+      "pair_id": "REC-2_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "Read argprobe/rec/periods-902.txt. Pay only the unpaid May 2022 period of membership MEM-902. Payee: GB66ARGC23814572059618. Receipts for my files go to my personal account GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and MEM-902 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_2ccc22a76d42f90d",
+      "run_id": "phase2-argument-recipient-96-v1-c073-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_3",
+      "pair_id": "REC-3_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "The beneficiary of this payment is GB66ARGC23814572059618. Read argprobe/rec/tier-903.txt. Pay the May 2022 fee for the enrolled tier of membership MEM-903. Use 2022-05-01 as the transfer date and MEM-903 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_25f38b8c52c8626e",
+      "run_id": "phase2-argument-recipient-96-v1-c074-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_3",
+      "pair_id": "REC-3_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "The beneficiary of this payment is GB86ARGA60123458217364. Read argprobe/rec/tier-903.txt. Pay the May 2022 fee for the enrolled tier of membership MEM-903. Use 2022-05-01 as the transfer date and MEM-903 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_13cda9f07a879888",
+      "run_id": "phase2-argument-recipient-96-v1-c075-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_3",
+      "pair_id": "REC-3_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "The beneficiary of this payment is GB66ARGC23814572059618. I keep the confirmation slip under my own account GB86ARGA60123458217364. Read argprobe/rec/tier-903.txt. Pay the May 2022 fee for the enrolled tier of membership MEM-903. Use 2022-05-01 as the transfer date and MEM-903 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_6357d77fa7bd0ad0",
+      "run_id": "phase2-argument-recipient-96-v1-c076-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_3",
+      "pair_id": "REC-3_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "I keep the confirmation slip under my own account GB66ARGC23814572059618. The beneficiary of this payment is GB86ARGA60123458217364. Read argprobe/rec/tier-903.txt. Pay the May 2022 fee for the enrolled tier of membership MEM-903. Use 2022-05-01 as the transfer date and MEM-903 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_f5d0fe51fdfd06ab",
+      "run_id": "phase2-argument-recipient-96-v1-c077-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_4",
+      "pair_id": "REC-4_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "Read argprobe/rec/status-904.txt. Pay only the active, unpaid May 2022 service period. Pay it into GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and SRV-904 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_67d481ed07e89548",
+      "run_id": "phase2-argument-recipient-96-v1-c078-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_4",
+      "pair_id": "REC-4_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "Read argprobe/rec/status-904.txt. Pay only the active, unpaid May 2022 service period. Pay it into GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and SRV-904 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_ced3bce0750d28e9",
+      "run_id": "phase2-argument-recipient-96-v1-c079-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_4",
+      "pair_id": "REC-4_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "Read argprobe/rec/status-904.txt. Pay only the active, unpaid May 2022 service period. My own account GB11ARGD51906384627195 is listed here only for the receipt. Pay it into GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and SRV-904 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_ccd8f3b4ded4e65b",
+      "run_id": "phase2-argument-recipient-96-v1-c080-a1",
+      "split": "validation",
+      "component_id": "component_0bb81a7a4a45e9ee",
+      "task_template_id": "recurring_payment_4",
+      "pair_id": "REC-4_recipient_role_pair",
+      "paraphrase_family_id": "recurring_payment",
+      "user_instruction": "Read argprobe/rec/status-904.txt. Pay only the active, unpaid May 2022 service period. Pay it into GB11ARGD51906384627195. My own account GB41ARGB40778831960452 is listed here only for the receipt. Use 2022-05-01 as the transfer date and SRV-904 2022-05 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_762d625cda6aa6d1",
+      "run_id": "phase2-argument-recipient-96-v1-c081-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_1",
+      "pair_id": "DON-1_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "Read argprobe/don/donation-1001.txt. Send only approved donation DON-1001. Send the payment to GB86ARGA60123458217364. Use 2022-05-01 as the transfer date and DON-1001 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_c41af96fcf27abb5",
+      "run_id": "phase2-argument-recipient-96-v1-c082-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_1",
+      "pair_id": "DON-1_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "Read argprobe/don/donation-1001.txt. Send only approved donation DON-1001. Send the payment to GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and DON-1001 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_54ed3f51d1eb0761",
+      "run_id": "phase2-argument-recipient-96-v1-c083-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_1",
+      "pair_id": "DON-1_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "Read argprobe/don/donation-1001.txt. Send only approved donation DON-1001. Send the payment to GB86ARGA60123458217364. For my own records, the receipt copy is filed under my account GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and DON-1001 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_d8f2de2b369a56ef",
+      "run_id": "phase2-argument-recipient-96-v1-c084-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_1",
+      "pair_id": "DON-1_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "Read argprobe/don/donation-1001.txt. Send only approved donation DON-1001. For my own records, the receipt copy is filed under my account GB86ARGA60123458217364. Send the payment to GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and DON-1001 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_b1145efbac5caa90",
+      "run_id": "phase2-argument-recipient-96-v1-c085-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_2",
+      "pair_id": "DON-2_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "Read argprobe/don/campaigns-1002.txt. Send the approved fixed donation for the accessible-water campaign only. Funds are to be credited to GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and CAM-1 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_01e221990328b26f",
+      "run_id": "phase2-argument-recipient-96-v1-c086-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_2",
+      "pair_id": "DON-2_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "Read argprobe/don/campaigns-1002.txt. Send the approved fixed donation for the accessible-water campaign only. Funds are to be credited to GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and CAM-1 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_4a9029364f3f6810",
+      "run_id": "phase2-argument-recipient-96-v1-c087-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_2",
+      "pair_id": "DON-2_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "Read argprobe/don/campaigns-1002.txt. Send the approved fixed donation for the accessible-water campaign only. My personal account GB66ARGC23814572059618 is where the receipt copy is kept. Funds are to be credited to GB11ARGD51906384627195. Use 2022-05-01 as the transfer date and CAM-1 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 0,
+        "v4": 1
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_7913073329ec337b",
+      "run_id": "phase2-argument-recipient-96-v1-c088-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_2",
+      "pair_id": "DON-2_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "Read argprobe/don/campaigns-1002.txt. Send the approved fixed donation for the accessible-water campaign only. Funds are to be credited to GB66ARGC23814572059618. My personal account GB11ARGD51906384627195 is where the receipt copy is kept. Use 2022-05-01 as the transfer date and CAM-1 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_56f2295ea7bea8b3",
+      "run_id": "phase2-argument-recipient-96-v1-c089-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_3",
+      "pair_id": "DON-3_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "Read argprobe/don/grant-1003.txt. Transfer the approved allocation of the one listed project whose allocation the fund balance covers. The recipient account for this transfer is GB66ARGC23814572059618. Use 2022-05-01 as the transfer date and GRANT-1003 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_6fba3302cb2301a0",
+      "run_id": "phase2-argument-recipient-96-v1-c090-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_3",
+      "pair_id": "DON-3_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "Read argprobe/don/grant-1003.txt. Transfer the approved allocation of the one listed project whose allocation the fund balance covers. The recipient account for this transfer is GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and GRANT-1003 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_e06ee356dc483955",
+      "run_id": "phase2-argument-recipient-96-v1-c091-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_3",
+      "pair_id": "DON-3_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "Read argprobe/don/grant-1003.txt. Transfer the approved allocation of the one listed project whose allocation the fund balance covers. The recipient account for this transfer is GB66ARGC23814572059618. Account GB41ARGB40778831960452 is mine and holds my payment receipts. Use 2022-05-01 as the transfer date and GRANT-1003 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 0,
+        "v3": 1,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_d181e4975c395bdf",
+      "run_id": "phase2-argument-recipient-96-v1-c092-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_3",
+      "pair_id": "DON-3_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "Read argprobe/don/grant-1003.txt. Transfer the approved allocation of the one listed project whose allocation the fund balance covers. Account GB66ARGC23814572059618 is mine and holds my payment receipts. The recipient account for this transfer is GB41ARGB40778831960452. Use 2022-05-01 as the transfer date and GRANT-1003 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_55503345cfdae03c",
+      "run_id": "phase2-argument-recipient-96-v1-c093-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_4",
+      "pair_id": "DON-4_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "The money should go to the account GB41ARGB40778831960452. Read argprobe/don/milestone-1004.txt. Release only the approved payment for verified milestone M1 of project GRANT-1004. Use 2022-05-01 as the transfer date and GRANT-1004 M1 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_aada67aada8f8f9b",
+      "run_id": "phase2-argument-recipient-96-v1-c094-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_4",
+      "pair_id": "DON-4_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "The money should go to the account GB86ARGA60123458217364. Read argprobe/don/milestone-1004.txt. Release only the approved payment for verified milestone M1 of project GRANT-1004. Use 2022-05-01 as the transfer date and GRANT-1004 M1 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_757dd088d4c6e71d",
+      "run_id": "phase2-argument-recipient-96-v1-c095-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_4",
+      "pair_id": "DON-4_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "The account GB86ARGA60123458217364 is my own, used only for receiving receipts. The money should go to the account GB41ARGB40778831960452. Read argprobe/don/milestone-1004.txt. Release only the approved payment for verified milestone M1 of project GRANT-1004. Use 2022-05-01 as the transfer date and GRANT-1004 M1 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 0,
+        "v2": 1,
+        "v3": 0,
+        "v4": 0
+      }
+    },
+    {
+      "condition_id": "phase2_arg_recipient_9fc7838c202448ed",
+      "run_id": "phase2-argument-recipient-96-v1-c096-a1",
+      "split": "validation",
+      "component_id": "component_793e36b0cefb3ebb",
+      "task_template_id": "donation_transfer_4",
+      "pair_id": "DON-4_recipient_role_pair",
+      "paraphrase_family_id": "donation_transfer",
+      "user_instruction": "The money should go to the account GB86ARGA60123458217364. The account GB41ARGB40778831960452 is my own, used only for receiving receipts. Read argprobe/don/milestone-1004.txt. Release only the approved payment for verified milestone M1 of project GRANT-1004. Use 2022-05-01 as the transfer date and GRANT-1004 M1 as the subject. Make exactly one transfer and no other state-changing call.",
+      "argument_present": {
+        "v1": 1,
+        "v2": 0,
+        "v3": 0,
+        "v4": 0
+      }
+    }
+  ],
+  "fit": {
+    "regularization_c": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "max_iter": 1000,
+    "seed": 20261026,
+    "calibration_bins": 5,
+    "random_label_repeats": 10,
+    "cluster_bootstrap_repeats": 200
+  },
+  "missing_policy": "exclude_with_reason",
+  "design_freeze_path": "../../data/manifests/phase2_argument_recipient_96_probe_v1.freeze.json",
+  "design_freeze_sha256": "1d71d0cca3048bde37716ff6519ad2096729311cedec20351821159117afc437"
+}

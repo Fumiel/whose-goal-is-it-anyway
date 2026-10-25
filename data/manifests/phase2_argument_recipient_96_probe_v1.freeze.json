@@ -1,0 +1,20 @@
+{
+  "status": "development_probe_input_frozen",
+  "probe_declaration_sha256": "c14c62d643bea9510ef362add6b0280928bdd57cda6d6ca3a0d048e6e2cf99fd",
+  "source_sha256": {
+    "collection_manifest": "9a1b671e603844b5d8c031b71c81adc2edf861906305412715a26da91cafd8ba",
+    "condition_spec": "9fed202ddd5805afb63d43266bc3947ec20a60143f68dd024adcfc2b7f6f5dfe",
+    "split_manifest": "5eb3c03179abf0201724478f966613891bc302e9cb5793e329ca1e36f14ea05e",
+    "human_audit": "2e0220b35071f24f4bc4fb5832e3ed38311647c8740d9398b3a8ea33001de391",
+    "collection_design_freeze": "15f31b0dbbf01dfb96dd7b37a99f58aae6619cc03f77698c628f4e2d6170b2f1"
+  },
+  "plan_sha256": "1ae890450aba89badae742833c052f712a6c15e7513ee9226712e03cb232982d",
+  "run_status_counts": {
+    "completed": 94,
+    "model_failure": 2
+  },
+  "condition_count": 96,
+  "label_source": "condition_argument_present",
+  "audit_role": "all_run_gate_only_not_probe_teacher",
+  "test_set_status": "not_created_or_inspected"
+}

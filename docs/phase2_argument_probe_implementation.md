@@ -3,7 +3,8 @@
 The development implementation is `goal_takeover.phase2.argument_probe`. It
 reads completed immutable run bundles and creates a new directory of derived
 probe parameters and validation diagnostics. It does not run the model or
-change raw bundles. It is currently verified with synthetic bundles only.
+change raw bundles. The initial research fit and its limits are recorded in
+[the 2026-10-26 fit log](experiment_logs/2026-10-26_argument_recipient_96_probe_fit.md).
 
 ## Input contract
 
@@ -28,7 +29,8 @@ The input JSON must contain:
   `position_name`, and `position_rule_version`. Each feature selects one actual
   trajectory boundary per condition. Layer and position selection remain
   research decisions to make using the independent development validation.
-- `conditions`: one record per completed run with `condition_id`, `run_id`,
+- `conditions`: one record per run with a valid capture, including a retained
+  `model_failure` run when its selected capture passes all checks, with `condition_id`, `run_id`,
   `split`, `component_id`, `task_template_id`, `user_instruction`, and
   `argument_present`. Optional `pair_id` and `paraphrase_family_id` are checked
   for train/validation leakage when supplied. `argument_present` has one binary
@@ -40,14 +42,14 @@ The input JSON must contain:
   feature's condition, run, feature ID and reason.
 
 Research mode requires a frozen condition and split declaration, and the
-design-freeze file checksum is verified. The current
-`phase2_argument_readout_96_draft.json` is a review draft, not that declaration.
-The new model runs, independent relationship graph, position rules and runtime
-freeze remain to be prepared before research fitting.
+design-freeze file checksum is verified. The initial 96-condition
+[input declaration](../configs/analysis/phase2_argument_recipient_96_probe_v1.json)
+and [freeze](../data/manifests/phase2_argument_recipient_96_probe_v1.freeze.json)
+were built from the audited collection. The earlier review draft remains separate.
 
 ## Checks and outputs
 
-The loader verifies raw artifact checksums; completed run, condition and split
+The loader verifies raw artifact checksums; accepted run status, condition and split
 IDs; raw condition labels and prompt; relationship component; prefix and token
 IDs; position rule; residual layer, shape, dtype and finiteness. This first
 implementation is limited to user-instruction recipient content: a positive

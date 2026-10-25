@@ -63,6 +63,7 @@ class ArgumentProbeTests(unittest.TestCase):
         exposure: bool = True,
         wrong_token: bool = False,
         wrong_shape: bool = False,
+        status: str = "completed",
     ) -> None:
         condition_id = f"condition-{index}"
         run_id = f"run-{index}"
@@ -127,7 +128,7 @@ class ArgumentProbeTests(unittest.TestCase):
                 {
                     "run_id": run_id,
                     "condition_id": condition_id,
-                    "status": "completed",
+                    "status": status,
                     "split": split,
                     "group_id": condition["component_id"],
                     "measurements": [measurement],
@@ -193,6 +194,19 @@ class ArgumentProbeTests(unittest.TestCase):
         rows, missing, _ = extract_features(self.spec, self.root / "runs")
         self.assertEqual(len(rows["last_l0"]), 1)
         self.assertEqual(missing[0]["reason"], "positive_argument_not_yet_exposed")
+
+    def test_model_failure_with_valid_capture_is_included(self) -> None:
+        self._bundle(0, split="train", label=1, status="model_failure")
+        self._bundle(1, split="validation", label=0)
+        rows, missing, _ = extract_features(self.spec, self.root / "runs")
+        self.assertEqual(len(rows["last_l0"]), 2)
+        self.assertEqual(missing, [])
+
+    def test_technical_failure_is_rejected(self) -> None:
+        self._bundle(0, split="train", label=1, status="technical_failure")
+        self._bundle(1, split="validation", label=0)
+        with self.assertRaisesRegex(ValueError, "run identity, status or split mismatch"):
+            extract_features(self.spec, self.root / "runs")
 
     def test_token_shape_and_condition_alignment_fail(self) -> None:
         self._bundle(0, split="train", label=1, wrong_token=True)

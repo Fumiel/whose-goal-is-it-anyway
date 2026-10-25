@@ -155,7 +155,9 @@ def extract_features(
         if (
             run["run_id"] != run_id
             or run["condition_id"] != condition["condition_id"]
-            or run["status"] != "completed"
+            # The recipient label comes from the condition, before generation.
+            # A later model failure does not invalidate a captured user boundary.
+            or run["status"] not in {"completed", "model_failure"}
             or run["split"] != condition["split"]
         ):
             raise ValueError(f"{run_id}: run identity, status or split mismatch")
@@ -492,8 +494,8 @@ def fit_and_evaluate(
                 lexical,
                 calibration_bins=bins,
             )
-            # Shuffle condition labels within each training task. This keeps each
-            # task's label counts and multi-label condition structure intact.
+            # Shuffle this candidate's labels within each training task. This
+            # keeps its per-task class counts; candidates are controlled separately.
             groups: dict[str, list[int]] = defaultdict(list)
             for index, row in enumerate(train):
                 groups[row.task_template_id].append(index)

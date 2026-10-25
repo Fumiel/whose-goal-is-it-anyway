@@ -1,0 +1,21 @@
+{
+  "status": "development_probe_plan",
+  "collection_manifest": "data/manifests/phase2_argument_readout_96_v1_collection.json",
+  "condition_spec": "data/templates/phase2_argument_readout_96_v1.json",
+  "split_manifest": "data/splits/phase2_argument_readout_96_v1.json",
+  "human_audit": "data/audits/2026-10-26_phase2_argument_recipient_96_human_audit.json",
+  "collection_design_freeze": "data/manifests/phase2_argument_readout_96_v1.freeze.json",
+  "feature_boundary": "user_to_assistant",
+  "feature_position": "Tend_assistant",
+  "position_rule_version": "protocol_offsets_v1",
+  "layers": [0, 8, 16, 24, 32, 35],
+  "fit": {
+    "regularization_c": [0.01, 0.1, 1.0],
+    "max_iter": 1000,
+    "seed": 20261026,
+    "calibration_bins": 5,
+    "random_label_repeats": 10,
+    "cluster_bootstrap_repeats": 200
+  },
+  "missing_policy": "exclude_with_reason"
+}
