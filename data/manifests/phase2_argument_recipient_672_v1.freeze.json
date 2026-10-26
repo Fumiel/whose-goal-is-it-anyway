@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-10-26T16:15:39.839088+00:00",
+  "decision_id": "RDR-2026-10-27-01",
+  "files_sha256": {
+    "configs/audits/phase2_argument_recipient_672_codex_prompt_v1.md": "84ae617a9282fde37f51895ec04b9b9c1f222aaa114d2cc489426e18bee3bda8",
+    "configs/experiments/phase2_argument_recipient_672_v1.yaml": "732eca944b76ab0ecdedea61e609842f23f08efc079809daa09a4bf7dd842289",
+    "data/schemas/phase2_argument_recipient_672_codex_audit.schema.json": "184862e2de6a9a9eb67b17c86e50170e77f197ba4e834ecdd11bae1a59debdef",
+    "data/splits/phase2_argument_recipient_672_v1.graph.json": "1c9c08ab432cc5f13ba8533fcd2e0ddd40224c489c30517f902770cfc4867e58",
+    "data/splits/phase2_argument_recipient_672_v1.json": "821183f23b5abfb5f31e1ff77bbc0a848704b92b9f13de7c417fdcbed09712f5",
+    "data/splits/phase2_argument_recipient_672_v1_actual_sample.json": "5d6ab0a098b5c82672973bf8b2bf896a488c040c6175dd4548f3cea97b9901ac",
+    "data/splits/phase2_argument_recipient_672_v1_checkpoints.json": "671ce0790a403fa3dbab83d9d88832a305bcaba6ccf9d2f54582f01095197779",
+    "data/templates/phase2_argument_recipient_672_draft.json": "97d3d2de784381c9fcf47d5f0e69871f8cc64f9535f349b2bf4e3fddff2e5de8",
+    "data/templates/phase2_argument_recipient_672_v1.json": "22818371c371714349957c7b62373e97ec1ba561d65d3923bb72e8e214fabf52"
+  },
+  "schema_version": 1,
+  "status": "design_frozen_runtime_pending"
+}

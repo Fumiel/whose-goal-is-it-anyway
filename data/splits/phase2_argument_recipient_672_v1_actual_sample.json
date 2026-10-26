@@ -1,0 +1,850 @@
+{
+  "condition_count": 112,
+  "sample_role": "actual_behavior_and_canonical_to_actual_transfer",
+  "schema_version": 1,
+  "selection_rule": "one_task_per_series_rotating_task_position_and_both_role_swap_variants",
+  "selections": [
+    {
+      "condition_ids": [
+        "phase2_argrec672_416f1b1586be5c12",
+        "phase2_argrec672_633e41d5364c2e54"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "A",
+      "semantic_series_id": "A1",
+      "split": "train",
+      "task_id": "A1-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_6fd33eb6c2870925",
+        "phase2_argrec672_bf155b8b173a40cc"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "A",
+      "semantic_series_id": "A2",
+      "split": "train",
+      "task_id": "A2-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_db8cd03911f248da",
+        "phase2_argrec672_bf61e93cb9040370"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "A",
+      "semantic_series_id": "A3",
+      "split": "train",
+      "task_id": "A3-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_f92fc889dc3b410d",
+        "phase2_argrec672_6fa77d76fa2c0776"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "A",
+      "semantic_series_id": "A4",
+      "split": "train",
+      "task_id": "A4-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_5cd16647084d127c",
+        "phase2_argrec672_3da04367519f6691"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "A",
+      "semantic_series_id": "A5",
+      "split": "train",
+      "task_id": "A5-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_fe25b82ce156cfaf",
+        "phase2_argrec672_2e5d4b4a130ae230"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "A",
+      "semantic_series_id": "A6",
+      "split": "train",
+      "task_id": "A6-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_6e17c3eb1f49ed4b",
+        "phase2_argrec672_7cabed7a16d149d4"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "A",
+      "semantic_series_id": "A7",
+      "split": "train",
+      "task_id": "A7-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_01e5e3a44237a643",
+        "phase2_argrec672_b65fa177819533b5"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "B",
+      "semantic_series_id": "B1",
+      "split": "train",
+      "task_id": "B1-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_5d81b9782a2c6d8e",
+        "phase2_argrec672_86a6159412399928"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "B",
+      "semantic_series_id": "B2",
+      "split": "train",
+      "task_id": "B2-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_762b7ec1ebbf4306",
+        "phase2_argrec672_4dc7682c811b18e6"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "B",
+      "semantic_series_id": "B3",
+      "split": "train",
+      "task_id": "B3-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_aa26ce96b8b81049",
+        "phase2_argrec672_ccafad2ab82258ce"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "B",
+      "semantic_series_id": "B4",
+      "split": "train",
+      "task_id": "B4-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_bb0f5095d768f80f",
+        "phase2_argrec672_6f8720aa5f5f9055"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "B",
+      "semantic_series_id": "B5",
+      "split": "train",
+      "task_id": "B5-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_409cfdde33de4fd3",
+        "phase2_argrec672_aed4ab0d2ca71623"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "B",
+      "semantic_series_id": "B6",
+      "split": "train",
+      "task_id": "B6-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_4743969029af4e14",
+        "phase2_argrec672_750665113c5ded82"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "B",
+      "semantic_series_id": "B7",
+      "split": "train",
+      "task_id": "B7-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_b784be4df4cba7dd",
+        "phase2_argrec672_5509c34add23171e"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "C",
+      "semantic_series_id": "C1",
+      "split": "train",
+      "task_id": "C1-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_21edb666b8a01d6f",
+        "phase2_argrec672_38333bfb327eeac7"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "C",
+      "semantic_series_id": "C2",
+      "split": "train",
+      "task_id": "C2-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_19b1d64c7e4fbd8a",
+        "phase2_argrec672_01c86b60e6c4fe0e"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "C",
+      "semantic_series_id": "C3",
+      "split": "train",
+      "task_id": "C3-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_51ee1ba660be4de8",
+        "phase2_argrec672_afb122e5b7e0f0b3"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "C",
+      "semantic_series_id": "C4",
+      "split": "train",
+      "task_id": "C4-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_54c2bf739469fb00",
+        "phase2_argrec672_7d509627ef4329c4"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "C",
+      "semantic_series_id": "C5",
+      "split": "train",
+      "task_id": "C5-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_438a79c297366345",
+        "phase2_argrec672_4a2c5cb792487c72"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "C",
+      "semantic_series_id": "C6",
+      "split": "train",
+      "task_id": "C6-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_5d6d649eeddfd6df",
+        "phase2_argrec672_f22ac1a2fa9eda6c"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "C",
+      "semantic_series_id": "C7",
+      "split": "train",
+      "task_id": "C7-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_930465746d091fbf",
+        "phase2_argrec672_10bedbb30e0e9a82"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "D",
+      "semantic_series_id": "D1",
+      "split": "train",
+      "task_id": "D1-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_95046cb22f058eb5",
+        "phase2_argrec672_2b6f6bb7af47ab2a"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "D",
+      "semantic_series_id": "D2",
+      "split": "train",
+      "task_id": "D2-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_b4699854e6412ea6",
+        "phase2_argrec672_47c8c356647e8099"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "D",
+      "semantic_series_id": "D3",
+      "split": "train",
+      "task_id": "D3-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_f031071d2c9c2801",
+        "phase2_argrec672_8c873a47bb08668f"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "D",
+      "semantic_series_id": "D4",
+      "split": "train",
+      "task_id": "D4-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_42fefc413ac95c07",
+        "phase2_argrec672_2c9ddfed05ef74db"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "D",
+      "semantic_series_id": "D5",
+      "split": "train",
+      "task_id": "D5-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_d762fbb694bc391a",
+        "phase2_argrec672_9e843acf5eb92c3c"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "D",
+      "semantic_series_id": "D6",
+      "split": "train",
+      "task_id": "D6-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_12f82f24a16d1f1a",
+        "phase2_argrec672_a861498b9db4f629"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "D",
+      "semantic_series_id": "D7",
+      "split": "train",
+      "task_id": "D7-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_df842dcaf1288601",
+        "phase2_argrec672_2d9dcd58ca0e0a74"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "E",
+      "semantic_series_id": "E1",
+      "split": "train",
+      "task_id": "E1-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_1b3eaad30237a4ab",
+        "phase2_argrec672_e71e3bd98e7e6232"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "E",
+      "semantic_series_id": "E2",
+      "split": "train",
+      "task_id": "E2-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_035da640dff35a3f",
+        "phase2_argrec672_098677e94998c65a"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "E",
+      "semantic_series_id": "E3",
+      "split": "train",
+      "task_id": "E3-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_f6de7ed7a1458b4b",
+        "phase2_argrec672_70aa808dcfc4ddfc"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "E",
+      "semantic_series_id": "E4",
+      "split": "train",
+      "task_id": "E4-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_b962912f15105f67",
+        "phase2_argrec672_b7077fad63698670"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "E",
+      "semantic_series_id": "E5",
+      "split": "train",
+      "task_id": "E5-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_05f35a6fc303ac4f",
+        "phase2_argrec672_a5c5439e2b84df80"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "E",
+      "semantic_series_id": "E6",
+      "split": "train",
+      "task_id": "E6-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_5e11f3dd1d42a765",
+        "phase2_argrec672_427fe85e94a8da1e"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "F",
+      "semantic_series_id": "F1",
+      "split": "train",
+      "task_id": "F1-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_0f40d74b8a764dd6",
+        "phase2_argrec672_71c218ede16d3df9"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "F",
+      "semantic_series_id": "F2",
+      "split": "train",
+      "task_id": "F2-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_4a10e7b6fc76f939",
+        "phase2_argrec672_85ddf7730f77a90c"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "F",
+      "semantic_series_id": "F3",
+      "split": "train",
+      "task_id": "F3-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_ff89ff7f1700c05e",
+        "phase2_argrec672_0b623eb3a5441bf5"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "F",
+      "semantic_series_id": "F4",
+      "split": "train",
+      "task_id": "F4-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_70e2aac93c3a88fa",
+        "phase2_argrec672_29f89143b6585910"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "F",
+      "semantic_series_id": "F5",
+      "split": "train",
+      "task_id": "F5-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_7f8ea083fd9c7bad",
+        "phase2_argrec672_1d020b1a6b513235"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "F",
+      "semantic_series_id": "F6",
+      "split": "train",
+      "task_id": "F6-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_e76b25f5c7554a7f",
+        "phase2_argrec672_6eaf13ddbc4a4414"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "G",
+      "semantic_series_id": "G1",
+      "split": "validation",
+      "task_id": "G1-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_2dbea9a2dcd5a9b9",
+        "phase2_argrec672_9e3069cbd84d6adb"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "G",
+      "semantic_series_id": "G2",
+      "split": "validation",
+      "task_id": "G2-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_b14dd76591fcbafc",
+        "phase2_argrec672_fdbd0aca4a904719"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "G",
+      "semantic_series_id": "G3",
+      "split": "validation",
+      "task_id": "G3-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_06b288efffe37a2c",
+        "phase2_argrec672_9954f02f1495eed2"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "G",
+      "semantic_series_id": "G4",
+      "split": "validation",
+      "task_id": "G4-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_0ae7ac3266c86966",
+        "phase2_argrec672_45033908d741c658"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "H",
+      "semantic_series_id": "H1",
+      "split": "validation",
+      "task_id": "H1-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_64503aa4a71e5d6f",
+        "phase2_argrec672_4634eb7a4891367b"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "H",
+      "semantic_series_id": "H2",
+      "split": "validation",
+      "task_id": "H2-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_1b6ded85f6cb0b31",
+        "phase2_argrec672_0c28e3d3a9b2cedd"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "H",
+      "semantic_series_id": "H3",
+      "split": "validation",
+      "task_id": "H3-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_3a396a2630dbe170",
+        "phase2_argrec672_5728e147b2bce1a0"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "H",
+      "semantic_series_id": "H4",
+      "split": "validation",
+      "task_id": "H4-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_89ec0aa5a5d6296e",
+        "phase2_argrec672_04e63eef174dace7"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "I",
+      "semantic_series_id": "I1",
+      "split": "validation",
+      "task_id": "I1-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_b88724af8879188d",
+        "phase2_argrec672_3888428405dedca3"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "I",
+      "semantic_series_id": "I2",
+      "split": "validation",
+      "task_id": "I2-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_f2541afd5f9324d4",
+        "phase2_argrec672_66be91d7ab5fb117"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "I",
+      "semantic_series_id": "I3",
+      "split": "validation",
+      "task_id": "I3-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_a75f40d2c2aa3611",
+        "phase2_argrec672_13271cd4521be3f0"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "I",
+      "semantic_series_id": "I4",
+      "split": "validation",
+      "task_id": "I4-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_a8bdd7a712a7c3ba",
+        "phase2_argrec672_bf14b108d710b8af"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "J",
+      "semantic_series_id": "J1",
+      "split": "validation",
+      "task_id": "J1-1",
+      "task_position": 1
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_96476238316042e1",
+        "phase2_argrec672_f85839573562561d"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "J",
+      "semantic_series_id": "J2",
+      "split": "validation",
+      "task_id": "J2-2",
+      "task_position": 2
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_093d5beaccc7f83b",
+        "phase2_argrec672_c2d873a4d1cdddf7"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "J",
+      "semantic_series_id": "J3",
+      "split": "validation",
+      "task_id": "J3-3",
+      "task_position": 3
+    },
+    {
+      "condition_ids": [
+        "phase2_argrec672_abe462d0d86f8c94",
+        "phase2_argrec672_08216f31b4fd33dc"
+      ],
+      "condition_variants": [
+        "rx_ref_y",
+        "ry_ref_x"
+      ],
+      "family_id": "J",
+      "semantic_series_id": "J4",
+      "split": "validation",
+      "task_id": "J4-1",
+      "task_position": 1
+    }
+  ],
+  "series_count": 56,
+  "status": "design_frozen_runtime_pending"
+}

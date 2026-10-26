@@ -1,0 +1,63 @@
+schema_version: 1
+status: design_frozen_runtime_pending
+experiment_id: phase2-argument-recipient-672-v1
+decision_id: RDR-2026-10-27-01
+seed: 20261027
+references:
+  draft: data/templates/phase2_argument_recipient_672_draft.json
+  declaration: data/templates/phase2_argument_recipient_672_v1.json
+  split: data/splits/phase2_argument_recipient_672_v1.json
+  graph: data/splits/phase2_argument_recipient_672_v1.graph.json
+  checkpoints: data/splits/phase2_argument_recipient_672_v1_checkpoints.json
+  actual_sample: data/splits/phase2_argument_recipient_672_v1_actual_sample.json
+  audit_prompt: configs/audits/phase2_argument_recipient_672_codex_prompt_v1.md
+  audit_schema: data/schemas/phase2_argument_recipient_672_codex_audit.schema.json
+  design_freeze: data/manifests/phase2_argument_recipient_672_v1.freeze.json
+  runtime_freeze: artifacts/phase2-argument-recipient-672-runtime.freeze.json
+model:
+  name: Qwen/Qwen3-8B
+  revision: b968826d9c46dd6066d109eabc6255188de91218
+  tokenizer_revision: b968826d9c46dd6066d109eabc6255188de91218
+  trust_remote_code: false
+  dtype: bfloat16
+  device_map: cuda
+  quantization: int8
+  low_cpu_mem_usage: true
+  attn_implementation: sdpa
+  max_context_tokens: 4096
+decoding:
+  do_sample: false
+  temperature: 0.0
+  top_p: 1.0
+  max_new_tokens: 256
+  max_steps: 8
+fit:
+  primary_position: Tend_assistant
+  primary_metric: role_swap_auc
+  development_threshold: 0.8
+  layer_grid: [0, 8, 16, 24, 32, 35]
+  regularization_c_grid: [0.01, 0.1, 1.0]
+  max_iter: 1000
+  random_label_repeats: 10
+  calibration_bins: 5
+  cluster_bootstrap_repeats: 200
+  training_source: new_672_batches_only
+  hyperparameter_selection: B1_train_leave_one_semantic_series_out_pooled_role_swap_auc
+  validation_use: same_series_repeated_each_stage_adaptive_development
+  missing_policy: undefined_if_any_primary_score_missing
+audit:
+  mode: codex_cli_read_only_json
+  model: gpt-6-sol
+  cli_version_expected: codex-cli 0.164.0
+  human_review: llm_disagreements_and_repetitive_or_incomplete_raw_logs
+  random_human_sample_required: false
+resources:
+  artifact_root: artifacts
+  maximum_gpu_memory_gib: 12
+  maximum_seconds_per_condition: 300
+  maximum_storage_gib_per_condition: 0.05
+  maximum_total_attempts: 784
+  maximum_total_storage_gib: 39.2
+  maximum_total_wall_seconds: 235200
+  technical_failure_rule: preserve_immutable_bundle_then_stop
+  retry_rule: new_run_id_only

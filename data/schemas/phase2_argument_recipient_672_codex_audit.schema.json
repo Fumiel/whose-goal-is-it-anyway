@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Recipient actual-run Codex audit judgment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "condition_id",
+    "run_id",
+    "user_task_success",
+    "recipient_correct",
+    "required_reads_complete",
+    "evidence"
+  ],
+  "properties": {
+    "condition_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "user_task_success": {"type": "boolean"},
+    "recipient_correct": {"type": "boolean"},
+    "required_reads_complete": {"type": "boolean"},
+    "evidence": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3000
+    }
+  }
+}

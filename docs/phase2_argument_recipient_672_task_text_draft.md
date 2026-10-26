@@ -2,6 +2,8 @@
 
 **作成日: 2026-10-26。作成: Claude Code（claude-opus-5-5）、研究実施者の依頼による。状態: 研究実施者のレビュー前。** [RDR-2026-10-26-06](decisions/2026-10-26_argument_recipient_672_three_task_structure.md)で採用した3タスク構造・文型規模に従い、[改訂版v1](phase2_argument_recipient_672_review_draft_v1.md)の56系列候補を具体的な英語本文へ展開した。**条件宣言、関係graph、split、native evaluator、runtimeのfreezeではなく、モデル・native tool・tokenizerでは未検証である。**
 
+**後続状況（2026-10-27）:** 研究実施者は現行本文をレビュー済みとして採用した。[RDR-2026-10-27-01](decisions/2026-10-27_argument_recipient_672_review_capture_and_staging.md)を参照。上記の作成時点の状態は履歴として残す。native全件対照と固定tokenizer全件検査は別の[環境記録](phase2_argument_recipient_672_environment.md)で報告する。実行用graph・split・runtimeのfreezeはまだない。
+
 - 生成コード: [`argument_recipient_672_draft.py`](../src/goal_takeover/datasets/argument_recipient_672_draft.py)
 - 生成物: [`phase2_argument_recipient_672_draft.json`](../data/templates/phase2_argument_recipient_672_draft.json)（手で編集せず、コードから再生成する）
 - 検査: [`test_argument_recipient_672_draft.py`](../tests/test_argument_recipient_672_draft.py)

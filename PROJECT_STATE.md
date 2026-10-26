@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `phase2_argument_recipient_672_task_text_review_pending`
+- Phase: `phase2_argument_recipient_672_execution_design_review`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
@@ -229,6 +229,50 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   Qwen3-8B int8 engineering smoke completed both document reads and a transfer
   call; its recipient was one character short, so both evaluators recorded
   user-task failure. This smoke is not a research run.
+  On 2026-10-27 the researcher accepted the current 168 task texts and 672
+  conditions after review, chose canonical exposed histories and
+  `Tend_assistant` for probe-teacher capture, separate actual-trajectory
+  samples, cumulative B1 through B5 fits against the same development
+  validation, and targeted human review of LLM disagreements and logs needing
+  inspection rather than mandatory random sampling. See
+  [RDR-2026-10-27-01](docs/decisions/2026-10-27_argument_recipient_672_review_capture_and_staging.md).
+  Stable-ID [review conditions](data/templates/phase2_argument_recipient_672_review.json),
+  [split allocation](data/splits/phase2_argument_recipient_672_review.json),
+  [relationship review](docs/phase2_argument_recipient_672_graph_review.md),
+  [checkpoint plan](data/splits/phase2_argument_recipient_672_review_checkpoints.json)
+  and [audit preparation](docs/phase2_argument_recipient_672_audit_preparation.md)
+  are prepared but not frozen. I4 and J3 link their validation families I/J
+  to prior train work; their 96 conditions remain diagnostic and are excluded
+  from independent validation's primary summary. The researcher accepted G/H
+  as the two-family independent development validation primary set (96
+  conditions) after the concrete-purpose/source non-edge review. Canonical
+  D2 last-token all-layer capture passed
+  an engineering GPU preflight; the full research runner, probe fit path,
+  LLM audit specification and runtime are still pending. The researcher chose
+  `role_swap_auc` on two-account role-swap conditions as the primary metric
+  before any new fit, with the existing lexical-present mean AUROC secondary.
+  The main B1–B5 learning curve uses only new 672-collection train conditions;
+  prior 96-condition material may be used only in a separately specified
+  auxiliary analysis. A strict 48-condition metric calculator is implemented,
+  and B1-train-only leave-one-series-out CV will choose one of six layers and
+  three C values for use through B5. A separate
+  [112-condition actual sample plan](data/splits/phase2_argument_recipient_672_review_actual_sample.json)
+  selects one task and both role-swap variants from each of 56 series. No new
+  probe fit or research run has begun. An immutable canonical-capture bundle
+  writer and mixed-source feature loader have a synthetic round-trip test.
+  The collection runner now has separate 672 canonical and 112 actual modes
+  behind design/runtime freeze checks. The separate v1 execution declarations
+  and [design freeze](data/manifests/phase2_argument_recipient_672_v1.freeze.json)
+  are issued; runtime freeze and same-commit GPU check remain. B1 train-only CV,
+  cumulative probe fit, G/H primary versus I/J diagnostic reporting, and
+  immutable derived fit writing have synthetic tests; see the
+  [probe preparation guide](docs/phase2_argument_recipient_672_probe_preparation.md).
+  The researcher chose Codex CLI `gpt-6-sol` for the LLM audit;
+  because Codex also helped design the task, this audit is not independent of
+  all design assistance. The read-only JSON audit prompt/schema are adopted;
+  the current CLI is `0.164.0`, and runtime model access remains to be checked.
+  Resource ceilings are 12 GiB GPU, 300 seconds and 0.05 GiB storage per
+  condition; a technical failure stops collection after immutable recording.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)

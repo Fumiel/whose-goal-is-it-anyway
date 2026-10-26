@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import time
 from pathlib import Path
 from typing import Any
 
@@ -16,9 +18,13 @@ from goal_takeover.datasets.argument_recipient_672_native import (
     native_preflight,
     task_and_condition,
 )
-from goal_takeover.instrumentation.token_positions import overlapping_token_indices
+from goal_takeover.instrumentation.huggingface import HuggingFaceActivationExtractor
 from goal_takeover.models.generation import DecodingConfig
 from goal_takeover.models.qwen import QwenTransformersBackend
+from goal_takeover.phase2.argument_recipient_672_capture import (
+    build_canonical_history,
+    select_canonical_position,
+)
 from goal_takeover.pilot.evaluation import RecordingSession, state_document
 from goal_takeover.selection import _load_model
 from goal_takeover.shakedown import _git_metadata
@@ -46,35 +52,6 @@ def _backend(model: Any, tokenizer: Any, session: Any, config: dict[str, Any]) -
     )
 
 
-def _prefix_record(prefix: Any, account: str) -> dict[str, Any]:
-    occurrences = []
-    start = 0
-    while (index := prefix.text.find(account, start)) >= 0:
-        occurrences.append(index)
-        start = index + len(account)
-    if len(occurrences) != 1:
-        raise ValueError(
-            f"recipient account must appear exactly once at selected boundary: {len(occurrences)}"
-        )
-    indices = overlapping_token_indices(
-        prefix.offsets, start=occurrences[0], end=occurrences[0] + len(account)
-    )
-    if not indices:
-        raise ValueError("recipient account has no aligned tokens")
-    return {
-        "boundary": prefix.boundary.value,
-        "prefix_id": prefix.prefix_id,
-        "prefix_token_ids": list(prefix.token_ids),
-        "recipient_token_indices": list(indices),
-        "recipient_token_ids": [prefix.token_ids[i] for i in indices],
-        "recipient_last_token_index": indices[-1],
-        "recipient_last_token_id": prefix.token_ids[indices[-1]],
-        "assistant_boundary_token_index": len(prefix.token_ids) - 1,
-        "assistant_boundary_token_id": prefix.token_ids[-1],
-        "tool_schema_sha256": prefix.metadata["tool_schema_sha256"],
-    }
-
-
 def tokenizer_preflight(
     draft: dict[str, Any], tokenizer: Any, config: dict[str, Any], ids: list[str]
 ) -> dict[str, Any]:
@@ -84,53 +61,15 @@ def tokenizer_preflight(
         task, condition = task_and_condition(draft, cid)
         session = create_session(draft, cid, validated=True)
         backend = _backend(None, tokenizer, session, config)
-        messages: list[dict[str, Any]] = list(session.initial_messages)
-        account = condition["expected_send_money"]["arguments"]["recipient"]
-        source = condition["exposure"]["source_role"]
-        if source == "user_instruction":
-            selected = backend.serialize(messages)
-        else:
-            if account in backend.serialize(messages).text:
-                raise ValueError(f"{cid}: document account leaked before read")
-            for index, call in enumerate(task["expected_read_file_calls"]):
-                call_id = f"canonical_read_{index}"
-                result = session.execute_tool(call["name"], call["arguments"], call_id=call_id)
-                if result.error is not None:
-                    raise ValueError(f"{cid}: canonical read failed: {result.error}")
-                messages.append(
-                    {
-                        "role": "assistant",
-                        "content": "",
-                        "tool_calls": [
-                            {
-                                "id": call_id,
-                                "type": "function",
-                                "function": {"name": call["name"], "arguments": call["arguments"]},
-                            }
-                        ],
-                    }
-                )
-                messages.append(
-                    {
-                        "role": "tool",
-                        "name": call["name"],
-                        "tool_call_id": call_id,
-                        "content": result.content,
-                        "error": result.error,
-                        "untrusted": True,
-                    }
-                )
-                if (
-                    index < len(task["expected_read_file_calls"]) - 1
-                    and account in backend.serialize(messages).text
-                ):
-                    raise ValueError(f"{cid}: account exposed before all declared reads")
-            selected = backend.serialize(messages)
-        expected_boundary = condition["exposure"]["boundary"]
-        if selected.boundary.value != expected_boundary:
-            raise ValueError(f"{cid}: selected boundary differs from declaration")
+        history = build_canonical_history(session, task, condition)
+        prefix, position = select_canonical_position(backend, history, condition)
         records.append(
-            {"condition_id": cid, "source_role": source, **_prefix_record(selected, account)}
+            {
+                "condition_id": cid,
+                **position,
+                "prefix_token_ids": list(prefix.token_ids),
+                "tool_schema_sha256": prefix.metadata["tool_schema_sha256"],
+            }
         )
     return {
         "schema_version": 1,
@@ -204,10 +143,60 @@ def model_smoke(draft: dict[str, Any], condition_id: str, config: dict[str, Any]
     }
 
 
+def capture_preflight(
+    draft: dict[str, Any], condition_id: str, config: dict[str, Any]
+) -> dict[str, Any]:
+    """Measure one canonical Tend_assistant residual forward without saving features."""
+    import torch
+
+    torch.manual_seed(config["seed"])
+    torch.cuda.manual_seed_all(config["seed"])
+    task, condition = task_and_condition(draft, condition_id)
+    session = create_session(draft, condition_id, validated=True)
+    model, tokenizer = _load_model(config["model"])
+    backend = _backend(model, tokenizer, session, config)
+    history = build_canonical_history(session, task, condition)
+    prefix, position = select_canonical_position(backend, history, condition)
+    extractor = HuggingFaceActivationExtractor(model, block_path="model.layers")
+    torch.cuda.empty_cache()
+    torch.cuda.reset_peak_memory_stats()
+    started = time.perf_counter()
+    record = extractor.capture(prefix, positions=(position["token_index"],))
+    elapsed = time.perf_counter() - started
+    if record.prefix_id != prefix.prefix_id or record.token_ids != prefix.token_ids:
+        raise RuntimeError("capture prefix differs from canonical serialization")
+    if record.positions != (position["token_index"],):
+        raise RuntimeError("capture position differs from selected last token")
+    peak = max(torch.cuda.max_memory_allocated(), torch.cuda.max_memory_reserved())
+    commit, dirty = _git_metadata()
+    return {
+        "schema_version": 1,
+        "status": "engineering_canonical_capture_preflight",
+        "research_result": False,
+        "draft_condition_id": condition_id,
+        "git_commit": commit,
+        "git_dirty": dirty,
+        "seed": config["seed"],
+        "model": config["model"],
+        "chat_template_sha256": backend.template_sha256,
+        "tool_schema_sha256": prefix.metadata["tool_schema_sha256"],
+        "prefix_id": prefix.prefix_id,
+        "serialized_text_sha256": hashlib.sha256(prefix.text.encode("utf-8")).hexdigest(),
+        "prefix_token_ids": list(prefix.token_ids),
+        "position": position,
+        "layer_shapes": {name: list(value.shape) for name, value in record.values.items()},
+        "layer_dtypes": {name: str(value.dtype) for name, value in record.values.items()},
+        "layer_count": len(record.values),
+        "elapsed_seconds": elapsed,
+        "peak_gpu_memory_bytes": int(peak),
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "command", choices=("native-preflight", "tokenizer-preflight", "model-smoke")
+        "command",
+        choices=("native-preflight", "tokenizer-preflight", "model-smoke", "capture-preflight"),
     )
     parser.add_argument("draft", type=Path)
     parser.add_argument("--condition", action="append")
@@ -224,7 +213,7 @@ def main() -> None:
         report = native_preflight(draft, ids)
     else:
         if args.config is None:
-            parser.error("--config is required for tokenizer-preflight and model-smoke")
+            parser.error("--config is required for tokenizer and model checks")
         config = load_yaml(args.config)
         if args.command == "tokenizer-preflight":
             from transformers import AutoTokenizer
@@ -234,10 +223,14 @@ def main() -> None:
                 model["name"], revision=model["tokenizer_revision"], local_files_only=True
             )
             report = tokenizer_preflight(draft, tokenizer, config, ids)
-        else:
+        elif args.command == "model-smoke":
             if len(ids) != 1:
                 parser.error("model-smoke requires exactly one --condition")
             report = model_smoke(draft, ids[0], config)
+        else:
+            if len(ids) != 1:
+                parser.error("capture-preflight requires exactly one --condition")
+            report = capture_preflight(draft, ids[0], config)
         report["config_sha256"] = sha256_file(args.config)
     report["draft_sha256"] = sha256_file(args.draft)
     args.output.parent.mkdir(parents=True, exist_ok=True)
