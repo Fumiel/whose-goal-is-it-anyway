@@ -147,6 +147,15 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   original conservative training component and are not independent validation;
   see the [CV log](docs/experiment_logs/2026-10-26_argument_recipient_96_train_series_cv.md)
   and [small summary](results/2026-10-26_phase2_argument_recipient_96_train_series_cv_v1.json).
+  A post-result saved-position diagnostic reused the same 96 first-boundary
+  captures. At layer 8 / C=1.0, `Tpost` and its 0–8 token mean each reached
+  1.000 four-candidate validation AUROC, compared with 0.484 at
+  `Tend_assistant`; however, these earlier positions are anchored to the
+  condition's known recipient account, so account identity alone can explain
+  the high scores. They are not a validated label-blind recipient-role readout.
+  The user-message end was not saved for all 96. See the
+  [position diagnostic log](docs/experiment_logs/2026-10-26_argument_recipient_96_position_diagnostic.md)
+  and [small summary](results/2026-10-26_phase2_argument_recipient_96_positions_diagnostic_v1.json).
   The IPI/quotation/dual-recipient controls remain pending.
   On 2026-10-26 the researcher adopted a separate staged recipient-probe
   development plan: up to 25 new training semantic series (five tasks and four

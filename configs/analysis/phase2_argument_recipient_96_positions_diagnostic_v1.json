@@ -1,0 +1,24 @@
+{
+  "status": "exploratory_post_result_development",
+  "source_spec_path": "phase2_argument_recipient_96_probe_v1.json",
+  "source_spec_sha256": "def8e126991b8066578cb108bcde199e062ba2efed85f5d4d549ecb5fd2aded6",
+  "boundary": "user_to_assistant",
+  "positions": [
+    "tpre",
+    "tpost",
+    "post4",
+    "post8",
+    "post16",
+    "post_mean_0_8",
+    "tend_assistant"
+  ],
+  "layers": [
+    "model.layers.0",
+    "model.layers.8",
+    "model.layers.16",
+    "model.layers.24",
+    "model.layers.32",
+    "model.layers.35"
+  ],
+  "selection_note": "All 96 original first-boundary captures required for each fitted position. Tpre is a pre-account negative control. AUROC uses full-prompt lexical presence for matched rows; at early positions a reference account may occur later in the prompt. User-message end and post-tool positions are excluded because they are not saved for all 96 first-boundary captures."
+}

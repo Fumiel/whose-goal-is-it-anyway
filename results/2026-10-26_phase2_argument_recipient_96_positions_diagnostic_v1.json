@@ -1,0 +1,41 @@
+{
+  "status": "exploratory_post_result_development",
+  "research_result": true,
+  "scope": "96 previously collected first user-to-assistant boundary captures; no model rerun",
+  "train_conditions": 64,
+  "validation_conditions": 32,
+  "validation_series": ["REC", "DON"],
+  "layers": [0, 8, 16, 24, 32, 35],
+  "regularization_c": [0.01, 0.1, 1.0],
+  "metric": "Four-candidate equal-weight AUROC among validation rows whose account appears anywhere in the complete user instruction",
+  "comparison_setting": "model.layers.8/C=1.0",
+  "comparison_auc": {
+    "tpre": 0.5234375,
+    "tpost": 1.0,
+    "post4": 0.828125,
+    "post8": 0.734375,
+    "post16": 0.8125,
+    "post_mean_0_8": 1.0,
+    "tend_assistant": 0.484375
+  },
+  "posthoc_grid_maximum_auc": {
+    "tpre": 0.53125,
+    "tpost": 1.0,
+    "post4": 0.8828125,
+    "post8": 0.734375,
+    "post16": 0.8125,
+    "post_mean_0_8": 1.0,
+    "tend_assistant": 0.484375
+  },
+  "saved_position_missing_count": 0,
+  "skipped_positions": {
+    "user_message_end": "Not saved at the first boundary for all 96; distance from recipient Tpost was 36 to 108 tokens",
+    "first_tool_to_assistant": "Not a complete matched first-boundary capture across all 96 runs"
+  },
+  "interpretation": "Tpost and post-window positions are defined around the condition's declared positive recipient account. Candidate identity can therefore be read from the selected account tokens; their high AUROC does not establish a label-blind recipient-role or goal readout. Tpre is a pre-account control. Earlier positions can precede exposure of a reference account even when that account appears in the complete instruction. Position search and REC/DON reuse occurred after inspecting the original validation result.",
+  "original_text_tfidf_auc": 0.8515625,
+  "original_text_tfidf_source": "results/2026-10-26_phase2_argument_recipient_96_probe_v1.json",
+  "config_path": "configs/analysis/phase2_argument_recipient_96_positions_diagnostic_v1.json",
+  "derived_report_path": "artifacts/processed/phase2_argument_recipient_96_positions_diagnostic_v1/report.json",
+  "derived_report_sha256": "5b73f4c8e8de4c3a20e1909e9b606a255f5c922515379d40419062ded767fb91"
+}
