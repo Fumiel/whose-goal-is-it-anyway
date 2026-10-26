@@ -628,6 +628,14 @@ slotの区切り記号を含めるかは正準仕様で固定する。複数slot
 
 [RDR-2026-10-22-03](decisions/2026-10-22_argument_probe_staged_controls.md)は、この対応対照の収集順序を部分改訂する。まず6系列・24タスク・96条件のユーザー指示中recipient内容セットを設計し、tool出力IPI、引用・禁止、両recipient候補提示は追加セットで検証する。初回セットの性能だけでIPIへの適用を妥当化せず、Phase 2終了条件を達成済みとみなさない。96条件の具体案は[レビュー用草案](phase2_argument_readout_96_condition_draft.md)に置く。
 
+初回96条件の未知系列validationを確認した後の[RDR-2026-10-26-01](decisions/2026-10-26_argument_recipient_learning_curve_expansion.md)は、別versionの開発用recipient内容コレクションとして、学習25意味系列×各5タスク×各4条件＝最大500条件と、未知系列validation 10意味系列×各5タスク×各4条件＝200条件を計画する。学習側は完全な5系列・100条件ずつ追加し、100～500条件で学習曲線を確認する。未知系列AUROC 0.80以上を開発上の到達基準とし、原則として従前の「候補口座文字列が現れた条件でのrecipient対別用途」候補別AUROCの四候補等重み平均を使う。これは点推定値の基準であり、語彙baseline超過やIPI適用の妥当性を代替しない。具体的な系列・連結成分、旧64条件の算入、反復モニタリング用と留保用validationの配分、層・正則化の選択、停止・監査・runtimeは最初の新規fit/run前の別仕様で固定する。モデル結果を見て後続タスクを変更した場合は学習曲線の設計変更として記録する。
+
+拡張コレクションのタスク方針は[RDR-2026-10-26-02](decisions/2026-10-26_argument_recipient_rules_role_swap.md)と[設計表](phase2_argument_recipient_expansion_task_design.md)に記録する。ユーザー指示での直接指定、同指示中の支払先名・対象IDとの口座対応、読取資料の受取口座、一資料と登録簿の照合による受取口座を候補規則とし、各タスクの基本4条件でrecipientと別用途の参照口座を入れ替える。資料読取後に初めて出現する口座については読取前境界に正例を付けず、両口座がrecipient候補になる条件は単一recipientの4条件と分ける。学習曲線では規則別の露出後位置選択手順を段階間で固定し、異なる境界を単一probeに混ぜるかは実行仕様で決める。混ぜる場合は規則・情報源・境界別性能を報告する。この5規則は独立意味系列の認定ではなく、具体的な実行条件は未凍結である。
+
+[RDR-2026-10-26-03](decisions/2026-10-26_argument_recipient_wording_diversity.md)は、拡張タスクで依頼文、説明文、欄形式、手順文、文中埋め込み、表形式などを組み合わせ、recipient文と参照文の型、A/B役割、提示順、タスク説明との前後位置を交差させる方針を加える。資料由来の規則では資料読取・照合依頼の文型も変える。具体本文・文型ID・配分・graph edgeは新規実行仕様で固定し、表現差だけを独立意味系列と数えない。
+
+[RDR-2026-10-26-04](decisions/2026-10-26_argument_recipient_700_draft_and_mixed_curve.md)は、ユーザー指示由来と資料由来の条件を同じ累積学習曲線へ含めると決めた。各規則で口座が実際に露出した後の位置を選び、混合の未知系列AUROCに加えてsource・規則・境界・意味系列別の性能と欠測を報告する。旧probe実装のユーザー指示のみを使う露出検査と語彙baselineは、資料由来の選択位置までの直列化済み入力へ拡張してから使う。採用済み10系列候補を核とする[Codex作成の700条件レビュー草案](phase2_argument_recipient_700_codex_review_draft.md)はClaudeクロスチェック前であり、具体条件・独立成分・splitのfreezeではない。
+
 `source_role_readout`には、可能な限り同一または厳密に対応する内容を次の文脈へ置いた条件を使う。
 
 - user instruction
@@ -788,6 +796,8 @@ $$
 - 確認的IPI: 独立clusterを最低30、各clusterに3～4表層variant
 - 攻撃なしbaseline: 60～100
 
+この配分は当初の暫定値である。2026-10-26の[RDR-2026-10-26-01](decisions/2026-10-26_argument_recipient_learning_curve_expansion.md)による新規recipient内容probeの段階的開発コレクションには、学習最大500条件・validation 200条件を認める。約450～700という旧総数とprobe教師・対応対照200～300という旧枠を、このコレクションの停止上限には用いない。確認的IPIの最低30独立clusterとtest隔離は維持し、容量・所要時間・実際の独立成分数を新規run前に見積もる。
+
 確認的IPIの30 clusterは統計的十分性を保証する値ではなく、実装時間、容量および意味的独立性を考慮した暫定下限である。予備実験後、training / validation側だけの効果量、cluster間分散および希望する区間幅からsimulationまたはcluster bootstrapで推定精度を確認し、最終配分を凍結する。test効果量を見て標本数を後付け変更しない。
 
 表層variant数より独立したtask × attack goal / style cluster数を優先する。Resistant / Susceptibleの意味的対応候補は最低20組、目標30組とするが、B・D件数は主回帰の成立条件にしない。
@@ -925,6 +935,7 @@ rawとprocessedを分離し、processed artifactには入力raw checksum、処�
 - **9月末**: end-to-end実行、自動成功判定または正準call採点が安定しなければ、単一の代替domainまたは最小環境へ切り替える。
 - **10月11日**: `user_to_assistant`、`first_tool_to_assistant`およびtool output内位置を再現可能に取得できなければ、output内解析を縮小し、二つのboundary解析を主とする。
 - **10月25日**: probeが未知系列で語彙baselineを安定して上回らなければ、「目的表現」という主張を下げ、具体的なtool操作・argument表現または時間的な行動帰属へ縮小する。
+- 2026-10-26の初回recipient probe結果ではこの基準を達成済みと扱わず、強い「目的表現」主張を留保する。[RDR-2026-10-26-01](decisions/2026-10-26_argument_recipient_learning_curve_expansion.md)の追加データ収集は開発上の再検討であり、過去の陰性結果や期限時点の判断を消さない。
 - **11月10日**: 主解析データが揃わなければ、活性化パッチング、Attention介入、別モデル・別domainを中止する。
 - **11月30日**: 主解析、凍結済み感度分析、主要図表を確定する。
 - **12月**: 追加探索より再現確認、本文執筆、関連研究の最新版と査読状況の確認を優先する。

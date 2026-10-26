@@ -25,6 +25,10 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-10-26 | [RDR-2026-10-26-04](2026-10-26_argument_recipient_700_draft_and_mixed_curve.md) | accepted | 提示済み学習5・検証候補5系列を候補として採用し、資料由来条件も同じ混合学習曲線へ含める。Codex作成700条件レビュー草案はClaude確認前・未凍結 |
+| 2026-10-26 | [RDR-2026-10-26-03](2026-10-26_argument_recipient_wording_diversity.md) | accepted | 拡張recipient内容タスクで複数の文型、recipient・参照文型の交差、口座役割・提示順・位置の入替えを採用。具体文言と配分は未凍結 |
+| 2026-10-26 | [RDR-2026-10-26-02](2026-10-26_argument_recipient_rules_role_swap.md) | accepted | 拡張recipient内容タスクの5種類の決定規則と、同一タスク内の4条件によるrecipient・参照口座の役割入替えを設計方針として採用。具体条件は未凍結 |
+| 2026-10-26 | [RDR-2026-10-26-01](2026-10-26_argument_recipient_learning_curve_expansion.md) | accepted | 96条件の未知系列性能を受け、recipient内容probeの開発用500学習・200検証条件、100条件刻みの学習曲線、未知系列AUROC 0.80到達基準を計画。具体条件・停止規則は未凍結 |
 | 2026-10-24 | [RDR-2026-10-24-01](2026-10-24_argument_recipient_96_collection_freeze.md) | accepted | 研究者が96条件草案の内容と開発内配分候補を承認。独立graph、64 train / 32 validationと新規run前gateを具体化 |
 | 2026-10-22 | [RDR-2026-10-22-03](2026-10-22_argument_probe_staged_controls.md) | accepted | 初回96条件をユーザー指示中のrecipient内容probe用に設計し、IPI・引用／禁止・両recipient候補の対応対照を後続セットへ分ける部分改訂 |
 | 2026-10-22 | [RDR-2026-10-22-02](2026-10-22_argument_readout_task_design.md) | accepted | 初回argument probeを`send_money.recipient`へ絞り、多ラベルの内容ラベル、役割・文脈の交差、既知候補での未知系列validationを方針化 |

@@ -6,7 +6,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 
 ## Current phase
 
-- Phase: `phase2_argument_recipient_96_probe_validation_complete_controls_pending`
+- Phase: `phase2_argument_recipient_learning_curve_planning_controls_pending`
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
@@ -148,6 +148,40 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   see the [CV log](docs/experiment_logs/2026-10-26_argument_recipient_96_train_series_cv.md)
   and [small summary](results/2026-10-26_phase2_argument_recipient_96_train_series_cv_v1.json).
   The IPI/quotation/dual-recipient controls remain pending.
+  On 2026-10-26 the researcher adopted a separate staged recipient-probe
+  development plan: up to 25 new training semantic series (five tasks and four
+  matched conditions each; 500 conditions), 10 new validation series (200
+  conditions), checkpoints after every five training series (100 conditions),
+  and unseen-series AUROC >= 0.80 as the development attainment criterion.
+  [RDR-2026-10-26-01](docs/decisions/2026-10-26_argument_recipient_learning_curve_expansion.md)
+  records the post-result timing, budget revision and unresolved execution
+  specifications. No new task declaration, split, runtime, run or probe fit is
+  frozen by this planning decision; the existing 96-condition artifacts remain
+  unchanged. IPI/quotation/dual-recipient validation is still required.
+  [RDR-2026-10-26-02](docs/decisions/2026-10-26_argument_recipient_rules_role_swap.md)
+  and the [task-design table](docs/phase2_argument_recipient_expansion_task_design.md)
+  adopt five recipient-determination rules and four matched recipient/reference
+  role-swap conditions for the new collection. Document-derived positives are
+  evaluated only after their source content is exposed. The five rules are not
+  certified independent series; wording variants and concrete tasks are still
+  to be designed and frozen separately.
+  [RDR-2026-10-26-03](docs/decisions/2026-10-26_argument_recipient_wording_diversity.md)
+  subsequently adopts multiple instruction forms, crossed recipient/reference
+  wording, account roles, order and position. The design guide now holds
+  conceptual English examples; exact wording, assignments, and semantic-series
+  candidates remain unfrozen.
+  [RDR-2026-10-26-04](docs/decisions/2026-10-26_argument_recipient_700_draft_and_mixed_curve.md)
+  adopts the previously presented five training and five validation themes as
+  candidates and includes document-derived conditions in the same staged mixed
+  learning curve, with source/rule/boundary diagnostics. The
+  [700-condition review draft](docs/phase2_argument_recipient_700_codex_review_draft.md)
+  is explicitly authored by Codex for pending Claude cross-check. Its 25 train
+  and 10 validation candidate series and 175 five-task sketches are not a graph,
+  split, condition-text, native-evaluator, runtime, or execution freeze. The
+  remaining 25 themes are Codex proposals pending review; the ten originally
+  presented themes are adopted only as candidates. The current probe code
+  cannot yet score document-only positives under its user-instruction exposure
+  check, so mixed-curve implementation and validation remain outstanding.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
