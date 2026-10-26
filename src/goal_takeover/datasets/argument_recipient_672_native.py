@@ -1,7 +1,4 @@
-"""Native Banking environment for the 672-condition recipient review draft.
-
-This is an engineering adapter. The draft is not a frozen research collection.
-"""
+"""Native Banking environment for reviewed and frozen 672 conditions."""
 
 from __future__ import annotations
 
@@ -31,8 +28,12 @@ def load_draft(path: str | Path) -> dict[str, Any]:
 
 def validate_declarations(draft: dict[str, Any]) -> None:
     validate_draft(draft)
-    if draft.get("status") != "review_draft_not_validated_or_frozen":
-        raise ValueError("this adapter accepts only the 672-condition review draft")
+    if draft.get("status") not in {
+        "review_draft_not_validated_or_frozen",
+        "condition_review_runtime_pending",
+        "design_frozen_runtime_pending",
+    }:
+        raise ValueError("unsupported 672-condition declaration status")
     if len(draft["task_specs"]) != 168 or len(draft["condition_specs"]) != 672:
         raise ValueError("expected 168 tasks and 672 conditions")
     tasks = {row["draft_task_id"]: row for row in draft["task_specs"]}

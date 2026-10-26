@@ -64,6 +64,15 @@ class ArgumentRecipient672NativeTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_declarations(changed)
 
+    def test_accepts_frozen_declaration_and_rejects_unknown_status(self) -> None:
+        frozen = json.loads(
+            Path("data/templates/phase2_argument_recipient_672_v1.json").read_text()
+        )
+        validate_declarations(frozen)
+        frozen["status"] = "unknown"
+        with self.assertRaisesRegex(ValueError, "status"):
+            validate_declarations(frozen)
+
 
 if __name__ == "__main__":
     unittest.main()
