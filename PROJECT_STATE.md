@@ -290,6 +290,13 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   validation score has been computed. [RDR-2026-10-27-02](docs/decisions/2026-10-27_argument_recipient_672_preprocessing_and_undefined_metric_rules.md)
   fixes the preprocessing, calibration and undefined-metric rules before the
   first fit; validation-viewing scope and stop thresholds remain open.
+  The B1 fit is done ([log](docs/experiment_logs/2026-10-27_argument_recipient_672_b1_capture_and_fit.md),
+  [summary](results/2026-10-27_phase2_argument_recipient_672_b1_fit_v1.json)):
+  layer 8 / C=1.0 was selected, but the primary G/H `role_swap_auc` was 0.521
+  (TF-IDF 0.530, random-label controls 0.444–0.542), so the 0.80 development
+  criterion is not met at B1. This is an adaptive development value. Every commit
+  changes HEAD and requires a new runtime freeze plus B1 re-derivation before
+  the next stage.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
