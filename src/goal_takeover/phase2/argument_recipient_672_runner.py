@@ -145,25 +145,87 @@ def load_frozen_plan(
     return config, declaration, split
 
 
-def capture_all(
-    config_path: Path, *, run_id_prefix: str, runtime_freeze_override: Path | None = None
+def capture_rows_for_batch(declaration: dict[str, Any], batch: str) -> list[dict[str, Any]]:
+    """Return the fixed incremental capture set, with validation only at B1."""
+    if batch not in {"B1", "B2", "B3", "B4", "B5"}:
+        raise ValueError("capture batch must be one of B1..B5")
+    selected = [
+        row
+        for row in declaration["condition_specs"]
+        if row.get("training_batch") == batch
+        or (batch == "B1" and row["split_candidate"] == "validation")
+    ]
+    if len(selected) != (288 if batch == "B1" else 96):
+        raise ValueError("capture batch condition count differs")
+    return selected
+
+
+def verify_previous_stage(
+    path: Path | None, *, batch: str, run_id_prefix: str, runtime_freeze_sha256: str
 ) -> None:
-    """Capture every declared condition once, retaining a technical failure bundle."""
+    """Require the preceding immutable validation report before a new batch."""
+    preceding = {"B2": "B1", "B3": "B1_to_B2", "B4": "B1_to_B3", "B5": "B1_to_B4"}
+    if batch not in {"B1", *preceding}:
+        raise ValueError("unknown capture batch")
+    if batch == "B1":
+        if path is not None:
+            raise ValueError("B1 has no preceding fit")
+        return
+    if path is None:
+        raise ValueError(f"{batch} requires the preceding fitted validation report")
+    manifest = json.loads((path / "manifest.json").read_text(encoding="utf-8"))
+    entry = manifest["artifacts"]["report.json"]
+    report_path = path / "report.json"
+    if sha256_file(report_path) != entry["sha256"] or report_path.stat().st_size != entry["bytes"]:
+        raise ValueError("preceding fit report checksum differs")
+    payload = json.loads(report_path.read_text(encoding="utf-8"))
+    report = payload["report"]
+    provenance = payload["provenance"]
+    if (
+        manifest["stage_id"] != preceding[batch]
+        or report["stage_id"] != preceding[batch]
+        or report["validation_available_count"] != 192
+        or report["primary"]["status"] != "complete"
+        or provenance["run_prefix"] != run_id_prefix
+        or provenance["runtime_freeze_sha256"] != runtime_freeze_sha256
+    ):
+        raise ValueError("preceding fit is not the required completed validation stage")
+
+
+def capture_batch(
+    config_path: Path,
+    *,
+    run_id_prefix: str,
+    batch: str,
+    previous_fit: Path | None = None,
+    runtime_freeze_override: Path | None = None,
+) -> None:
+    """Capture B1 plus validation, then only each new B2..B5 training batch."""
     import torch
 
     config, declaration, split = load_frozen_plan(
         config_path, runtime_freeze_override=runtime_freeze_override
     )
+    if not run_id_prefix or "/" in run_id_prefix or "\\" in run_id_prefix:
+        raise ValueError("invalid canonical run ID prefix")
     root = config_path.resolve().parents[2]
     output_root = root / config["resources"]["artifact_root"]
     if output_root != root / "artifacts":
         raise ValueError("canonical raw bundles must use artifacts/runs")
+    runtime_path = root / config["_resolved_runtime_freeze_path"]
+    verify_previous_stage(
+        previous_fit,
+        batch=batch,
+        run_id_prefix=run_id_prefix,
+        runtime_freeze_sha256=sha256_file(runtime_path),
+    )
     assignments = {row["condition_id"]: row for row in split["assignments"]}
     run_ids = {
         row["condition_id"]: f"{run_id_prefix}-c{index:03d}"
         for index, row in enumerate(declaration["condition_specs"], start=1)
     }
-    if any((output_root / "runs" / run_id).exists() for run_id in run_ids.values()):
+    selected = capture_rows_for_batch(declaration, batch)
+    if any((output_root / "runs" / run_ids[row["condition_id"]]).exists() for row in selected):
         raise FileExistsError("one or more immutable canonical run IDs already exist")
     model, tokenizer = _load_model(config["model"])
     extractor = HuggingFaceActivationExtractor(model, block_path="model.layers")
@@ -180,7 +242,7 @@ def capture_all(
     }
     torch.manual_seed(config["seed"])
     torch.cuda.manual_seed_all(config["seed"])
-    for row in declaration["condition_specs"]:
+    for row in selected:
         condition_id = row["condition_id"]
         run_id = run_ids[condition_id]
         stage = "native_session"
@@ -451,15 +513,23 @@ def main() -> None:
     parser.add_argument("mode", choices=("capture", "actual"))
     parser.add_argument("config", type=Path)
     parser.add_argument("--run-id-prefix", required=True)
+    parser.add_argument("--batch", choices=("B1", "B2", "B3", "B4", "B5"))
+    parser.add_argument("--previous-fit", type=Path)
     parser.add_argument("--runtime-freeze", type=Path)
     args = parser.parse_args()
     if args.mode == "capture":
-        capture_all(
+        if args.batch is None:
+            parser.error("capture mode requires --batch")
+        capture_batch(
             args.config,
             run_id_prefix=args.run_id_prefix,
+            batch=args.batch,
+            previous_fit=args.previous_fit,
             runtime_freeze_override=args.runtime_freeze,
         )
     else:
+        if args.batch is not None or args.previous_fit is not None:
+            parser.error("actual mode does not accept --batch or --previous-fit")
         run_actual_sample(
             args.config,
             run_id_prefix=args.run_id_prefix,

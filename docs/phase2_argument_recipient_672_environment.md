@@ -53,7 +53,18 @@ PYTHONPATH=src .venv/bin/python -m goal_takeover.phase2.argument_recipient_672_s
 
 レビュー済み条件について、`argument_recipient_672_bundle.write_canonical_capture_bundle`は正準履歴の最終tokenと全層残差を照合し、condition、履歴、直列化prefix、resolved config、provenance、safetensorsをchecksum付きの不変run bundleへ保存する。位置の不一致、非有限残差、dirty Gitまたはfreeze参照欠落は書込み前に拒否する。`argument_recipient_672_features.load_canonical_features`はbundleのchecksum、宣言、model・tokenizer版、token位置、露出、残差のshape・dtype・有限性を照合し、資料読取後の直列化prefixを語彙baseline入力として扱う。合成fixtureの往復試験は通過した。累積probe fitの計算部はあるが、freezeから全段階を呼ぶCLIは未接続である。
 
-`argument_recipient_672_runner`には、review宣言と別versionの実行宣言を再生成して照合し、design/runtime freezeのchecksumとclean Git commitを検査してから全672正準captureまたは固定112件の実走行へ進む入口を追加した。実走行では生generation、tool event、前後状態、native・厳密評価を別欄に保存する。指定資料が実際に露出した場合だけ末尾tokenの追加残差を取得し、露出しなければ欠測理由を残す。技術失敗は新しい不変bundleとして保持し、その場で停止する。[実行宣言とdesign freeze](../data/manifests/phase2_argument_recipient_672_v1.freeze.json)は作成済み。commit `8dd8670`のruntime freezeも保存済みだが、checksum照合を強化した新commit用に別のruntime freezeを作るまで研究runは開始しない。
+`argument_recipient_672_runner`は実行宣言、design/runtime freeze、clean Git commitを照合する。正準captureはB1でtrain 96件と共通validation 192件、B2～B5で新しいtrain 96件ずつを収集する。B2以降には直前の段階のchecksum付きfitと検証レポートが必要である。技術失敗は新しい不変bundleとして保持して停止する。固定112件の実走行は別モードであり、生generation、tool event、前後状態、native・厳密評価を別欄に保存する。
+
+`argument_recipient_672_analysis`はB1のtrain captureのみで系列外CVを完了・保存してから共通validationを読み、B1のfitと検証を保存する。B2～B5では同じB1選択ファイルの層・Cを再利用し、各段階の累積trainと共通validationでfit・評価する。例（`<id>`は新規の一意ID、`<freeze>`は同じclean commit用に新規作成したruntime freeze）：
+
+```bash
+PYTHONPATH=src .venv/bin/python -m goal_takeover.phase2.argument_recipient_672_runner capture configs/experiments/phase2_argument_recipient_672_v1.yaml --run-id-prefix <id> --batch B1 --runtime-freeze <freeze>
+PYTHONPATH=src .venv/bin/python -m goal_takeover.phase2.argument_recipient_672_analysis configs/experiments/phase2_argument_recipient_672_v1.yaml --stage B1 --run-prefix <id> --analysis-id <id> --runtime-freeze <freeze>
+PYTHONPATH=src .venv/bin/python -m goal_takeover.phase2.argument_recipient_672_runner capture configs/experiments/phase2_argument_recipient_672_v1.yaml --run-id-prefix <id> --batch B2 --previous-fit artifacts/processed/<id>-B1 --runtime-freeze <freeze>
+PYTHONPATH=src .venv/bin/python -m goal_takeover.phase2.argument_recipient_672_analysis configs/experiments/phase2_argument_recipient_672_v1.yaml --stage B1_to_B2 --run-prefix <id> --analysis-id <id> --selection artifacts/processed/<id>-b1-selection.json --runtime-freeze <freeze>
+```
+
+B3～B5も直前の`<id>-B1_to_Bn`を`--previous-fit`に渡す。派生結果は`artifacts/processed/`に新規作成し、既存結果を上書きしない。同じvalidationを各段階で使うため、この曲線は適応的な開発評価である。[実行宣言とdesign freeze](../data/manifests/phase2_argument_recipient_672_v1.freeze.json)を固定済み。旧runtime freezeは保持し、新しい実行commitに合う別のfreezeを用いる。
 
 runtime freezeの各環境・事前検査ファイルは実行時にchecksumを再照合する。実行commitごとに新しいruntime freezeを作り、`--runtime-freeze`でrepo相対パスを指定する。旧freezeは上書きしない。
 

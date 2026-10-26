@@ -260,8 +260,12 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   selects one task and both role-swap variants from each of 56 series. No new
   probe fit or research run has begun. An immutable canonical-capture bundle
   writer and mixed-source feature loader have a synthetic round-trip test.
-  The collection runner now has separate 672 canonical and 112 actual modes
-  behind design/runtime freeze checks. The separate v1 execution declarations
+  The collection runner now has staged B1–B5 canonical and separate 112 actual
+  modes behind design/runtime freeze checks. B1 captures 96 train and 192
+  common validation conditions; B2–B5 capture 96 new train conditions each
+  only after the preceding validation fit. The stage analysis command selects
+  the layer/C on B1 train alone, then fits and evaluates each cumulative stage
+  with a fixed selection. The separate v1 execution declarations
   and [design freeze](data/manifests/phase2_argument_recipient_672_v1.freeze.json)
   are issued; runtime freeze and same-commit GPU check remain. B1 train-only CV,
   cumulative probe fit, G/H primary versus I/J diagnostic reporting, and
@@ -277,8 +281,8 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   Commit `8dd8670` passed the frozen v1 native 2,688 controls, tokenizer 672
   positions, and longest-prefix 36-layer GPU capture (10.703 GiB peak); a D2
   actual model smoke ended in user-task failure after skipping its reads.
-  Its runtime freeze is preserved. A checksum-verifying runner revision is in
-  progress and requires a separate same-commit runtime freeze before collection.
+  Its runtime freeze is preserved. The staged runner revision requires a
+  separate same-commit runtime freeze before collection.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)

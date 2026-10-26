@@ -10,7 +10,12 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from goal_takeover.phase2.argument_recipient_672_runner import load_frozen_plan
+from goal_takeover.phase2.argument_recipient_672_analysis import stage_run_ids
+from goal_takeover.phase2.argument_recipient_672_runner import (
+    capture_rows_for_batch,
+    load_frozen_plan,
+    verify_previous_stage,
+)
 from goal_takeover.storage.run_writer import sha256_file
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,6 +24,29 @@ FREEZE = "data/manifests/phase2_argument_recipient_672_v1.freeze.json"
 
 @unittest.skipUnless(importlib.util.find_spec("yaml"), "YAML dependency is unavailable")
 class FrozenRunnerPlanTest(unittest.TestCase):
+    def test_batch_capture_and_analysis_mapping(self) -> None:
+        declaration = json.loads(
+            (ROOT / "data/templates/phase2_argument_recipient_672_v1.json").read_text()
+        )
+        checkpoint = json.loads(
+            (ROOT / "data/splits/phase2_argument_recipient_672_v1_checkpoints.json").read_text()
+        )
+        batches = [capture_rows_for_batch(declaration, f"B{index}") for index in range(1, 6)]
+        self.assertEqual([len(rows) for rows in batches], [288, 96, 96, 96, 96])
+        self.assertEqual(len({r["condition_id"] for batch in batches for r in batch}), 672)
+        self.assertEqual(
+            [sum(r["split_candidate"] == "validation" for r in batch) for batch in batches],
+            [192, 0, 0, 0, 0],
+        )
+        for index, stage in enumerate(("B1", "B1_to_B2", "B1_to_B3", "B1_to_B4", "B1_to_B5"), 1):
+            self.assertEqual(
+                len(stage_run_ids(declaration, checkpoint, stage, "capture")), 96 * index + 192
+            )
+        with self.assertRaisesRegex(ValueError, "preceding fitted validation"):
+            verify_previous_stage(
+                None, batch="B2", run_id_prefix="capture", runtime_freeze_sha256="x"
+            )
+
     def test_accepts_matching_temp_copy_and_rejects_checksum_drift(self) -> None:
         freeze = json.loads((ROOT / FREEZE).read_text())
         with tempfile.TemporaryDirectory() as directory:
