@@ -638,6 +638,8 @@ slotの区切り記号を含めるかは正準仕様で固定する。複数slot
 
 [RDR-2026-10-26-05](decisions/2026-10-26_argument_recipient_672_family_split_and_llm_audit.md)は、新規recipient内容コレクションの題材を、ファミリー全体を学習側または検証側へ置く方針へ改め、旧REC/DONの学習側算入と、別系統LLMのクロスチェックを中心に重要な点だけ人手で確認する監査方針を採用する。[改訂版草案](phase2_argument_recipient_672_review_draft_v1.md)の672条件配分、`role_swap_auc`主指標、段階0、日程・停止規則は未採用で、条件・split・runtimeは未凍結である。
 
+[RDR-2026-10-26-06](decisions/2026-10-26_argument_recipient_672_three_task_structure.md)は、新規コレクションの規模を学習40系列・検証16系列×各3タスク×各4条件＝480＋192条件、学習曲線の刻みを8系列・96条件に改め、金額を明記して計算を求めない。Uシリーズは`U0`・`UN`・`UI`、Dシリーズは`D1`・`D1M`・`D2`の3タスクとし、文型はユーザー指示用・資料用の各役割で学習16＋検証専用8種類とする。[RDR-2026-10-26-07](decisions/2026-10-26_argument_recipient_672_d1m_d2_revision_and_rdr_reconciliation.md)はD1M・D2の資料を項目ID・支払先名の照合が必要な構造に修正し、同日RDR-01～06の現行有効な読み方を整理する。[タスク本文草案](phase2_argument_recipient_672_task_text_draft.md)は研究実施者のレビュー前であり、主指標、取得位置・方式、関係graph、split、native evaluator、監査仕様、runtimeは未凍結である。
+
 `source_role_readout`には、可能な限り同一または厳密に対応する内容を次の文脈へ置いた条件を使う。
 
 - user instruction
@@ -798,7 +800,7 @@ $$
 - 確認的IPI: 独立clusterを最低30、各clusterに3～4表層variant
 - 攻撃なしbaseline: 60～100
 
-この配分は当初の暫定値である。2026-10-26の[RDR-2026-10-26-01](decisions/2026-10-26_argument_recipient_learning_curve_expansion.md)による新規recipient内容probeの段階的開発コレクションには、学習最大500条件・validation 200条件を認める。約450～700という旧総数とprobe教師・対応対照200～300という旧枠を、このコレクションの停止上限には用いない。確認的IPIの最低30独立clusterとtest隔離は維持し、容量・所要時間・実際の独立成分数を新規run前に見積もる。
+この配分は当初の暫定値である。2026-10-26の[RDR-2026-10-26-01](decisions/2026-10-26_argument_recipient_learning_curve_expansion.md)による新規recipient内容probeの段階的開発コレクションには、学習最大500条件・validation 200条件を認める。約450～700という旧総数とprobe教師・対応対照200～300という旧枠を、このコレクションの停止上限には用いない。確認的IPIの最低30独立clusterとtest隔離は維持し、容量・所要時間・実際の独立成分数を新規run前に見積もる。規模はその後[RDR-2026-10-26-06](decisions/2026-10-26_argument_recipient_672_three_task_structure.md)で学習480・validation 192条件へ改めた。
 
 確認的IPIの30 clusterは統計的十分性を保証する値ではなく、実装時間、容量および意味的独立性を考慮した暫定下限である。予備実験後、training / validation側だけの効果量、cluster間分散および希望する区間幅からsimulationまたはcluster bootstrapで推定精度を確認し、最終配分を凍結する。test効果量を見て標本数を後付け変更しない。
 

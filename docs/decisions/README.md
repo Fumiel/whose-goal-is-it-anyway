@@ -25,6 +25,8 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-10-26 | [RDR-2026-10-26-07](2026-10-26_argument_recipient_672_d1m_d2_revision_and_rdr_reconciliation.md) | accepted | D1M・D2資料を、項目ID・支払先名の照合が必要な構造（全項目に固有口座）へ修正し、同日RDR-01～06の食い違いについて現行有効な読み方と適用順を整理 |
+| 2026-10-26 | [RDR-2026-10-26-06](2026-10-26_argument_recipient_672_three_task_structure.md) | accepted | 672条件（40＋16系列×3タスク×4条件、金額明記、U0/UN/UI・D1/D1M/D2）と文型規模（各文脈・役割で学習16＋検証専用8）を採用し、全168タスクの本文草案を生成。主指標・取得・graph・split・runtimeは未凍結 |
 | 2026-10-26 | [RDR-2026-10-26-05](2026-10-26_argument_recipient_672_family_split_and_llm_audit.md) | accepted | recipient probe拡張を題材ファミリー単位の学習／検証分離（検証にI決済・銀行サービス由来を配置）とし、旧REC/DONの学習算入と、別系統LLMクロスチェック中心の層別監査を採用。672条件配分・主指標・日程は未採用 |
 | 2026-10-26 | [RDR-2026-10-26-04](2026-10-26_argument_recipient_700_draft_and_mixed_curve.md) | accepted | 提示済み学習5・検証候補5系列を候補として採用し、資料由来条件も同じ混合学習曲線へ含める。Codex作成700条件レビュー草案はClaude確認前・未凍結 |
 | 2026-10-26 | [RDR-2026-10-26-03](2026-10-26_argument_recipient_wording_diversity.md) | accepted | 拡張recipient内容タスクで複数の文型、recipient・参照文型の交差、口座役割・提示順・位置の入替えを採用。具体文言と配分は未凍結 |
