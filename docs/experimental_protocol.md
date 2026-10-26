@@ -636,6 +636,8 @@ slotの区切り記号を含めるかは正準仕様で固定する。複数slot
 
 [RDR-2026-10-26-04](decisions/2026-10-26_argument_recipient_700_draft_and_mixed_curve.md)は、ユーザー指示由来と資料由来の条件を同じ累積学習曲線へ含めると決めた。各規則で口座が実際に露出した後の位置を選び、混合の未知系列AUROCに加えてsource・規則・境界・意味系列別の性能と欠測を報告する。旧probe実装のユーザー指示のみを使う露出検査と語彙baselineは、資料由来の選択位置までの直列化済み入力へ拡張してから使う。採用済み10系列候補を核とする[Codex作成の700条件レビュー草案](phase2_argument_recipient_700_codex_review_draft.md)はClaudeクロスチェック前であり、具体条件・独立成分・splitのfreezeではない。
 
+[RDR-2026-10-26-05](decisions/2026-10-26_argument_recipient_672_family_split_and_llm_audit.md)は、新規recipient内容コレクションの題材を、ファミリー全体を学習側または検証側へ置く方針へ改め、旧REC/DONの学習側算入と、別系統LLMのクロスチェックを中心に重要な点だけ人手で確認する監査方針を採用する。[改訂版草案](phase2_argument_recipient_672_review_draft_v1.md)の672条件配分、`role_swap_auc`主指標、段階0、日程・停止規則は未採用で、条件・split・runtimeは未凍結である。
+
 `source_role_readout`には、可能な限り同一または厳密に対応する内容を次の文脈へ置いた条件を使う。
 
 - user instruction

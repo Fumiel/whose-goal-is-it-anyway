@@ -191,6 +191,15 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   presented themes are adopted only as candidates. The current probe code
   cannot yet score document-only positives under its user-instruction exposure
   check, so mixed-curve implementation and validation remain outstanding.
+  [RDR-2026-10-26-05](docs/decisions/2026-10-26_argument_recipient_672_family_split_and_llm_audit.md)
+  records the Claude cross-check and the [revised 672-condition draft](docs/phase2_argument_recipient_672_review_draft_v1.md)
+  (original Codex draft unchanged). Adopted: whole topic-family split between
+  train and validation (decision/banking-service family in validation), reuse
+  of the already-inspected REC/DON conditions on the training side, and
+  primarily cross-LLM audit with human checks of key points only. Not adopted:
+  the `role_swap_auc` primary metric, the 480+192 allocation, stage-0
+  diagnostics, and the schedule/stop rules (left unchanged). Nothing is frozen
+  or executed; see the [cross-check record](docs/phase2_argument_recipient_700_claude_crosscheck_2026-10-26.md).
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)

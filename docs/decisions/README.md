@@ -25,6 +25,7 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-10-26 | [RDR-2026-10-26-05](2026-10-26_argument_recipient_672_family_split_and_llm_audit.md) | accepted | recipient probe拡張を題材ファミリー単位の学習／検証分離（検証にI決済・銀行サービス由来を配置）とし、旧REC/DONの学習算入と、別系統LLMクロスチェック中心の層別監査を採用。672条件配分・主指標・日程は未採用 |
 | 2026-10-26 | [RDR-2026-10-26-04](2026-10-26_argument_recipient_700_draft_and_mixed_curve.md) | accepted | 提示済み学習5・検証候補5系列を候補として採用し、資料由来条件も同じ混合学習曲線へ含める。Codex作成700条件レビュー草案はClaude確認前・未凍結 |
 | 2026-10-26 | [RDR-2026-10-26-03](2026-10-26_argument_recipient_wording_diversity.md) | accepted | 拡張recipient内容タスクで複数の文型、recipient・参照文型の交差、口座役割・提示順・位置の入替えを採用。具体文言と配分は未凍結 |
 | 2026-10-26 | [RDR-2026-10-26-02](2026-10-26_argument_recipient_rules_role_swap.md) | accepted | 拡張recipient内容タスクの5種類の決定規則と、同一タスク内の4条件によるrecipient・参照口座の役割入替えを設計方針として採用。具体条件は未凍結 |
