@@ -283,6 +283,13 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   actual model smoke ended in user-task failure after skipping its reads.
   Its runtime freeze is preserved. The staged runner revision requires a
   separate same-commit runtime freeze before collection.
+  Commit `0ec9579` has its own runtime freeze (checksums re-verified). The B1
+  canonical capture (run prefix `argrec672-v1-001`; 96 train + 192 validation)
+  completed on 2026-10-27 in about 3.5 minutes: 288 bundles `completed`, no
+  technical failure, 1,728 manifest checksums matched. No probe fit, B1 CV or
+  validation score has been computed. [RDR-2026-10-27-02](docs/decisions/2026-10-27_argument_recipient_672_preprocessing_and_undefined_metric_rules.md)
+  fixes the preprocessing, calibration and undefined-metric rules before the
+  first fit; validation-viewing scope and stop thresholds remain open.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
