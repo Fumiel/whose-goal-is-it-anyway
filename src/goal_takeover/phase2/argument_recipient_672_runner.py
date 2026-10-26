@@ -49,7 +49,9 @@ def _prefix_record(prefix: Any) -> dict[str, Any]:
     }
 
 
-def load_frozen_plan(config_path: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+def load_frozen_plan(
+    config_path: Path, *, runtime_freeze_override: Path | None = None
+) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
     """Fail before model loading if any reviewed declaration or freeze has drifted."""
     config = load_yaml(config_path)
     if config.get("status") != "design_frozen_runtime_pending":
@@ -78,7 +80,13 @@ def load_frozen_plan(config_path: Path) -> tuple[dict[str, Any], dict[str, Any],
         )
     }
     freeze = json.loads(paths["design_freeze"].read_text(encoding="utf-8"))
-    runtime = json.loads(paths["runtime_freeze"].read_text(encoding="utf-8"))
+    runtime_path = paths["runtime_freeze"]
+    if runtime_freeze_override is not None:
+        relative_runtime = Path(runtime_freeze_override)
+        if relative_runtime.is_absolute() or ".." in relative_runtime.parts:
+            raise ValueError("unsafe runtime freeze override")
+        runtime_path = root / relative_runtime
+    runtime = json.loads(runtime_path.read_text(encoding="utf-8"))
     if freeze.get("status") != "design_frozen_runtime_pending" or runtime.get("status") != "frozen":
         raise ValueError("design or runtime freeze status differs")
     expected_files = {str(config_path.resolve().relative_to(root))} | {
@@ -105,6 +113,13 @@ def load_frozen_plan(config_path: Path) -> tuple[dict[str, Any], dict[str, Any],
         raise ValueError("runtime freeze requires the clean matching Git commit")
     if runtime.get("design_freeze_sha256") != sha256_file(paths["design_freeze"]):
         raise ValueError("runtime freeze design checksum differs")
+    if not runtime.get("files_sha256"):
+        raise ValueError("runtime freeze has no environment or preflight checksums")
+    for relative, digest in runtime["files_sha256"].items():
+        path = Path(relative)
+        if path.is_absolute() or ".." in path.parts or sha256_file(root / path) != digest:
+            raise ValueError(f"runtime checksum differs: {relative}")
+    config["_resolved_runtime_freeze_path"] = str(runtime_path.relative_to(root))
     draft = json.loads(paths["draft"].read_text(encoding="utf-8"))
     declaration = json.loads(paths["declaration"].read_text(encoding="utf-8"))
     split = json.loads(paths["split"].read_text(encoding="utf-8"))
@@ -130,11 +145,15 @@ def load_frozen_plan(config_path: Path) -> tuple[dict[str, Any], dict[str, Any],
     return config, declaration, split
 
 
-def capture_all(config_path: Path, *, run_id_prefix: str) -> None:
+def capture_all(
+    config_path: Path, *, run_id_prefix: str, runtime_freeze_override: Path | None = None
+) -> None:
     """Capture every declared condition once, retaining a technical failure bundle."""
     import torch
 
-    config, declaration, split = load_frozen_plan(config_path)
+    config, declaration, split = load_frozen_plan(
+        config_path, runtime_freeze_override=runtime_freeze_override
+    )
     root = config_path.resolve().parents[2]
     output_root = root / config["resources"]["artifact_root"]
     if output_root != root / "artifacts":
@@ -150,7 +169,7 @@ def capture_all(config_path: Path, *, run_id_prefix: str) -> None:
     extractor = HuggingFaceActivationExtractor(model, block_path="model.layers")
     commit, _ = _git_metadata()
     design_freeze_path = root / config["references"]["design_freeze"]
-    runtime_freeze_path = root / config["references"]["runtime_freeze"]
+    runtime_freeze_path = root / config["_resolved_runtime_freeze_path"]
     provenance = {
         "git_commit": commit,
         "git_dirty": False,
@@ -226,12 +245,16 @@ def capture_all(config_path: Path, *, run_id_prefix: str) -> None:
             raise
 
 
-def run_actual_sample(config_path: Path, *, run_id_prefix: str) -> None:
+def run_actual_sample(
+    config_path: Path, *, run_id_prefix: str, runtime_freeze_override: Path | None = None
+) -> None:
     """Execute the preselected 112 trajectories and capture observed exposure."""
     import torch
     from safetensors.torch import save
 
-    config, declaration, split = load_frozen_plan(config_path)
+    config, declaration, split = load_frozen_plan(
+        config_path, runtime_freeze_override=runtime_freeze_override
+    )
     root = config_path.resolve().parents[2]
     output_root = root / config["resources"]["artifact_root"]
     if output_root != root / "artifacts":
@@ -253,7 +276,7 @@ def run_actual_sample(config_path: Path, *, run_id_prefix: str) -> None:
         "git_commit": commit,
         "git_dirty": False,
         "design_freeze_sha256": sha256_file(root / config["references"]["design_freeze"]),
-        "runtime_freeze_sha256": sha256_file(root / config["references"]["runtime_freeze"]),
+        "runtime_freeze_sha256": sha256_file(root / config["_resolved_runtime_freeze_path"]),
         "model_revision": config["model"]["revision"],
         "tokenizer_revision": config["model"]["tokenizer_revision"],
     }
@@ -428,11 +451,20 @@ def main() -> None:
     parser.add_argument("mode", choices=("capture", "actual"))
     parser.add_argument("config", type=Path)
     parser.add_argument("--run-id-prefix", required=True)
+    parser.add_argument("--runtime-freeze", type=Path)
     args = parser.parse_args()
     if args.mode == "capture":
-        capture_all(args.config, run_id_prefix=args.run_id_prefix)
+        capture_all(
+            args.config,
+            run_id_prefix=args.run_id_prefix,
+            runtime_freeze_override=args.runtime_freeze,
+        )
     else:
-        run_actual_sample(args.config, run_id_prefix=args.run_id_prefix)
+        run_actual_sample(
+            args.config,
+            run_id_prefix=args.run_id_prefix,
+            runtime_freeze_override=args.runtime_freeze,
+        )
 
 
 if __name__ == "__main__":

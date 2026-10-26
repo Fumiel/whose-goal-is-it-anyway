@@ -270,9 +270,15 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   The researcher chose Codex CLI `gpt-6-sol` for the LLM audit;
   because Codex also helped design the task, this audit is not independent of
   all design assistance. The read-only JSON audit prompt/schema are adopted;
-  the current CLI is `0.164.0`, and runtime model access remains to be checked.
+  Codex CLI `0.164.0` ran `gpt-6-sol` and passed a schema-valid synthetic
+  audit smoke. This was engineering-only, not a research audit.
   Resource ceilings are 12 GiB GPU, 300 seconds and 0.05 GiB storage per
   condition; a technical failure stops collection after immutable recording.
+  Commit `8dd8670` passed the frozen v1 native 2,688 controls, tokenizer 672
+  positions, and longest-prefix 36-layer GPU capture (10.703 GiB peak); a D2
+  actual model smoke ended in user-task failure after skipping its reads.
+  Its runtime freeze is preserved. A checksum-verifying runner revision is in
+  progress and requires a separate same-commit runtime freeze before collection.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)

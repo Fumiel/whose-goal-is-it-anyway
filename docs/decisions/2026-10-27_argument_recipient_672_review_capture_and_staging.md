@@ -66,6 +66,8 @@ related_decisions:
 
 これらの判断を[実行設定](../../configs/experiments/phase2_argument_recipient_672_v1.yaml)、別versionの672条件・split・graph・チェックポイント・実走行標本、および[design freeze](../../data/manifests/phase2_argument_recipient_672_v1.freeze.json)へ反映した。design freezeは入力9ファイルのchecksumを持ち、672条件・480/192配置・112件標本と一致する。**runtime freezeは未作成で、新規研究runはまだ始めない。**
 
+同日、commit `8dd8670`に対するnative・tokenizer・GPU事前検査とruntime freezeを別のGit無視領域へ保存した。その後、runnerがruntime freeze内の環境・事前検査ファイルのchecksumを再確認する改修を行った。旧freezeは上書きせず、新commitの同一commit検査と別runtime freezeを作成してから研究runを開始する。Codex CLI `0.164.0`と`gpt-6-sol`は合成packetでJSON schemaの工学試験を通過したが、実走行監査は未開始である。
+
 ## この判断で未固定の実行前事項
 
 - 新規の本文修正や追加系列が生じた場合のcross-split edge再審査。現行配置の主集計認定は上記の具体本文と既使用系列の照合に限る。

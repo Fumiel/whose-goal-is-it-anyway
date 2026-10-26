@@ -29,12 +29,17 @@ class FrozenRunnerPlanTest(unittest.TestCase):
                 shutil.copyfile(ROOT / relative, target)
             runtime = root / "artifacts/phase2-argument-recipient-672-runtime.freeze.json"
             runtime.parent.mkdir(parents=True, exist_ok=True)
+            runtime_checked_file = "artifacts/synthetic-environment.lock"
+            (root / runtime_checked_file).write_text("synthetic environment\n")
             runtime.write_text(
                 json.dumps(
                     {
                         "status": "frozen",
                         "git_commit": "synthetic-commit",
                         "design_freeze_sha256": sha256_file(root / FREEZE),
+                        "files_sha256": {
+                            runtime_checked_file: sha256_file(root / runtime_checked_file)
+                        },
                     }
                 )
             )
@@ -46,6 +51,20 @@ class FrozenRunnerPlanTest(unittest.TestCase):
                 _, declaration, split = load_frozen_plan(config)
                 self.assertEqual(len(declaration["condition_specs"]), 672)
                 self.assertEqual(len(split["assignments"]), 672)
+                alternate = root / "artifacts/alternate-runtime.freeze.json"
+                shutil.copyfile(runtime, alternate)
+                overridden, _, _ = load_frozen_plan(
+                    config,
+                    runtime_freeze_override=Path("artifacts/alternate-runtime.freeze.json"),
+                )
+                self.assertEqual(
+                    overridden["_resolved_runtime_freeze_path"],
+                    "artifacts/alternate-runtime.freeze.json",
+                )
+                (root / runtime_checked_file).write_text("tampered")
+                with self.assertRaisesRegex(ValueError, "runtime checksum differs"):
+                    load_frozen_plan(config)
+                (root / runtime_checked_file).write_text("synthetic environment\n")
                 with (root / "data/splits/phase2_argument_recipient_672_v1.json").open(
                     "a"
                 ) as stream:
