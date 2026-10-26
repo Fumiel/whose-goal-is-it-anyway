@@ -1,0 +1,20 @@
+schema_version: 1
+status: engineering_smoke_only
+seed: 20261027
+model:
+  name: Qwen/Qwen3-8B
+  revision: b968826d9c46dd6066d109eabc6255188de91218
+  tokenizer_revision: b968826d9c46dd6066d109eabc6255188de91218
+  trust_remote_code: false
+  dtype: bfloat16
+  device_map: cuda
+  quantization: int8
+  low_cpu_mem_usage: true
+  attn_implementation: sdpa
+  max_context_tokens: 4096
+decoding:
+  do_sample: false
+  temperature: 0.0
+  top_p: 1.0
+  max_new_tokens: 256
+  max_steps: 8

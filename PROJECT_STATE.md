@@ -216,6 +216,19 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   fixes the D1M/D2 documents after researcher review (every entry or registry
   payee now has its own account, so ID/name matching is required; target
   positions vary) and records the currently effective reading of RDR-01–06.
+  The [672 draft execution environment](docs/phase2_argument_recipient_672_environment.md)
+  now registers each condition's documents and strict clean evaluator in an
+  isolated native Banking session. Model-free tool controls and canonical
+  tokenizer exposure checks are implemented, with a deterministic single-run
+  Qwen engineering smoke path. These checks do not freeze the scientific
+  collection or supply probe features. Researcher review, relationship graph,
+  split, primary metric, capture method/positions, audit specification and
+  runtime remain open before a research collection.
+  On 2026-10-27, all 672 native conditions passed 2,688 model-free controls
+  and all 672 passed canonical Qwen tokenizer boundary checks. A single D2
+  Qwen3-8B int8 engineering smoke completed both document reads and a transfer
+  call; its recipient was one character short, so both evaluators recorded
+  user-task failure. This smoke is not a research run.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
