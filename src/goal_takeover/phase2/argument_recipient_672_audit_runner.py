@@ -8,7 +8,7 @@ import subprocess
 import sys
 import time
 from collections.abc import Callable
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -42,11 +42,7 @@ def _load(path: Path) -> Any:
 
 def discover_actual_runs(runs_dir: Path, run_prefix: str, expected_count: int) -> list[Path]:
     """Order by run ID so the audit never depends on an outcome."""
-    runs = sorted(
-        path
-        for path in runs_dir.glob(f"{run_prefix}-a[0-9][0-9][0-9]")
-        if path.is_dir()
-    )
+    runs = sorted(path for path in runs_dir.glob(f"{run_prefix}-a[0-9][0-9][0-9]") if path.is_dir())
     if len(runs) != expected_count:
         raise ValueError(f"expected {expected_count} actual runs, found {len(runs)}")
     return runs
@@ -122,7 +118,9 @@ def codex_cli_version() -> str:
     ).stdout.strip()
 
 
-def _validate_judgment(judgment: Any, schema: dict[str, Any], run_id: str, condition_id: str) -> None:
+def _validate_judgment(
+    judgment: Any, schema: dict[str, Any], run_id: str, condition_id: str
+) -> None:
     errors = sorted(Draft202012Validator(schema).iter_errors(judgment), key=str)
     if errors:
         raise ValueError(f"schema violation: {errors[0].message}")
@@ -169,7 +167,7 @@ def audit_actual_runs(
         "retry_policy": "none; a technical failure is recorded and the audit stops",
         "judges": 1,
         "sha256": {"prompt": _sha256_file(prompt_path), "schema": _sha256_file(schema_path)},
-        "created_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": datetime.now(UTC).isoformat(),
     }
     _write_json(out_dir / "spec.json", spec)
     cases: list[dict[str, Any]] = []

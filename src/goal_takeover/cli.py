@@ -160,6 +160,38 @@ def _agentdojo_preflight(config_path: str) -> list[dict[str, object]]:
     return results
 
 
+_RECIPIENT_672_CONFIGS = {
+    "phase2_argument_recipient_672_smoke.yaml",
+    "phase2_argument_recipient_672_v1.yaml",
+}
+
+
+def _validate_config_path(path: Path, root: Path) -> None:
+    config = load_yaml(path)
+    if path.name not in _RECIPIENT_672_CONFIGS:
+        validate_config(config, source=str(path))
+        validate_config_references(config, source=path)
+        return
+
+    # These Phase 2 configs use a separately frozen v1 format and repository-
+    # relative references. Changing the frozen YAML would invalidate its hash.
+    if config.get("schema_version") != 1:
+        raise ConfigError(f"{path}: schema_version must be 1")
+    if not isinstance(config.get("status"), str):
+        raise ConfigError(f"{path}: status must be a string")
+    for section in ("model", "decoding"):
+        if not isinstance(config.get(section), dict):
+            raise ConfigError(f"{path}: {section} must be a mapping")
+    references = config.get("references", {})
+    if not isinstance(references, dict):
+        raise ConfigError(f"{path}: references must be a mapping")
+    for name, raw_path in references.items():
+        if not isinstance(raw_path, str) or not raw_path or Path(raw_path).is_absolute():
+            raise ConfigError(f"{path}: reference {name} must be a relative path string")
+        if name != "runtime_freeze" and not (root / raw_path).is_file():
+            raise ConfigError(f"{path}: reference {name} does not exist: {raw_path}")
+
+
 def _validate_repository(root: Path) -> None:
     try:
         from jsonschema import Draft202012Validator
@@ -167,9 +199,7 @@ def _validate_repository(root: Path) -> None:
         raise RuntimeError("jsonschema is required; install the project first") from exc
 
     for path in sorted((root / "configs").glob("**/*.yaml")):
-        config = load_yaml(path)
-        validate_config(config, source=str(path))
-        validate_config_references(config, source=path)
+        _validate_config_path(path, root)
     for path in sorted((root / "data" / "schemas").glob("*.json")):
         with path.open(encoding="utf-8") as stream:
             schema = json.load(stream)
@@ -184,9 +214,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "validate-config":
         try:
-            config = load_yaml(args.path)
-            validate_config(config, source=args.path)
-            validate_config_references(config, source=args.path)
+            _validate_config_path(Path(args.path), Path.cwd())
         except (ConfigError, OSError, RuntimeError) as exc:
             print(f"invalid: {exc}")
             return 1

@@ -135,7 +135,7 @@ class AuditRunnerTest(unittest.TestCase):
         )
         packet_text = (self.root / "out/cases/pre-a001/input.txt").read_text()
         self.assertNotIn("strict_evaluation", packet_text)
-        self.assertNotIn("user_task_success\": true", packet_text)
+        self.assertNotIn('user_task_success": true', packet_text)
 
     def test_technical_failure_stops_and_is_recorded(self) -> None:
         calls: list[str] = []

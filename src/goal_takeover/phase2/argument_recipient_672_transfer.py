@@ -170,7 +170,8 @@ def compute_transfer(
         spec = declared[condition_id]
         can, act = canonical[condition_id], actual[condition_id]
         cosine = float(
-            can["vector"] @ act["vector"]
+            can["vector"]
+            @ act["vector"]
             / (np.linalg.norm(can["vector"]) * np.linalg.norm(act["vector"]))
         )
         relative_l2 = float(
@@ -193,7 +194,9 @@ def compute_transfer(
                 "canonical_decision": {
                     c: decision_values(can["vector"], probes[c]) for c in candidates
                 },
-                "actual_decision": {c: decision_values(act["vector"], probes[c]) for c in candidates},
+                "actual_decision": {
+                    c: decision_values(act["vector"], probes[c]) for c in candidates
+                },
             }
         )
 
@@ -237,7 +240,9 @@ def compute_transfer(
         "candidates": candidates,
         "all": summarize(items),
         "validation_split": summarize(validation),
-        "validation_gh": summarize([item for item in validation if item["family_id"] in PRIMARY_FAMILIES]),
+        "validation_gh": summarize(
+            [item for item in validation if item["family_id"] in PRIMARY_FAMILIES]
+        ),
         "train_split_in_sample_consistency": summarize(
             [item for item in items if item["split"] == "train"]
         ),
