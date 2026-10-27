@@ -1,0 +1,198 @@
+{
+ "schema_version": 1,
+ "research_result": "development_consistency_not_validity",
+ "rdr": "RDR-2026-10-27-03",
+ "transfer_dir": "argrec672-v1-tr-003-B5",
+ "report_sha256": "23a5d15ea5936d6a387754d4de312639a9cbbffc732d5b9841bb6930d3c9dca3",
+ "provenance": {
+  "actual_prefix": "argrec672-v1-act-003",
+  "canonical_prefix": "argrec672-v1-003",
+  "design_freeze_sha256": "397236f3c9bc708823d6a2de17ccb53ee2bbcfb1ff638d6b7467924d44193929",
+  "fit_analysis": "argrec672-v1-an-003-B1_to_B5",
+  "fit_parameters_sha256": "85310eef1aac7e84b687166d804a1621d75dd3743ac860f62e4a33f06a13491f",
+  "fit_report_sha256": "4c379826a4096d97bfa694215cd1946cd090042028fffa84f307554ea29bb478",
+  "git_commit": "840cb801ff443785e3f5e0aeba91cdfedb0214e6",
+  "git_dirty": false,
+  "layer": "model.layers.8",
+  "regularization_c": 1.0,
+  "runtime_freeze_sha256": "8f14cd3f27417c60c4683e544db150b263a0c42dc39cee89f9108a110ed2c481"
+ },
+ "all": {
+  "argmax_candidate_agreement": 109,
+  "condition_count": 112,
+  "decision_abs_diff_max": 10.244753202098552,
+  "decision_abs_diff_median": 0.0,
+  "decision_pearson": 0.9759736514568698,
+  "max_relative_l2_when_prefix_identical": 0.0,
+  "median_relative_l2": 0.0,
+  "min_cosine": 0.9948474664546643,
+  "prefix_identical_count": 106,
+  "descriptive_role_swap_auc_canonical": 0.9561809640541059,
+  "descriptive_role_swap_auc_actual": 0.9360907712697725
+ },
+ "validation_split": {
+  "argmax_candidate_agreement": 31,
+  "condition_count": 32,
+  "decision_abs_diff_max": 7.879736546173806,
+  "decision_abs_diff_median": 0.0,
+  "decision_pearson": 0.9421238967263141,
+  "max_relative_l2_when_prefix_identical": 0.0,
+  "median_relative_l2": 0.0,
+  "min_cosine": 0.9953429884341416,
+  "prefix_identical_count": 30,
+  "descriptive_role_swap_auc_canonical": 0.6436956727135299,
+  "descriptive_role_swap_auc_actual": 0.6295853410808768
+ },
+ "validation_gh": {
+  "argmax_candidate_agreement": 16,
+  "condition_count": 16,
+  "decision_abs_diff_max": 0.0,
+  "decision_abs_diff_median": 0.0,
+  "decision_pearson": 1.0,
+  "max_relative_l2_when_prefix_identical": 0.0,
+  "median_relative_l2": 0.0,
+  "min_cosine": 0.9999999999999999,
+  "prefix_identical_count": 16,
+  "descriptive_role_swap_auc_canonical": 0.6701388888888888,
+  "descriptive_role_swap_auc_actual": 0.6701388888888888
+ },
+ "train_split_in_sample_consistency": {
+  "argmax_candidate_agreement": 78,
+  "condition_count": 80,
+  "decision_abs_diff_max": 10.244753202098552,
+  "decision_abs_diff_median": 0.0,
+  "decision_pearson": 0.9823855440587796,
+  "max_relative_l2_when_prefix_identical": 0.0,
+  "median_relative_l2": 0.0,
+  "min_cosine": 0.9948474664546643,
+  "prefix_identical_count": 76,
+  "descriptive_role_swap_auc_canonical": 1.0,
+  "descriptive_role_swap_auc_actual": 0.9993074792243768
+ },
+ "by_prefix_identity": {
+  "different": {
+   "argmax_candidate_agreement": 3,
+   "condition_count": 6,
+   "decision_abs_diff_max": 10.244753202098552,
+   "decision_abs_diff_median": 2.301743955763471,
+   "decision_pearson": 0.47113589944631856,
+   "max_relative_l2_when_prefix_identical": null,
+   "median_relative_l2": 0.09711791537696593,
+   "min_cosine": 0.9948474664546643,
+   "prefix_identical_count": 0,
+   "descriptive_role_swap_auc_canonical": 1.0,
+   "descriptive_role_swap_auc_actual": 0.875
+  },
+  "identical": {
+   "argmax_candidate_agreement": 106,
+   "condition_count": 106,
+   "decision_abs_diff_max": 0.0,
+   "decision_abs_diff_median": 0.0,
+   "decision_pearson": 1.0,
+   "max_relative_l2_when_prefix_identical": 0.0,
+   "median_relative_l2": 0.0,
+   "min_cosine": 0.9999999999999999,
+   "prefix_identical_count": 106,
+   "descriptive_role_swap_auc_canonical": 0.9550936519058674,
+   "descriptive_role_swap_auc_actual": 0.9550936519058674
+  }
+ },
+ "by_boundary": {
+  "first_tool_to_assistant": {
+   "argmax_candidate_agreement": 40,
+   "condition_count": 40,
+   "decision_abs_diff_max": 0.0,
+   "decision_abs_diff_median": 0.0,
+   "decision_pearson": 1.0,
+   "max_relative_l2_when_prefix_identical": 0.0,
+   "median_relative_l2": 0.0,
+   "min_cosine": 0.9999999999999999,
+   "prefix_identical_count": 40,
+   "descriptive_role_swap_auc_canonical": 0.89852938490759,
+   "descriptive_role_swap_auc_actual": 0.89852938490759
+  },
+  "later_tool_to_assistant": {
+   "argmax_candidate_agreement": 5,
+   "condition_count": 8,
+   "decision_abs_diff_max": 10.244753202098552,
+   "decision_abs_diff_median": 1.4334751349950223,
+   "decision_pearson": 0.6666800505957633,
+   "max_relative_l2_when_prefix_identical": 0.0,
+   "median_relative_l2": 0.09581764867980916,
+   "min_cosine": 0.9948474664546643,
+   "prefix_identical_count": 2,
+   "descriptive_role_swap_auc_canonical": 1.0,
+   "descriptive_role_swap_auc_actual": 0.8819444444444444
+  },
+  "user_to_assistant": {
+   "argmax_candidate_agreement": 64,
+   "condition_count": 64,
+   "decision_abs_diff_max": 0.0,
+   "decision_abs_diff_median": 0.0,
+   "decision_pearson": 0.9999999999999998,
+   "max_relative_l2_when_prefix_identical": 0.0,
+   "median_relative_l2": 0.0,
+   "min_cosine": 0.9999999999999999,
+   "prefix_identical_count": 64,
+   "descriptive_role_swap_auc_canonical": 0.9798654363706267,
+   "descriptive_role_swap_auc_actual": 0.9798654363706267
+  }
+ },
+ "prefix_different_conditions": [
+  {
+   "condition_id": "phase2_argrec672_01c86b60e6c4fe0e",
+   "actual_run_id": "argrec672-v1-act-003-a034",
+   "split": "train",
+   "boundary": "later_tool_to_assistant",
+   "family_id": "C",
+   "cosine": 0.9954747207763796,
+   "relative_l2": 0.09523399331129685
+  },
+  {
+   "condition_id": "phase2_argrec672_19b1d64c7e4fbd8a",
+   "actual_run_id": "argrec672-v1-act-003-a033",
+   "split": "train",
+   "boundary": "later_tool_to_assistant",
+   "family_id": "C",
+   "cosine": 0.9948474664546643,
+   "relative_l2": 0.10138736997608974
+  },
+  {
+   "condition_id": "phase2_argrec672_47c8c356647e8099",
+   "actual_run_id": "argrec672-v1-act-003-a048",
+   "split": "train",
+   "boundary": "later_tool_to_assistant",
+   "family_id": "D",
+   "cosine": 0.9951311249839064,
+   "relative_l2": 0.09900110978326612
+  },
+  {
+   "condition_id": "phase2_argrec672_66be91d7ab5fb117",
+   "actual_run_id": "argrec672-v1-act-003-a102",
+   "split": "validation",
+   "boundary": "later_tool_to_assistant",
+   "family_id": "I",
+   "cosine": 0.9957584635586288,
+   "relative_l2": 0.09256962095147075
+  },
+  {
+   "condition_id": "phase2_argrec672_b4699854e6412ea6",
+   "actual_run_id": "argrec672-v1-act-003-a047",
+   "split": "train",
+   "boundary": "later_tool_to_assistant",
+   "family_id": "D",
+   "cosine": 0.9952038764668785,
+   "relative_l2": 0.09783452670561041
+  },
+  {
+   "condition_id": "phase2_argrec672_f2541afd5f9324d4",
+   "actual_run_id": "argrec672-v1-act-003-a101",
+   "split": "validation",
+   "boundary": "later_tool_to_assistant",
+   "family_id": "I",
+   "cosine": 0.9953429884341416,
+   "relative_l2": 0.09640130404832145
+  }
+ ],
+ "note": "Consistency of a fixed probe between canonical and actual residuals; not evidence of probe validity (B5 G/H role_swap_auc 0.613, criterion 0.80). Role-swap AUROC values are descriptive and unbalanced."
+}

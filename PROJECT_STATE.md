@@ -314,7 +314,13 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   (112/112 judged, no technical failure, user-task success agrees with the strict
   automatic label in 112/112, no machine-flagged human-review candidate; see the
   [audit log](docs/experiment_logs/2026-10-27_argument_recipient_672_actual_llm_audit.md)).
-  It is not a human audit and not independent of task design.
+  It is not a human audit and not independent of task design. The researcher
+  waived a human audit of these 112 runs ([RDR-2026-10-27-03](docs/decisions/2026-10-27_argument_recipient_672_actual_audit_waiver_and_transfer_metrics.md)).
+  The fixed B5 probe was then applied to the actual `Tend_assistant` residuals
+  ([transfer log](docs/experiment_logs/2026-10-27_argument_recipient_672_b5_transfer.md)):
+  106/112 selected prefixes are token-identical to the canonical ones and give
+  bit-identical residuals and probe scores; the 6 differing conditions are all
+  `later_tool_to_assistant` (D2). This is a consistency check, not probe validity.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
