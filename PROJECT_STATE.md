@@ -320,7 +320,11 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   ([transfer log](docs/experiment_logs/2026-10-27_argument_recipient_672_b5_transfer.md)):
   106/112 selected prefixes are token-identical to the canonical ones and give
   bit-identical residuals and probe scores; the 6 differing conditions are all
-  `later_tool_to_assistant` (D2). This is a consistency check, not probe validity.
+  `later_tool_to_assistant` (D2), where the model issues both `read_file` calls in
+  one turn but the canonical history reads them sequentially. This is a consistency
+  check, not probe validity. [RDR-2026-10-27-04](docs/decisions/2026-10-27_argument_recipient_672_d2_parallel_read_prefix_mismatch.md)
+  keeps the canonical design unchanged and requires the mismatch to be reported and
+  stratified, not excluded.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
