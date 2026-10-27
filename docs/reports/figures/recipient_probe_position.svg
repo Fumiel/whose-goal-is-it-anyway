@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 400" width="860" height="400" font-family="system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans CJK JP', 'Yu Gothic', Meiryo, sans-serif" role="img" aria-labelledby="t d"><title id="t">内部状態を取得する位置</title><desc id="d">会話履歴をトークンに分割した列のうち、応答を始める直前の最後のトークンで、第8層の内部状態（4096個の数値）を取得し、口座ごとのプローブで採点する流れ。</desc>
+<rect width="860" height="400" fill="#fcfcfb"/>
+<text x="30" y="30" font-size="16" font-weight="600" fill="#0b0b0b">内部状態を取り出す位置と、プローブの使い方</text>
+<text x="30" y="56" font-size="13" font-weight="600" fill="#0b0b0b">① モデルへの入力：会話履歴を小さな単位（トークン）に分割した列（約1,800個）</text>
+<rect x="30" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="62" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="94" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="126" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="158" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="190" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="222" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="254" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="286" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="318" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<text x="364.0" y="94.0" font-size="16" text-anchor="middle" fill="#52514e">…</text>
+<text x="396.0" y="94.0" font-size="16" text-anchor="middle" fill="#52514e">…</text>
+<text x="428.0" y="94.0" font-size="16" text-anchor="middle" fill="#52514e">…</text>
+<rect x="446" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="478" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="510" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="542" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="574" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="606" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="638" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="670" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="702" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="734" y="72" width="28" height="34" rx="4" fill="#e4e3df"/>
+<rect x="766" y="72" width="28" height="34" rx="4" fill="#2a78d6"/>
+<text x="30" y="126" font-size="12" fill="#52514e">指示文　→　ファイルの読み取り　→　読み取った結果（口座番号を含む）　→　「ここから応答を始める」</text>
+<text x="780.0" y="144" font-size="12" font-weight="600" text-anchor="end" fill="#0b0b0b">取得位置：応答を始める直前の最後のトークン</text>
+<line x1="780.0" y1="108" x2="780.0" y2="114" stroke="#2a78d6" stroke-width="2"/>
+<rect x="30" y="190" width="250" height="92" rx="8" fill="#f1f0ec" stroke="#e4e3df" stroke-width="1.5"/>
+<text x="44" y="214" font-size="13" font-weight="600" fill="#0b0b0b">内部状態（第8層）</text>
+<text x="44" y="234" font-size="12" fill="#52514e">モデルが計算途中に持つ</text>
+<text x="44" y="252" font-size="12" fill="#52514e">4,096個の数値の列</text>
+<text x="44" y="270" font-size="12" fill="#52514e">（その位置の1つ分だけを保存）</text>
+<rect x="330" y="190" width="230" height="92" rx="8" fill="#f1f0ec" stroke="#e4e3df" stroke-width="1.5"/>
+<text x="344" y="214" font-size="13" font-weight="600" fill="#0b0b0b">プローブ（線形判定器）</text>
+<text x="344" y="234" font-size="12" fill="#52514e">学習用の条件で、数値列から</text>
+<text x="344" y="252" font-size="12" fill="#52514e">「この口座は送金先か」を</text>
+<text x="344" y="270" font-size="12" fill="#52514e">口座ごとに判定するよう学習</text>
+<rect x="610" y="190" width="220" height="92" rx="8" fill="#eaf2fc" stroke="#2a78d6" stroke-width="1.5"/>
+<text x="624" y="214" font-size="13" font-weight="600" fill="#0b0b0b">出力：口座ごとのスコア</text>
+<text x="624" y="234" font-size="12" fill="#52514e">4つの候補口座それぞれの</text>
+<text x="624" y="252" font-size="12" fill="#52514e">「送金先らしさ」</text>
+<text x="624" y="270" font-size="12" fill="#52514e">→ 本物の送金先が高いか評価</text>
+<line x1="280" y1="236.0" x2="326" y2="236.0" stroke="#52514e" stroke-width="2"/>
+<line x1="326" y1="236.0" x2="319.0" y2="232.2" stroke="#52514e" stroke-width="2"/>
+<line x1="326" y1="236.0" x2="319.0" y2="239.8" stroke="#52514e" stroke-width="2"/>
+<line x1="560" y1="236.0" x2="606" y2="236.0" stroke="#52514e" stroke-width="2"/>
+<line x1="606" y1="236.0" x2="599.0" y2="232.2" stroke="#52514e" stroke-width="2"/>
+<line x1="606" y1="236.0" x2="599.0" y2="239.8" stroke="#52514e" stroke-width="2"/>
+<path d="M 780.0 150 L 780.0 160 L 155 160 L 155 187" fill="none" stroke="#2a78d6" stroke-width="2" stroke-dasharray="5 4"/>
+<polygon points="155,188 150,180 160,180" fill="#2a78d6"/>
+<text x="30" y="312" font-size="13" font-weight="600" fill="#0b0b0b">入力の作り方は2通り</text>
+<rect x="30" y="324" width="10" height="10" rx="2" fill="#2a78d6"/>
+<text x="48" y="334" font-size="12" fill="#0b0b0b">統制した履歴（学習・評価に使用）：こちらが会話履歴を決めてモデルに入力する。672条件すべて。</text>
+<rect x="30" y="346" width="10" height="10" rx="2" fill="#eb6834"/>
+<text x="48" y="356" font-size="12" fill="#0b0b0b">自由実行（一貫性の確認に使用）：モデル自身にツールを呼ばせ、その途中の同じ位置を取得する。112条件。</text>
+</svg>
