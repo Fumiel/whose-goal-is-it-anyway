@@ -280,7 +280,7 @@ def run_transfer(
     if not output_id or "/" in output_id or "\\" in output_id:
         raise ValueError("invalid output ID")
     config, declaration, split = load_frozen_plan(
-        config_path, runtime_freeze_override=runtime_freeze_override
+        config_path, runtime_freeze_override=runtime_freeze_override, require_matching_head=False
     )
     root = config_path.resolve().parents[2]
     fit_dir = fit_analysis_dir if fit_analysis_dir.is_absolute() else root / fit_analysis_dir

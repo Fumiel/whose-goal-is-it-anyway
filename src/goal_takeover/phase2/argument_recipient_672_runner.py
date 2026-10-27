@@ -50,9 +50,17 @@ def _prefix_record(prefix: Any) -> dict[str, Any]:
 
 
 def load_frozen_plan(
-    config_path: Path, *, runtime_freeze_override: Path | None = None
+    config_path: Path,
+    *,
+    runtime_freeze_override: Path | None = None,
+    require_matching_head: bool = True,
 ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
-    """Fail before model loading if any reviewed declaration or freeze has drifted."""
+    """Fail before model loading if any reviewed declaration or freeze has drifted.
+
+    ``require_matching_head=False`` is only for analysis of bundles that an earlier
+    commit already produced; every checksum is still verified and the tree must be
+    clean. Model execution keeps the default.
+    """
     config = load_yaml(config_path)
     if config.get("status") != "design_frozen_runtime_pending":
         raise ValueError("672 execution config is not design frozen")
@@ -109,7 +117,7 @@ def load_frozen_plan(
         if path.is_absolute() or ".." in path.parts or sha256_file(root / path) != digest:
             raise ValueError(f"design checksum differs: {relative}")
     commit, dirty = _git_metadata()
-    if dirty or runtime.get("git_commit") != commit:
+    if dirty or (require_matching_head and runtime.get("git_commit") != commit):
         raise ValueError("runtime freeze requires the clean matching Git commit")
     if runtime.get("design_freeze_sha256") != sha256_file(paths["design_freeze"]):
         raise ValueError("runtime freeze design checksum differs")
