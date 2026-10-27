@@ -297,6 +297,19 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   criterion is not met at B1. This is an adaptive development value. Every commit
   changes HEAD and requires a new runtime freeze plus B1 re-derivation before
   the next stage.
+  The same commit `02b931a` then ran the remaining collection (recorded afterward
+  from a read-only artifact inspection; see the
+  [B2–B5 and actual-sample log](docs/experiment_logs/2026-10-27_argument_recipient_672_b2_b5_and_actual_sample.md)
+  and [small summary](results/2026-10-27_phase2_argument_recipient_672_b2_b5_and_actual_v1.json)):
+  `argrec672-v1-003` holds all 672 canonical bundles (B1 reproduces `-002` exactly)
+  and `argrec672-v1-act-003` holds the 112 actual-trajectory runs; all completed
+  with checksums verified. The cumulative G/H `role_swap_auc` is 0.521 / 0.477 /
+  0.526 / 0.536 / 0.613 for B1–B5 (layer 8 / C=1.0, TF-IDF 0.53–0.54); the 0.80
+  criterion is unmet at every stage, and the B5 value is not clearly separated from
+  random-label controls (max 0.576). The 112 actual runs have automatic labels only
+  (67 strict user-task successes, 14 wrong-recipient transfers); no human or LLM
+  audit and no canonical-to-actual transfer evaluation yet. These are adaptive
+  development values with the validation set viewed at every stage.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)

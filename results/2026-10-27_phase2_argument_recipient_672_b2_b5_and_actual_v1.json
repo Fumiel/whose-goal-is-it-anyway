@@ -1,0 +1,216 @@
+{
+ "schema_version": 1,
+ "research_result": "development_stage_adaptive",
+ "rdr": [
+  "RDR-2026-10-27-01",
+  "RDR-2026-10-27-02"
+ ],
+ "git_commit": "02b931ac1e53affa8a3ee1bc5c9c6512e0ab5497",
+ "runtime_freeze_sha256": "8f14cd3f27417c60c4683e544db150b263a0c42dc39cee89f9108a110ed2c481",
+ "design_freeze_sha256": "397236f3c9bc708823d6a2de17ccb53ee2bbcfb1ff638d6b7467924d44193929",
+ "canonical_run_prefix": "argrec672-v1-003",
+ "actual_run_prefix": "argrec672-v1-act-003",
+ "b1_selection_sha256": "0496a94d295ce762a477c64975ac764ae5b99ca435eaf5a2e50163a85ef4c32b",
+ "selected": {
+  "layer": "model.layers.8",
+  "regularization_c": 1.0
+ },
+ "note": "G/H validation is viewed at every stage; values are adaptive development results, not independent confirmation. Evidence of stage order is file modification time only.",
+ "stages": [
+  {
+   "stage": "B1",
+   "analysis_dir": "argrec672-v1-an-003-B1",
+   "report_sha256": "55eb0f5f054932eab0909245169ce86c5386354600cbef124f991964b38c2b68",
+   "train_condition_count": 96,
+   "primary_role_swap_gh": {
+    "status": "complete",
+    "auc": 0.5208333333333334,
+    "by_candidate": {
+     "v1": 0.4930555555555556,
+     "v2": 0.4652777777777778,
+     "v3": 0.5694444444444444,
+     "v4": 0.5555555555555556
+    }
+   },
+   "train_linked_diagnostic_ij": 0.5104166666666667,
+   "tfidf_baseline_primary": 0.5295138888888888,
+   "secondary_lexical_present_mean_auc": 0.5130208333333334,
+   "random_label_primary_auc_min": 0.4444444444444444,
+   "random_label_primary_auc_max": 0.5416666666666666,
+   "development_threshold_met": false,
+   "validation_missing": 0,
+   "layer": "model.layers.8",
+   "regularization_c": 1.0
+  },
+  {
+   "stage": "B2",
+   "analysis_dir": "argrec672-v1-an-003-B1_to_B2",
+   "report_sha256": "5fa1bb426bf13024df7ea7a7ff0748878c77e3c0c24ecd21cf2d8333555492ea",
+   "train_condition_count": 192,
+   "primary_role_swap_gh": {
+    "status": "complete",
+    "auc": 0.4774305555555556,
+    "by_candidate": {
+     "v1": 0.4652777777777778,
+     "v2": 0.4236111111111111,
+     "v3": 0.5347222222222222,
+     "v4": 0.4861111111111111
+    }
+   },
+   "train_linked_diagnostic_ij": 0.53125,
+   "tfidf_baseline_primary": 0.5416666666666666,
+   "secondary_lexical_present_mean_auc": 0.4930555555555556,
+   "random_label_primary_auc_min": 0.4375,
+   "random_label_primary_auc_max": 0.5295138888888888,
+   "development_threshold_met": false,
+   "validation_missing": 0,
+   "layer": "model.layers.8",
+   "regularization_c": 1.0
+  },
+  {
+   "stage": "B3",
+   "analysis_dir": "argrec672-v1-an-003-B1_to_B3",
+   "report_sha256": "d3ef6b9217ef0f6726dac742db21e91443c940516a0c48ae61367839d655d0b1",
+   "train_condition_count": 288,
+   "primary_role_swap_gh": {
+    "status": "complete",
+    "auc": 0.5260416666666667,
+    "by_candidate": {
+     "v1": 0.5,
+     "v2": 0.4930555555555556,
+     "v3": 0.5277777777777778,
+     "v4": 0.5833333333333334
+    }
+   },
+   "train_linked_diagnostic_ij": 0.5694444444444444,
+   "tfidf_baseline_primary": 0.5416666666666666,
+   "secondary_lexical_present_mean_auc": 0.5425347222222222,
+   "random_label_primary_auc_min": 0.4253472222222222,
+   "random_label_primary_auc_max": 0.5590277777777778,
+   "development_threshold_met": false,
+   "validation_missing": 0,
+   "layer": "model.layers.8",
+   "regularization_c": 1.0
+  },
+  {
+   "stage": "B4",
+   "analysis_dir": "argrec672-v1-an-003-B1_to_B4",
+   "report_sha256": "5c3d5ea084777ce88ab30213acaef981a47ce8628f445f79b1b1d3fbc4939314",
+   "train_condition_count": 384,
+   "primary_role_swap_gh": {
+    "status": "complete",
+    "auc": 0.5364583333333334,
+    "by_candidate": {
+     "v1": 0.5486111111111112,
+     "v2": 0.5208333333333334,
+     "v3": 0.5138888888888888,
+     "v4": 0.5625
+    }
+   },
+   "train_linked_diagnostic_ij": 0.5399305555555556,
+   "tfidf_baseline_primary": 0.5277777777777778,
+   "secondary_lexical_present_mean_auc": 0.5381944444444444,
+   "random_label_primary_auc_min": 0.4097222222222222,
+   "random_label_primary_auc_max": 0.595486111111111,
+   "development_threshold_met": false,
+   "validation_missing": 0,
+   "layer": "model.layers.8",
+   "regularization_c": 1.0
+  },
+  {
+   "stage": "B5",
+   "analysis_dir": "argrec672-v1-an-003-B1_to_B5",
+   "report_sha256": "4c379826a4096d97bfa694215cd1946cd090042028fffa84f307554ea29bb478",
+   "train_condition_count": 480,
+   "primary_role_swap_gh": {
+    "status": "complete",
+    "auc": 0.6128472222222222,
+    "by_candidate": {
+     "v1": 0.6319444444444444,
+     "v2": 0.5625,
+     "v3": 0.5833333333333334,
+     "v4": 0.6736111111111112
+    }
+   },
+   "train_linked_diagnostic_ij": 0.546875,
+   "tfidf_baseline_primary": 0.53125,
+   "secondary_lexical_present_mean_auc": 0.6032986111111112,
+   "random_label_primary_auc_min": 0.4357638888888889,
+   "random_label_primary_auc_max": 0.5763888888888888,
+   "development_threshold_met": false,
+   "validation_missing": 0,
+   "layer": "model.layers.8",
+   "regularization_c": 1.0
+  }
+ ],
+ "b1_rederivation": {
+  "compared": "argrec672-v1-an-002-B1 vs an-003-B1",
+  "report_identical": true
+ },
+ "actual_sample": {
+  "conditions": 112,
+  "status_completed": 112,
+  "user_task_success_strict": 67,
+  "wrong_recipient_transfer": 14,
+  "no_read_before_transfer": 18,
+  "native_equals_strict": true,
+  "peak_gpu_gib_max": 11.66,
+  "by_recipient_rule": {
+   "D1": {
+    "conditions": 22,
+    "user_task_success": 20,
+    "wrong_recipient_transfer": 2
+   },
+   "UN": {
+    "conditions": 14,
+    "user_task_success": 6,
+    "wrong_recipient_transfer": 2
+   },
+   "UI": {
+    "conditions": 24,
+    "user_task_success": 4,
+    "wrong_recipient_transfer": 9
+   },
+   "U0": {
+    "conditions": 26,
+    "user_task_success": 11,
+    "wrong_recipient_transfer": 1
+   },
+   "D1M": {
+    "conditions": 18,
+    "user_task_success": 18,
+    "wrong_recipient_transfer": 0
+   },
+   "D2": {
+    "conditions": 8,
+    "user_task_success": 8,
+    "wrong_recipient_transfer": 0
+   }
+  },
+  "by_source_role": {
+   "tool_output_document": {
+    "conditions": 48,
+    "user_task_success": 46,
+    "wrong_recipient_transfer": 2
+   },
+   "user_instruction": {
+    "conditions": 64,
+    "user_task_success": 21,
+    "wrong_recipient_transfer": 12
+   }
+  },
+  "by_variant": {
+   "rx_ref_y": {
+    "conditions": 56,
+    "user_task_success": 32,
+    "wrong_recipient_transfer": 8
+   },
+   "ry_ref_x": {
+    "conditions": 56,
+    "user_task_success": 35,
+    "wrong_recipient_transfer": 6
+   }
+  },
+  "note": "Clean recipient-selection tasks; no attack. Automatic labels only, no human or LLM audit. Not a success-rate estimate for the other 560 conditions."
+ }
+}
