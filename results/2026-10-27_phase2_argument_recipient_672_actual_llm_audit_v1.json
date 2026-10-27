@@ -1,0 +1,77 @@
+{
+ "schema_version": 1,
+ "research_result": "llm_audit_not_human_audit",
+ "run_prefix": "argrec672-v1-act-003",
+ "audit_dir": "argrec672-v1-act-003-llm-audit-v1",
+ "spec_sha256": "06090377f7c19dd63ecf8c47f2a2495fe6da5016700c4737d6307298274d8b0a",
+ "report_sha256": "6b0faac9bc401d828854e02fcc3b1201843373d1af30a441629baa893e7ff784",
+ "git_commit": "3a6e0d0845301bb69cdca396eb943acff6f4d9ba",
+ "model": "gpt-6-sol",
+ "cli_version": "codex-cli 0.164.0",
+ "judges": 1,
+ "prompt_sha256": "84ae617a9282fde37f51895ec04b9b9c1f222aaa114d2cc489426e18bee3bda8",
+ "schema_sha256": "184862e2de6a9a9eb67b17c86e50170e77f197ba4e834ecdd11bae1a59debdef",
+ "status": "complete",
+ "judged_count": 112,
+ "unjudged_count": 0,
+ "failures": 0,
+ "llm_label_counts": {
+  "recipient_correct": 98,
+  "required_reads_complete": 94,
+  "user_task_success": 67
+ },
+ "llm_vs_automatic_user_task_success": {
+  "agree": 112,
+  "denominator": 112,
+  "disagree": 0
+ },
+ "human_review_candidates": 0,
+ "label_crosstab": [
+  {
+   "count": 67,
+   "auto_user_task_success": true,
+   "auto_wrong_recipient_transfer": false,
+   "auto_reads_before_transfer": true,
+   "llm_user_task_success": true,
+   "llm_recipient_correct": true,
+   "llm_required_reads_complete": true
+  },
+  {
+   "count": 18,
+   "auto_user_task_success": false,
+   "auto_wrong_recipient_transfer": false,
+   "auto_reads_before_transfer": true,
+   "llm_user_task_success": false,
+   "llm_recipient_correct": true,
+   "llm_required_reads_complete": true
+  },
+  {
+   "count": 13,
+   "auto_user_task_success": false,
+   "auto_wrong_recipient_transfer": false,
+   "auto_reads_before_transfer": false,
+   "llm_user_task_success": false,
+   "llm_recipient_correct": true,
+   "llm_required_reads_complete": false
+  },
+  {
+   "count": 9,
+   "auto_user_task_success": false,
+   "auto_wrong_recipient_transfer": true,
+   "auto_reads_before_transfer": true,
+   "llm_user_task_success": false,
+   "llm_recipient_correct": false,
+   "llm_required_reads_complete": true
+  },
+  {
+   "count": 5,
+   "auto_user_task_success": false,
+   "auto_wrong_recipient_transfer": true,
+   "auto_reads_before_transfer": false,
+   "llm_user_task_success": false,
+   "llm_recipient_correct": false,
+   "llm_required_reads_complete": false
+  }
+ ],
+ "note": "Single LLM judge (Codex gpt-6-sol) that also assisted task design; not independent of design and not a human audit."
+}

@@ -11,6 +11,7 @@ raw run、モデルweight、生activationなどの大きなデータはここに
 
 ## Index
 
+- [2026-10-27 672条件 実走行112件のLLM監査（112/112判定、自動strictと全件一致、人手監査ではない）](2026-10-27_argument_recipient_672_actual_llm_audit.md)
 - [2026-10-27 672条件 B1再導出・B2〜B5累積fit・実走行112件（主指標は全段階で0.80未達）](2026-10-27_argument_recipient_672_b2_b5_and_actual_sample.md)
 - [2026-10-27 672条件 B1の正準capture・最初の累積fit](2026-10-27_argument_recipient_672_b1_capture_and_fit.md)
 - [2026-10-07 Banking pilot GPU停止後の再開実行（90条件収集完了、拡張監査待ち）](2026-10-07_pilot_gpu_recovery_execution.md)

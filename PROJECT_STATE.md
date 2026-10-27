@@ -306,10 +306,15 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   with checksums verified. The cumulative G/H `role_swap_auc` is 0.521 / 0.477 /
   0.526 / 0.536 / 0.613 for B1–B5 (layer 8 / C=1.0, TF-IDF 0.53–0.54); the 0.80
   criterion is unmet at every stage, and the B5 value is not clearly separated from
-  random-label controls (max 0.576). The 112 actual runs have automatic labels only
-  (67 strict user-task successes, 14 wrong-recipient transfers); no human or LLM
+  random-label controls (max 0.576). The 112 actual runs were first labeled automatically only
+  (67 strict user-task successes, 14 wrong-recipient transfers); no human
   audit and no canonical-to-actual transfer evaluation yet. These are adaptive
   development values with the validation set viewed at every stage.
+  A single-judge Codex `gpt-6-sol` audit of the 112 actual runs then completed
+  (112/112 judged, no technical failure, user-task success agrees with the strict
+  automatic label in 112/112, no machine-flagged human-review candidate; see the
+  [audit log](docs/experiment_logs/2026-10-27_argument_recipient_672_actual_llm_audit.md)).
+  It is not a human audit and not independent of task design.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)
