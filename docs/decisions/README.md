@@ -25,6 +25,7 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-10-27 | [RDR-2026-10-27-03](2026-10-27_argument_recipient_672_actual_audit_waiver_and_transfer_metrics.md) | accepted | 実走行112件はLLM監査で足り人手監査を行わない（人手監査済みとは表示しない）。正準→実走行の転移評価の指標（prefix一致、残差一致、決定値の一貫性、記述的role_swap_auc、訓練split分離）を結果閲覧前に固定。probeの妥当性評価ではない |
 | 2026-10-27 | [RDR-2026-10-27-02](2026-10-27_argument_recipient_672_preprocessing_and_undefined_metric_rules.md) | accepted | B1 capture完了後・probe fit前に、train限定の標準化、較正なし（logitでAUROC）、主指標が1件でも欠測なら未定義（達成/未達と判定しない）、train欠測はfit停止の規則を固定。bootstrap未実装を明記 |
 | 2026-10-27 | [RDR-2026-10-27-01](2026-10-27_argument_recipient_672_review_capture_and_staging.md) | accepted | 現行672条件本文、正準履歴の`Tend_assistant`取得、112条件の実走行標本、新規B1～B5のみの累積fitと同一validation反復、人手確認の重点を決定。G/Hを独立主集計、I/Jをtrain近縁診断とし、`role_swap_auc`を主指標に採用。層・CはB1学習内CVで固定。監査は設計関与を明記したCodex CLI `gpt-6-sol` |
 | 2026-10-26 | [RDR-2026-10-26-07](2026-10-26_argument_recipient_672_d1m_d2_revision_and_rdr_reconciliation.md) | accepted | D1M・D2資料を、項目ID・支払先名の照合が必要な構造（全項目に固有口座）へ修正し、同日RDR-01～06の食い違いについて現行有効な読み方と適用順を整理 |
