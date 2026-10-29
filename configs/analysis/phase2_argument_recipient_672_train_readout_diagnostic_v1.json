@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "purpose": "Post-result, train-only diagnostic of why the 672 Tend_assistant recipient probe failed: label composition, presence versus role readout, and the model's own sequence log-probability ceiling. No validation capture is loaded or scored.",
+  "experiment_config": "configs/experiments/phase2_argument_recipient_672_v1.yaml",
+  "runtime_freeze": "artifacts/phase2-argument-recipient-672-runtime-02b931a.freeze.json",
+  "canonical_run_prefix": "argrec672-v1-003",
+  "actual_run_prefix": "argrec672-v1-act-003",
+  "train_cv": {
+    "output_id": "argrec672-v1-dg-003-train-readout-cv",
+    "layers": [0, 8, 16, 24, 32, 35],
+    "regularization_c": 1.0,
+    "max_iter": 1000,
+    "seed": 20261027,
+    "objectives": ["all_rows", "exposed_only"],
+    "random_label_repeats": {"all_rows": 3}
+  },
+  "recipient_logprob": {
+    "output_id": "argrec672-v1-dg-003-train-recipient-logprob",
+    "stem": "<tool_call>\n{\"name\": \"send_money\", \"arguments\": {\"recipient\": \"",
+    "tail": "\""
+  }
+}
