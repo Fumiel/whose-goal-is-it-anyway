@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "purpose": "Post-result, train-only diagnostic: can a candidate-free presentation-order pointer to the recipient be read linearly at Tend_assistant? Reuses existing canonical captures. No validation capture is loaded. See RDR-2026-11-06-01.",
+  "experiment_config": "configs/experiments/phase2_argument_recipient_672_v1.yaml",
+  "runtime_freeze": "artifacts/phase2-argument-recipient-672-runtime-02b931a.freeze.json",
+  "canonical_run_prefix": "argrec672-v1-003",
+  "output_id": "argrec672-v1-dg-004-selection-pointer",
+  "analysis": {
+    "judged_layers": [0, 8, 16, 24, 32],
+    "report_only_layers": [35],
+    "regularization_c": 1.0,
+    "max_iter": 1000,
+    "seed": 20261027,
+    "permutation_repeats": 100,
+    "bootstrap_repeats": 2000,
+    "thresholds": {
+      "positive_control_auroc": 0.95,
+      "paired_accuracy": 0.8,
+      "family_wise_alpha": 0.05,
+      "baseline_margin": 0.1,
+      "families_above_chance": 5,
+      "specificity_margin": 0.05
+    }
+  }
+}

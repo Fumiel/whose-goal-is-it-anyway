@@ -855,6 +855,8 @@ test開封前に次を凍結する。
 - random donor、意味的不一致donor、隣接layer・位置を対照にできる
 - 対象margin、正規行動尤度、出力分布変化、user-task utilityを評価できる
 
+[RDR-2026-11-06-01](decisions/2026-11-06_argument_selection_timing_course_correction.md)は、上記とは別に、開発データ上の探索的パッチングを次の条件で認める。2026-11-20までに開始できなければ行わない。位置スイープで得た候補位置と、構造が揃う対応対を用い、双方向の介入と対照を維持する。結果は探索的と明記し、確認的な因果検証、独立validationでの再現または主解析の成立条件として扱わない。上記の開始条件はそれ以外のパッチングに引き続き適用する。
+
 実施時はResistant→SusceptibleとSusceptible→Resistantの双方向を行う。donor / recipientはtask、attack goal、surface length等のmatching規則で選び、test outcomeを使った都合のよいpair選択をしない。patch tensorのlayer、token、hook point、置換または補間方式を保存する。
 
 主な介入指標には方向を明記したlogit differenceと次の正規化効果量を用いる。
@@ -947,7 +949,8 @@ rawとprocessedを分離し、processed artifactには入力raw checksum、処�
 - **10月11日**: `user_to_assistant`、`first_tool_to_assistant`およびtool output内位置を再現可能に取得できなければ、output内解析を縮小し、二つのboundary解析を主とする。
 - **10月25日**: probeが未知系列で語彙baselineを安定して上回らなければ、「目的表現」という主張を下げ、具体的なtool操作・argument表現または時間的な行動帰属へ縮小する。
 - 2026-10-26の初回recipient probe結果ではこの基準を達成済みと扱わず、強い「目的表現」主張を留保する。[RDR-2026-10-26-01](decisions/2026-10-26_argument_recipient_learning_curve_expansion.md)の追加データ収集は開発上の再検討であり、過去の陰性結果や期限時点の判断を消さない。
-- **11月10日**: 主解析データが揃わなければ、活性化パッチング、Attention介入、別モデル・別domainを中止する。
+- **11月10日**: 主解析データが揃わなければ、活性化パッチング、Attention介入、別モデル・別domainを中止する。ただし、開発データ上の探索的パッチングは第19節の例外に従う。
+- **11月20日**: 第19節の探索的パッチングを開始できなければ行わない。
 - **11月30日**: 主解析、凍結済み感度分析、主要図表を確定する。
 - **12月**: 追加探索より再現確認、本文執筆、関連研究の最新版と査読状況の確認を優先する。
 

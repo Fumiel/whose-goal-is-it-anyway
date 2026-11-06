@@ -325,6 +325,17 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   check, not probe validity. [RDR-2026-10-27-04](docs/decisions/2026-10-27_argument_recipient_672_d2_parallel_read_prefix_mismatch.md)
   keeps the canonical design unchanged and requires the mismatch to be reported and
   stratified, not excluded.
+  On 2026-11-06 the researcher accepted a course correction,
+  [RDR-2026-11-06-01](docs/decisions/2026-11-06_argument_selection_timing_course_correction.md):
+  ask when and where same-tool argument selection is determined, using competing
+  hypotheses rather than assuming retrieval at generation. Only the exploratory
+  patching exception (development data, start by 2026-11-20) changed the canonical
+  documents; research questions, title and main-result status wait for results.
+  The first step, a train-only [selection-pointer diagnostic](docs/phase2_argument_selection_pointer_diagnostic_spec.md)
+  on existing captures, has fixed R1-R4 rules and is implemented but not yet run.
+  The 2026-10-30 train-only readout values are recorded only in an exploratory
+  [verification PDF](output/pdf/2026-10-30_recipient_probe_verification.pdf); check the
+  completion of its final run on the WSL host before relying on them.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)

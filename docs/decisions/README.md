@@ -25,6 +25,7 @@
 
 | Date | Decision ID | Status | Summary |
 |---|---|---|---|
+| 2026-11-06 | [RDR-2026-11-06-01](2026-11-06_argument_selection_timing_course_correction.md) | accepted | 672条件の結果閲覧後、引数選択の決定時点を問う競合仮説H1〜H3へ軌道修正。「生成時の取り出し」を前提にせず、0.80基準を緩めない。開発データ上の探索的パッチングを11月20日開始期限で許可。問い・題目の改訂は結果後に判断 |
 | 2026-10-27 | [RDR-2026-10-27-04](2026-10-27_argument_recipient_672_d2_parallel_read_prefix_mismatch.md) | accepted | 転移評価で見つかったD2後段境界の6/112のprefix不一致（実走行は2つのread_fileを並列呼び、正準は逐次）について、正準・設計は変更せず、報告で明記・層別する。主指標への影響なし |
 | 2026-10-27 | [RDR-2026-10-27-03](2026-10-27_argument_recipient_672_actual_audit_waiver_and_transfer_metrics.md) | accepted | 実走行112件はLLM監査で足り人手監査を行わない（人手監査済みとは表示しない）。正準→実走行の転移評価の指標（prefix一致、残差一致、決定値の一貫性、記述的role_swap_auc、訓練split分離）を結果閲覧前に固定。probeの妥当性評価ではない |
 | 2026-10-27 | [RDR-2026-10-27-02](2026-10-27_argument_recipient_672_preprocessing_and_undefined_metric_rules.md) | accepted | B1 capture完了後・probe fit前に、train限定の標準化、較正なし（logitでAUROC）、主指標が1件でも欠測なら未定義（達成/未達と判定しない）、train欠測はfit停止の規則を固定。bootstrap未実装を明記 |
