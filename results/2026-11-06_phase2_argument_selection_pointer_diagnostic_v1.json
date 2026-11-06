@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "status": "post_result_train_only_exploratory_diagnostic",
+  "source_report": "artifacts/processed/argrec672-v1-dg-004-selection-pointer/report.json",
+  "source_report_sha256": "0445d4dd63b1d96c721ecca8909ecb83a4638657c5259772454567ce2707cc36",
+  "execution_commit": "5e9271ef76d3e7e0c2fd43c3712496d1765743f2",
+  "validation_rows_loaded": 0,
+  "pointer_rows": 240,
+  "pointer_pairs": 120,
+  "classification": "R1",
+  "qualifying_cell": "layer24/logistic",
+  "family_held_out_paired_accuracy": 0.8166666666666667,
+  "series_bootstrap_95_paired_accuracy": [0.75, 0.8833333333333333],
+  "family_wise_p": 0.009900990099009901,
+  "family_held_out_pooled_auroc": 0.7759027777777777,
+  "best_surface_baseline_paired_accuracy": 0.7083333333333334,
+  "positive_control_auroc_layer24": 1.0,
+  "specificity_control_auroc_layer24": 1.0,
+  "specificity_control_comparable": true,
+  "interpretation": "Recipient-first presentation order is linearly readable at Tend_assistant in this train-only diagnostic. This does not establish a selection pointer, chosen action, or causal mechanism."
+}

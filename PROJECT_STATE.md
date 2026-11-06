@@ -332,10 +332,18 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   patching exception (development data, start by 2026-11-20) changed the canonical
   documents; research questions, title and main-result status wait for results.
   The first step, a train-only [selection-pointer diagnostic](docs/phase2_argument_selection_pointer_diagnostic_spec.md)
-  on existing captures, has fixed R1-R4 rules and is implemented but not yet run.
+  on existing captures, has fixed R1-R4 rules and was run on 2026-11-06.
+  The train-only exploratory result is R1 at layer 24 / logistic (paired
+  accuracy 0.817 versus best surface baseline 0.708; family-wise p=0.0099),
+  but an unrelated order-control is also strongly readable. This does not
+  establish a selection pointer or chosen action. See the
+  [execution log](docs/experiment_logs/2026-11-06_argument_selection_pointer_diagnostic.md)
+  and [small summary](results/2026-11-06_phase2_argument_selection_pointer_diagnostic_v1.json).
   The 2026-10-30 train-only readout values are recorded only in an exploratory
-  [verification PDF](output/pdf/2026-10-30_recipient_probe_verification.pdf); check the
-  completion of its final run on the WSL host before relying on them.
+  [verification PDF](output/pdf/2026-10-30_recipient_probe_verification.pdf).
+  Its final run had no completed derived output in this WSL checkout when checked
+  before the selection-pointer diagnostic; do not treat the PDF values as a
+  formal completed result.
 - Primary model: not selected
 - Primary domain: not selected
 - Post-pilot decision: [RDR-2026-10-14-01](docs/decisions/2026-10-14_phase2_development_after_banking_pilot.md)

@@ -1,6 +1,6 @@
 # 選択ポインタ診断の仕様
 
-**状態：** 判定基準は2026-11-06に研究実施者が確定。実装済み、WSL上の研究データでは未実行。\
+**状態：** 判定基準は2026-11-06に研究実施者が確定。同日、訓練側の既存キャプチャで実行しR1。[実験ログ](experiment_logs/2026-11-06_argument_selection_pointer_diagnostic.md)を参照。\
 **関連：** [RDR-2026-11-06-01](decisions/2026-11-06_argument_selection_timing_course_correction.md)、[設定](../configs/analysis/phase2_argument_selection_pointer_diagnostic_v1.json)、[実装](../src/goal_takeover/phase2/argument_recipient_672_selection_pointer.py)\
 **位置づけ：** 結果閲覧後に追加する、訓練データのみの探索的診断。確認的解析でも、独立検証でもない。
 
