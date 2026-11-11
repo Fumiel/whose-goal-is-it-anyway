@@ -1,0 +1,2567 @@
+{
+  "baselines": {
+    "family": {
+      "identity": {
+        "paired_accuracy": 0.5083333333333333,
+        "pooled_auroc": 0.5080902777777778
+      },
+      "length": {
+        "paired_accuracy": 0.5,
+        "pooled_auroc": 0.49999999999999994
+      },
+      "position": {
+        "paired_accuracy": 0.8125,
+        "pooled_auroc": 0.6020833333333334
+      },
+      "tfidf": {
+        "paired_accuracy": 0.7083333333333334,
+        "pooled_auroc": 0.6950694444444444
+      }
+    },
+    "series": {
+      "identity": {
+        "paired_accuracy": 0.5,
+        "pooled_auroc": 0.4490972222222222
+      },
+      "length": {
+        "paired_accuracy": 0.5,
+        "pooled_auroc": 0.5
+      },
+      "position": {
+        "paired_accuracy": 0.8125,
+        "pooled_auroc": 0.6025694444444445
+      },
+      "tfidf": {
+        "paired_accuracy": 0.7625,
+        "pooled_auroc": 0.7152430555555556
+      }
+    }
+  },
+  "collection_manifest": {
+    "path": "data/manifests/2026-11-12_phase2_position_sweep_nod_collection.json",
+    "sha256": "ce5983bcf5a9d4a76d47caacdccc79fa44023e92923369c2462766f33161ffdf"
+  },
+  "comparison_provenance": {
+    "analysis_config_sha256": "b9b1082cc7446acde775ef2b4524afe347aed07bf320742e3bf520d66fc3f871",
+    "capture_git_commit": "0aa063a583cb2e6e186efc1f8196fbd75983f1c0",
+    "git_commit": "eeb09e79a5319868a1b276ce7a3e40429470454e",
+    "git_dirty": false,
+    "reference_sha256": {
+      "analysis_report": "71b9b224e6b819c1d5c5c4b2ea2a143e07324fc1bf4822e08894bc113120545e",
+      "collection_manifest": "85358a68021538dc661a27ec3c98d8a39e0e8c4aadf6c989c121a9726ca59abf",
+      "gpu_preflight_report": "309afc1ea00dff84219bf1bd3f7b16e691559b200f2a1701355a8efd0ac1d680",
+      "runtime_freeze": "2258700e8136385aa440eceab06fff8bc0b71623f0a7abeac68cee8adb989f06"
+    },
+    "research_result": "post_result_train_only_technical_control",
+    "runtime_freeze_sha256": "6078989f3c56f936e764760c43de3a6de7044836c4acbd123a2c75d3d2266367",
+    "spec_sha256": "569c4a1c8e5be245bb51c9ca6ab8500cae3dff70143140b6fcd816771d7f01d0",
+    "sweep_config_sha256": "5f9d0acfc9ffa66bbb94d789b2b4fc457fcfcdb010dca6ff8335cad01cba9cb6",
+    "validation_rows_loaded": 0
+  },
+  "comparison_report": {
+    "bytes": 8418801,
+    "manifest_sha256": "7426510803cc7b8619c0f90f3b1ac1b6184510dfcfdc3393590d5f03da508805",
+    "path": "artifacts/processed/argrec672-v1-dg-007-nod-comparison/report.json",
+    "sha256": "2b07d1943c400f5a67650f7b97f61d2bc5250d7131e0a407ba63b669d02a3d94"
+  },
+  "comparison_summaries": {
+    "N": {
+      "bit_exact_vector_count": 25445,
+      "by_position": {
+        "A1": {
+          "maximum_relative_l2": 0.21012296847048068,
+          "minimum_bit_exact_conditions_per_layer": 0
+        },
+        "A2": {
+          "maximum_relative_l2": 0.19359118148105545,
+          "minimum_bit_exact_conditions_per_layer": 0
+        },
+        "G": {
+          "maximum_relative_l2": 0.11119733316773596,
+          "minimum_bit_exact_conditions_per_layer": 0
+        },
+        "S": {
+          "maximum_relative_l2": 0.11423585213290811,
+          "minimum_bit_exact_conditions_per_layer": 0
+        },
+        "T": {
+          "maximum_relative_l2": 0.16941319131610583,
+          "minimum_bit_exact_conditions_per_layer": 0
+        }
+      },
+      "maximum_absolute_difference": 152.0,
+      "maximum_relative_l2": 0.21012296847048068,
+      "vector_count": 43200
+    },
+    "P": {
+      "bit_exact_vector_count": 7,
+      "by_position": {
+        "T": {
+          "maximum_relative_l2": 0.26762547509322926,
+          "minimum_bit_exact_conditions_per_layer": 0
+        }
+      },
+      "maximum_absolute_difference": 56.0,
+      "maximum_relative_l2": 0.26762547509322926,
+      "vector_count": 8640
+    },
+    "R": {
+      "bit_exact_vector_count": 2160,
+      "by_position": {
+        "A1": {
+          "maximum_relative_l2": 0.0,
+          "minimum_bit_exact_conditions_per_layer": 10
+        },
+        "A2": {
+          "maximum_relative_l2": 0.0,
+          "minimum_bit_exact_conditions_per_layer": 10
+        },
+        "D": {
+          "maximum_relative_l2": 0.0,
+          "minimum_bit_exact_conditions_per_layer": 10
+        },
+        "G": {
+          "maximum_relative_l2": 0.0,
+          "minimum_bit_exact_conditions_per_layer": 10
+        },
+        "S": {
+          "maximum_relative_l2": 0.0,
+          "minimum_bit_exact_conditions_per_layer": 10
+        },
+        "T": {
+          "maximum_relative_l2": 0.0,
+          "minimum_bit_exact_conditions_per_layer": 10
+        }
+      },
+      "maximum_absolute_difference": 0.0,
+      "maximum_relative_l2": 0.0,
+      "vector_count": 2160
+    }
+  },
+  "d_effect_classification": {
+    "changed_fields": [],
+    "d_effect": "2_numeric_only",
+    "delta_has_significant_cell": false
+  },
+  "delta_label_readout": {
+    "computed_cell_count": 36,
+    "maximum_paired_accuracy": 0.625,
+    "reported_only": true,
+    "significant_cells": {}
+  },
+  "execution_log": "docs/experiment_logs/2026-11-12_position_sweep_nod_control.md",
+  "hypothesis_mapping": {
+    "mapping": "H1_consistent",
+    "rule": 3,
+    "stage_classes": {
+      "call_prefix": "R1",
+      "pre_generation": "R2",
+      "span": "R1"
+    }
+  },
+  "interpretation_limits": [
+    "P and N are separate input changes; their norms are not additive contributions.",
+    "P is not same-input rerun noise. Repeat width describes ten conditions, not a bound for all tasks.",
+    "Local account wording explains A1/A2 readout; the formal H1 mapping is not evidence for H1.",
+    "Readable goals do not establish adopted goals, selection or causal timing.",
+    "Training data only, after prior results were viewed; no independent validation."
+  ],
+  "original_preflight_conditions": {
+    "phase2_argrec672_015e0550742e5e29": {
+      "canonical_to_ps001": {
+        "model.layers.0": {
+          "max_absolute_difference": 0.03125,
+          "relative_l2_difference": 0.012317360433005086
+        },
+        "model.layers.1": {
+          "max_absolute_difference": 0.03125,
+          "relative_l2_difference": 0.021017720210374177
+        },
+        "model.layers.10": {
+          "max_absolute_difference": 0.328125,
+          "relative_l2_difference": 0.10008041518723722
+        },
+        "model.layers.11": {
+          "max_absolute_difference": 0.41796875,
+          "relative_l2_difference": 0.10561063105242012
+        },
+        "model.layers.12": {
+          "max_absolute_difference": 0.4833984375,
+          "relative_l2_difference": 0.11754360953463991
+        },
+        "model.layers.13": {
+          "max_absolute_difference": 0.484375,
+          "relative_l2_difference": 0.13011264634033676
+        },
+        "model.layers.14": {
+          "max_absolute_difference": 0.625,
+          "relative_l2_difference": 0.12986975840871343
+        },
+        "model.layers.15": {
+          "max_absolute_difference": 1.125,
+          "relative_l2_difference": 0.14054627460710403
+        },
+        "model.layers.16": {
+          "max_absolute_difference": 0.5546875,
+          "relative_l2_difference": 0.13544058465055955
+        },
+        "model.layers.17": {
+          "max_absolute_difference": 0.6328125,
+          "relative_l2_difference": 0.130784178644539
+        },
+        "model.layers.18": {
+          "max_absolute_difference": 0.8125,
+          "relative_l2_difference": 0.12538717852233475
+        },
+        "model.layers.19": {
+          "max_absolute_difference": 0.7734375,
+          "relative_l2_difference": 0.1316853367180291
+        },
+        "model.layers.2": {
+          "max_absolute_difference": 0.017822265625,
+          "relative_l2_difference": 0.024165117971689395
+        },
+        "model.layers.20": {
+          "max_absolute_difference": 0.90625,
+          "relative_l2_difference": 0.1383723556806095
+        },
+        "model.layers.21": {
+          "max_absolute_difference": 0.994140625,
+          "relative_l2_difference": 0.1495325591834472
+        },
+        "model.layers.22": {
+          "max_absolute_difference": 1.078125,
+          "relative_l2_difference": 0.1442469997656145
+        },
+        "model.layers.23": {
+          "max_absolute_difference": 1.75,
+          "relative_l2_difference": 0.1451519049048594
+        },
+        "model.layers.24": {
+          "max_absolute_difference": 2.75,
+          "relative_l2_difference": 0.13848804513804983
+        },
+        "model.layers.25": {
+          "max_absolute_difference": 1.982421875,
+          "relative_l2_difference": 0.13973090850725467
+        },
+        "model.layers.26": {
+          "max_absolute_difference": 2.0,
+          "relative_l2_difference": 0.13555984788966763
+        },
+        "model.layers.27": {
+          "max_absolute_difference": 2.328125,
+          "relative_l2_difference": 0.13743410853106053
+        },
+        "model.layers.28": {
+          "max_absolute_difference": 3.0,
+          "relative_l2_difference": 0.14105373679361233
+        },
+        "model.layers.29": {
+          "max_absolute_difference": 3.125,
+          "relative_l2_difference": 0.12667602071399733
+        },
+        "model.layers.3": {
+          "max_absolute_difference": 0.033203125,
+          "relative_l2_difference": 0.03255793788014136
+        },
+        "model.layers.30": {
+          "max_absolute_difference": 5.0,
+          "relative_l2_difference": 0.12467002740817994
+        },
+        "model.layers.31": {
+          "max_absolute_difference": 6.0,
+          "relative_l2_difference": 0.11565933676865402
+        },
+        "model.layers.32": {
+          "max_absolute_difference": 8.0,
+          "relative_l2_difference": 0.10713563316004819
+        },
+        "model.layers.33": {
+          "max_absolute_difference": 10.0,
+          "relative_l2_difference": 0.09215933305807911
+        },
+        "model.layers.34": {
+          "max_absolute_difference": 8.0,
+          "relative_l2_difference": 0.06988125401503721
+        },
+        "model.layers.35": {
+          "max_absolute_difference": 7.125,
+          "relative_l2_difference": 0.10216316393317473
+        },
+        "model.layers.4": {
+          "max_absolute_difference": 0.1259765625,
+          "relative_l2_difference": 0.05001388133869353
+        },
+        "model.layers.5": {
+          "max_absolute_difference": 0.173828125,
+          "relative_l2_difference": 0.0586328030454743
+        },
+        "model.layers.6": {
+          "max_absolute_difference": 0.21484375,
+          "relative_l2_difference": 0.062140559943624475
+        },
+        "model.layers.7": {
+          "max_absolute_difference": 0.2421875,
+          "relative_l2_difference": 0.07057126290914854
+        },
+        "model.layers.8": {
+          "max_absolute_difference": 0.2578125,
+          "relative_l2_difference": 0.08168744585116934
+        },
+        "model.layers.9": {
+          "max_absolute_difference": 0.375,
+          "relative_l2_difference": 0.09437391908160561
+        }
+      },
+      "canonical_to_ps002": {
+        "T/model.layers.0": {
+          "bit_exact": false,
+          "max_absolute": 0.03125,
+          "relative_l2": 0.012317360433005086
+        },
+        "T/model.layers.1": {
+          "bit_exact": false,
+          "max_absolute": 0.03125,
+          "relative_l2": 0.021017720210374177
+        },
+        "T/model.layers.10": {
+          "bit_exact": false,
+          "max_absolute": 0.328125,
+          "relative_l2": 0.10008041518723722
+        },
+        "T/model.layers.11": {
+          "bit_exact": false,
+          "max_absolute": 0.41796875,
+          "relative_l2": 0.10561063105242012
+        },
+        "T/model.layers.12": {
+          "bit_exact": false,
+          "max_absolute": 0.4833984375,
+          "relative_l2": 0.11754360953463991
+        },
+        "T/model.layers.13": {
+          "bit_exact": false,
+          "max_absolute": 0.484375,
+          "relative_l2": 0.13011264634033676
+        },
+        "T/model.layers.14": {
+          "bit_exact": false,
+          "max_absolute": 0.625,
+          "relative_l2": 0.12986975840871343
+        },
+        "T/model.layers.15": {
+          "bit_exact": false,
+          "max_absolute": 1.125,
+          "relative_l2": 0.14054627460710403
+        },
+        "T/model.layers.16": {
+          "bit_exact": false,
+          "max_absolute": 0.5546875,
+          "relative_l2": 0.13544058465055955
+        },
+        "T/model.layers.17": {
+          "bit_exact": false,
+          "max_absolute": 0.6328125,
+          "relative_l2": 0.130784178644539
+        },
+        "T/model.layers.18": {
+          "bit_exact": false,
+          "max_absolute": 0.8125,
+          "relative_l2": 0.12538717852233475
+        },
+        "T/model.layers.19": {
+          "bit_exact": false,
+          "max_absolute": 0.7734375,
+          "relative_l2": 0.1317177968938487
+        },
+        "T/model.layers.2": {
+          "bit_exact": false,
+          "max_absolute": 0.017822265625,
+          "relative_l2": 0.024165117971689395
+        },
+        "T/model.layers.20": {
+          "bit_exact": false,
+          "max_absolute": 0.921875,
+          "relative_l2": 0.13848757821036495
+        },
+        "T/model.layers.21": {
+          "bit_exact": false,
+          "max_absolute": 1.0,
+          "relative_l2": 0.14973291684011494
+        },
+        "T/model.layers.22": {
+          "bit_exact": false,
+          "max_absolute": 1.21875,
+          "relative_l2": 0.14513596146937585
+        },
+        "T/model.layers.23": {
+          "bit_exact": false,
+          "max_absolute": 2.25,
+          "relative_l2": 0.14822196454314657
+        },
+        "T/model.layers.24": {
+          "bit_exact": false,
+          "max_absolute": 3.75,
+          "relative_l2": 0.1420767319059122
+        },
+        "T/model.layers.25": {
+          "bit_exact": false,
+          "max_absolute": 2.125,
+          "relative_l2": 0.14383238367893766
+        },
+        "T/model.layers.26": {
+          "bit_exact": false,
+          "max_absolute": 3.0,
+          "relative_l2": 0.14070721792278754
+        },
+        "T/model.layers.27": {
+          "bit_exact": false,
+          "max_absolute": 2.578125,
+          "relative_l2": 0.14232397646177572
+        },
+        "T/model.layers.28": {
+          "bit_exact": false,
+          "max_absolute": 3.0,
+          "relative_l2": 0.14674031847721022
+        },
+        "T/model.layers.29": {
+          "bit_exact": false,
+          "max_absolute": 5.0,
+          "relative_l2": 0.13353091724391647
+        },
+        "T/model.layers.3": {
+          "bit_exact": false,
+          "max_absolute": 0.033203125,
+          "relative_l2": 0.03255793788014136
+        },
+        "T/model.layers.30": {
+          "bit_exact": false,
+          "max_absolute": 8.0,
+          "relative_l2": 0.13348498118886667
+        },
+        "T/model.layers.31": {
+          "bit_exact": false,
+          "max_absolute": 8.0,
+          "relative_l2": 0.12381679918877792
+        },
+        "T/model.layers.32": {
+          "bit_exact": false,
+          "max_absolute": 8.0,
+          "relative_l2": 0.11419345305926062
+        },
+        "T/model.layers.33": {
+          "bit_exact": false,
+          "max_absolute": 12.0,
+          "relative_l2": 0.09725247728806233
+        },
+        "T/model.layers.34": {
+          "bit_exact": false,
+          "max_absolute": 12.0,
+          "relative_l2": 0.0744209875824635
+        },
+        "T/model.layers.35": {
+          "bit_exact": false,
+          "max_absolute": 12.0,
+          "relative_l2": 0.10825445054464865
+        },
+        "T/model.layers.4": {
+          "bit_exact": false,
+          "max_absolute": 0.1259765625,
+          "relative_l2": 0.05001388133869353
+        },
+        "T/model.layers.5": {
+          "bit_exact": false,
+          "max_absolute": 0.173828125,
+          "relative_l2": 0.0586328030454743
+        },
+        "T/model.layers.6": {
+          "bit_exact": false,
+          "max_absolute": 0.21484375,
+          "relative_l2": 0.062140559943624475
+        },
+        "T/model.layers.7": {
+          "bit_exact": false,
+          "max_absolute": 0.2421875,
+          "relative_l2": 0.07057126290914854
+        },
+        "T/model.layers.8": {
+          "bit_exact": false,
+          "max_absolute": 0.2578125,
+          "relative_l2": 0.08168744585116934
+        },
+        "T/model.layers.9": {
+          "bit_exact": false,
+          "max_absolute": 0.375,
+          "relative_l2": 0.09437391908160561
+        }
+      },
+      "ps001_to_ps002": {
+        "T/model.layers.0": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.1": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.10": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.11": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.12": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.13": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.14": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.15": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.16": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.17": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.18": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.19": {
+          "bit_exact": false,
+          "max_absolute": 0.015625,
+          "relative_l2": 0.0015119612219914392
+        },
+        "T/model.layers.2": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.20": {
+          "bit_exact": false,
+          "max_absolute": 0.11328125,
+          "relative_l2": 0.02297959834581399
+        },
+        "T/model.layers.21": {
+          "bit_exact": false,
+          "max_absolute": 0.5,
+          "relative_l2": 0.03677408555250164
+        },
+        "T/model.layers.22": {
+          "bit_exact": false,
+          "max_absolute": 0.75,
+          "relative_l2": 0.04472849266079592
+        },
+        "T/model.layers.23": {
+          "bit_exact": false,
+          "max_absolute": 0.5,
+          "relative_l2": 0.0492135312516754
+        },
+        "T/model.layers.24": {
+          "bit_exact": false,
+          "max_absolute": 1.0,
+          "relative_l2": 0.04987905071080199
+        },
+        "T/model.layers.25": {
+          "bit_exact": false,
+          "max_absolute": 1.5,
+          "relative_l2": 0.0540540168608175
+        },
+        "T/model.layers.26": {
+          "bit_exact": false,
+          "max_absolute": 1.0390625,
+          "relative_l2": 0.05579803195014022
+        },
+        "T/model.layers.27": {
+          "bit_exact": false,
+          "max_absolute": 2.0,
+          "relative_l2": 0.05815719050859174
+        },
+        "T/model.layers.28": {
+          "bit_exact": false,
+          "max_absolute": 3.5,
+          "relative_l2": 0.06132866658659993
+        },
+        "T/model.layers.29": {
+          "bit_exact": false,
+          "max_absolute": 4.0,
+          "relative_l2": 0.05738382713557196
+        },
+        "T/model.layers.3": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.30": {
+          "bit_exact": false,
+          "max_absolute": 5.0,
+          "relative_l2": 0.05711299420065316
+        },
+        "T/model.layers.31": {
+          "bit_exact": false,
+          "max_absolute": 6.0,
+          "relative_l2": 0.054158336922355
+        },
+        "T/model.layers.32": {
+          "bit_exact": false,
+          "max_absolute": 4.0,
+          "relative_l2": 0.050100900394475345
+        },
+        "T/model.layers.33": {
+          "bit_exact": false,
+          "max_absolute": 4.0,
+          "relative_l2": 0.04378495011615559
+        },
+        "T/model.layers.34": {
+          "bit_exact": false,
+          "max_absolute": 4.0,
+          "relative_l2": 0.03467569015161174
+        },
+        "T/model.layers.35": {
+          "bit_exact": false,
+          "max_absolute": 12.0,
+          "relative_l2": 0.05339867361041176
+        },
+        "T/model.layers.4": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.5": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.6": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.7": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.8": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.9": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        }
+      }
+    },
+    "phase2_argrec672_01c86b60e6c4fe0e": {
+      "canonical_to_ps001": {
+        "model.layers.0": {
+          "max_absolute_difference": 0.009765625,
+          "relative_l2_difference": 0.01342936188033466
+        },
+        "model.layers.1": {
+          "max_absolute_difference": 0.03125,
+          "relative_l2_difference": 0.020033042473268835
+        },
+        "model.layers.10": {
+          "max_absolute_difference": 0.5,
+          "relative_l2_difference": 0.09745130521631801
+        },
+        "model.layers.11": {
+          "max_absolute_difference": 0.625,
+          "relative_l2_difference": 0.10446459793107182
+        },
+        "model.layers.12": {
+          "max_absolute_difference": 0.5,
+          "relative_l2_difference": 0.11695913565879373
+        },
+        "model.layers.13": {
+          "max_absolute_difference": 0.75,
+          "relative_l2_difference": 0.12961003866367612
+        },
+        "model.layers.14": {
+          "max_absolute_difference": 0.875,
+          "relative_l2_difference": 0.1323287724093026
+        },
+        "model.layers.15": {
+          "max_absolute_difference": 1.25,
+          "relative_l2_difference": 0.14583871549879662
+        },
+        "model.layers.16": {
+          "max_absolute_difference": 1.25,
+          "relative_l2_difference": 0.14365217767908833
+        },
+        "model.layers.17": {
+          "max_absolute_difference": 0.669921875,
+          "relative_l2_difference": 0.13564234493449906
+        },
+        "model.layers.18": {
+          "max_absolute_difference": 0.771484375,
+          "relative_l2_difference": 0.12628447497723122
+        },
+        "model.layers.19": {
+          "max_absolute_difference": 1.25,
+          "relative_l2_difference": 0.1398143976557874
+        },
+        "model.layers.2": {
+          "max_absolute_difference": 0.0625,
+          "relative_l2_difference": 0.028254857720595123
+        },
+        "model.layers.20": {
+          "max_absolute_difference": 1.015625,
+          "relative_l2_difference": 0.13963693577211092
+        },
+        "model.layers.21": {
+          "max_absolute_difference": 1.23046875,
+          "relative_l2_difference": 0.1465579634960465
+        },
+        "model.layers.22": {
+          "max_absolute_difference": 2.0,
+          "relative_l2_difference": 0.1486976778977013
+        },
+        "model.layers.23": {
+          "max_absolute_difference": 4.5,
+          "relative_l2_difference": 0.15950711477829155
+        },
+        "model.layers.24": {
+          "max_absolute_difference": 5.75,
+          "relative_l2_difference": 0.15283211384764142
+        },
+        "model.layers.25": {
+          "max_absolute_difference": 5.5,
+          "relative_l2_difference": 0.15195626392292866
+        },
+        "model.layers.26": {
+          "max_absolute_difference": 6.5,
+          "relative_l2_difference": 0.15457126496499218
+        },
+        "model.layers.27": {
+          "max_absolute_difference": 9.0,
+          "relative_l2_difference": 0.16081800295853035
+        },
+        "model.layers.28": {
+          "max_absolute_difference": 12.0,
+          "relative_l2_difference": 0.16467581133331144
+        },
+        "model.layers.29": {
+          "max_absolute_difference": 12.0,
+          "relative_l2_difference": 0.14634894792509826
+        },
+        "model.layers.3": {
+          "max_absolute_difference": 0.125,
+          "relative_l2_difference": 0.03483844664908293
+        },
+        "model.layers.30": {
+          "max_absolute_difference": 12.0,
+          "relative_l2_difference": 0.14387501063428962
+        },
+        "model.layers.31": {
+          "max_absolute_difference": 12.0,
+          "relative_l2_difference": 0.13464018768854244
+        },
+        "model.layers.32": {
+          "max_absolute_difference": 12.0,
+          "relative_l2_difference": 0.12556576979054768
+        },
+        "model.layers.33": {
+          "max_absolute_difference": 10.0,
+          "relative_l2_difference": 0.10620980009839638
+        },
+        "model.layers.34": {
+          "max_absolute_difference": 12.0,
+          "relative_l2_difference": 0.08452818706323519
+        },
+        "model.layers.35": {
+          "max_absolute_difference": 40.0,
+          "relative_l2_difference": 0.13730125706248178
+        },
+        "model.layers.4": {
+          "max_absolute_difference": 0.0908203125,
+          "relative_l2_difference": 0.05846075354427328
+        },
+        "model.layers.5": {
+          "max_absolute_difference": 0.25,
+          "relative_l2_difference": 0.06340244158084331
+        },
+        "model.layers.6": {
+          "max_absolute_difference": 0.2109375,
+          "relative_l2_difference": 0.0625355982727129
+        },
+        "model.layers.7": {
+          "max_absolute_difference": 0.2314453125,
+          "relative_l2_difference": 0.0688251125763132
+        },
+        "model.layers.8": {
+          "max_absolute_difference": 0.2421875,
+          "relative_l2_difference": 0.08059931448358902
+        },
+        "model.layers.9": {
+          "max_absolute_difference": 0.27734375,
+          "relative_l2_difference": 0.09378258672772814
+        }
+      },
+      "canonical_to_ps002": {
+        "T/model.layers.0": {
+          "bit_exact": false,
+          "max_absolute": 0.009765625,
+          "relative_l2": 0.01342936188033466
+        },
+        "T/model.layers.1": {
+          "bit_exact": false,
+          "max_absolute": 0.03125,
+          "relative_l2": 0.020033042473268835
+        },
+        "T/model.layers.10": {
+          "bit_exact": false,
+          "max_absolute": 0.5,
+          "relative_l2": 0.09745130521631801
+        },
+        "T/model.layers.11": {
+          "bit_exact": false,
+          "max_absolute": 0.625,
+          "relative_l2": 0.10446459793107182
+        },
+        "T/model.layers.12": {
+          "bit_exact": false,
+          "max_absolute": 0.5,
+          "relative_l2": 0.11695913565879373
+        },
+        "T/model.layers.13": {
+          "bit_exact": false,
+          "max_absolute": 0.75,
+          "relative_l2": 0.12961003866367612
+        },
+        "T/model.layers.14": {
+          "bit_exact": false,
+          "max_absolute": 0.875,
+          "relative_l2": 0.1323287724093026
+        },
+        "T/model.layers.15": {
+          "bit_exact": false,
+          "max_absolute": 1.25,
+          "relative_l2": 0.14583871549879662
+        },
+        "T/model.layers.16": {
+          "bit_exact": false,
+          "max_absolute": 1.25,
+          "relative_l2": 0.14365217767908833
+        },
+        "T/model.layers.17": {
+          "bit_exact": false,
+          "max_absolute": 0.669921875,
+          "relative_l2": 0.13564234493449906
+        },
+        "T/model.layers.18": {
+          "bit_exact": false,
+          "max_absolute": 0.771484375,
+          "relative_l2": 0.12628447497723122
+        },
+        "T/model.layers.19": {
+          "bit_exact": false,
+          "max_absolute": 1.25,
+          "relative_l2": 0.1398143976557874
+        },
+        "T/model.layers.2": {
+          "bit_exact": false,
+          "max_absolute": 0.0625,
+          "relative_l2": 0.028254857720595123
+        },
+        "T/model.layers.20": {
+          "bit_exact": false,
+          "max_absolute": 1.015625,
+          "relative_l2": 0.13963693577211092
+        },
+        "T/model.layers.21": {
+          "bit_exact": false,
+          "max_absolute": 1.23046875,
+          "relative_l2": 0.1465579634960465
+        },
+        "T/model.layers.22": {
+          "bit_exact": false,
+          "max_absolute": 2.0,
+          "relative_l2": 0.14869957390581526
+        },
+        "T/model.layers.23": {
+          "bit_exact": false,
+          "max_absolute": 4.5,
+          "relative_l2": 0.1594802430328709
+        },
+        "T/model.layers.24": {
+          "bit_exact": false,
+          "max_absolute": 5.75,
+          "relative_l2": 0.15357921018331736
+        },
+        "T/model.layers.25": {
+          "bit_exact": false,
+          "max_absolute": 5.5,
+          "relative_l2": 0.15298000742760212
+        },
+        "T/model.layers.26": {
+          "bit_exact": false,
+          "max_absolute": 7.0,
+          "relative_l2": 0.15479371047549154
+        },
+        "T/model.layers.27": {
+          "bit_exact": false,
+          "max_absolute": 9.5,
+          "relative_l2": 0.16173111943740173
+        },
+        "T/model.layers.28": {
+          "bit_exact": false,
+          "max_absolute": 13.0,
+          "relative_l2": 0.16442103810956205
+        },
+        "T/model.layers.29": {
+          "bit_exact": false,
+          "max_absolute": 12.0,
+          "relative_l2": 0.1453547630922196
+        },
+        "T/model.layers.3": {
+          "bit_exact": false,
+          "max_absolute": 0.125,
+          "relative_l2": 0.03483844664908293
+        },
+        "T/model.layers.30": {
+          "bit_exact": false,
+          "max_absolute": 13.0,
+          "relative_l2": 0.14241470764254516
+        },
+        "T/model.layers.31": {
+          "bit_exact": false,
+          "max_absolute": 12.0,
+          "relative_l2": 0.1314400250496184
+        },
+        "T/model.layers.32": {
+          "bit_exact": false,
+          "max_absolute": 10.0,
+          "relative_l2": 0.12277774799312431
+        },
+        "T/model.layers.33": {
+          "bit_exact": false,
+          "max_absolute": 10.0,
+          "relative_l2": 0.10406520348403099
+        },
+        "T/model.layers.34": {
+          "bit_exact": false,
+          "max_absolute": 12.0,
+          "relative_l2": 0.08324061219998324
+        },
+        "T/model.layers.35": {
+          "bit_exact": false,
+          "max_absolute": 28.0,
+          "relative_l2": 0.12899295750377068
+        },
+        "T/model.layers.4": {
+          "bit_exact": false,
+          "max_absolute": 0.0908203125,
+          "relative_l2": 0.05846075354427328
+        },
+        "T/model.layers.5": {
+          "bit_exact": false,
+          "max_absolute": 0.25,
+          "relative_l2": 0.06340244158084331
+        },
+        "T/model.layers.6": {
+          "bit_exact": false,
+          "max_absolute": 0.2109375,
+          "relative_l2": 0.0625355982727129
+        },
+        "T/model.layers.7": {
+          "bit_exact": false,
+          "max_absolute": 0.2314453125,
+          "relative_l2": 0.0688251125763132
+        },
+        "T/model.layers.8": {
+          "bit_exact": false,
+          "max_absolute": 0.2421875,
+          "relative_l2": 0.08059931448358902
+        },
+        "T/model.layers.9": {
+          "bit_exact": false,
+          "max_absolute": 0.27734375,
+          "relative_l2": 0.09378258672772814
+        }
+      },
+      "ps001_to_ps002": {
+        "T/model.layers.0": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.1": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.10": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.11": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.12": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.13": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.14": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.15": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.16": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.17": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.18": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.19": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.2": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.20": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.21": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.22": {
+          "bit_exact": false,
+          "max_absolute": 0.03125,
+          "relative_l2": 0.000609865342350391
+        },
+        "T/model.layers.23": {
+          "bit_exact": false,
+          "max_absolute": 0.140625,
+          "relative_l2": 0.01800882986475688
+        },
+        "T/model.layers.24": {
+          "bit_exact": false,
+          "max_absolute": 0.31640625,
+          "relative_l2": 0.026935462313575034
+        },
+        "T/model.layers.25": {
+          "bit_exact": false,
+          "max_absolute": 0.5625,
+          "relative_l2": 0.032047539721123425
+        },
+        "T/model.layers.26": {
+          "bit_exact": false,
+          "max_absolute": 0.53125,
+          "relative_l2": 0.03454230051121702
+        },
+        "T/model.layers.27": {
+          "bit_exact": false,
+          "max_absolute": 0.60546875,
+          "relative_l2": 0.037515521233938635
+        },
+        "T/model.layers.28": {
+          "bit_exact": false,
+          "max_absolute": 1.0,
+          "relative_l2": 0.040039499787864925
+        },
+        "T/model.layers.29": {
+          "bit_exact": false,
+          "max_absolute": 0.96875,
+          "relative_l2": 0.03663964917284719
+        },
+        "T/model.layers.3": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.30": {
+          "bit_exact": false,
+          "max_absolute": 1.03125,
+          "relative_l2": 0.03666620723070339
+        },
+        "T/model.layers.31": {
+          "bit_exact": false,
+          "max_absolute": 2.0,
+          "relative_l2": 0.03510035958263412
+        },
+        "T/model.layers.32": {
+          "bit_exact": false,
+          "max_absolute": 4.0,
+          "relative_l2": 0.03508446763225489
+        },
+        "T/model.layers.33": {
+          "bit_exact": false,
+          "max_absolute": 4.0,
+          "relative_l2": 0.030904576645729924
+        },
+        "T/model.layers.34": {
+          "bit_exact": false,
+          "max_absolute": 2.15625,
+          "relative_l2": 0.024688537817287998
+        },
+        "T/model.layers.35": {
+          "bit_exact": false,
+          "max_absolute": 12.0,
+          "relative_l2": 0.041546610127837696
+        },
+        "T/model.layers.4": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.5": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.6": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.7": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.8": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        },
+        "T/model.layers.9": {
+          "bit_exact": true,
+          "max_absolute": 0.0,
+          "relative_l2": 0.0
+        }
+      }
+    }
+  },
+  "positions": {
+    "A1": {
+      "classification": {
+        "class": "R1",
+        "qualifying_cells": [
+          "A1/layer0/logistic",
+          "A1/layer16/logistic",
+          "A1/layer24/logistic",
+          "A1/layer32/logistic",
+          "A1/layer32/paired_dom",
+          "A1/layer8/logistic",
+          "A1/layer8/paired_dom"
+        ]
+      },
+      "maximum_judged_paired_accuracy": 1.0,
+      "qualifying_cells": {
+        "A1/layer0/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.9,
+              0.975
+            ],
+            "pooled_auroc": [
+              0.8847899305555555,
+              0.9478506944444445
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 0,
+          "paired_accuracy": 0.9416666666666667,
+          "pooled_auroc": 0.9190972222222222,
+          "position": "A1",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 0.8666666666666667,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.96
+            },
+            "family": {
+              "A": 0.9047619047619048,
+              "B": 0.9523809523809523,
+              "C": 0.9523809523809523,
+              "D": 0.9047619047619048,
+              "E": 0.9444444444444444,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 0.7333333333333333,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.92,
+              "UI": 1.0,
+              "UN": 0.96
+            },
+            "source_role": {
+              "tool_output_document": 0.9111111111111111,
+              "user_instruction": 0.96
+            }
+          }
+        },
+        "A1/layer16/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              1.0,
+              1.0
+            ],
+            "pooled_auroc": [
+              0.9874288194444444,
+              0.9985416666666667
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 16,
+          "paired_accuracy": 1.0,
+          "pooled_auroc": 0.9940277777777777,
+          "position": "A1",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 1.0
+            },
+            "family": {
+              "A": 1.0,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 1.0,
+              "UI": 1.0,
+              "UN": 1.0
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 1.0
+            }
+          }
+        },
+        "A1/layer24/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.975,
+              1.0
+            ],
+            "pooled_auroc": [
+              0.97221875,
+              0.9906961805555556
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 24,
+          "paired_accuracy": 0.9916666666666667,
+          "pooled_auroc": 0.9820833333333334,
+          "position": "A1",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9866666666666667
+            },
+            "family": {
+              "A": 0.9523809523809523,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.96,
+              "UI": 1.0,
+              "UN": 1.0
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 0.9866666666666667
+            }
+          }
+        },
+        "A1/layer32/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.975,
+              1.0
+            ],
+            "pooled_auroc": [
+              0.95221875,
+              0.9845833333333333
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 32,
+          "paired_accuracy": 0.9916666666666667,
+          "pooled_auroc": 0.969375,
+          "position": "A1",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9866666666666667
+            },
+            "family": {
+              "A": 1.0,
+              "B": 1.0,
+              "C": 0.9523809523809523,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.96,
+              "UI": 1.0,
+              "UN": 1.0
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 0.9866666666666667
+            }
+          }
+        },
+        "A1/layer32/paired_dom": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.9,
+              0.9833333333333333
+            ],
+            "pooled_auroc": [
+              0.7263142361111111,
+              0.8008350694444444
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 32,
+          "paired_accuracy": 0.9416666666666667,
+          "pooled_auroc": 0.7626388888888889,
+          "position": "A1",
+          "probe": "paired_dom",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 0.9333333333333333,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9333333333333333
+            },
+            "family": {
+              "A": 0.9047619047619048,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 0.8333333333333334,
+              "F": 0.8888888888888888
+            },
+            "recipient_rule": {
+              "D1": 0.8666666666666667,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 1.0,
+              "UI": 0.92,
+              "UN": 0.88
+            },
+            "source_role": {
+              "tool_output_document": 0.9555555555555556,
+              "user_instruction": 0.9333333333333333
+            }
+          }
+        },
+        "A1/layer8/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.975,
+              1.0
+            ],
+            "pooled_auroc": [
+              0.9904166666666667,
+              0.9990972222222222
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 8,
+          "paired_accuracy": 0.9916666666666667,
+          "pooled_auroc": 0.995625,
+          "position": "A1",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9866666666666667
+            },
+            "family": {
+              "A": 0.9523809523809523,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.96,
+              "UI": 1.0,
+              "UN": 1.0
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 0.9866666666666667
+            }
+          }
+        },
+        "A1/layer8/paired_dom": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.9333333333333333,
+              1.0
+            ],
+            "pooled_auroc": [
+              0.8761770833333334,
+              0.9313958333333333
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 8,
+          "paired_accuracy": 0.975,
+          "pooled_auroc": 0.903888888888889,
+          "position": "A1",
+          "probe": "paired_dom",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.96
+            },
+            "family": {
+              "A": 1.0,
+              "B": 1.0,
+              "C": 0.9047619047619048,
+              "D": 0.9523809523809523,
+              "E": 1.0,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.96,
+              "UI": 0.96,
+              "UN": 0.96
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 0.96
+            }
+          }
+        }
+      }
+    },
+    "A2": {
+      "classification": {
+        "class": "R1",
+        "qualifying_cells": [
+          "A2/layer16/logistic",
+          "A2/layer16/paired_dom",
+          "A2/layer24/logistic",
+          "A2/layer24/paired_dom",
+          "A2/layer32/logistic",
+          "A2/layer32/paired_dom",
+          "A2/layer8/logistic",
+          "A2/layer8/paired_dom"
+        ]
+      },
+      "maximum_judged_paired_accuracy": 1.0,
+      "qualifying_cells": {
+        "A2/layer16/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.975,
+              1.0
+            ],
+            "pooled_auroc": [
+              0.9877777777777779,
+              0.9978472222222221
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 16,
+          "paired_accuracy": 0.9916666666666667,
+          "pooled_auroc": 0.9936805555555556,
+          "position": "A2",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9866666666666667
+            },
+            "family": {
+              "A": 0.9523809523809523,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.96,
+              "UI": 1.0,
+              "UN": 1.0
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 0.9866666666666667
+            }
+          }
+        },
+        "A2/layer16/paired_dom": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.9583333333333334,
+              1.0
+            ],
+            "pooled_auroc": [
+              0.960203125,
+              0.9874999999999999
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 16,
+          "paired_accuracy": 0.9833333333333333,
+          "pooled_auroc": 0.9752083333333333,
+          "position": "A2",
+          "probe": "paired_dom",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 0.9666666666666667,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9866666666666667
+            },
+            "family": {
+              "A": 0.9523809523809523,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 0.9444444444444444,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 0.9333333333333333,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.96,
+              "UI": 1.0,
+              "UN": 1.0
+            },
+            "source_role": {
+              "tool_output_document": 0.9777777777777777,
+              "user_instruction": 0.9866666666666667
+            }
+          }
+        },
+        "A2/layer24/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.975,
+              1.0
+            ],
+            "pooled_auroc": [
+              0.9954166666666667,
+              1.0
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 24,
+          "paired_accuracy": 0.9916666666666667,
+          "pooled_auroc": 0.9983333333333333,
+          "position": "A2",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9866666666666667
+            },
+            "family": {
+              "A": 0.9523809523809523,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.96,
+              "UI": 1.0,
+              "UN": 1.0
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 0.9866666666666667
+            }
+          }
+        },
+        "A2/layer24/paired_dom": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.9,
+              0.975
+            ],
+            "pooled_auroc": [
+              0.8955520833333334,
+              0.9535416666666666
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 24,
+          "paired_accuracy": 0.9416666666666667,
+          "pooled_auroc": 0.9256249999999999,
+          "position": "A2",
+          "probe": "paired_dom",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 0.9666666666666667,
+              "later_tool_to_assistant": 0.9333333333333333,
+              "user_to_assistant": 0.9333333333333333
+            },
+            "family": {
+              "A": 0.9523809523809523,
+              "B": 0.9047619047619048,
+              "C": 0.9047619047619048,
+              "D": 0.9047619047619048,
+              "E": 1.0,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 0.9333333333333333,
+              "D2": 0.9333333333333333,
+              "U0": 0.88,
+              "UI": 0.92,
+              "UN": 1.0
+            },
+            "source_role": {
+              "tool_output_document": 0.9555555555555556,
+              "user_instruction": 0.9333333333333333
+            }
+          }
+        },
+        "A2/layer32/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              1.0,
+              1.0
+            ],
+            "pooled_auroc": [
+              0.99375,
+              0.9995833333333334
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 32,
+          "paired_accuracy": 1.0,
+          "pooled_auroc": 0.997361111111111,
+          "position": "A2",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 1.0
+            },
+            "family": {
+              "A": 1.0,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 1.0,
+              "UI": 1.0,
+              "UN": 1.0
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 1.0
+            }
+          }
+        },
+        "A2/layer32/paired_dom": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.8833333333333333,
+              0.975
+            ],
+            "pooled_auroc": [
+              0.9084027777777778,
+              0.9698611111111111
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 32,
+          "paired_accuracy": 0.9333333333333333,
+          "pooled_auroc": 0.9416666666666667,
+          "position": "A2",
+          "probe": "paired_dom",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 0.9666666666666667,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9066666666666666
+            },
+            "family": {
+              "A": 0.9523809523809523,
+              "B": 0.8095238095238095,
+              "C": 0.9047619047619048,
+              "D": 0.9523809523809523,
+              "E": 1.0,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 0.9333333333333333,
+              "D2": 1.0,
+              "U0": 0.84,
+              "UI": 0.92,
+              "UN": 0.96
+            },
+            "source_role": {
+              "tool_output_document": 0.9777777777777777,
+              "user_instruction": 0.9066666666666666
+            }
+          }
+        },
+        "A2/layer8/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.925,
+              0.9916666666666667
+            ],
+            "pooled_auroc": [
+              0.972423611111111,
+              0.9941684027777777
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 8,
+          "paired_accuracy": 0.9583333333333334,
+          "pooled_auroc": 0.984375,
+          "position": "A2",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9333333333333333
+            },
+            "family": {
+              "A": 0.9047619047619048,
+              "B": 0.9523809523809523,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 0.8888888888888888
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.88,
+              "UI": 1.0,
+              "UN": 0.92
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 0.9333333333333333
+            }
+          }
+        },
+        "A2/layer8/paired_dom": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.9,
+              0.975
+            ],
+            "pooled_auroc": [
+              0.8724305555555555,
+              0.9309739583333334
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 8,
+          "paired_accuracy": 0.9416666666666667,
+          "pooled_auroc": 0.90125,
+          "position": "A2",
+          "probe": "paired_dom",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 0.9666666666666667,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.92
+            },
+            "family": {
+              "A": 0.8571428571428571,
+              "B": 1.0,
+              "C": 0.9523809523809523,
+              "D": 0.9523809523809523,
+              "E": 1.0,
+              "F": 0.8888888888888888
+            },
+            "recipient_rule": {
+              "D1": 0.9333333333333333,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.88,
+              "UI": 0.96,
+              "UN": 0.92
+            },
+            "source_role": {
+              "tool_output_document": 0.9777777777777777,
+              "user_instruction": 0.92
+            }
+          }
+        }
+      }
+    },
+    "G": {
+      "classification": {
+        "class": "R1",
+        "qualifying_cells": [
+          "G/layer16/logistic",
+          "G/layer24/logistic",
+          "G/layer24/paired_dom",
+          "G/layer8/logistic"
+        ]
+      },
+      "maximum_judged_paired_accuracy": 0.9916666666666667,
+      "qualifying_cells": {
+        "G/layer16/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.975,
+              1.0
+            ],
+            "pooled_auroc": [
+              0.9669427083333334,
+              0.9925694444444444
+            ]
+          },
+          "description": "同位置ロジットの精度を上回る",
+          "explained_by_logit_range": false,
+          "family_wise_p": 0.009900990099009901,
+          "interpretation": "accuracy_comparison_only",
+          "judged": true,
+          "layer": 16,
+          "paired_accuracy": 0.9916666666666667,
+          "pooled_auroc": 0.9809722222222221,
+          "position": "G",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9866666666666667
+            },
+            "family": {
+              "A": 0.9523809523809523,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 1.0
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.96,
+              "UI": 1.0,
+              "UN": 1.0
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 0.9866666666666667
+            }
+          }
+        },
+        "G/layer24/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.9583333333333334,
+              1.0
+            ],
+            "pooled_auroc": [
+              0.9840260416666666,
+              0.9990972222222222
+            ]
+          },
+          "description": "同位置ロジットの精度を上回る",
+          "explained_by_logit_range": false,
+          "family_wise_p": 0.009900990099009901,
+          "interpretation": "accuracy_comparison_only",
+          "judged": true,
+          "layer": 24,
+          "paired_accuracy": 0.9833333333333333,
+          "pooled_auroc": 0.9931249999999999,
+          "position": "G",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9733333333333334
+            },
+            "family": {
+              "A": 0.9523809523809523,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 0.9444444444444444
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.92,
+              "UI": 1.0,
+              "UN": 1.0
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 0.9733333333333334
+            }
+          }
+        },
+        "G/layer24/paired_dom": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.875,
+              0.9583333333333334
+            ],
+            "pooled_auroc": [
+              0.8973489583333333,
+              0.9673680555555554
+            ]
+          },
+          "description": "同位置ロジットの精度以下",
+          "explained_by_logit_range": true,
+          "family_wise_p": 0.009900990099009901,
+          "interpretation": "accuracy_comparison_only",
+          "judged": true,
+          "layer": 24,
+          "paired_accuracy": 0.9166666666666666,
+          "pooled_auroc": 0.9345138888888889,
+          "position": "G",
+          "probe": "paired_dom",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 0.8333333333333334,
+              "later_tool_to_assistant": 0.9333333333333333,
+              "user_to_assistant": 0.9466666666666667
+            },
+            "family": {
+              "A": 0.8095238095238095,
+              "B": 0.9523809523809523,
+              "C": 1.0,
+              "D": 0.9523809523809523,
+              "E": 0.9444444444444444,
+              "F": 0.8333333333333334
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 0.6666666666666666,
+              "D2": 0.9333333333333333,
+              "U0": 0.92,
+              "UI": 0.96,
+              "UN": 0.96
+            },
+            "source_role": {
+              "tool_output_document": 0.8666666666666667,
+              "user_instruction": 0.9466666666666667
+            }
+          }
+        },
+        "G/layer8/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.9333333333333333,
+              0.9916666666666667
+            ],
+            "pooled_auroc": [
+              0.92,
+              0.9679895833333334
+            ]
+          },
+          "description": "同位置ロジットの精度以下",
+          "explained_by_logit_range": true,
+          "family_wise_p": 0.009900990099009901,
+          "interpretation": "accuracy_comparison_only",
+          "judged": true,
+          "layer": 8,
+          "paired_accuracy": 0.9666666666666667,
+          "pooled_auroc": 0.9449305555555556,
+          "position": "G",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 0.9333333333333333,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9733333333333334
+            },
+            "family": {
+              "A": 0.9047619047619048,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 0.8888888888888888
+            },
+            "recipient_rule": {
+              "D1": 0.8666666666666667,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 1.0,
+              "UI": 0.96,
+              "UN": 0.96
+            },
+            "source_role": {
+              "tool_output_document": 0.9555555555555556,
+              "user_instruction": 0.9733333333333334
+            }
+          }
+        }
+      }
+    },
+    "S": {
+      "classification": {
+        "class": "R1",
+        "qualifying_cells": [
+          "S/layer16/logistic",
+          "S/layer16/paired_dom",
+          "S/layer24/logistic",
+          "S/layer24/paired_dom"
+        ]
+      },
+      "maximum_judged_paired_accuracy": 0.9833333333333333,
+      "qualifying_cells": {
+        "S/layer16/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.9333333333333333,
+              0.9916666666666667
+            ],
+            "pooled_auroc": [
+              0.9286076388888889,
+              0.973125
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 16,
+          "paired_accuracy": 0.9666666666666667,
+          "pooled_auroc": 0.9525694444444445,
+          "position": "S",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9466666666666667
+            },
+            "family": {
+              "A": 1.0,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 0.7777777777777778
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.92,
+              "UI": 0.96,
+              "UN": 0.96
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 0.9466666666666667
+            }
+          }
+        },
+        "S/layer16/paired_dom": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.8666666666666667,
+              0.9666666666666667
+            ],
+            "pooled_auroc": [
+              0.7674305555555555,
+              0.8568072916666667
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 16,
+          "paired_accuracy": 0.9166666666666666,
+          "pooled_auroc": 0.8135416666666667,
+          "position": "S",
+          "probe": "paired_dom",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 0.9333333333333333,
+              "later_tool_to_assistant": 0.9333333333333333,
+              "user_to_assistant": 0.9066666666666666
+            },
+            "family": {
+              "A": 0.9523809523809523,
+              "B": 0.9523809523809523,
+              "C": 0.9523809523809523,
+              "D": 1.0,
+              "E": 0.8333333333333334,
+              "F": 0.7777777777777778
+            },
+            "recipient_rule": {
+              "D1": 0.8666666666666667,
+              "D1M": 1.0,
+              "D2": 0.9333333333333333,
+              "U0": 0.84,
+              "UI": 0.92,
+              "UN": 0.96
+            },
+            "source_role": {
+              "tool_output_document": 0.9333333333333333,
+              "user_instruction": 0.9066666666666666
+            }
+          }
+        },
+        "S/layer24/logistic": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.9583333333333334,
+              1.0
+            ],
+            "pooled_auroc": [
+              0.9775694444444445,
+              0.9989583333333333
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 24,
+          "paired_accuracy": 0.9833333333333333,
+          "pooled_auroc": 0.9901388888888889,
+          "position": "S",
+          "probe": "logistic",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 1.0,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9733333333333334
+            },
+            "family": {
+              "A": 0.9523809523809523,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 1.0,
+              "E": 1.0,
+              "F": 0.9444444444444444
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 1.0,
+              "D2": 1.0,
+              "U0": 0.96,
+              "UI": 1.0,
+              "UN": 0.96
+            },
+            "source_role": {
+              "tool_output_document": 1.0,
+              "user_instruction": 0.9733333333333334
+            }
+          }
+        },
+        "S/layer24/paired_dom": {
+          "bootstrap_95": {
+            "paired_accuracy": [
+              0.925,
+              0.9916666666666667
+            ],
+            "pooled_auroc": [
+              0.9363194444444445,
+              0.9798628472222222
+            ]
+          },
+          "family_wise_p": 0.009900990099009901,
+          "judged": true,
+          "layer": 24,
+          "paired_accuracy": 0.9583333333333334,
+          "pooled_auroc": 0.9600694444444444,
+          "position": "S",
+          "probe": "paired_dom",
+          "strata": {
+            "boundary": {
+              "first_tool_to_assistant": 0.9666666666666667,
+              "later_tool_to_assistant": 1.0,
+              "user_to_assistant": 0.9466666666666667
+            },
+            "family": {
+              "A": 0.9523809523809523,
+              "B": 1.0,
+              "C": 1.0,
+              "D": 0.9523809523809523,
+              "E": 1.0,
+              "F": 0.8333333333333334
+            },
+            "recipient_rule": {
+              "D1": 1.0,
+              "D1M": 0.9333333333333333,
+              "D2": 1.0,
+              "U0": 0.92,
+              "UI": 0.96,
+              "UN": 0.96
+            },
+            "source_role": {
+              "tool_output_document": 0.9777777777777777,
+              "user_instruction": 0.9466666666666667
+            }
+          }
+        }
+      }
+    },
+    "T": {
+      "classification": {
+        "class": "R2",
+        "qualifying_cells": []
+      },
+      "maximum_judged_paired_accuracy": 0.8583333333333333,
+      "qualifying_cells": {}
+    }
+  },
+  "reanalysis_provenance": {
+    "analysis_config_sha256": "b9b1082cc7446acde775ef2b4524afe347aed07bf320742e3bf520d66fc3f871",
+    "capture_git_commit": "0aa063a583cb2e6e186efc1f8196fbd75983f1c0",
+    "comparison_report_sha256": "2b07d1943c400f5a67650f7b97f61d2bc5250d7131e0a407ba63b669d02a3d94",
+    "git_commit": "eeb09e79a5319868a1b276ce7a3e40429470454e",
+    "git_dirty": false,
+    "reference_analysis_report_sha256": "71b9b224e6b819c1d5c5c4b2ea2a143e07324fc1bf4822e08894bc113120545e",
+    "reference_sha256": {
+      "analysis_report": "71b9b224e6b819c1d5c5c4b2ea2a143e07324fc1bf4822e08894bc113120545e",
+      "collection_manifest": "85358a68021538dc661a27ec3c98d8a39e0e8c4aadf6c989c121a9726ca59abf",
+      "gpu_preflight_report": "309afc1ea00dff84219bf1bd3f7b16e691559b200f2a1701355a8efd0ac1d680",
+      "runtime_freeze": "2258700e8136385aa440eceab06fff8bc0b71623f0a7abeac68cee8adb989f06"
+    },
+    "research_result": "post_result_train_only_technical_control",
+    "runtime_freeze_sha256": "6078989f3c56f936e764760c43de3a6de7044836c4acbd123a2c75d3d2266367",
+    "spec_sha256": "569c4a1c8e5be245bb51c9ca6ab8500cae3dff70143140b6fcd816771d7f01d0",
+    "sweep_config_sha256": "5f9d0acfc9ffa66bbb94d789b2b4fc457fcfcdb010dca6ff8335cad01cba9cb6",
+    "validation_rows_loaded": 0
+  },
+  "reanalysis_report": {
+    "bytes": 172386,
+    "manifest_sha256": "51a023012863d2a9711efdd9cf3643d96940ebc94e6462e1b7e9d03b5a97658a",
+    "path": "artifacts/processed/argrec672-v1-dg-008-position-sweep-nod/report.json",
+    "sha256": "6e38ae09b3ba7dae07bb4d910d67e1094525dad76db18f81eef0091a7179a30c"
+  },
+  "reanalysis_required": true,
+  "reproducibility": "R-EXACT",
+  "research_result": "post_result_train_only_technical_control",
+  "same_position_logits": {
+    "G": {
+      "paired_accuracy": 0.9666666666666667,
+      "pooled_auroc": 0.9929861111111112,
+      "score_orientation": "first_presented_minus_second_presented",
+      "strata": {
+        "boundary": {
+          "first_tool_to_assistant": 1.0,
+          "later_tool_to_assistant": 1.0,
+          "user_to_assistant": 0.9466666666666667
+        },
+        "family": {
+          "A": 0.9523809523809523,
+          "B": 1.0,
+          "C": 1.0,
+          "D": 0.9523809523809523,
+          "E": 1.0,
+          "F": 0.8888888888888888
+        },
+        "recipient_rule": {
+          "D1": 1.0,
+          "D1M": 1.0,
+          "D2": 1.0,
+          "U0": 0.92,
+          "UI": 0.96,
+          "UN": 0.96
+        },
+        "source_role": {
+          "tool_output_document": 1.0,
+          "user_instruction": 0.9466666666666667
+        }
+      }
+    },
+    "S": {
+      "gb_log_probability_median": 0.0,
+      "gb_log_probability_min": -0.062029238790273666
+    }
+  },
+  "schema_version": 1,
+  "specificity_control": {
+    "A1": {
+      "0": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9978662873399716,
+        "recipient_first_user_auroc": 0.9212444444444445
+      },
+      "16": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.9907555555555555
+      },
+      "24": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.9687111111111111
+      },
+      "32": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.9571555555555555
+      },
+      "35": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.9587555555555556
+      },
+      "8": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.9976888888888888
+      }
+    },
+    "A2": {
+      "0": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9998221906116643,
+        "recipient_first_user_auroc": 0.7788444444444445
+      },
+      "16": {
+        "comparable_to_control": true,
+        "control_auroc": 0.991642958748222,
+        "recipient_first_user_auroc": 0.9877333333333334
+      },
+      "24": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9930654338549075,
+        "recipient_first_user_auroc": 0.9996444444444444
+      },
+      "32": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9957325746799431,
+        "recipient_first_user_auroc": 0.9946666666666666
+      },
+      "35": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9951991465149359,
+        "recipient_first_user_auroc": 0.9857777777777779
+      },
+      "8": {
+        "comparable_to_control": true,
+        "control_auroc": 0.998221906116643,
+        "recipient_first_user_auroc": 0.9765333333333334
+      }
+    },
+    "G": {
+      "0": {
+        "comparable_to_control": true,
+        "control_auroc": 0.8838904694167853,
+        "recipient_first_user_auroc": 0.7424000000000001
+      },
+      "16": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.9765333333333333
+      },
+      "24": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.9957333333333334
+      },
+      "32": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9951991465149359,
+        "recipient_first_user_auroc": 0.9957333333333334
+      },
+      "35": {
+        "comparable_to_control": true,
+        "control_auroc": 0.992176386913229,
+        "recipient_first_user_auroc": 0.9941333333333333
+      },
+      "8": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.9402666666666666
+      }
+    },
+    "S": {
+      "0": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9169630156472262,
+        "recipient_first_user_auroc": 0.6730666666666666
+      },
+      "16": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.9688888888888889
+      },
+      "24": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.9948444444444444
+      },
+      "32": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9991109530583214,
+        "recipient_first_user_auroc": 0.9912888888888889
+      },
+      "35": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9967994310099574,
+        "recipient_first_user_auroc": 0.9873777777777778
+      },
+      "8": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9948435277382646,
+        "recipient_first_user_auroc": 0.8659555555555556
+      }
+    },
+    "T": {
+      "0": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9855974395448079,
+        "recipient_first_user_auroc": 0.6266666666666667
+      },
+      "16": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9847083926031295,
+        "recipient_first_user_auroc": 0.6702222222222222
+      },
+      "24": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9996443812233287,
+        "recipient_first_user_auroc": 0.7864888888888889
+      },
+      "32": {
+        "comparable_to_control": true,
+        "control_auroc": 0.998221906116643,
+        "recipient_first_user_auroc": 0.7651555555555555
+      },
+      "35": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9944879089615932,
+        "recipient_first_user_auroc": 0.7299555555555556
+      },
+      "8": {
+        "comparable_to_control": true,
+        "control_auroc": 0.9939544807965861,
+        "recipient_first_user_auroc": 0.7603555555555556
+      }
+    }
+  }
+}
