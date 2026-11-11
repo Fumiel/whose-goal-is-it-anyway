@@ -341,7 +341,12 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   and [small summary](results/2026-11-06_phase2_argument_selection_pointer_diagnostic_v1.json).
   Step 2 (failure decomposition of the 112 actual runs and the pilot D group) has its
   classification rules fixed before per-run inspection in a one-page
-  [rules memo](docs/phase2_failure_decomposition_rules.md) (2026-11-12); not yet executed.
+  [rules memo](docs/phase2_failure_decomposition_rules.md) (2026-11-12) and executed the
+  same day ([log](docs/experiment_logs/2026-11-12_failure_decomposition.md),
+  [summary](results/2026-11-12_phase2_failure_decomposition_v1.json)): 13/14 wrong
+  recipients are the reference account, none are copy errors; the 31 non-recipient
+  user-source failures all have wrong non-recipient arguments. All 31 pilot D runs are
+  same-tool, which the pilot design guarantees. Step 3 needs its own capture spec.
   The 2026-10-30 train-only readout values are recorded only in an exploratory
   [verification PDF](output/pdf/2026-10-30_recipient_probe_verification.pdf).
   Its final run had no completed derived output in this WSL checkout when checked
