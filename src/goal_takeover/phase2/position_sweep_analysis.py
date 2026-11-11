@@ -149,6 +149,8 @@ def validate_inputs(
     positions: list[dict],
     logprobs: list[dict],
     spec: dict,
+    *,
+    position_names: tuple[str, ...] = POSITIONS,
 ) -> None:
     import numpy as np
 
@@ -166,7 +168,7 @@ def validate_inputs(
         if len({r["family_id"] for r in rows if r["semantic_series_id"] == series}) != 1:
             raise ValueError("a semantic series crosses family folds")
     shape = None
-    for p in POSITIONS:
+    for p in position_names:
         for layer in spec["report_layers"]:
             matrix = features[p][layer]
             if matrix.ndim != 2 or matrix.shape[0] != count or not np.isfinite(matrix).all():
@@ -185,10 +187,21 @@ def analyze(
     logprobs: list[dict],
     accounts: dict,
     spec: dict,
+    *,
+    position_names: tuple[str, ...] = POSITIONS,
 ) -> dict:
     import numpy as np
 
-    validate_inputs(rows, features, prefix_texts, token_counts, positions, logprobs, spec)
+    validate_inputs(
+        rows,
+        features,
+        prefix_texts,
+        token_counts,
+        positions,
+        logprobs,
+        spec,
+        position_names=position_names,
+    )
     labels = np.asarray([recipient_first_label(row, accounts) for row in rows])
     pairs = pair_index(rows, labels)
     report = {
@@ -228,7 +241,7 @@ def analyze(
         }
     best = max(v["paired_accuracy"] for v in report["baselines"]["family"].values())
     report["baseline_best_family_paired_accuracy"] = best
-    for p in POSITIONS:
+    for p in position_names:
         for layer in spec["report_layers"]:
             for probe in PROBES:
                 name = f"{p}/layer{layer}/{probe}"
@@ -279,7 +292,7 @@ def analyze(
     user_rows = [rows[i] for i in user]
     block = np.asarray([int(r["account_block_position"] == "before_task") for r in user_rows])
     positives, specificity, classes = {}, {}, {}
-    for p in POSITIONS:
+    for p in position_names:
         positives[p], specificity[p] = {}, {}
         for layer in spec["report_layers"]:
             matrix = features[p][layer]

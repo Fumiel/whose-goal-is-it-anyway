@@ -48,67 +48,101 @@ def load_model(config: dict) -> tuple:
     )
 
 
-def capture_condition(
-    model: Any, tokenizer: Any, row: dict, prefix: dict, accounts: dict, spec: dict
+def forward_capture(
+    model: Any,
+    input_ids: list[int],
+    token_indices: list[int],
+    logit_positions: list[str],
+    position_names: list[str],
+    block_path: str,
+    top_k: int,
+    digit_token_ids: dict,
+    gb_token_id: int | None,
 ) -> dict:
+    """Capture one exact input, preserving declared residual and logit position order."""
     import torch
 
-    positions = resolve_positions(row, prefix, accounts, tokenizer, spec)
     maximum = getattr(getattr(model, "config", None), "max_position_embeddings", None)
-    if maximum is not None and len(positions["input_ids"]) > maximum:
+    if maximum is not None and len(input_ids) > maximum:
         raise ValueError("serialized input exceeds model context")
-    names = transformer_block_names(model, block_path=spec["capture"]["block_path"])
+    names = transformer_block_names(model, block_path=block_path)
     device = next(model.parameters()).device
-    inputs = torch.tensor([positions["input_ids"]], dtype=torch.long, device=device)
+    inputs = torch.tensor([input_ids], dtype=torch.long, device=device)
     model.eval()
-    indices = [positions["positions"][p]["token_index"] for p in POSITIONS]
-    if indices[-3:] != list(range(inputs.shape[1] - 3, inputs.shape[1])):
-        raise ValueError("S/G/D are not the final three input tokens")
+    indices = token_indices
+    count = len(logit_positions)
+    if (
+        len(position_names) != len(indices)
+        or len(set(position_names)) != len(position_names)
+        or count == 0
+        or any(p not in position_names for p in logit_positions)
+        or [indices[position_names.index(p)] for p in logit_positions]
+        != list(range(inputs.shape[1] - count, inputs.shape[1]))
+    ):
+        raise ValueError("logit positions are not the final input tokens")
     with torch.no_grad(), ResidualCapture(model, names, token_indices=indices) as captured:
         if "logits_to_keep" in inspect.signature(model.forward).parameters:
-            output = model(input_ids=inputs, use_cache=False, logits_to_keep=3)
+            output = model(input_ids=inputs, use_cache=False, logits_to_keep=count)
             logits = output.logits
-            method = "logits_to_keep=3"
+            method = f"logits_to_keep={count}"
         else:
             # Bypass the causal-LM wrapper, so full-sequence vocabulary logits never exist.
             output = model.model(input_ids=inputs, use_cache=False, return_dict=True)
-            logits = model.lm_head(output.last_hidden_state[:, -3:, :])
-            method = "lm_head_last_three"
-        if tuple(logits.shape[:2]) != (1, 3) or not torch.isfinite(logits).all():
+            logits = model.lm_head(output.last_hidden_state[:, -count:, :])
+            method = "lm_head_last_" + {2: "two", 3: "three"}.get(count, str(count))
+        if tuple(logits.shape[:2]) != (1, count) or not torch.isfinite(logits).all():
             raise ValueError("invalid last-three logits")
         logprobs = torch.log_softmax(logits[0].float(), dim=-1)
         if not torch.isfinite(logprobs).all():
             raise ValueError("nonfinite log probabilities")
         records = {}
-        for index, p in enumerate(("S", "G", "D")):
-            values, token_ids = logprobs[index].topk(
-                min(spec["capture"]["top_k"], logits.shape[-1])
-            )
+        for index, p in enumerate(logit_positions):
+            values, token_ids = logprobs[index].topk(min(top_k, logits.shape[-1]))
             records[p] = {
                 "candidate_digits": {
-                    key: float(logprobs[index, token])
-                    for key, token in positions["digit_token_ids"].items()
+                    key: float(logprobs[index, token]) for key, token in digit_token_ids.items()
                 },
                 "top_token_ids": token_ids.cpu().tolist(),
                 "top_log_probabilities": values.cpu().tolist(),
             }
-        records["S"]["gb_log_probability"] = float(
-            logprobs[0, positions["positions"]["G"]["token_id"]]
-        )
+        if "S" in logit_positions:
+            if gb_token_id is None:
+                raise ValueError("S requires the GB token ID")
+            records["S"]["gb_log_probability"] = float(
+                logprobs[logit_positions.index("S"), gb_token_id]
+            )
+
     tensors = {}
     for name, values in captured.values.items():
-        if len(values) != 1 or tuple(values[0].shape[:2]) != (1, len(POSITIONS)):
+        if len(values) != 1 or tuple(values[0].shape[:2]) != (1, len(position_names)):
             raise ValueError(f"residual capture shape/call count differs: {name}")
         tensor = values[0].to(torch.bfloat16).contiguous()
         if not torch.isfinite(tensor).all():
             raise ValueError(f"nonfinite residual: {name}")
         tensors[name] = tensor
     return {
-        "positions": positions,
         "residuals": tensors,
         "logprobs": records,
         "logit_method": method,
     }
+
+
+def capture_condition(
+    model: Any, tokenizer: Any, row: dict, prefix: dict, accounts: dict, spec: dict
+) -> dict:
+    positions = resolve_positions(row, prefix, accounts, tokenizer, spec)
+    result = forward_capture(
+        model,
+        positions["input_ids"],
+        [positions["positions"][p]["token_index"] for p in POSITIONS],
+        ["S", "G", "D"],
+        list(POSITIONS),
+        spec["capture"]["block_path"],
+        spec["capture"]["top_k"],
+        positions["digit_token_ids"],
+        positions["positions"]["G"]["token_id"],
+    )
+    return {"positions": positions, **result}
 
 
 def environment() -> dict:
@@ -126,10 +160,10 @@ def environment() -> dict:
     }
 
 
-def validate_residual_schema(tensors: dict, model: Any) -> None:
+def validate_residual_schema(tensors: dict, model: Any, position_count: int = 6) -> None:
     expected = {f"model.layers.{i}" for i in range(model.config.num_hidden_layers)}
     if set(tensors) != expected or any(
-        tuple(t.shape) != (1, 6, model.config.hidden_size) for t in tensors.values()
+        tuple(t.shape) != (1, position_count, model.config.hidden_size) for t in tensors.values()
     ):
         raise ValueError("residual model dimensions differ")
 

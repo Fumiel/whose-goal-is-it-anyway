@@ -1,0 +1,739 @@
+{
+  "baseline_best_family_paired_accuracy": 0.5,
+  "baselines": {
+    "family": {
+      "identity": {
+        "paired_accuracy": 0.5,
+        "pooled_auroc": 0.5
+      },
+      "length": {
+        "paired_accuracy": 0.5,
+        "pooled_auroc": 0.5
+      },
+      "position": {
+        "paired_accuracy": 0.5,
+        "pooled_auroc": 0.5
+      },
+      "tfidf": {
+        "paired_accuracy": 0.5,
+        "pooled_auroc": 0.5
+      }
+    },
+    "series": {
+      "identity": {
+        "paired_accuracy": 0.5,
+        "pooled_auroc": 0.5
+      },
+      "length": {
+        "paired_accuracy": 0.5,
+        "pooled_auroc": 0.5
+      },
+      "position": {
+        "paired_accuracy": 0.5,
+        "pooled_auroc": 0.5
+      },
+      "tfidf": {
+        "paired_accuracy": 0.5,
+        "pooled_auroc": 0.5
+      }
+    }
+  },
+  "cells": {
+    "A1/layer24/logistic": {
+      "bootstrap_95": {
+        "paired_accuracy": [
+          0.5,
+          0.5
+        ],
+        "pooled_auroc": [
+          0.5,
+          0.5
+        ]
+      },
+      "family_wise_p": 1.0,
+      "judged": true,
+      "layer": 24,
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5,
+      "position": "A1",
+      "probe": "logistic",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        },
+        "family": {
+          "A": 0.5,
+          "B": 0.5,
+          "C": 0.5,
+          "D": 0.5,
+          "E": 0.5,
+          "F": 0.5
+        },
+        "recipient_rule": {
+          "synthetic": 0.5
+        },
+        "source_role": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        }
+      }
+    },
+    "A1/layer24/paired_dom": {
+      "bootstrap_95": {
+        "paired_accuracy": [
+          0.5,
+          0.5
+        ],
+        "pooled_auroc": [
+          0.5,
+          0.5
+        ]
+      },
+      "family_wise_p": 1.0,
+      "judged": true,
+      "layer": 24,
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5,
+      "position": "A1",
+      "probe": "paired_dom",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        },
+        "family": {
+          "A": 0.5,
+          "B": 0.5,
+          "C": 0.5,
+          "D": 0.5,
+          "E": 0.5,
+          "F": 0.5
+        },
+        "recipient_rule": {
+          "synthetic": 0.5
+        },
+        "source_role": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        }
+      }
+    },
+    "A2/layer24/logistic": {
+      "bootstrap_95": {
+        "paired_accuracy": [
+          0.5,
+          0.5
+        ],
+        "pooled_auroc": [
+          0.5,
+          0.5
+        ]
+      },
+      "family_wise_p": 1.0,
+      "judged": true,
+      "layer": 24,
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5,
+      "position": "A2",
+      "probe": "logistic",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        },
+        "family": {
+          "A": 0.5,
+          "B": 0.5,
+          "C": 0.5,
+          "D": 0.5,
+          "E": 0.5,
+          "F": 0.5
+        },
+        "recipient_rule": {
+          "synthetic": 0.5
+        },
+        "source_role": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        }
+      }
+    },
+    "A2/layer24/paired_dom": {
+      "bootstrap_95": {
+        "paired_accuracy": [
+          0.5,
+          0.5
+        ],
+        "pooled_auroc": [
+          0.5,
+          0.5
+        ]
+      },
+      "family_wise_p": 1.0,
+      "judged": true,
+      "layer": 24,
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5,
+      "position": "A2",
+      "probe": "paired_dom",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        },
+        "family": {
+          "A": 0.5,
+          "B": 0.5,
+          "C": 0.5,
+          "D": 0.5,
+          "E": 0.5,
+          "F": 0.5
+        },
+        "recipient_rule": {
+          "synthetic": 0.5
+        },
+        "source_role": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        }
+      }
+    },
+    "D/layer24/logistic": {
+      "bootstrap_95": {
+        "paired_accuracy": [
+          0.5,
+          0.5
+        ],
+        "pooled_auroc": [
+          0.5,
+          0.5
+        ]
+      },
+      "judged": false,
+      "layer": 24,
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5,
+      "position": "D",
+      "probe": "logistic",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        },
+        "family": {
+          "A": 0.5,
+          "B": 0.5,
+          "C": 0.5,
+          "D": 0.5,
+          "E": 0.5,
+          "F": 0.5
+        },
+        "recipient_rule": {
+          "synthetic": 0.5
+        },
+        "source_role": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        }
+      }
+    },
+    "D/layer24/paired_dom": {
+      "bootstrap_95": {
+        "paired_accuracy": [
+          0.5,
+          0.5
+        ],
+        "pooled_auroc": [
+          0.5,
+          0.5
+        ]
+      },
+      "judged": false,
+      "layer": 24,
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5,
+      "position": "D",
+      "probe": "paired_dom",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        },
+        "family": {
+          "A": 0.5,
+          "B": 0.5,
+          "C": 0.5,
+          "D": 0.5,
+          "E": 0.5,
+          "F": 0.5
+        },
+        "recipient_rule": {
+          "synthetic": 0.5
+        },
+        "source_role": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        }
+      }
+    },
+    "G/layer24/logistic": {
+      "bootstrap_95": {
+        "paired_accuracy": [
+          0.5,
+          0.5
+        ],
+        "pooled_auroc": [
+          0.5,
+          0.5
+        ]
+      },
+      "description": "同位置ロジットの精度以下",
+      "explained_by_logit_range": true,
+      "family_wise_p": 1.0,
+      "interpretation": "accuracy_comparison_only",
+      "judged": true,
+      "layer": 24,
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5,
+      "position": "G",
+      "probe": "logistic",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        },
+        "family": {
+          "A": 0.5,
+          "B": 0.5,
+          "C": 0.5,
+          "D": 0.5,
+          "E": 0.5,
+          "F": 0.5
+        },
+        "recipient_rule": {
+          "synthetic": 0.5
+        },
+        "source_role": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        }
+      }
+    },
+    "G/layer24/paired_dom": {
+      "bootstrap_95": {
+        "paired_accuracy": [
+          0.5,
+          0.5
+        ],
+        "pooled_auroc": [
+          0.5,
+          0.5
+        ]
+      },
+      "description": "同位置ロジットの精度以下",
+      "explained_by_logit_range": true,
+      "family_wise_p": 1.0,
+      "interpretation": "accuracy_comparison_only",
+      "judged": true,
+      "layer": 24,
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5,
+      "position": "G",
+      "probe": "paired_dom",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        },
+        "family": {
+          "A": 0.5,
+          "B": 0.5,
+          "C": 0.5,
+          "D": 0.5,
+          "E": 0.5,
+          "F": 0.5
+        },
+        "recipient_rule": {
+          "synthetic": 0.5
+        },
+        "source_role": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        }
+      }
+    },
+    "S/layer24/logistic": {
+      "bootstrap_95": {
+        "paired_accuracy": [
+          0.5,
+          0.5
+        ],
+        "pooled_auroc": [
+          0.5,
+          0.5
+        ]
+      },
+      "family_wise_p": 1.0,
+      "judged": true,
+      "layer": 24,
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5,
+      "position": "S",
+      "probe": "logistic",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        },
+        "family": {
+          "A": 0.5,
+          "B": 0.5,
+          "C": 0.5,
+          "D": 0.5,
+          "E": 0.5,
+          "F": 0.5
+        },
+        "recipient_rule": {
+          "synthetic": 0.5
+        },
+        "source_role": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        }
+      }
+    },
+    "S/layer24/paired_dom": {
+      "bootstrap_95": {
+        "paired_accuracy": [
+          0.5,
+          0.5
+        ],
+        "pooled_auroc": [
+          0.5,
+          0.5
+        ]
+      },
+      "family_wise_p": 1.0,
+      "judged": true,
+      "layer": 24,
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5,
+      "position": "S",
+      "probe": "paired_dom",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        },
+        "family": {
+          "A": 0.5,
+          "B": 0.5,
+          "C": 0.5,
+          "D": 0.5,
+          "E": 0.5,
+          "F": 0.5
+        },
+        "recipient_rule": {
+          "synthetic": 0.5
+        },
+        "source_role": {
+          "tool_output_document": 0.5,
+          "user_instruction": 0.5
+        }
+      }
+    },
+    "T/layer24/logistic": {
+      "bootstrap_95": {
+        "paired_accuracy": [
+          1.0,
+          1.0
+        ],
+        "pooled_auroc": [
+          1.0,
+          1.0
+        ]
+      },
+      "family_wise_p": 0.037037037037037035,
+      "judged": true,
+      "layer": 24,
+      "paired_accuracy": 1.0,
+      "pooled_auroc": 1.0,
+      "position": "T",
+      "probe": "logistic",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 1.0,
+          "user_instruction": 1.0
+        },
+        "family": {
+          "A": 1.0,
+          "B": 1.0,
+          "C": 1.0,
+          "D": 1.0,
+          "E": 1.0,
+          "F": 1.0
+        },
+        "recipient_rule": {
+          "synthetic": 1.0
+        },
+        "source_role": {
+          "tool_output_document": 1.0,
+          "user_instruction": 1.0
+        }
+      }
+    },
+    "T/layer24/paired_dom": {
+      "bootstrap_95": {
+        "paired_accuracy": [
+          1.0,
+          1.0
+        ],
+        "pooled_auroc": [
+          1.0,
+          1.0
+        ]
+      },
+      "family_wise_p": 0.037037037037037035,
+      "judged": true,
+      "layer": 24,
+      "paired_accuracy": 1.0,
+      "pooled_auroc": 1.0,
+      "position": "T",
+      "probe": "paired_dom",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 1.0,
+          "user_instruction": 1.0
+        },
+        "family": {
+          "A": 1.0,
+          "B": 1.0,
+          "C": 1.0,
+          "D": 1.0,
+          "E": 1.0,
+          "F": 1.0
+        },
+        "recipient_rule": {
+          "synthetic": 1.0
+        },
+        "source_role": {
+          "tool_output_document": 1.0,
+          "user_instruction": 1.0
+        }
+      }
+    }
+  },
+  "hypothesis_mapping": {
+    "mapping": "signal_disappears",
+    "rule": 2,
+    "stage_classes": {
+      "call_prefix": "R3",
+      "pre_generation": "R1",
+      "span": "R3"
+    }
+  },
+  "judged_cell_count": 10,
+  "null_maxima": [
+    0.5,
+    0.5,
+    0.5,
+    0.5833333333333334,
+    0.5,
+    0.5,
+    0.5,
+    0.6666666666666666,
+    0.75,
+    0.6666666666666666,
+    0.5,
+    0.6666666666666666,
+    0.625,
+    0.5,
+    0.5833333333333334,
+    0.625,
+    0.5,
+    0.5,
+    0.5,
+    0.5833333333333334,
+    0.5,
+    0.625,
+    0.625,
+    0.5,
+    0.5,
+    0.5
+  ],
+  "pointer_pairs": 48,
+  "pointer_rows": 96,
+  "position_classifications": {
+    "A1": {
+      "class": "R3",
+      "qualifying_cells": []
+    },
+    "A2": {
+      "class": "R3",
+      "qualifying_cells": []
+    },
+    "G": {
+      "class": "R3",
+      "qualifying_cells": []
+    },
+    "S": {
+      "class": "R3",
+      "qualifying_cells": []
+    },
+    "T": {
+      "class": "R1",
+      "qualifying_cells": [
+        "T/layer24/logistic",
+        "T/layer24/paired_dom"
+      ]
+    }
+  },
+  "positive_control_auroc": {
+    "A1": {
+      "24": 1.0
+    },
+    "A2": {
+      "24": 1.0
+    },
+    "D": {
+      "24": 1.0
+    },
+    "G": {
+      "24": 1.0
+    },
+    "S": {
+      "24": 1.0
+    },
+    "T": {
+      "24": 1.0
+    }
+  },
+  "same_position_logits": {
+    "G": {
+      "paired_accuracy": 1.0,
+      "pooled_auroc": 1.0,
+      "score_orientation": "first_presented_minus_second_presented",
+      "strata": {
+        "boundary": {
+          "tool_output_document": 1.0,
+          "user_instruction": 1.0
+        },
+        "family": {
+          "A": 1.0,
+          "B": 1.0,
+          "C": 1.0,
+          "D": 1.0,
+          "E": 1.0,
+          "F": 1.0
+        },
+        "recipient_rule": {
+          "synthetic": 1.0
+        },
+        "source_role": {
+          "tool_output_document": 1.0,
+          "user_instruction": 1.0
+        }
+      }
+    },
+    "S": {
+      "gb_log_probability_median": -0.1,
+      "gb_log_probability_min": -0.1
+    }
+  },
+  "series_held_out": {
+    "A1/layer24/logistic": {
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5
+    },
+    "A1/layer24/paired_dom": {
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5
+    },
+    "A2/layer24/logistic": {
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5
+    },
+    "A2/layer24/paired_dom": {
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5
+    },
+    "D/layer24/logistic": {
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5
+    },
+    "D/layer24/paired_dom": {
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5
+    },
+    "G/layer24/logistic": {
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5
+    },
+    "G/layer24/paired_dom": {
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5
+    },
+    "S/layer24/logistic": {
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5
+    },
+    "S/layer24/paired_dom": {
+      "paired_accuracy": 0.5,
+      "pooled_auroc": 0.5
+    },
+    "T/layer24/logistic": {
+      "paired_accuracy": 1.0,
+      "pooled_auroc": 1.0
+    },
+    "T/layer24/paired_dom": {
+      "paired_accuracy": 1.0,
+      "pooled_auroc": 1.0
+    }
+  },
+  "specificity_control": {
+    "A1": {
+      "24": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.5
+      }
+    },
+    "A2": {
+      "24": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.5
+      }
+    },
+    "D": {
+      "24": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.5
+      }
+    },
+    "G": {
+      "24": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.5
+      }
+    },
+    "S": {
+      "24": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 0.5
+      }
+    },
+    "T": {
+      "24": {
+        "comparable_to_control": true,
+        "control_auroc": 1.0,
+        "recipient_first_user_auroc": 1.0
+      }
+    }
+  },
+  "validation_rows_loaded": 0
+}

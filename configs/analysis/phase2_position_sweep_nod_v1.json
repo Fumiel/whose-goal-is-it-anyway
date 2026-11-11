@@ -1,0 +1,49 @@
+{
+  "comparison": {
+    "delta_probe_seed": 20261027,
+    "output_id": "argrec672-v1-dg-007-nod-comparison",
+    "permutation_repeats": 100
+  },
+  "nod_capture": {
+    "logit_positions": [
+      "S",
+      "G"
+    ],
+    "positions": [
+      "A1",
+      "A2",
+      "T",
+      "S",
+      "G"
+    ],
+    "run_id_prefix": "argrec672-v1-ps-002"
+  },
+  "preflight_condition_count": 2,
+  "purpose": "D-free control capture and comparison for the step 3 position sweep. See docs/phase2_position_sweep_nod_control_spec.md.",
+  "reanalysis": {
+    "output_id": "argrec672-v1-dg-008-position-sweep-nod"
+  },
+  "reference": {
+    "analysis_report": "artifacts/processed/argrec672-v1-dg-006-position-sweep/report.json",
+    "capture_run_id_prefix": "argrec672-v1-ps-001",
+    "collection_manifest": "data/manifests/2026-11-12_phase2_position_sweep_ps001_collection.json",
+    "gpu_preflight_report": "artifacts/phase2-position-sweep-gpu-preflight-67c5492.json",
+    "runtime_freeze": "artifacts/phase2-position-sweep-runtime-67c5492.freeze.json"
+  },
+  "repeat_capture": {
+    "pair_count": 5,
+    "pair_order_key": "draft_task_id",
+    "run_id_prefix": "argrec672-v1-ps-003"
+  },
+  "resources": {
+    "maximum_gpu_memory_gib": 12,
+    "maximum_seconds_per_condition": 300,
+    "maximum_storage_gib_per_condition": 0.05,
+    "maximum_total_storage_gib": 2.0,
+    "retry_rule": "new_run_id_only",
+    "technical_failure_rule": "preserve_immutable_bundle_then_stop"
+  },
+  "schema_version": 1,
+  "spec": "docs/phase2_position_sweep_nod_control_spec.md",
+  "sweep_config": "configs/analysis/phase2_position_sweep_v1.json"
+}
