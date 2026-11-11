@@ -361,7 +361,8 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   A D-free control capture has a researcher-finalized
   [spec](docs/phase2_position_sweep_nod_control_spec.md) and Codex
   [brief](docs/phase2_position_sweep_nod_control_implementation_brief.md) (2026-11-12);
-  D-free control implementation is complete; execution remains pending. Patching waits for its result.
+  D-free control capture completed and verified (10 repeat + 240 D-free conditions);
+  comparison/reanalysis pending. See the [control log](docs/experiment_logs/2026-11-12_position_sweep_nod_control.md). Patching waits for its result.
   The 2026-10-30 train-only readout values are recorded only in an exploratory
   [verification PDF](output/pdf/2026-10-30_recipient_probe_verification.pdf).
   Its final run had no completed derived output in this WSL checkout when checked
