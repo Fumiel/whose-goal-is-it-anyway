@@ -339,6 +339,9 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   establish a selection pointer or chosen action. See the
   [execution log](docs/experiment_logs/2026-11-06_argument_selection_pointer_diagnostic.md)
   and [small summary](results/2026-11-06_phase2_argument_selection_pointer_diagnostic_v1.json).
+  Step 2 (failure decomposition of the 112 actual runs and the pilot D group) has its
+  classification rules fixed before per-run inspection in a one-page
+  [rules memo](docs/phase2_failure_decomposition_rules.md) (2026-11-12); not yet executed.
   The 2026-10-30 train-only readout values are recorded only in an exploratory
   [verification PDF](output/pdf/2026-10-30_recipient_probe_verification.pdf).
   Its final run had no completed derived output in this WSL checkout when checked
