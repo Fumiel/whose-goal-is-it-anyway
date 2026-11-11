@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "purpose": "Step 2 of RDR-2026-11-06-01: post-result exploratory failure decomposition of existing runs under the rules fixed in docs/phase2_failure_decomposition_rules.md. No model execution or fitting.",
+  "rules_memo": "docs/phase2_failure_decomposition_rules.md",
+  "output_id": "argrec672-v1-dg-005-failure-decomposition",
+  "actual": {
+    "declaration": "data/templates/phase2_argument_recipient_672_v1.json",
+    "run_prefix": "argrec672-v1-act-003",
+    "run_count": 112
+  },
+  "pilot": {
+    "run_prefix": "banking-pilot-001",
+    "evaluator": "data/evaluators/banking_pilot_v1.json",
+    "audit": "data/audits/2026-10-13_banking_pilot_full_audit.json"
+  }
+}
