@@ -347,6 +347,10 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   recipients are the reference account, none are copy errors; the 31 non-recipient
   user-source failures all have wrong non-recipient arguments. All 31 pilot D runs are
   same-tool, which the pilot design guarantees. Step 3 needs its own capture spec.
+  Step 3 (position sweep) has a researcher-finalized
+  [spec](docs/phase2_position_sweep_spec.md) (2026-11-12) and a Codex
+  [implementation brief](docs/phase2_position_sweep_implementation_brief.md);
+  not implemented or executed yet.
   The 2026-10-30 train-only readout values are recorded only in an exploratory
   [verification PDF](output/pdf/2026-10-30_recipient_probe_verification.pdf).
   Its final run had no completed derived output in this WSL checkout when checked
