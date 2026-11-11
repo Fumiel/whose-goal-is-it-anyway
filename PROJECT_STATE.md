@@ -350,8 +350,12 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   Step 3 (position sweep) has a researcher-finalized
   [spec](docs/phase2_position_sweep_spec.md) (2026-11-12) and a Codex
   [implementation brief](docs/phase2_position_sweep_implementation_brief.md);
-  Step 3 capture completed: 240 train conditions / 120 pairs, all immutable bundles
-  verified; analysis is pending. See the [execution log](docs/experiment_logs/2026-11-12_position_sweep.md).
+  Step 3 capture and the single frozen analysis completed: 240 train conditions / 120 pairs,
+  all immutable bundles verified; validation rows loaded: 0. Fixed classes are A1/A2/S/G R1,
+  T R2, mapping H1-consistent. General order controls and the int8 one-pass numerical
+  difference (preflight maximum relative L2 at T: 0.165) limit timing interpretations.
+  See the [execution log](docs/experiment_logs/2026-11-12_position_sweep.md) and
+  [small summary](results/2026-11-12_phase2_position_sweep_v1.json).
   The 2026-10-30 train-only readout values are recorded only in an exploratory
   [verification PDF](output/pdf/2026-10-30_recipient_probe_verification.pdf).
   Its final run had no completed derived output in this WSL checkout when checked
