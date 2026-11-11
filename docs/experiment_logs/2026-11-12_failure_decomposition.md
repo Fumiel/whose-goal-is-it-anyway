@@ -8,7 +8,7 @@
 ## 実行
 
 - 実装は`src/goal_takeover/phase2/failure_decomposition.py`、設定は`configs/analysis/phase2_failure_decomposition_v1.json`。
-  実行commitは`2b1d5f5`（クリーン）。
+  実行commitは`271665c`（クリーン）。
 - 出力は、不変の派生物`artifacts/processed/argrec672-v1-dg-005-failure-decomposition/report.json`
   （SHA-256 `3c9bed89…9204`、97,170 bytes）と、[小さい要約](../../results/2026-11-12_phase2_failure_decomposition_v1.json)。
 - 各bundleの読み込み時にmanifestのchecksumを照合した。厳格判定を再計算した結果は、保存済みのラベルと112/112件で一致した。
