@@ -48,7 +48,8 @@
     "capture_run_id_prefix": "argrec672-v1-ps-001",
     "runtime_freeze": "artifacts/phase2-position-sweep-runtime-67c5492.freeze.json",
     "collection_manifest": "data/manifests/2026-11-12_phase2_position_sweep_ps001_collection.json",
-    "analysis_report": "artifacts/processed/argrec672-v1-dg-006-position-sweep/report.json"
+    "analysis_report": "artifacts/processed/argrec672-v1-dg-006-position-sweep/report.json",
+    "gpu_preflight_report": "artifacts/phase2-position-sweep-gpu-preflight-67c5492.json"
   },
   "nod_capture": {
     "run_id_prefix": "argrec672-v1-ps-002",
@@ -119,10 +120,17 @@ def nod_positions(resolved: dict) -> dict:
 `capture_condition`の中の順伝播部分を、次の関数として切り出す。
 
 ```python
-def forward_capture(model, input_ids: list[int], token_indices: list[int],
-                    logit_positions: list[str], position_names: list[str],
-                    block_path: str, top_k: int, digit_token_ids: dict,
-                    gb_token_id: int | None) -> dict:
+def forward_capture(
+    model,
+    input_ids: list[int],
+    token_indices: list[int],
+    logit_positions: list[str],
+    position_names: list[str],
+    block_path: str,
+    top_k: int,
+    digit_token_ids: dict,
+    gb_token_id: int | None,
+) -> dict:
     """1回の順伝播で、token_indices の残差（全層）と、入力の末尾 len(logit_positions) 位置のロジットを返す。
     logits_to_keep=len(logit_positions)。使えない場合は既存と同じく lm_head を末尾の位置だけに適用する。
     logit_positions の各位置が入力の末尾から順に並ぶことを要求する。
@@ -150,7 +158,8 @@ def forward_capture(model, input_ids: list[int], token_indices: list[int],
 - `analysis_config_sha256`：**新しい設定**（`phase2_position_sweep_nod_v1.json`）のSHA-256
 - `sweep_config_sha256`：手順3の設定のSHA-256
 - `spec_sha256`：**D除外対照の仕様**のSHA-256
-- `reference_sha256`：`reference`の4ファイルのSHA-256
+- `reference_sha256`：`reference`の4ファイルのSHA-256（run ID接頭辞はファイルではない）。
+  `gpu_preflight_report`は旧runtime freezeの`files_sha256`とも照合する。
 - `resources`：新しい設定の`resources`
 - 出力は`artifacts/phase2-position-sweep-nod-runtime-<commit7>.freeze.json`。`open(..., "x")`で作り、上書きしない。
 
@@ -203,7 +212,7 @@ def forward_capture(model, input_ids: list[int], token_indices: list[int],
 
 ```python
 def compare_vectors(a_bf16, b_bf16) -> dict:
-    """bit_exact: torch.equal(a_bf16, b_bf16)（bfloat16のまま比べる）
+    """bit_exact: torch.equal(a_bf16.view(torch.int16), b_bf16.view(torch.int16))（符号付きゼロも区別）
     a, b を float32 にしてから:
     relative_l2 = ||a-b|| / max(||b||, tiny)、max_absolute = max|a-b|"""
 ```
@@ -221,7 +230,7 @@ def compare_vectors(a_bf16, b_bf16) -> dict:
 **7.2節の①の判定：**
 
 - `R-EXACT`のとき：NのA1〜G・全層・全条件がビット一致すれば①。
-- `R-NOISE`のとき：A1〜Gの各位置×層で、Nの最大相対L2差 ≤ Rの`noise_width`（同じ位置×層）なら①。
+- `R-NOISE`のとき：①にしない。Nと`noise_width`の比較は記述にとどめ、再解析を要求する。
 
 ①なら`d_effect = "1_no_effect"`、`reanalysis_required = false`とする。
 ①でなければ`d_effect = "pending_reanalysis"`、`reanalysis_required = true`とする。
@@ -240,6 +249,7 @@ def compare_vectors(a_bf16, b_bf16) -> dict:
 **7.3節：** Pの`T`について、層ごとの中央値・最大値を記述するだけにする。
 あわせて、手順3のGPU事前確認の2条件について、「正準→`ps-001`」の差（既存レポートの値）と、
 「正準→`ps-002`」「`ps-002`→`ps-001`」の差を並べる。
+P/Nを寄与割合へ分解せず、Pを再実行ノイズと呼ばない。既存の局所文言の留保も引き継ぐ。
 
 **出力：** `publish(artifacts/processed/argrec672-v1-dg-007-nod-comparison, {"report.json": ...}, kind="position_sweep_nod_comparison")`。
 `provenance`には、commit、`git_dirty: false`、設定・仕様・freeze・referenceのSHA-256、全bundleのmanifest SHA-256、
@@ -296,9 +306,9 @@ OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONPATH=src .venv/
 
 **比較**
 
-9. `compare_vectors`：同一のbfloat16値で`bit_exact`が真、相対L2が0になる。1要素だけ変えた場合の値が既知値と一致する。
+9. `compare_vectors`：同一のbfloat16値で`bit_exact`が真、相対L2が0になる。1要素だけ変えた場合の値が既知値と一致する。+0/-0はbit_exactが偽になる。
 10. 位置の対応：`ps-001`（6位置）と`ps-002`（5位置）を名前で対応づける。添字がずれた合成ケースで、名前での対応が正しく取られる。
-11. 7.1・7.2節の①：R-EXACTかつNが完全一致なら①。R-EXACTでNが1要素違えば①でない。R-NOISEで、Nの最大値がノイズ幅と等しければ①、超えれば①でない。
+11. 7.1・7.2節の①：R-EXACTかつNが完全一致なら①。R-EXACTでNが1要素違えば①でない。R-NOISEではNがノイズ幅以下・等しい・超える、のいずれでも再解析を要求する。
 12. Δの読み取り：Δが全ゼロのセルは計算されず、帰無分布のセル数から除かれる。Δにラベルの方向を埋め込んだ合成データで読める。`reported_only`が真になる。
 
 **再解析**
