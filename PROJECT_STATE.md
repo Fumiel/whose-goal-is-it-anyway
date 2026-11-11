@@ -350,7 +350,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   Step 3 (position sweep) has a researcher-finalized
   [spec](docs/phase2_position_sweep_spec.md) (2026-11-12) and a Codex
   [implementation brief](docs/phase2_position_sweep_implementation_brief.md);
-  not implemented or executed yet.
+  Step 3 implementation is complete; capture and analysis remain unexecuted.
   The 2026-10-30 train-only readout values are recorded only in an exploratory
   [verification PDF](output/pdf/2026-10-30_recipient_probe_verification.pdf).
   Its final run had no completed derived output in this WSL checkout when checked

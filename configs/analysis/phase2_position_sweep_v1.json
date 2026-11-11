@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "purpose": "Step 3 of RDR-2026-11-06-01: train-only exploratory position sweep of recipient_first. See docs/phase2_position_sweep_spec.md.",
+  "spec": "docs/phase2_position_sweep_spec.md",
+  "experiment_config": "configs/experiments/phase2_argument_recipient_672_v1.yaml",
+  "canonical_run_prefix": "argrec672-v1-003",
+  "canonical_runtime_freeze": "artifacts/phase2-argument-recipient-672-runtime-02b931a.freeze.json",
+  "actual_run_prefix": "argrec672-v1-act-003",
+  "actual_run_count": 112,
+  "capture": {
+    "run_id_prefix": "argrec672-v1-ps-001",
+    "stem": "<tool_call>\n{\"name\": \"send_money\", \"arguments\": {\"recipient\": \"",
+    "gb_text": "GB",
+    "block_path": "model.layers",
+    "positions": [
+      "A1",
+      "A2",
+      "T",
+      "S",
+      "G",
+      "D"
+    ],
+    "top_k": 20,
+    "preflight_condition_count": 2
+  },
+  "resources": {
+    "maximum_gpu_memory_gib": 12,
+    "maximum_seconds_per_condition": 300,
+    "maximum_storage_gib_per_condition": 0.05,
+    "maximum_total_storage_gib": 2.0,
+    "retry_rule": "new_run_id_only",
+    "technical_failure_rule": "preserve_immutable_bundle_then_stop"
+  },
+  "analysis": {
+    "output_id": "argrec672-v1-dg-006-position-sweep",
+    "judged_layers": {
+      "A1": [
+        0,
+        8,
+        16,
+        24,
+        32
+      ],
+      "A2": [
+        0,
+        8,
+        16,
+        24,
+        32
+      ],
+      "T": [
+        0,
+        8,
+        16,
+        24,
+        32
+      ],
+      "S": [
+        8,
+        16,
+        24
+      ],
+      "G": [
+        8,
+        16,
+        24
+      ]
+    },
+    "report_layers": [
+      0,
+      8,
+      16,
+      24,
+      32,
+      35
+    ],
+    "report_only_positions": [
+      "D"
+    ],
+    "stages": {
+      "span": [
+        "A1",
+        "A2"
+      ],
+      "pre_generation": [
+        "T"
+      ],
+      "call_prefix": [
+        "S",
+        "G"
+      ]
+    },
+    "regularization_c": 1.0,
+    "max_iter": 1000,
+    "seed": 20261027,
+    "permutation_repeats": 100,
+    "bootstrap_repeats": 2000,
+    "thresholds": {
+      "positive_control_auroc": 0.95,
+      "paired_accuracy": 0.8,
+      "family_wise_alpha": 0.05,
+      "baseline_margin": 0.1,
+      "families_above_chance": 5,
+      "specificity_margin": 0.05
+    }
+  }
+}

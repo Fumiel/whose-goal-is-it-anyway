@@ -96,7 +96,11 @@
 from goal_takeover.phase2.argument_recipient_672_runner import load_frozen_plan
 from goal_takeover.phase2.argument_recipient_672_train_readout import train_rows_and_run_ids
 from goal_takeover.phase2.argument_recipient_672_selection_pointer import (
-    pointer_indices, presentation_text, recipient_first_label, with_block_position, pair_index,
+    pointer_indices,
+    presentation_text,
+    recipient_first_label,
+    with_block_position,
+    pair_index,
 )
 ```
 
@@ -126,10 +130,12 @@ def presentation_order(row, accounts) -> tuple[str, str]:
     """(first_account, second_account) を presentation_text(row) 内の出現位置で返す。
     各口座がちょうど1回現れなければ ValueError。役割（recipient/reference）は使わない。"""
 
+
 def span_last_token(prefix: dict, account: str) -> int:
     """prefix["text"] で account がちょうど1回現れることを確認し、
     その半開区間 [start, start+len) と重なる（end > start のもの）offset の最大 token_index を返す。
     重なりがなければ ValueError。overlapping_token_indices と同じ重なり定義を使う。"""
+
 
 def call_continuation_ids(tokenizer, prefix: dict, stem: str, gb_text: str, digit: str) -> dict:
     """prefix["text"] + stem + gb_text + digit を add_special_tokens=False で一括トークン化する。
@@ -140,8 +146,10 @@ def call_continuation_ids(tokenizer, prefix: dict, stem: str, gb_text: str, digi
     返り値: {"input_ids": [...], "S": idx, "G": idx, "D": idx}
     （S = prefix+stem の最後の token、G = その次、D = 最後）"""
 
+
 def first_digit(account: str) -> str:
     """account[2]（'GB' の直後の1文字）。数字でなければ ValueError。"""
+
 
 def resolve_positions(row, prefix, accounts, tokenizer, spec) -> dict:
     """1条件の6位置を返す。
@@ -332,26 +340,34 @@ def capture_condition(model, tokenizer, row, prefix, accounts, spec) -> dict:
 ```python
 STAGE_ORDER = ["span", "pre_generation", "call_prefix"]
 
+
 def stage_class(position_classes, members):
     cs = [position_classes[p] for p in members]
-    return "R1" if "R1" in cs else "R2" if "R2" in cs else "R3"   # R4 は先に処理済み
+    return "R1" if "R1" in cs else "R2" if "R2" in cs else "R3"  # R4 は先に処理済み
+
 
 def map_hypothesis(position_classes, stages, r1_cells):
-    if any(c == "R4" for c in position_classes.values()):          # 規則0
+    if any(c == "R4" for c in position_classes.values()):  # 規則0
         return {"rule": 0, "mapping": "deferred_procedure_problem"}
-    if all(c == "R3" for c in position_classes.values()):          # 規則1
+    if all(c == "R3" for c in position_classes.values()):  # 規則1
         return {"rule": 1, "mapping": "none_detected"}
     sc = {s: stage_class(position_classes, stages[s]) for s in STAGE_ORDER}
     first = next((s for s in STAGE_ORDER if sc[s] == "R1"), None)
-    if first is None:                                               # 規則6
+    if first is None:  # 規則6
         return {"rule": 6, "mapping": "unmapped_pattern", "stage_classes": sc}
-    later = STAGE_ORDER[STAGE_ORDER.index(first) + 1:]
-    if any(sc[s] == "R3" for s in later):                           # 規則2
+    later = STAGE_ORDER[STAGE_ORDER.index(first) + 1 :]
+    if any(sc[s] == "R3" for s in later):  # 規則2
         return {"rule": 2, "mapping": "signal_disappears", "stage_classes": sc}
-    mapping = {"span": "H1_consistent", "pre_generation": "H2_consistent",
-               "call_prefix": "H3_consistent"}[first]               # 規則3〜5
-    out = {"rule": {"span": 3, "pre_generation": 4, "call_prefix": 5}[first],
-           "mapping": mapping, "stage_classes": sc}
+    mapping = {
+        "span": "H1_consistent",
+        "pre_generation": "H2_consistent",
+        "call_prefix": "H3_consistent",
+    }[first]  # 規則3〜5
+    out = {
+        "rule": {"span": 3, "pre_generation": 4, "call_prefix": 5}[first],
+        "mapping": mapping,
+        "stage_classes": sc,
+    }
     if first == "call_prefix":
         out["r1_only_at_G"] = position_classes["S"] != "R1" and position_classes["G"] == "R1"
     return out

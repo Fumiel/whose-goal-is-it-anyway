@@ -80,16 +80,25 @@ class ImmutableRunWriter:
     def write_json(self, relative_path: str, value: Any, *, kind: str) -> dict[str, Any]:
         return self.write_bytes(relative_path, canonical_json_bytes(value), kind=kind)
 
+    def _manifest_document(self) -> dict[str, Any]:
+        return {
+            "schema_version": 1,
+            "run_id": self.run_id,
+            "artifacts": [self._written[key] for key in sorted(self._written)],
+        }
+
+    def projected_size_bytes(self) -> int:
+        """Exact published file bytes, including the manifest, before commit."""
+        return sum(item["bytes"] for item in self._written.values()) + len(
+            canonical_json_bytes(self._manifest_document())
+        )
+
     def commit(self) -> Path:
         if self._committed:
             raise RuntimeError("run writer has already been committed")
         if self.final_path.exists():
             raise FileExistsError(f"immutable run already exists: {self.final_path}")
-        manifest = {
-            "schema_version": 1,
-            "run_id": self.run_id,
-            "artifacts": [self._written[key] for key in sorted(self._written)],
-        }
+        manifest = self._manifest_document()
         manifest_path = self._temporary_path / "manifest.json"
         manifest_path.write_bytes(canonical_json_bytes(manifest))
         os.rename(self._temporary_path, self.final_path)

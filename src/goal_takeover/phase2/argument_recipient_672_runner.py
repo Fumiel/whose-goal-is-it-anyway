@@ -49,6 +49,27 @@ def _prefix_record(prefix: Any) -> dict[str, Any]:
     }
 
 
+def verify_runtime_freeze(
+    root: Path,
+    runtime: dict[str, Any],
+    design_freeze_path: Path,
+    *,
+    require_matching_head: bool = True,
+) -> None:
+    """Verify runtime identity and checked files; also used by synthetic freeze tests."""
+    commit, dirty = _git_metadata()
+    if dirty or (require_matching_head and runtime.get("git_commit") != commit):
+        raise ValueError("runtime freeze requires the clean matching Git commit")
+    if runtime.get("design_freeze_sha256") != sha256_file(design_freeze_path):
+        raise ValueError("runtime freeze design checksum differs")
+    if not runtime.get("files_sha256"):
+        raise ValueError("runtime freeze has no environment or preflight checksums")
+    for relative, digest in runtime["files_sha256"].items():
+        path = Path(relative)
+        if path.is_absolute() or ".." in path.parts or sha256_file(root / path) != digest:
+            raise ValueError(f"runtime checksum differs: {relative}")
+
+
 def load_frozen_plan(
     config_path: Path,
     *,
@@ -116,17 +137,9 @@ def load_frozen_plan(
         path = Path(relative)
         if path.is_absolute() or ".." in path.parts or sha256_file(root / path) != digest:
             raise ValueError(f"design checksum differs: {relative}")
-    commit, dirty = _git_metadata()
-    if dirty or (require_matching_head and runtime.get("git_commit") != commit):
-        raise ValueError("runtime freeze requires the clean matching Git commit")
-    if runtime.get("design_freeze_sha256") != sha256_file(paths["design_freeze"]):
-        raise ValueError("runtime freeze design checksum differs")
-    if not runtime.get("files_sha256"):
-        raise ValueError("runtime freeze has no environment or preflight checksums")
-    for relative, digest in runtime["files_sha256"].items():
-        path = Path(relative)
-        if path.is_absolute() or ".." in path.parts or sha256_file(root / path) != digest:
-            raise ValueError(f"runtime checksum differs: {relative}")
+    verify_runtime_freeze(
+        root, runtime, paths["design_freeze"], require_matching_head=require_matching_head
+    )
     config["_resolved_runtime_freeze_path"] = str(runtime_path.relative_to(root))
     draft = json.loads(paths["draft"].read_text(encoding="utf-8"))
     declaration = json.loads(paths["declaration"].read_text(encoding="utf-8"))
