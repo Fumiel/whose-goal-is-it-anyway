@@ -316,7 +316,7 @@ def capture_condition(model, tokenizer, row, prefix, accounts, spec) -> dict:
    各判定セルの`family_wise_p = (1 + #{null_max >= observed}) / (1 + repeats)`とする。位置ごとに補正してはならない。
 5. **陽性対照**：各位置・各報告層で、`source_role`（tool=1）を240行で`logistic_scores`（family fold）にかけ、AUROCを計算する。
 6. **特異性対照**：手順1と同じく、U行で`account_block_position`と主ラベルのAUROCを、各位置・各報告層で計算する。
-7. **同位置ロジット（`G`）**：スコア = `logprob_G[送金先の最初の数字] − logprob_G[参照口座の最初の数字]`。
+7. **同位置ロジット（`G`）**：スコア = `logprob_G[先に提示された口座の最初の数字] − logprob_G[後に提示された口座の最初の数字]`。
    fitせずに`paired_accuracy`・`pooled_auroc`・`strata`を計算する。
    `S`では`GB`tokenの対数確率の分布（最小・中央値）だけを記録する。
 8. **位置ごとの判定**：判定対象の5位置それぞれについて、`classify(positive_control_best, cells, baseline_best, thresholds)`を呼ぶ。
@@ -325,8 +325,8 @@ def capture_condition(model, tokenizer, row, prefix, accounts, spec) -> dict:
    - R4の条件は「判定する全層で0.95未満」なので、最大値が0.95未満のときR4になる（`classify`の実装と一致する）。
 9. **追加の記述**（判定は変えない）：
    - 特異性：手順1と同じ`comparable_to_control`
-   - `G`の各判定セルについて：`probe_paired_accuracy >= logit_paired_accuracy`なら`explained_by_logit_range: true`
-     （仕様7節の文言どおり「ロジットの値以上であれば」）
+   - `G`の各判定セルについて：`probe_paired_accuracy <= logit_paired_accuracy`なら`explained_by_logit_range: true`。
+     表示は「同位置ロジットの精度以下」とし、フィールド名から説明関係を主張しない。
 10. **仮説への対応づけ**（仕様8節、上から順に適用）：
 
 ```python
@@ -358,6 +358,9 @@ def map_hypothesis(position_classes, stages, r1_cells):
 ```
 
 規則6は、仕様上は規則1・2の後に来る。上の実装では、R1がない場合は規則2が成立しえないので、順序は仕様と等価である。テストで仕様の全7規則を確認すること。
+
+Tの残差の数値差と、42セルへの補正・位置ベースライン追加によるp値やR判定の差は区別する。
+後者を数値誤差として説明しない（仕様8節）。
 
 ### 5.4 出力
 
@@ -412,7 +415,7 @@ PYTHONPATH=src .venv/bin/python -m goal_takeover.phase2.position_sweep_analysis 
 
 **解析（`test_position_sweep_analysis.py`）**
 
-11. 合成特徴：位置`T`の層24にだけ`recipient_first`の方向を埋め込むと、Tだけが`R1`になり、ほかの位置は`R3`になる。対応づけは規則4（`H2_consistent`）になる。
+11. 合成特徴：位置`T`の層24にだけ`recipient_first`の方向を埋め込むと、Tだけが`R1`になり、ほかの位置は`R3`になる。対応づけは規則2（`signal_disappears`）になる。別ケースとしてTとSまたはGに信号を埋め込み、規則4（`H2_consistent`）も確認する。
 12. 全体補正：`null_maxima`の各値が判定42セル全体の最大値である（判定セル数を変えた合成ケースで、最大値の取り方を確認する）。
 13. 位置ベースライン：A1/A2のtoken indexだけでラベルが決まる合成データでは、位置ベースラインが高くなり、その分R1の基準が上がる。
 14. 同位置ロジット：符号と`paired_accuracy`の既知値。`explained_by_logit_range`の境界（等しい場合はtrue）。
