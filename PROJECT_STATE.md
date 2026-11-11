@@ -356,6 +356,12 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   difference (preflight maximum relative L2 at T: 0.165) limit timing interpretations.
   See the [execution log](docs/experiment_logs/2026-11-12_position_sweep.md) and
   [small summary](results/2026-11-12_phase2_position_sweep_v1.json).
+  A post-result review (same log) found A1/A2 fully explained by the 32 characters
+  preceding each account, so the H1-consistent mapping is not cited as H1 evidence.
+  A D-free control capture has a researcher-finalized
+  [spec](docs/phase2_position_sweep_nod_control_spec.md) and Codex
+  [brief](docs/phase2_position_sweep_nod_control_implementation_brief.md) (2026-11-12);
+  not implemented or executed. Patching waits for its result.
   The 2026-10-30 train-only readout values are recorded only in an exploratory
   [verification PDF](output/pdf/2026-10-30_recipient_probe_verification.pdf).
   Its final run had no completed derived output in this WSL checkout when checked
