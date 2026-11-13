@@ -156,7 +156,9 @@ def patching_call_text(sweep: dict, row: dict, account: str) -> str:
 既存serializerからrecipient以後だけを切り出してはならない（recipientより前の引数を失うため）。
 
 ```python
-def account_remainder_ids(tokenizer, sweep: dict, row: dict, account: str, *, prefix: dict) -> list[int]:
+def account_remainder_ids(
+    tokenizer, sweep: dict, row: dict, account: str, *, prefix: dict
+) -> list[int]:
     """ps-002と同じ正準prefixにpatching_call_text()の完全な呼出しを連結してトークン化する。
     prefix + 書き出し + 'GB' の保存済みtoken列の直後から、口座文字列の最後の文字を含むtokenまでを返す。
     prefixは呼出し側が検証済みの訓練側bundleから読み取り専用で取得して渡し、参照元とchecksumを記録する。
@@ -211,12 +213,14 @@ class ResidualPatch:
 def prefix_cache(model, input_ids, t_index):
     """input_ids[:t_index] を use_cache=True で一度だけ順伝播し、キャッシュを返す。フックは付けない。"""
 
+
 def run_suffix(model, cache, input_ids, t_index, g_index, patch=None, capture_names=None):
     """cache に続けて input_ids[t_index : g_index + 1]（18 token）を順伝播する。
     patch が None でなければ (module_name, 位置名, vector) で、ResidualPatch を付ける。
     sequence_index は 位置の token_index - t_index（T=0、S=16、G=17）。
     capture_names が与えられれば、T・S・G の全36層の block 出力を ResidualCapture で取る（正常計算のみ）。
     18 位置すべての logits を返す（logits_to_keep は使わない）。"""
+
 
 def score_candidates(model, cache, g_logits, remainders: dict[str, list[int]], g_length):
     """候補（先の口座、後の口座の順に固定）ごとに：
@@ -390,7 +394,9 @@ def pair_effects(clean_ld: dict, patched_ld: dict, pairs, labels, delta_minimum)
 **仮説への対応づけ（仕様6.3、上から順に）：**
 
 ```python
-def map_patching(cells: dict, health_ok: bool, positive_ok: bool, middle_max=24, late_min=28) -> dict:
+def map_patching(
+    cells: dict, health_ok: bool, positive_ok: bool, middle_max=24, late_min=28
+) -> dict:
     """L*(p) = その位置で P-STRONG となる最も浅い層（なければ None）。
     0: not health_ok or not positive_ok、または対象対0件で全セルundefined -> "held"
     1: L*(T) <= middle_max -> "H2_consistent"

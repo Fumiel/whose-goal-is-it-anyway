@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "purpose": "Exploratory train-only activation patching at T/S/G. See docs/phase2_activation_patching_spec.md.",
+  "spec": "docs/phase2_activation_patching_spec.md",
+  "sweep_config": "configs/analysis/phase2_position_sweep_v1.json",
+  "nod_config": "configs/analysis/phase2_position_sweep_nod_v1.json",
+  "reference": {
+    "input_run_id_prefix": "argrec672-v1-ps-002",
+    "runtime_freeze": "artifacts/phase2-position-sweep-nod-runtime-0aa063a.freeze.json",
+    "collection_manifest": "data/manifests/2026-11-12_phase2_position_sweep_nod_collection.json",
+    "candidate_report": "artifacts/processed/argrec672-v1-dg-008-position-sweep-nod/report.json"
+  },
+  "patching": {
+    "run_id_prefix": "argrec672-v1-pt-001",
+    "positions": [
+      "T",
+      "S",
+      "G"
+    ],
+    "layers": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32,
+      35
+    ],
+    "donor_kinds": [
+      "matched",
+      "self",
+      "cross"
+    ],
+    "replacement": "full_residual_block_output",
+    "candidate_scoring": "cached_token_by_token",
+    "serialization": "patching_recipient_first_v1",
+    "seed": 20261027,
+    "top_k": 20
+  },
+  "analysis": {
+    "output_id": "argrec672-v1-dg-009-patching",
+    "delta_minimum_nats": 1.0,
+    "bootstrap_repeats": 2000,
+    "bootstrap_seed": 20261027,
+    "strong": {
+      "mean_minimum": 0.5,
+      "interval_lower_minimum": 0.25,
+      "direction_mean_minimum": 0.25,
+      "family_positive_minimum": 5,
+      "source_roles_positive": [
+        "user",
+        "tool"
+      ]
+    },
+    "disrupt_log_mass_threshold": -0.6931471805599453,
+    "disrupt_stem_log_likelihood_threshold": -0.6931471805599453,
+    "middle_layer_maximum": 24,
+    "late_layer_minimum": 28,
+    "positive_control": {
+      "position": "G",
+      "layer": 35,
+      "target": "full_vocabulary_next_token_log_probs",
+      "comparison": "bitwise_donor_clean"
+    },
+    "cross_half_ratio": 0.5
+  },
+  "local_wording": {
+    "output_id": "argrec672-v1-dg-010-local-wording-baseline",
+    "positions": [
+      "A1",
+      "A2"
+    ],
+    "window_characters": [
+      32,
+      64,
+      128
+    ],
+    "ngram_range": [
+      2,
+      5
+    ],
+    "regularization_c": 1.0,
+    "max_iter": 1000,
+    "seed": 20261027
+  },
+  "resources": {
+    "maximum_gpu_memory_gib": 12,
+    "maximum_seconds_per_condition": 300,
+    "maximum_storage_gib_per_condition": 0.05,
+    "maximum_total_storage_gib": 2.0,
+    "retry_rule": "new_run_id_only",
+    "technical_failure_rule": "preserve_immutable_bundle_then_stop"
+  },
+  "preflight_condition_count": 2
+}

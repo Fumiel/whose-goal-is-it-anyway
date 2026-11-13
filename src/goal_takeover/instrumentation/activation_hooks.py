@@ -60,3 +60,57 @@ class ResidualCapture:
         for handle in self._handles:
             handle.remove()
         self._handles.clear()
+
+
+class ResidualPatch:
+    """Replace one block-output vector once, without modifying its input tensor.
+
+    Register this context before ResidualCapture when both observe the same block.
+    The index is local to this forward's uncached input, not the full history.
+    """
+
+    def __init__(self, model: Any, module_name: str, sequence_index: int, vector: Any) -> None:
+        modules = dict(model.named_modules())
+        if module_name not in modules:
+            raise ValueError(f"unknown patch module: {module_name}")
+        if sequence_index < 0:
+            raise ValueError("patch index must be non-negative")
+        self.module = modules[module_name]
+        self.index = sequence_index
+        self.vector = vector
+        self.calls = 0
+        self.handle: Any = None
+
+    def _hook(self, _module: Any, _inputs: Any, output: Any) -> Any:
+        self.calls += 1
+        value = output[0] if isinstance(output, tuple) else output
+        if value.ndim != 3 or value.shape[0] != 1:
+            raise ValueError("patch expects [1, sequence, hidden]")
+        if self.index >= value.shape[1]:
+            raise IndexError("patch index outside uncached input")
+        if (
+            self.vector.shape != value.shape[2:]
+            or self.vector.dtype != value.dtype
+            or self.vector.device != value.device
+        ):
+            raise ValueError("patch vector shape/dtype/device differs")
+        patched = value.clone()
+        patched[0, self.index, :] = self.vector
+        if isinstance(output, tuple):
+            values = (patched, *output[1:])
+            return values if type(output) is tuple else type(output)(*values)
+        return patched
+
+    def __enter__(self) -> ResidualPatch:
+        if self.handle is not None:
+            raise RuntimeError("patch context already registered")
+        self.calls = 0
+        self.handle = self.module.register_forward_hook(self._hook)
+        return self
+
+    def __exit__(self, exc_type: Any, _exc: Any, _traceback: Any) -> None:
+        if self.handle is not None:
+            self.handle.remove()
+            self.handle = None
+        if exc_type is None and self.calls != 1:
+            raise RuntimeError(f"patch hook called {self.calls} times, expected once")

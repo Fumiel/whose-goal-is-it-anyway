@@ -382,6 +382,8 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   recipient-first serialization, declaration-integrity loading versus validation use, and donor-sign agreement are explicit.
   The revised spec includes an unmeasured roughly one-day capture estimate and retains the 300-second per-condition stop;
   GPU preflight must establish actual timings. This is a documentation revision only; implementation and execution remain pending.
+  Patching implementation and synthetic tests are now complete; tokenizer/GPU preflight is next.
+  Main capture, research analysis and the local-wording run remain unstarted and are outside the current execution request.
   Under RDR-2026-11-06-01 patching must start by 2026-11-20 or be recorded as not performed; the spec
   defines "start" as launching the main capture on a clean commit with its runtime freeze.
   The 2026-10-30 train-only readout values are recorded only in an exploratory
