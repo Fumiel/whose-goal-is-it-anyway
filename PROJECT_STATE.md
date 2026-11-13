@@ -375,6 +375,13 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   under its own RDR. The [patching spec](docs/phase2_activation_patching_spec.md), drafted by Claude Code, was confirmed by the
   researcher on 2026-11-14 (rule 3 generalized before implementation by RDR-2026-11-14-02); the Codex
   [implementation brief](docs/phase2_activation_patching_implementation_brief.md) is issued. No patching implementation, freeze or run exists.
+  The researcher then accepted all Codex preimplementation review corrections in
+  [RDR-2026-11-14-03](docs/decisions/2026-11-14_patching_preimplementation_review_corrections.md):
+  the positive control tests full-vocabulary G/35 next-token distribution equality, candidates are scored one token at a time,
+  and stem-likelihood disruption joins the disruption gate. Cross-context and H3/late-layer claims are narrowed;
+  recipient-first serialization, declaration-integrity loading versus validation use, and donor-sign agreement are explicit.
+  The revised spec includes an unmeasured roughly one-day capture estimate and retains the 300-second per-condition stop;
+  GPU preflight must establish actual timings. This is a documentation revision only; implementation and execution remain pending.
   Under RDR-2026-11-06-01 patching must start by 2026-11-20 or be recorded as not performed; the spec
   defines "start" as launching the main capture on a clean commit with its runtime freeze.
   The 2026-10-30 train-only readout values are recorded only in an exploratory
