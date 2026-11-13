@@ -384,6 +384,7 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   GPU preflight must establish actual timings. This is a documentation revision only; implementation and execution remain pending.
   Patching is implemented at `b1160c7`; 304 pytest cases pass and tokenizer preflight passes all 240 conditions.
   [GPU preflight](docs/experiment_logs/2026-11-14_activation_patching_preflight.md) failed on the first recipient's 479.51-second cost (>300 seconds), despite exact self/positive/cache controls and 9.494 GiB peak memory. The second recipient's interventions, runtime freeze, main capture and research analyses remain unperformed; the failed report is retained.
+  A researcher-requested [recheck](docs/experiment_logs/2026-11-14_activation_patching_preflight_recheck.md), after a reported Mac/WSL SSH disconnect, used unchanged code/config at `a332ee0`, nohup/setsid and a WSL-local log. Tokenizer preflight passed all 240 conditions, but GPU preflight again exceeded 300 seconds (447.28 seconds, 9.494 GiB, all equality controls exact). Both failed reports are retained; SSH interruption alone is not established as the cause. Main capture remains unstarted.
   Under RDR-2026-11-06-01 patching must start by 2026-11-20 or be recorded as not performed; the spec
   defines "start" as launching the main capture on a clean commit with its runtime freeze.
   The 2026-10-30 train-only readout values are recorded only in an exploratory
