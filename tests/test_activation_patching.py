@@ -302,9 +302,11 @@ class EffectTest(unittest.TestCase):
 
     def test_resource_limits_do_not_silently_expand(self):
         limits = SETTINGS["resources"]
-        pt.check_resources(limits, 300, 12 * 1024**3)
+        self.assertEqual(limits["maximum_seconds_per_condition"], 600)
+        pt.check_resources(limits, 447.2848822970009, 12 * 1024**3)
+        pt.check_resources(limits, 600, 12 * 1024**3)
         with self.assertRaises(RuntimeError):
-            pt.check_resources(limits, 300.001, 1)
+            pt.check_resources(limits, 600.001, 1)
         with self.assertRaises(RuntimeError):
             pt.check_resources(limits, 1, 12 * 1024**3 + 1)
 

@@ -857,6 +857,10 @@ test開封前に次を凍結する。
 
 [RDR-2026-11-06-01](decisions/2026-11-06_argument_selection_timing_course_correction.md)は、上記とは別に、開発データ上の探索的パッチングを次の条件で認める。2026-11-20までに開始できなければ行わない。位置スイープで得た候補位置と、構造が揃う対応対を用い、双方向の介入と対照を維持する。結果は探索的と明記し、確認的な因果検証、独立validationでの再現または主解析の成立条件として扱わない。上記の開始条件はそれ以外のパッチングに引き続き適用する。
 
+この探索的パッチングの時間上限は、事前確認の実測後の[RDR-2026-11-14-04](decisions/2026-11-14_patching_time_limit_revision.md)により、
+1条件のdonor正常計算と90介入・正常再確認の合計600秒へ改訂する。GPU 12 GiB・保存0.05 GiB/条件・科学的な判定基準は維持する。
+旧300秒での失敗記録を保持し、新上限での事前確認を新しいレポートで行う。この改訂は他のpilot・672条件収集の300秒上限には適用しない。
+
 実施時はResistant→SusceptibleとSusceptible→Resistantの双方向を行う。donor / recipientはtask、attack goal、surface length等のmatching規則で選び、test outcomeを使った都合のよいpair選択をしない。patch tensorのlayer、token、hook point、置換または補間方式を保存する。
 
 主な介入指標には方向を明記したlogit differenceと次の正規化効果量を用いる。

@@ -88,7 +88,7 @@
   },
   "resources": {
     "maximum_gpu_memory_gib": 12,
-    "maximum_seconds_per_condition": 300,
+    "maximum_seconds_per_condition": 600,
     "maximum_storage_gib_per_condition": 0.05,
     "maximum_total_storage_gib": 2.0,
     "retry_rule": "new_run_id_only",

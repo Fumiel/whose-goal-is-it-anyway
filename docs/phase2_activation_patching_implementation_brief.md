@@ -1,7 +1,7 @@
 # 探索的活性化パッチング 実装指示書 — Codex向け
 
 - 作成：2026-11-14。作成はClaude Code（研究実施者の依頼による）。実装とテストはCodexが行う。
-- 同日のCodexレビューによる修正を研究実施者がすべて採用した。本書は[RDR-2026-11-14-03](decisions/2026-11-14_patching_preimplementation_review_corrections.md)を反映した実装前の指示であり、実装・実験は未実行。
+- 同日のCodexレビューによる修正を研究実施者がすべて採用した。本書は[RDR-2026-11-14-03](decisions/2026-11-14_patching_preimplementation_review_corrections.md)と、時間上限だけを600秒へ改訂する[RDR-2026-11-14-04](decisions/2026-11-14_patching_time_limit_revision.md)を反映する。実装済みで、本取得・解析は未実行。
 - **正本は[パッチング仕様](phase2_activation_patching_spec.md)である。** この指示書と仕様が食い違う場合は、仕様が優先する。
   仕様どおりに実装できない点が見つかったら、**仕様を書き換えずに作業を止め、研究実施者に報告する**。
   実装前のレビューで見つけた問題も、実装の前に報告すること。
@@ -104,7 +104,7 @@
   },
   "resources": {
     "maximum_gpu_memory_gib": 12,
-    "maximum_seconds_per_condition": 300,
+    "maximum_seconds_per_condition": 600,
     "maximum_storage_gib_per_condition": 0.05,
     "maximum_total_storage_gib": 2.0,
     "retry_rule": "new_run_id_only",
@@ -269,7 +269,7 @@ def score_candidates(model, cache, g_logits, remainders: dict[str, list[int]], g
 - 第1パスでの失敗もその条件の新しい不変bundleに`failure_stage: donor_clean`を記録して停止する。
   第2パスは`failure_stage: interventions`とする。1条件の時間は第1パスの正常計算と第2パスの介入・再確認の合計で判定し、
   それぞれの経過秒数、prefix・18token・1token順伝播の回数と時間を別記する。GPUメモリ上限は第1パスにも適用する。
-  本取得全体の予測は仕様9.1節に従い、事前確認の実測で更新する。300秒上限を暗黙に緩めない。
+  本取得全体の予測は仕様9.1節に従い、事前確認の実測で更新する。RDR-2026-11-14-04で明示的に改訂した600秒上限を使い、さらに自動変更しない。
 
 ### 5.3 bundleの内容
 
@@ -308,7 +308,7 @@ def score_candidates(model, cache, g_logits, remainders: dict[str, list[int]], g
    ビット一致の数と最大相対L2差を記録する（`position_sweep_nod.compare_vectors`を使う）。
 2. **`self`の一致（仕様8.3、停止する）：** 30セルすべての`self`の結果が、正常計算とビット単位で一致すること。
 3. **キャッシュの復元（仕様8.4、停止する）：** 同じ`matched`の介入（`T`・層24）を2回続けて行い、結果がビット単位で一致すること。
-4. **資源（仕様8.5）：** ピークGPUメモリが12 GiB以下であること。第1パス・全90介入・再確認を含む1条件の時間が300秒以下であること。
+4. **資源（仕様8.5）：** ピークGPUメモリが12 GiB以下であること。第1パス・全90介入・再確認を含む1条件の時間が600秒以下であること。
    donorの正常値を得るために必要な訓練側条件も正常計算だけ行い、追加条件のID・時間を別記する。
    1token・18tokenの順伝播の回数・時間、prefix計算・比較・I/O等の時間を分け、全240条件の取得時間を外挿する。
    preflightの繰り返し比較用の追加計算は、本取得1条件の時間見積もりと区別する。
