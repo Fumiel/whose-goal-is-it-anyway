@@ -373,7 +373,8 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   exploratory patching is limited to T/S/G; the local-wording baseline is to be recorded formally (dg-010).
   A new task separating role wording from accounts (option a) may follow only after patching capture starts,
   under its own RDR. The [patching spec](docs/phase2_activation_patching_spec.md), drafted by Claude Code, was confirmed by the
-  researcher on 2026-11-14; implementation is delegated to Codex. No patching implementation, freeze or run exists.
+  researcher on 2026-11-14 (rule 3 generalized before implementation by RDR-2026-11-14-02); the Codex
+  [implementation brief](docs/phase2_activation_patching_implementation_brief.md) is issued. No patching implementation, freeze or run exists.
   Under RDR-2026-11-06-01 patching must start by 2026-11-20 or be recorded as not performed; the spec
   defines "start" as launching the main capture on a clean commit with its runtime freeze.
   The 2026-10-30 train-only readout values are recorded only in an exploratory
