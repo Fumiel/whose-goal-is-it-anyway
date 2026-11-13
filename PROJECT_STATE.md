@@ -368,6 +368,14 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   Future patch candidates use D-free dg-008; local-wording/H1 caveats remain. Patching is unstarted.
   See the [control log](docs/experiment_logs/2026-11-12_position_sweep_nod_control.md) and
   [small summary](results/2026-11-12_phase2_position_sweep_nod_control_v1.json).
+  On 2026-11-14 the researcher adopted [RDR-2026-11-14-01](docs/decisions/2026-11-14_h1_scope_and_patching_focus.md):
+  H1 is not tested before 2026-11-30 because account-position readouts are explained by local wording;
+  exploratory patching is limited to T/S/G; the local-wording baseline is to be recorded formally (dg-010).
+  A new task separating role wording from accounts (option a) may follow only after patching capture starts,
+  under its own RDR. The [patching spec](docs/phase2_activation_patching_spec.md), drafted by Claude Code, was confirmed by the
+  researcher on 2026-11-14; implementation is delegated to Codex. No patching implementation, freeze or run exists.
+  Under RDR-2026-11-06-01 patching must start by 2026-11-20 or be recorded as not performed; the spec
+  defines "start" as launching the main capture on a clean commit with its runtime freeze.
   The 2026-10-30 train-only readout values are recorded only in an exploratory
   [verification PDF](output/pdf/2026-10-30_recipient_probe_verification.pdf).
   Its final run had no completed derived output in this WSL checkout when checked
