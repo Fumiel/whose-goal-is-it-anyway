@@ -7,6 +7,37 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 ## Current phase
 
 - Phase: `phase2_argument_recipient_672_execution_design_review`
+- Latest patching status, verified by read-only inspection on 2026-11-14:
+  `argrec672-v1-pt-001` has 48 completed bundles, one retained technical failure
+  (`c475`, intervention-stage 600-second ceiling), and 191 unrun conditions.
+  Main capture therefore started, superseding the historical unstarted/preparation-only
+  descriptions below. All 435 declared files in the 49 bundles passed size/checksum
+  verification. WSL kernel records show RAM pressure and exhausted 16 GiB swap
+  during the failed condition; a 3.53 GB warning log was being displayed by
+  `tail -f` through memory-heavy `cmux-tui` processes. See the
+  [stop investigation and proposed recovery](docs/experiment_logs/2026-11-14_activation_patching_capture_stop_investigation.md).
+  The current request covers diagnosis and countermeasure planning only: no
+  restart, limit revision, recovery implementation, or intervention-effect analysis
+  was performed. Failed IDs cannot be retried by the existing resume path;
+  preserving the 48 completions requires an explicit recovery mapping.
+  Diagnostic recording was then implemented without changing computation,
+  limits, or saved result files: failed bundles now keep pre-check measured
+  seconds, in-stage progress, donor-group timing, and `/proc` host-memory
+  snapshots, and completed bundles and GPU preflight reports keep host-memory
+  snapshots (see spec §9). The repeated bitsandbytes dtype-cast log message is
+  now limited to its first occurrence during preflight/capture (the cast itself is
+  unchanged; suppressed counts are recorded). Re-measurement and the choice
+  between a recovery mapping and a fresh run-ID prefix remain open; any capture
+  needs a new clean commit, new preflights, and a new runtime freeze.
+  [RDR-2026-11-15-01](docs/decisions/2026-11-15_patching_capture_recovery_and_retry.md)
+  (accepted 2026-11-15) keeps `pt-001` unchanged and unused, recaptures all 240
+  conditions as `argrec672-v1-pt-002`, and allows one explicitly flagged `-a2`
+  retry per technical failure after a recorded diagnosis. It fixes the stage A
+  preflight, the monitored first 20 bundles with manual stop criteria, and the
+  600-second overrun procedure. The retry path is implemented and tested.
+  No new preflight, freeze or `pt-002` capture has been run yet. The work branch
+  was merged into `main` on 2026-11-15 together with the
+  [600-second preflight log](docs/experiment_logs/2026-11-14_activation_patching_600s_preflight.md).
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo

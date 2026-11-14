@@ -310,6 +310,75 @@ class EffectTest(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             pt.check_resources(limits, 1, 12 * 1024**3 + 1)
 
+    def test_cast_warning_filter_limits_only_repeated_cast_messages(self):
+        import logging
+
+        logger = logging.getLogger(pt.CAST_WARNING_LOGGER)
+        template = pt.CAST_WARNING_PREFIX + " %s to float16 during quantization"
+        with self.assertLogs(logger, level="WARNING") as logs:
+            with pt.limited_cast_warning() as limiter:
+                for _ in range(5):
+                    logger.warning(template, "torch.bfloat16")
+                logger.warning(template, "torch.float32")
+                logger.warning("unrelated warning %s", 1)
+                logger.warning("unrelated warning %s", 1)
+                logger.error(template, "torch.bfloat16")
+            self.assertNotIn(limiter, logger.filters)
+            logger.warning(template, "torch.bfloat16")
+        messages = [record.getMessage() for record in logs.records]
+        cast = [m for m in messages if m.startswith(pt.CAST_WARNING_PREFIX)]
+        self.assertEqual(len(cast), 4)  # bf16 once, fp32 once, ERROR, after removal
+        self.assertEqual(messages.count("unrelated warning 1"), 2)
+        self.assertEqual(
+            limiter.record(),
+            {
+                "logger": pt.CAST_WARNING_LOGGER,
+                "message_prefix": pt.CAST_WARNING_PREFIX,
+                "first_occurrences_emitted": 2,
+                "repeats_suppressed": 4,
+            },
+        )
+
+    def test_host_resources_parses_proc_and_tolerates_missing_sources(self):
+        with tempfile.TemporaryDirectory() as directory:
+            proc = Path(directory)
+            (proc / "self").mkdir()
+            (proc / "pressure").mkdir()
+            (proc / "meminfo").write_text(
+                "MemTotal:       12248064 kB\nMemFree: 1 kB\n"
+                "MemAvailable:    1048576 kB\nSwapTotal:      16777216 kB\nSwapFree: 0 kB\n"
+            )
+            (proc / "self/status").write_text("Name:\tpython\nVmRSS:\t  2048 kB\nVmSwap:\t 0 kB\n")
+            (proc / "vmstat").write_text("nr_free_pages 5\npswpin 7\npswpout 9\npgmajfault 3\n")
+            (proc / "pressure/memory").write_text(
+                "some avg10=1.50 avg60=0.00 avg300=0.00 total=12\n"
+                "full avg10=0.25 avg60=0.00 avg300=0.00 total=4\n"
+            )
+            snapshot = pt.host_resources(proc)
+            self.assertEqual(
+                snapshot["meminfo"],
+                {
+                    "MemTotal_kib": 12248064,
+                    "MemAvailable_kib": 1048576,
+                    "SwapTotal_kib": 16777216,
+                    "SwapFree_kib": 0,
+                },
+            )
+            self.assertEqual(snapshot["self_status"], {"VmRSS_kib": 2048, "VmSwap_kib": 0})
+            self.assertEqual(snapshot["vmstat"], {"pswpin": 7, "pswpout": 9, "pgmajfault": 3})
+            self.assertEqual(snapshot["pressure_memory"]["some"]["avg10"], 1.5)
+            self.assertNotIn("total", snapshot["pressure_memory"]["full"])
+            self.assertEqual(
+                pt.resource_line(snapshot), "RAM available 1.00 GiB, swap used 16.00 GiB"
+            )
+            (proc / "pressure/memory").unlink()
+            (proc / "meminfo").unlink()
+            missing = pt.host_resources(proc)
+            self.assertIsNone(missing["pressure_memory"])
+            self.assertIsNone(missing["meminfo"])
+            self.assertEqual(pt.resource_line(missing), "host memory unavailable")
+            json.dumps(missing)
+
 
 @unittest.skipUnless(NUMERICAL, "numerical extras unavailable")
 class NumericalTest(unittest.TestCase):
@@ -539,13 +608,18 @@ class ProvenanceAndCommandTest(unittest.TestCase):
                 "run.json": canonical_json_bytes({"status": "completed", "git_commit": "test"})
             }
             bundle = pt.write_bundle(root, "synthetic-run", files)
-            self.assertTrue(pt.completed_bundle(bundle, {"git_commit": "test"}))
-            self.assertFalse(pt.completed_bundle(root / "absent", {}))
+            self.assertEqual(pt.bundle_state(bundle, {"git_commit": "test"}), "completed")
+            self.assertIsNone(pt.bundle_state(root / "absent", {}))
             with self.assertRaises(ValueError):
-                pt.completed_bundle(bundle, {"git_commit": "other"})
+                pt.bundle_state(bundle, {"git_commit": "other"})
+            unknown = pt.write_bundle(
+                root, "synthetic-unknown", {"run.json": canonical_json_bytes({"status": "running"})}
+            )
+            with self.assertRaisesRegex(ValueError, "status is unknown"):
+                pt.bundle_state(unknown, {})
             (bundle / "run.json").write_bytes(b"changed")
             with self.assertRaises(ValueError):
-                pt.completed_bundle(bundle, {})
+                pt.bundle_state(bundle, {})
 
     def test_freeze_rejects_identity_drift_failed_reports_and_existing_target(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -625,6 +699,34 @@ class ProvenanceAndCommandTest(unittest.TestCase):
             ):
                 pt.main()
                 capture.assert_not_called()
+
+    def test_retry_flag_is_capture_only_and_passed_through(self):
+        with (
+            patch("sys.argv", ["patching", "gpu-preflight", "t.json", pt.RETRY_FLAG]),
+            patch.object(pt, "patching_gpu_preflight") as preflight,
+            self.assertRaises(SystemExit),
+        ):
+            pt.main()
+        preflight.assert_not_called()
+        for argv, expected in (([], False), ([pt.RETRY_FLAG], True)):
+            with (
+                patch(
+                    "sys.argv",
+                    ["patching", "capture", "t.json", "--runtime-freeze", "f.json", *argv],
+                ),
+                patch.object(pt, "capture_patching", return_value=[]) as capture,
+            ):
+                pt.main()
+            self.assertIs(capture.call_args.kwargs["retry_technical_failures"], expected)
+
+    def test_retry_contract_is_fixed(self):
+        self.assertEqual(SETTINGS["patching"]["technical_failure_retry"], pt.RETRY_CONTRACT)
+        self.assertEqual(SETTINGS["patching"]["run_id_prefix"], "argrec672-v1-pt-002")
+        for value in (None, {"maximum_attempts_per_condition": 3, "explicit_flag": pt.RETRY_FLAG}):
+            bad = copy.deepcopy(SETTINGS)
+            bad["patching"]["technical_failure_retry"] = value
+            with patch.object(pt.nod, "read_json", return_value=bad), self.assertRaises(ValueError):
+                pt.read_config(Path("unused.json"))
 
 
 if __name__ == "__main__":
@@ -723,6 +825,14 @@ class SyntheticBundleIntegrationTest(unittest.TestCase):
             stack.enter_context(patch("torch.cuda.max_memory_allocated", return_value=0))
             paths = pt.capture_patching(Path("test"), Path("test.freeze.json"))
             self.assertEqual(len(paths), 4)
+            for path in paths:
+                run = json.loads((path / "run.json").read_text())
+                self.assertEqual(
+                    [g["donor_kind"] for g in run["intervention_group_timing"]],
+                    list(pt.DONOR_KINDS),
+                )
+                self.assertEqual(set(run["host_resources"]), {"start", "end"})
+                self.assertIn("repeats_suppressed", run["log_filter_cumulative"])
             for row in plan["rows"]:
                 bundle = pt.read_capture(plan, row)
                 self.assertEqual(len(bundle["results"]["interventions"]), 27)
@@ -763,5 +873,238 @@ class SyntheticBundleIntegrationTest(unittest.TestCase):
             run = json.loads((bundle / "run.json").read_text())
             self.assertEqual(run["failure_stage"], "donor_clean")
             self.assertEqual(run["status"], "technical_failure")
-            with self.assertRaises(ValueError):
-                pt.completed_bundle(bundle, {})
+            self.assertIsNone(run["diagnostics"]["progress"])
+            self.assertIsNone(run["diagnostics"]["measured_before_check"])
+            self.assertIn("recorded_at", run["diagnostics"]["host_resources_at_failure"])
+            self.assertEqual(pt.bundle_state(bundle, {}), "technical_failure")
+            self.assertEqual(run["attempt"], 1)
+
+    def failing_capture(self, root, stack, **patches):
+        import torch
+
+        plan = self.plan(root)
+        stack.enter_context(patch.object(pt, "load_plan", return_value=plan))
+        stack.enter_context(patch.object(pt, "clean_commit", return_value="capture000"))
+        model = synthetic_model(dtype=torch.bfloat16)
+        stack.enter_context(patch.object(pt, "load_model", return_value=(model, None)))
+        stack.enter_context(
+            patch.object(pt, "prepare_input", side_effect=lambda p, r, t: self.item(p, r))
+        )
+        stack.enter_context(patch("torch.cuda.reset_peak_memory_stats"))
+        stack.enter_context(patch("torch.cuda.max_memory_allocated", return_value=0))
+        for name, value in patches.items():
+            stack.enter_context(patch.object(pt, name, side_effect=value))
+        with self.assertRaisesRegex(RuntimeError, "retained technical failure"):
+            pt.capture_patching(Path("test"), Path("test.freeze.json"))
+        bundles = sorted((root / "artifacts/runs").iterdir())
+        self.assertEqual(len(bundles), 1)
+        files = {p.name for p in bundles[0].iterdir()}
+        # Failed conditions keep diagnostics only, never intervention results.
+        self.assertEqual(
+            files, {"condition.json", "resolved_config.json", "run.json", "manifest.json"}
+        )
+        return plan, json.loads((bundles[0] / "run.json").read_text())
+
+    def test_time_ceiling_failure_records_measured_seconds_and_progress(self):
+        from contextlib import ExitStack
+
+        original = pt.check_resources
+        calls = []
+
+        def ceiling(limits, seconds, peak):
+            calls.append(seconds)
+            if len(calls) > 4:  # first intervention-stage check after four donor checks
+                raise RuntimeError("condition time ceiling exceeded")
+            original(limits, seconds, peak)
+
+        with tempfile.TemporaryDirectory() as directory, ExitStack() as stack:
+            plan, run = self.failing_capture(Path(directory), stack, check_resources=ceiling)
+            diagnostics = run["diagnostics"]
+            self.assertEqual(run["failure_stage"], "interventions")
+            self.assertEqual(run["failure_message"], "condition time ceiling exceeded")
+            measured = diagnostics["measured_before_check"]
+            self.assertEqual(measured["elapsed_seconds"], calls[-1])
+            self.assertAlmostEqual(
+                measured["elapsed_seconds"],
+                measured["donor_clean_seconds"] + measured["intervention_seconds"],
+            )
+            progress = diagnostics["progress"]
+            self.assertEqual(progress["stage"], "interventions")
+            self.assertEqual(progress["cells_completed"], progress["cell_count"])
+            self.assertEqual(progress["cell_count"], 27)
+            self.assertEqual(progress["last_completed_cell"], "clean_recheck")
+            self.assertEqual([g["donor_kind"] for g in progress["groups"]], list(pt.DONOR_KINDS))
+            self.assertGreater(sum(progress["timing"]["forward_counts"].values()), 0)
+            self.assertGreaterEqual(progress["elapsed_seconds_at_failure"], 0)
+            self.assertIn("host_at_start", progress)
+            self.assertIsNone(diagnostics["last_completed_bundle_at"])
+
+    def test_mid_intervention_failure_records_last_completed_cell(self):
+        from contextlib import ExitStack
+
+        original = pt.evaluate
+        calls = []
+
+        def evaluate(*args, **kwargs):
+            calls.append(1)
+            if len(calls) == 4 + 6:  # four donor evaluations, then five completed cells
+                raise RuntimeError("synthetic forward failure")
+            return original(*args, **kwargs)
+
+        with tempfile.TemporaryDirectory() as directory, ExitStack() as stack:
+            plan, run = self.failing_capture(Path(directory), stack, evaluate=evaluate)
+            progress = run["diagnostics"]["progress"]
+            layers = plan["settings"]["patching"]["layers"]
+            self.assertEqual(run["failure_stage"], "interventions")
+            self.assertIsNone(run["diagnostics"]["measured_before_check"])
+            self.assertEqual(progress["cells_completed"], 5)
+            self.assertEqual(progress["last_completed_cell"], f"matched/S/layer{layers[1]}")
+            self.assertEqual(len(progress["groups"]), 1)
+            self.assertNotIn("finished_at", progress["groups"][0])
+
+    def capture_stack(self, root, stack):
+        import torch
+
+        plan = self.plan(root)
+        stack.enter_context(patch.object(pt, "load_plan", return_value=plan))
+        stack.enter_context(patch.object(pt, "clean_commit", return_value="capture000"))
+        model = synthetic_model(dtype=torch.bfloat16)
+        loader = stack.enter_context(patch.object(pt, "load_model", return_value=(model, None)))
+        for name in ("prepare_input", "read_input"):
+            stack.enter_context(
+                patch.object(pt, name, side_effect=lambda p, r, *_: self.item(p, r))
+            )
+        stack.enter_context(patch("torch.cuda.reset_peak_memory_stats"))
+        stack.enter_context(patch("torch.cuda.max_memory_allocated", return_value=0))
+        return plan, loader
+
+    @staticmethod
+    def ceiling_after(donor_checks, failures):
+        """Fail the first `failures` intervention-stage checks after donor checks."""
+        original, calls = pt.check_resources, []
+
+        def check(limits, seconds, peak):
+            calls.append(seconds)
+            if donor_checks < len(calls) <= donor_checks + failures:
+                raise RuntimeError("condition time ceiling exceeded")
+            original(limits, seconds, peak)
+
+        return check
+
+    def test_retry_requires_flag_gets_new_attempt_id_and_is_resolved_downstream(self):
+        from contextlib import ExitStack
+
+        with tempfile.TemporaryDirectory() as directory, ExitStack() as stack:
+            root = Path(directory)
+            plan, loader = self.capture_stack(root, stack)
+            runs = root / "artifacts/runs"
+            first = plan["rows"][0]
+            base_id = pt.capture_identity(plan, first)["run_id"]
+            with (
+                patch.object(pt, "check_resources", side_effect=self.ceiling_after(4, 1)),
+                self.assertRaisesRegex(RuntimeError, "retained technical failure"),
+            ):
+                pt.capture_patching(Path("test"), Path("test.freeze.json"))
+            loader.reset_mock()
+            with self.assertRaisesRegex(ValueError, pt.RETRY_FLAG):
+                pt.capture_patching(Path("test"), Path("test.freeze.json"))
+            loader.assert_not_called()
+
+            paths = pt.capture_patching(
+                Path("test"), Path("test.freeze.json"), retry_technical_failures=True
+            )
+            self.assertEqual(len(paths), 4)
+            self.assertEqual(
+                sorted(p.name for p in runs.iterdir()),
+                sorted(
+                    [base_id, base_id + "-a2"]
+                    + [pt.capture_identity(plan, r)["run_id"] for r in plan["rows"][1:]]
+                ),
+            )
+            failed = json.loads((runs / base_id / "run.json").read_text())
+            retried = json.loads((runs / (base_id + "-a2") / "run.json").read_text())
+            self.assertEqual(failed["status"], "technical_failure")
+            self.assertEqual(
+                (retried["status"], retried["attempt"], retried["retry_of_run_id"]),
+                ("completed", 2, base_id),
+            )
+            self.assertEqual(
+                pt.read_capture(plan, first)["manifest_sha256"],
+                sha256_file(runs / (base_id + "-a2") / "manifest.json"),
+            )
+
+            loader.reset_mock()
+            pt.capture_patching(Path("test"), Path("test.freeze.json"))
+            loader.assert_not_called()  # retried condition now resolves as completed
+
+            manifest = pt.write_collection_manifest(
+                Path("test"), Path("test.freeze.json"), Path("collection.json")
+            )
+            report = json.loads(manifest.read_text())
+            self.assertEqual(report["retried_condition_count"], 1)
+            entry = next(r for r in report["runs"] if r["condition_id"] == first["condition_id"])
+            self.assertEqual(entry["run_id"], base_id + "-a2")
+            self.assertEqual(
+                [(a["attempt"], a["status"]) for a in entry["attempts"]],
+                [(1, "technical_failure"), (2, "completed")],
+            )
+            with patch.object(pt, "clean_commit", return_value="analysis000"):
+                output = pt.analyze(Path("test"), Path("test.freeze.json"))
+            self.assertTrue(
+                all(json.loads((output / "report.json").read_text())["health"].values())
+            )
+
+    def test_second_failure_exhausts_retry_and_later_attempts_are_rejected(self):
+        from contextlib import ExitStack
+
+        with tempfile.TemporaryDirectory() as directory, ExitStack() as stack:
+            root = Path(directory)
+            plan, loader = self.capture_stack(root, stack)
+            first = plan["rows"][0]
+            base_id = pt.capture_identity(plan, first)["run_id"]
+            for retry in (False, True):
+                with (
+                    patch.object(pt, "check_resources", side_effect=self.ceiling_after(4, 1)),
+                    self.assertRaisesRegex(RuntimeError, "retained technical failure"),
+                ):
+                    pt.capture_patching(
+                        Path("test"), Path("test.freeze.json"), retry_technical_failures=retry
+                    )
+            loader.reset_mock()
+            with self.assertRaisesRegex(ValueError, "retry attempts exhausted"):
+                pt.capture_patching(
+                    Path("test"), Path("test.freeze.json"), retry_technical_failures=True
+                )
+            loader.assert_not_called()
+            with self.assertRaises(FileNotFoundError):
+                pt.read_capture(plan, first)
+
+            second = plan["rows"][1]
+            second_id = pt.capture_identity(plan, second)["run_id"]
+            pt.write_bundle(
+                root / "artifacts",
+                second_id,
+                {"run.json": canonical_json_bytes(pt.capture_identity(plan, second))},
+            )
+            with self.assertRaisesRegex(ValueError, "status is unknown"):
+                pt.resolve_attempts(plan, second)
+            pt.write_bundle(
+                root / "artifacts", base_id + "-a3", {"run.json": canonical_json_bytes({})}
+            )
+            # attempt 3 is outside the contract and is never read or selected
+            self.assertEqual(len(pt.resolve_attempts(plan, first)["attempts"]), 2)
+
+    def test_later_attempt_after_completed_attempt_is_rejected(self):
+        from contextlib import ExitStack
+
+        with tempfile.TemporaryDirectory() as directory, ExitStack() as stack:
+            root = Path(directory)
+            plan, _loader = self.capture_stack(root, stack)
+            pt.capture_patching(Path("test"), Path("test.freeze.json"))
+            first = plan["rows"][0]
+            base_id = pt.capture_identity(plan, first)["run_id"]
+            pt.write_bundle(
+                root / "artifacts", base_id + "-a2", {"run.json": canonical_json_bytes({})}
+            )
+            with self.assertRaisesRegex(ValueError, "unexpected later attempt"):
+                pt.resolve_attempts(plan, first)

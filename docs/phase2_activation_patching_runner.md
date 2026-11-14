@@ -69,7 +69,33 @@ freezeは`artifacts/phase2-activation-patching-runtime-<commit7>.freeze.json`へ
 本取得は全240条件のdonor正常計算を先に実行し、CPUに正常残差と分布を保持してから介入する。
 1条件につき1個の不変bundleを作る。完了済みbundleは来歴・checksum照合後にスキップする。
 技術失敗は第1パスも含めて不変bundleに保存して停止する。失敗済みIDの再利用は認めない。
+失敗bundleの`run.json`の`diagnostics`には、上限判定前の実測秒、進捗、ホストのメモリ記録が入る（仕様9節）。
+標準出力にはdonor正常計算と完了bundleごとに、UTC時刻・所要秒・RAM空き・swap使用量を1行ずつ出す。
+bitsandbytesの型変換メッセージは最初の1回だけ出る（`PYTHONWARNINGS`では制御できないため、コード側のlogging filterで制限する）。
+実行出力はWSL内のファイルへ直接保存し、生ログ全体を`tail -f`で端末へ流し続けない。進捗確認は`tail -n 5`などを時々使う。
 再開時もdonorの正常計算は作り直すが、既存bundleは変更しない。
+
+### 監視と技術失敗の再試行（RDR-2026-11-15-01）
+
+本取得は次のように起動し、出力をWSL内の新規ログへ保存する。
+
+```bash
+set -o noclobber
+nohup setsid --wait env PYTHONPATH=src HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python -m goal_takeover.phase2.activation_patching capture configs/analysis/phase2_activation_patching_v1.json --runtime-freeze <path> > artifacts/phase2-activation-patching-capture-<commit7>.log 2>&1 < /dev/null
+```
+
+最初の20件は監視区間とし、`tail -n 5`で時々確認する。次のいずれかに当たれば手動で止め、実験ログに記録する。
+(a) 連続2条件がそれぞれ570秒超、(b) swap使用量が1 GiB超で増加中、(c) MemAvailableが2 GiB未満、
+(d) 介入段階終了時のPythonのVmRSSが、そのプロセスで最初に完了した条件より1 GiB以上大きい。
+(a)〜(c)は監視区間の後も停止基準とする。手動停止後は、同じコマンドでフラグなしに再開できる。
+
+技術失敗で止まった場合は、失敗bundleの`run.json`の`diagnostics`を確認する。
+開始時または失敗時のホスト記録が、swap使用量1 GiB以上、MemAvailable 2 GiB未満、
+またはmemory pressureの`some avg60`が10以上を示すときは、環境要因とみなす。
+環境を直し、判断を実験ログに記録してから、同じコマンドに`--retry-technical-failures`を付けて再開する。
+失敗した条件だけが`-a2`で再取得され、他の未実行条件は通常のIDで続く。
+環境要因の証拠がない場合、`-a2`も失敗した場合、修正にコード変更が必要な場合は再試行せず、
+新しいRDRで判断する。
 
 ## 解析（別途指示が必要）
 
