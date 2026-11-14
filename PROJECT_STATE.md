@@ -35,9 +35,15 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   retry per technical failure after a recorded diagnosis. It fixes the stage A
   preflight, the monitored first 20 bundles with manual stop criteria, and the
   600-second overrun procedure. The retry path is implemented and tested.
-  No new preflight, freeze or `pt-002` capture has been run yet. The work branch
-  was merged into `main` on 2026-11-15 together with the
+  The work branch was merged into `main` on 2026-11-15 together with the
   [600-second preflight log](docs/experiment_logs/2026-11-14_activation_patching_600s_preflight.md).
+  At the merged clean commit `0b99c17`, the stage A
+  [preflight](docs/experiment_logs/2026-11-15_activation_patching_pt002_preflight.md)
+  passed: tokenizer 240/240; GPU 2/2 at 422.480 and 419.369 seconds (peak 9.750 GiB,
+  self 60/60, positive/cache controls bit-exact), a 917-byte log with 1,695,959
+  suppressed cast messages, zero swap, and unchanged 2.02 GiB Python RSS.
+  The environment lock, runtime freeze and `pt-002` capture have not been run;
+  they must use a checkout of `0b99c17`, not the later HEAD that records this log.
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
