@@ -860,6 +860,7 @@ test開封前に次を凍結する。
 この探索的パッチングの時間上限は、事前確認の実測後の[RDR-2026-11-14-04](decisions/2026-11-14_patching_time_limit_revision.md)により、
 1条件のdonor正常計算と90介入・正常再確認の合計600秒へ改訂する。GPU 12 GiB・保存0.05 GiB/条件・科学的な判定基準は維持する。
 旧300秒での失敗記録を保持し、新上限での事前確認を新しいレポートで行う。この改訂は他のpilot・672条件収集の300秒上限には適用しない。
+本取得`pt-001`の技術停止後、[RDR-2026-11-15-01](decisions/2026-11-15_patching_capture_recovery_and_retry.md)により、`pt-001`を保持したまま`pt-002`で全240条件を取り直す。技術失敗は、診断を記録したうえで明示フラグを付けた場合に限り、1条件1回だけ新しい試行ID（`-a2`）で再試行できる。600秒上限と停止規則は維持する。
 
 実施時はResistant→SusceptibleとSusceptible→Resistantの双方向を行う。donor / recipientはtask、attack goal、surface length等のmatching規則で選び、test outcomeを使った都合のよいpair選択をしない。patch tensorのlayer、token、hook point、置換または補間方式を保存する。
 

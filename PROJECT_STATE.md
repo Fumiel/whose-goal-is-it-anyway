@@ -29,6 +29,15 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   unchanged; suppressed counts are recorded). Re-measurement and the choice
   between a recovery mapping and a fresh run-ID prefix remain open; any capture
   needs a new clean commit, new preflights, and a new runtime freeze.
+  [RDR-2026-11-15-01](docs/decisions/2026-11-15_patching_capture_recovery_and_retry.md)
+  (accepted 2026-11-15) keeps `pt-001` unchanged and unused, recaptures all 240
+  conditions as `argrec672-v1-pt-002`, and allows one explicitly flagged `-a2`
+  retry per technical failure after a recorded diagnosis. It fixes the stage A
+  preflight, the monitored first 20 bundles with manual stop criteria, and the
+  600-second overrun procedure. The retry path is implemented and tested.
+  No new preflight, freeze or `pt-002` capture has been run yet. This branch
+  (`patching-capture-diagnostics`) has not been merged with `main`, which
+  separately holds the 600-second preflight log `bee8d53`.
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo

@@ -11,7 +11,11 @@
     "candidate_report": "artifacts/processed/argrec672-v1-dg-008-position-sweep-nod/report.json"
   },
   "patching": {
-    "run_id_prefix": "argrec672-v1-pt-001",
+    "run_id_prefix": "argrec672-v1-pt-002",
+    "technical_failure_retry": {
+      "maximum_attempts_per_condition": 2,
+      "explicit_flag": "--retry-technical-failures"
+    },
     "positions": [
       "T",
       "S",

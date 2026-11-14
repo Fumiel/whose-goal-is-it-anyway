@@ -214,7 +214,8 @@ int8では、後ろにtokenを足すだけで前の位置の値が変わる（D�
 - 実装とテストをコミットし、クリーンなcommitで新しいruntime freezeを作る（既存のfreezeは上書きしない）。
 - **開始の定義：** RDR-2026-11-06-01の「2026-11-20までに開始」は、本取得のコマンドを、クリーンなcommitとそれに対応するruntime freezeのもとで、
   2026-11-20 23:59（JST）までに起動することとする。開始できなければ、パッチングを行わないことをログとPROJECT_STATEに記録する。
-- 1条件（移し替え先）につき1つの不変なraw run bundleを作る：`artifacts/runs/argrec672-v1-pt-001-cNNN`（NNNは正準run番号）。
+- 1条件（移し替え先）につき1つの不変なraw run bundleを作る：`artifacts/runs/argrec672-v1-pt-002-cNNN`（NNNは正準run番号）。
+  技術停止した`pt-001`は保持し、解析には使わない（[RDR-2026-11-15-01](decisions/2026-11-15_patching_capture_recovery_and_retry.md)）。
   モデルの読み込みは1回だけとし、まず240条件すべての正常計算を行って移し替え元のベクトルを集める。その後、条件ごとに介入する。
 - 保存内容は次のとおりである。
   - 正常計算と全介入（`matched` 30、`self` 30、`cross` 30）の、候補ごとの口座の残りのtoken別対数確率、`LD`、`G`の先頭数字の対数確率、`G`の上位20 token、書き出しの尤度、`G`の全語彙分布のchecksumと陽性対照の比較記録
@@ -223,6 +224,10 @@ int8では、後ろにtokenを足すだけで前の位置の値が変わる（D�
   - 入力token列のchecksum、`ps-002`のmanifest checksum、各位置のtoken index・token ID
   - commit、freeze、モデル・トークナイザの版、seed、計算経路の設定
 - 技術的失敗は、新しい不変bundleとして保持してから停止する。再試行は新しいrun IDで行う。
+  RDR-2026-11-15-01により、条件ごとに1回だけ`-a2`の試行IDで再試行できる。
+  captureに`--retry-technical-failures`を付けた場合だけ行い、診断と判断を事前に実験ログへ記録する。
+  各条件では最初に完了した試行を解析に使い、collection manifestに全試行を記録する。
+  2回目も失敗した条件、または契約外の試行配置があれば停止する。
   2026-11-14の[停止調査](experiment_logs/2026-11-14_activation_patching_capture_stop_investigation.md)を受け、
   失敗bundleの`run.json`に診断記録`diagnostics`を加えた。内容は失敗時刻、上限判定前の実測秒
   （合計・donor正常計算・介入）とGPUピーク、段階内の進捗（完了セル数、最後に完了したセル、donor群ごとの開始・終了時刻と秒数、

@@ -34,7 +34,6 @@ from goal_takeover.phase2.argument_recipient_672_train_readout import (  # noqa:
     publish,
 )
 from goal_takeover.phase2.position_sweep_capture import (  # noqa: E402
-    completed_bundle,
     environment,
     load_model,
     write_bundle,
@@ -56,6 +55,8 @@ from goal_takeover.storage.run_writer import (  # noqa: E402
 POSITIONS = ("T", "S", "G")
 DONOR_KINDS = ("matched", "self", "cross")
 SERIALIZATION = "patching_recipient_first_v1"
+RETRY_FLAG = "--retry-technical-failures"
+RETRY_CONTRACT = {"maximum_attempts_per_condition": 2, "explicit_flag": RETRY_FLAG}
 VALIDATION = {
     "full_declaration_loaded_for_integrity": True,
     "validation_declaration_rows_loaded": 192,
@@ -102,6 +103,7 @@ def read_config(path: Path) -> tuple[Path, dict]:
             "comparison": "bitwise_donor_clean",
         }
         or analysis["positive_control"]["layer"] not in patch["layers"]
+        or patch.get("technical_failure_retry") != RETRY_CONTRACT
     ):
         raise ValueError("patching schema or fixed calculation contract differs")
     return root, config
@@ -1161,7 +1163,73 @@ def capture_identity(plan: dict, row: dict, *, commit: str | None = None) -> dic
         "cache_method": "DynamicCache.crop",
         "candidate_scoring": plan["settings"]["patching"]["candidate_scoring"],
         "serialization": SERIALIZATION,
+        "attempt": 1,
     }
+
+
+def attempt_run_id(base_run_id: str, attempt: int) -> str:
+    return base_run_id if attempt == 1 else f"{base_run_id}-a{attempt}"
+
+
+def attempt_identity(plan: dict, row: dict, attempt: int) -> dict:
+    """Identity of one attempt; a retry differs from attempt 1 only by run ID and lineage."""
+    identity_ = capture_identity(plan, row)
+    if attempt > 1:
+        base = identity_["run_id"]
+        identity_.update(
+            run_id=attempt_run_id(base, attempt),
+            attempt=attempt,
+            retry_of_run_id=attempt_run_id(base, attempt - 1),
+        )
+    return identity_
+
+
+def bundle_state(path: Path, expected: dict) -> str | None:
+    """Verified status of an existing attempt bundle, or None when absent."""
+    if not path.exists():
+        return None
+    manifest = verify_manifest(path)
+    run = verified_json(path, manifest, "run.json")
+    if any(run.get(k) != value for k, value in expected.items()):
+        raise ValueError("existing bundle provenance differs")
+    if run.get("status") not in ("completed", "technical_failure"):
+        raise ValueError("existing bundle status is unknown")
+    return run["status"]
+
+
+def resolve_attempts(plan: dict, row: dict) -> dict:
+    """Resolve the attempt chain of one condition without choosing by results.
+
+    The first completed attempt is selected. Failed attempts are retained and
+    listed. A later attempt must not exist after a completed or absent one.
+    """
+    maximum = plan["settings"]["patching"]["technical_failure_retry"][
+        "maximum_attempts_per_condition"
+    ]
+    runs = plan["root"] / "artifacts/runs"
+    attempts, selected, pending = [], None, None
+    for attempt in range(1, maximum + 1):
+        expected = attempt_identity(plan, row, attempt)
+        path = runs / expected["run_id"]
+        if selected is not None or pending is not None:
+            if path.exists():
+                raise ValueError(f"unexpected later attempt: {expected['run_id']}")
+            continue
+        state = bundle_state(path, expected)
+        if state is None:
+            pending = expected
+            continue
+        attempts.append(
+            {
+                "attempt": attempt,
+                "run_id": expected["run_id"],
+                "status": state,
+                "manifest_sha256": sha256_file(path / "manifest.json"),
+            }
+        )
+        if state == "completed":
+            selected = {"path": path, "expected": expected}
+    return {"attempts": attempts, "selected": selected, "pending": pending}
 
 
 def bundle_files(
@@ -1228,28 +1296,53 @@ def bundle_files(
     return files
 
 
-def capture_patching(config_path: Path, runtime_freeze: Path) -> list[Path]:
-    """Explicit full capture command. Neither preflight calls this function."""
+def capture_patching(
+    config_path: Path, runtime_freeze: Path, *, retry_technical_failures: bool = False
+) -> list[Path]:
+    """Explicit full capture command. Neither preflight calls this function.
+
+    A retained technical failure blocks capture unless the operator passes the
+    explicit retry flag; each condition then gets at most one new attempt ID.
+    """
     with limited_cast_warning() as warnings_filter:
-        return _capture_patching(config_path, runtime_freeze, warnings_filter)
+        return _capture_patching(
+            config_path, runtime_freeze, warnings_filter, retry_technical_failures
+        )
 
 
 def _capture_patching(
-    config_path: Path, runtime_freeze: Path, warnings_filter: RepeatedCastWarningFilter
+    config_path: Path,
+    runtime_freeze: Path,
+    warnings_filter: RepeatedCastWarningFilter,
+    retry_technical_failures: bool,
 ) -> list[Path]:
     import torch
 
     plan = load_plan(config_path, runtime_freeze, matching=True)
-    base = {row["condition_id"]: capture_identity(plan, row) for row in plan["rows"]}
     limits = plan["settings"]["resources"]
-    completed, paths, total = set(), [], 0
+    base, completed, paths, total, retries = {}, set(), [], 0, []
     for row in plan["rows"]:
         cid = row["condition_id"]
-        path = plan["root"] / "artifacts/runs" / base[cid]["run_id"]
-        if completed_bundle(path, base[cid]):
+        resolved = resolve_attempts(plan, row)
+        if resolved["selected"] is not None:
+            base[cid] = resolved["selected"]["expected"]
+            path = resolved["selected"]["path"]
             completed.add(cid)
             paths.append(path)
             total += sum(p.stat().st_size for p in path.iterdir() if p.is_file())
+            continue
+        if resolved["pending"] is None:
+            raise ValueError(f"retry attempts exhausted: {cid}")
+        base[cid] = resolved["pending"]
+        if resolved["attempts"]:
+            if not retry_technical_failures:
+                raise ValueError(
+                    f"retained failure {resolved['attempts'][-1]['run_id']}: "
+                    f"document the diagnosis, then rerun capture with {RETRY_FLAG}"
+                )
+            retries.append(base[cid]["run_id"])
+    if retries:
+        print(f"Retrying retained technical failures as: {', '.join(retries)}", flush=True)
     if len(completed) == len(plan["rows"]):
         return paths
     items, normals, peaks = {}, {}, {}
@@ -1598,10 +1691,12 @@ def read_capture(plan: dict, row: dict) -> dict:
     import torch
     from safetensors.torch import load_file
 
-    expected = capture_identity(plan, row)
-    path = plan["root"] / "artifacts/runs" / expected["run_id"]
-    if not completed_bundle(path, expected):
-        raise FileNotFoundError(path)
+    selected = resolve_attempts(plan, row)["selected"]
+    if selected is None:
+        raise FileNotFoundError(
+            plan["root"] / "artifacts/runs" / capture_identity(plan, row)["run_id"]
+        )
+    path = selected["path"]
     manifest = verify_manifest(path)
     condition = verified_json(path, manifest, "condition.json")
     if condition != {k: v for k, v in row.items() if k != "account_block_position"}:
@@ -1808,18 +1903,30 @@ def write_collection_manifest(config_path: Path, runtime_freeze: Path, output: P
     if target.exists():
         raise FileExistsError(target)
     items = []
+    runs = plan["root"] / "artifacts/runs"
     for row in plan["rows"]:
-        expected = capture_identity(plan, row)
-        path = plan["root"] / "artifacts/runs" / expected["run_id"]
-        if not completed_bundle(path, expected):
-            raise FileNotFoundError(path)
+        resolved = resolve_attempts(plan, row)
+        if resolved["selected"] is None:
+            raise FileNotFoundError(runs / capture_identity(plan, row)["run_id"])
+        path = resolved["selected"]["path"]
         manifest = verify_manifest(path)
         run = verified_json(path, manifest, "run.json")
+        attempt_ids = [capture_identity(plan, row)["run_id"]] + [
+            a["run_id"] for a in resolved["attempts"][1:]
+        ]
         items.append(
             {
                 "run_id": run["run_id"],
                 "condition_id": row["condition_id"],
                 "pair_id": row["pair_id"],
+                "attempt": run["attempt"],
+                "attempts": resolved["attempts"],
+                "run_level_failure_records": sorted(
+                    p.name
+                    for rid in attempt_ids
+                    for p in runs.glob(f"{rid}-donor-failure-*")
+                    if p.is_dir()
+                ),
                 "manifest_sha256": sha256_file(path / "manifest.json"),
                 "elapsed_seconds": run["elapsed_seconds"],
                 "peak_gpu_memory_bytes": run["peak_gpu_memory_bytes"],
@@ -1833,6 +1940,7 @@ def write_collection_manifest(config_path: Path, runtime_freeze: Path, output: P
         "runtime_freeze": plan["runtime"],
         "runtime_freeze_sha256": plan["runtime_sha256"],
         "condition_count": len(items),
+        "retried_condition_count": sum(item["attempt"] > 1 for item in items),
         "runs": items,
         "total_bytes": sum(row["bytes"] for row in items),
         "research_result": "post_result_train_only_exploratory_intervention_capture",
@@ -1857,7 +1965,14 @@ def main() -> None:
     parser.add_argument("config", type=Path)
     for name in ("runtime-freeze", "tokenizer-report", "gpu-report", "environment-lock", "output"):
         parser.add_argument("--" + name, type=Path)
+    parser.add_argument(
+        RETRY_FLAG,
+        action="store_true",
+        help="capture only: give each retained technical failure one new attempt ID",
+    )
     args = parser.parse_args()
+    if args.retry_technical_failures and args.command != "capture":
+        parser.error(f"{RETRY_FLAG} applies only to capture")
     if args.command == "tokenizer-preflight":
         report = patching_tokenizer_preflight(args.config)
         print(f"Tokenizer preflight: {report['status']}; {report['condition_count']} conditions")
@@ -1879,7 +1994,15 @@ def main() -> None:
         if args.runtime_freeze is None:
             parser.error("this command requires --runtime-freeze")
         if args.command == "capture":
-            print(len(capture_patching(args.config, args.runtime_freeze)))
+            print(
+                len(
+                    capture_patching(
+                        args.config,
+                        args.runtime_freeze,
+                        retry_technical_failures=args.retry_technical_failures,
+                    )
+                )
+            )
         elif args.command == "analyze":
             print(analyze(args.config, args.runtime_freeze))
         else:

@@ -59,7 +59,11 @@
     "candidate_report": "artifacts/processed/argrec672-v1-dg-008-position-sweep-nod/report.json"
   },
   "patching": {
-    "run_id_prefix": "argrec672-v1-pt-001",
+    "run_id_prefix": "argrec672-v1-pt-002",
+    "technical_failure_retry": {
+      "maximum_attempts_per_condition": 2,
+      "explicit_flag": "--retry-technical-failures"
+    },
     "positions": ["T", "S", "G"],
     "layers": [0, 4, 8, 12, 16, 20, 24, 28, 32, 35],
     "donor_kinds": ["matched", "self", "cross"],
@@ -349,7 +353,7 @@ OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONPATH=src .venv/
 
 ### 7.1 パッチング解析`analyze` → `dg-009`（CPUのみ）
 
-**入力：** `pt-001`の240件。manifestのchecksum、freeze、commit、condition、入力token列、`donors.json`を照合する。検証行があれば停止する。
+**入力：** `pt-002`の240件（RDR-2026-11-15-01。各条件で最初に完了した試行を使う）。manifestのchecksum、freeze、commit、condition、入力token列、`donors.json`を照合する。検証行があれば停止する。
 
 **手順の健全性（仕様6.2）：** 最初に確認し、結果を`health`節に記録する。
 
