@@ -310,6 +310,75 @@ class EffectTest(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             pt.check_resources(limits, 1, 12 * 1024**3 + 1)
 
+    def test_cast_warning_filter_limits_only_repeated_cast_messages(self):
+        import logging
+
+        logger = logging.getLogger(pt.CAST_WARNING_LOGGER)
+        template = pt.CAST_WARNING_PREFIX + " %s to float16 during quantization"
+        with self.assertLogs(logger, level="WARNING") as logs:
+            with pt.limited_cast_warning() as limiter:
+                for _ in range(5):
+                    logger.warning(template, "torch.bfloat16")
+                logger.warning(template, "torch.float32")
+                logger.warning("unrelated warning %s", 1)
+                logger.warning("unrelated warning %s", 1)
+                logger.error(template, "torch.bfloat16")
+            self.assertNotIn(limiter, logger.filters)
+            logger.warning(template, "torch.bfloat16")
+        messages = [record.getMessage() for record in logs.records]
+        cast = [m for m in messages if m.startswith(pt.CAST_WARNING_PREFIX)]
+        self.assertEqual(len(cast), 4)  # bf16 once, fp32 once, ERROR, after removal
+        self.assertEqual(messages.count("unrelated warning 1"), 2)
+        self.assertEqual(
+            limiter.record(),
+            {
+                "logger": pt.CAST_WARNING_LOGGER,
+                "message_prefix": pt.CAST_WARNING_PREFIX,
+                "first_occurrences_emitted": 2,
+                "repeats_suppressed": 4,
+            },
+        )
+
+    def test_host_resources_parses_proc_and_tolerates_missing_sources(self):
+        with tempfile.TemporaryDirectory() as directory:
+            proc = Path(directory)
+            (proc / "self").mkdir()
+            (proc / "pressure").mkdir()
+            (proc / "meminfo").write_text(
+                "MemTotal:       12248064 kB\nMemFree: 1 kB\n"
+                "MemAvailable:    1048576 kB\nSwapTotal:      16777216 kB\nSwapFree: 0 kB\n"
+            )
+            (proc / "self/status").write_text("Name:\tpython\nVmRSS:\t  2048 kB\nVmSwap:\t 0 kB\n")
+            (proc / "vmstat").write_text("nr_free_pages 5\npswpin 7\npswpout 9\npgmajfault 3\n")
+            (proc / "pressure/memory").write_text(
+                "some avg10=1.50 avg60=0.00 avg300=0.00 total=12\n"
+                "full avg10=0.25 avg60=0.00 avg300=0.00 total=4\n"
+            )
+            snapshot = pt.host_resources(proc)
+            self.assertEqual(
+                snapshot["meminfo"],
+                {
+                    "MemTotal_kib": 12248064,
+                    "MemAvailable_kib": 1048576,
+                    "SwapTotal_kib": 16777216,
+                    "SwapFree_kib": 0,
+                },
+            )
+            self.assertEqual(snapshot["self_status"], {"VmRSS_kib": 2048, "VmSwap_kib": 0})
+            self.assertEqual(snapshot["vmstat"], {"pswpin": 7, "pswpout": 9, "pgmajfault": 3})
+            self.assertEqual(snapshot["pressure_memory"]["some"]["avg10"], 1.5)
+            self.assertNotIn("total", snapshot["pressure_memory"]["full"])
+            self.assertEqual(
+                pt.resource_line(snapshot), "RAM available 1.00 GiB, swap used 16.00 GiB"
+            )
+            (proc / "pressure/memory").unlink()
+            (proc / "meminfo").unlink()
+            missing = pt.host_resources(proc)
+            self.assertIsNone(missing["pressure_memory"])
+            self.assertIsNone(missing["meminfo"])
+            self.assertEqual(pt.resource_line(missing), "host memory unavailable")
+            json.dumps(missing)
+
 
 @unittest.skipUnless(NUMERICAL, "numerical extras unavailable")
 class NumericalTest(unittest.TestCase):
@@ -723,6 +792,14 @@ class SyntheticBundleIntegrationTest(unittest.TestCase):
             stack.enter_context(patch("torch.cuda.max_memory_allocated", return_value=0))
             paths = pt.capture_patching(Path("test"), Path("test.freeze.json"))
             self.assertEqual(len(paths), 4)
+            for path in paths:
+                run = json.loads((path / "run.json").read_text())
+                self.assertEqual(
+                    [g["donor_kind"] for g in run["intervention_group_timing"]],
+                    list(pt.DONOR_KINDS),
+                )
+                self.assertEqual(set(run["host_resources"]), {"start", "end"})
+                self.assertIn("repeats_suppressed", run["log_filter_cumulative"])
             for row in plan["rows"]:
                 bundle = pt.read_capture(plan, row)
                 self.assertEqual(len(bundle["results"]["interventions"]), 27)
@@ -763,5 +840,91 @@ class SyntheticBundleIntegrationTest(unittest.TestCase):
             run = json.loads((bundle / "run.json").read_text())
             self.assertEqual(run["failure_stage"], "donor_clean")
             self.assertEqual(run["status"], "technical_failure")
+            self.assertIsNone(run["diagnostics"]["progress"])
+            self.assertIsNone(run["diagnostics"]["measured_before_check"])
+            self.assertIn("recorded_at", run["diagnostics"]["host_resources_at_failure"])
             with self.assertRaises(ValueError):
                 pt.completed_bundle(bundle, {})
+
+    def failing_capture(self, root, stack, **patches):
+        import torch
+
+        plan = self.plan(root)
+        stack.enter_context(patch.object(pt, "load_plan", return_value=plan))
+        stack.enter_context(patch.object(pt, "clean_commit", return_value="capture000"))
+        model = synthetic_model(dtype=torch.bfloat16)
+        stack.enter_context(patch.object(pt, "load_model", return_value=(model, None)))
+        stack.enter_context(
+            patch.object(pt, "prepare_input", side_effect=lambda p, r, t: self.item(p, r))
+        )
+        stack.enter_context(patch("torch.cuda.reset_peak_memory_stats"))
+        stack.enter_context(patch("torch.cuda.max_memory_allocated", return_value=0))
+        for name, value in patches.items():
+            stack.enter_context(patch.object(pt, name, side_effect=value))
+        with self.assertRaisesRegex(RuntimeError, "retained technical failure"):
+            pt.capture_patching(Path("test"), Path("test.freeze.json"))
+        bundles = sorted((root / "artifacts/runs").iterdir())
+        self.assertEqual(len(bundles), 1)
+        files = {p.name for p in bundles[0].iterdir()}
+        # Failed conditions keep diagnostics only, never intervention results.
+        self.assertEqual(
+            files, {"condition.json", "resolved_config.json", "run.json", "manifest.json"}
+        )
+        return plan, json.loads((bundles[0] / "run.json").read_text())
+
+    def test_time_ceiling_failure_records_measured_seconds_and_progress(self):
+        from contextlib import ExitStack
+
+        original = pt.check_resources
+        calls = []
+
+        def ceiling(limits, seconds, peak):
+            calls.append(seconds)
+            if len(calls) > 4:  # first intervention-stage check after four donor checks
+                raise RuntimeError("condition time ceiling exceeded")
+            original(limits, seconds, peak)
+
+        with tempfile.TemporaryDirectory() as directory, ExitStack() as stack:
+            plan, run = self.failing_capture(Path(directory), stack, check_resources=ceiling)
+            diagnostics = run["diagnostics"]
+            self.assertEqual(run["failure_stage"], "interventions")
+            self.assertEqual(run["failure_message"], "condition time ceiling exceeded")
+            measured = diagnostics["measured_before_check"]
+            self.assertEqual(measured["elapsed_seconds"], calls[-1])
+            self.assertAlmostEqual(
+                measured["elapsed_seconds"],
+                measured["donor_clean_seconds"] + measured["intervention_seconds"],
+            )
+            progress = diagnostics["progress"]
+            self.assertEqual(progress["stage"], "interventions")
+            self.assertEqual(progress["cells_completed"], progress["cell_count"])
+            self.assertEqual(progress["cell_count"], 27)
+            self.assertEqual(progress["last_completed_cell"], "clean_recheck")
+            self.assertEqual([g["donor_kind"] for g in progress["groups"]], list(pt.DONOR_KINDS))
+            self.assertGreater(sum(progress["timing"]["forward_counts"].values()), 0)
+            self.assertGreaterEqual(progress["elapsed_seconds_at_failure"], 0)
+            self.assertIn("host_at_start", progress)
+            self.assertIsNone(diagnostics["last_completed_bundle_at"])
+
+    def test_mid_intervention_failure_records_last_completed_cell(self):
+        from contextlib import ExitStack
+
+        original = pt.evaluate
+        calls = []
+
+        def evaluate(*args, **kwargs):
+            calls.append(1)
+            if len(calls) == 4 + 6:  # four donor evaluations, then five completed cells
+                raise RuntimeError("synthetic forward failure")
+            return original(*args, **kwargs)
+
+        with tempfile.TemporaryDirectory() as directory, ExitStack() as stack:
+            plan, run = self.failing_capture(Path(directory), stack, evaluate=evaluate)
+            progress = run["diagnostics"]["progress"]
+            layers = plan["settings"]["patching"]["layers"]
+            self.assertEqual(run["failure_stage"], "interventions")
+            self.assertIsNone(run["diagnostics"]["measured_before_check"])
+            self.assertEqual(progress["cells_completed"], 5)
+            self.assertEqual(progress["last_completed_cell"], f"matched/S/layer{layers[1]}")
+            self.assertEqual(len(progress["groups"]), 1)
+            self.assertNotIn("finished_at", progress["groups"][0])

@@ -223,6 +223,20 @@ int8では、後ろにtokenを足すだけで前の位置の値が変わる（D�
   - 入力token列のchecksum、`ps-002`のmanifest checksum、各位置のtoken index・token ID
   - commit、freeze、モデル・トークナイザの版、seed、計算経路の設定
 - 技術的失敗は、新しい不変bundleとして保持してから停止する。再試行は新しいrun IDで行う。
+  2026-11-14の[停止調査](experiment_logs/2026-11-14_activation_patching_capture_stop_investigation.md)を受け、
+  失敗bundleの`run.json`に診断記録`diagnostics`を加えた。内容は失敗時刻、上限判定前の実測秒
+  （合計・donor正常計算・介入）とGPUピーク、段階内の進捗（完了セル数、最後に完了したセル、donor群ごとの開始・終了時刻と秒数、
+  forward回数・秒数、失敗時点までの経過秒）、最後の完了bundle時刻、ホストのメモリ記録である。
+  ホスト記録は`/proc`の`meminfo`（RAM・swap）、プロセスRSS/VmSwap、`vmstat`のswap入出力・major fault、
+  memory pressureを読み取るだけのものとする。完了bundleの`run.json`にも、介入段階の開始時・終了時のホスト記録とdonor群別時間を加える。
+  GPU事前確認レポートにも同じ記録を残す。これらは診断専用で、採点・介入・上限判定・解析には使わない。
+  失敗条件の介入結果は従来どおり保存しない。計算経路・上限値・保存ファイルの構成は変更しない。
+  同じ調査で約41.5百万行・3.53 GBに達したbitsandbytesの型変換メッセージ
+  （logger `bitsandbytes.autograd._functions`、`MatMul8bitLt: inputs will be cast from ...`）は、
+  GPU事前確認と本取得の実行中だけlogging filterを付け、引数ごとに最初の1回だけ出力する。
+  WARNING以下の同一メッセージだけを抑制し、ERROR以上や他の警告・例外は通す。抑制件数は
+  事前確認レポートの`log_filter`、完了・失敗bundleの`log_filter_cumulative`に残す。
+  ログ記録だけを抑制し、量子化時の型変換そのもの（計算dtype）は変更しない。
 - 資源上限はGPU 12 GiB、1条件600秒、1条件0.05 GiBとする。GPU・容量は位置スイープから維持し、時間だけを19節で300秒から改訂した。
   容量の見込みは1条件あたり約2.3 MB（主に残差と書き換えたベクトル）、240条件で約0.55 GB。
   時間は下記の計算回数と事前実測に基づく見積もりを使い、新しい事前確認で更新する。旧版の「約270回・数十秒以内」は採用しない。

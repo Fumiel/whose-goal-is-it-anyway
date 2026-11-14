@@ -69,6 +69,10 @@ freezeは`artifacts/phase2-activation-patching-runtime-<commit7>.freeze.json`へ
 本取得は全240条件のdonor正常計算を先に実行し、CPUに正常残差と分布を保持してから介入する。
 1条件につき1個の不変bundleを作る。完了済みbundleは来歴・checksum照合後にスキップする。
 技術失敗は第1パスも含めて不変bundleに保存して停止する。失敗済みIDの再利用は認めない。
+失敗bundleの`run.json`の`diagnostics`には、上限判定前の実測秒、進捗、ホストのメモリ記録が入る（仕様9節）。
+標準出力にはdonor正常計算と完了bundleごとに、UTC時刻・所要秒・RAM空き・swap使用量を1行ずつ出す。
+bitsandbytesの型変換メッセージは最初の1回だけ出る（`PYTHONWARNINGS`では制御できないため、コード側のlogging filterで制限する）。
+実行出力はWSL内のファイルへ直接保存し、生ログ全体を`tail -f`で端末へ流し続けない。進捗確認は`tail -n 5`などを時々使う。
 再開時もdonorの正常計算は作り直すが、既存bundleは変更しない。
 
 ## 解析（別途指示が必要）

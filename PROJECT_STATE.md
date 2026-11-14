@@ -20,6 +20,15 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   restart, limit revision, recovery implementation, or intervention-effect analysis
   was performed. Failed IDs cannot be retried by the existing resume path;
   preserving the 48 completions requires an explicit recovery mapping.
+  Diagnostic recording was then implemented without changing computation,
+  limits, or saved result files: failed bundles now keep pre-check measured
+  seconds, in-stage progress, donor-group timing, and `/proc` host-memory
+  snapshots, and completed bundles and GPU preflight reports keep host-memory
+  snapshots (see spec §9). The repeated bitsandbytes dtype-cast log message is
+  now limited to its first occurrence during preflight/capture (the cast itself is
+  unchanged; suppressed counts are recorded). Re-measurement and the choice
+  between a recovery mapping and a fresh run-ID prefix remain open; any capture
+  needs a new clean commit, new preflights, and a new runtime freeze.
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo

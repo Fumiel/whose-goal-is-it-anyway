@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import inspect
 import json
+import logging
 import math
 import os
 import struct
@@ -475,6 +476,137 @@ class ForwardStats:
         return {"forward_counts": dict(self.counts), "forward_seconds": dict(self.seconds)}
 
 
+CAST_WARNING_LOGGER = "bitsandbytes.autograd._functions"
+CAST_WARNING_PREFIX = "MatMul8bitLt: inputs will be cast from"
+
+
+class RepeatedCastWarningFilter(logging.Filter):
+    """Pass the first bitsandbytes dtype-cast warning per argument set; count the rest.
+
+    Only this message is limited. Other warnings and errors pass unchanged, and the
+    cast itself (computation dtype) is untouched because this filters log records only.
+    """
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.seen: set[tuple] = set()
+        self.suppressed = 0
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        if record.levelno > logging.WARNING or not str(record.msg).startswith(CAST_WARNING_PREFIX):
+            return True
+        key = (str(record.msg), tuple(str(arg) for arg in (record.args or ())))
+        if key in self.seen:
+            self.suppressed += 1
+            return False
+        self.seen.add(key)
+        return True
+
+    def record(self) -> dict:
+        return {
+            "logger": CAST_WARNING_LOGGER,
+            "message_prefix": CAST_WARNING_PREFIX,
+            "first_occurrences_emitted": len(self.seen),
+            "repeats_suppressed": self.suppressed,
+        }
+
+
+class limited_cast_warning:  # noqa: N801 - used as a context manager
+    """Attach the filter to the bitsandbytes logger only for the enclosed run."""
+
+    def __enter__(self) -> RepeatedCastWarningFilter:
+        self.filter = RepeatedCastWarningFilter()
+        logging.getLogger(CAST_WARNING_LOGGER).addFilter(self.filter)
+        return self.filter
+
+    def __exit__(self, *_exc: object) -> None:
+        logging.getLogger(CAST_WARNING_LOGGER).removeFilter(self.filter)
+
+
+MEMINFO_KEYS = ("MemTotal", "MemAvailable", "SwapTotal", "SwapFree")
+STATUS_KEYS = ("VmRSS", "VmHWM", "VmSwap")
+VMSTAT_KEYS = ("pswpin", "pswpout", "pgmajfault")
+
+
+def _kib_fields(text: str, keys: tuple[str, ...]) -> dict:
+    found = {}
+    for line in text.splitlines():
+        name, _, rest = line.partition(":")
+        if name in keys and rest.split():
+            found[f"{name}_kib"] = int(rest.split()[0])
+    return found
+
+
+def host_resources(proc: Path = Path("/proc")) -> dict:
+    """Diagnostic host snapshot; read-only, never used for scoring or gating."""
+    snapshot: dict[str, Any] = {"recorded_at": datetime.now(UTC).isoformat()}
+    readers = {
+        "meminfo": lambda t: _kib_fields(t, MEMINFO_KEYS),
+        "self/status": lambda t: _kib_fields(t, STATUS_KEYS),
+        "vmstat": lambda t: {
+            k: int(v)
+            for k, _, v in (line.partition(" ") for line in t.splitlines())
+            if k in VMSTAT_KEYS
+        },
+        "pressure/memory": lambda t: {
+            line.split()[0]: {
+                k: float(v) for k, v in (f.split("=") for f in line.split()[1:]) if k != "total"
+            }
+            for line in t.splitlines()
+            if line.split()
+        },
+    }
+    for name, parse in readers.items():
+        try:
+            snapshot[name.replace("/", "_")] = parse((proc / name).read_text())
+        except (OSError, ValueError):
+            snapshot[name.replace("/", "_")] = None
+    return snapshot
+
+
+def resource_line(snapshot: dict) -> str:
+    memory = snapshot.get("meminfo") or {}
+    try:
+        available = memory["MemAvailable_kib"] / 1024**2
+        swap = (memory["SwapTotal_kib"] - memory["SwapFree_kib"]) / 1024**2
+    except KeyError:
+        return "host memory unavailable"
+    return f"RAM available {available:.2f} GiB, swap used {swap:.2f} GiB"
+
+
+def start_progress(progress: dict | None, stage: str, cell_count: int) -> ForwardStats:
+    """Reset a mutable progress record so a failure handler can report partial work."""
+    stats = ForwardStats()
+    if progress is not None:
+        progress.clear()
+        progress.update(
+            stage=stage,
+            stats=stats,
+            started_monotonic=time.monotonic(),
+            started_at=datetime.now(UTC).isoformat(),
+            host_at_start=host_resources(),
+            cell_count=cell_count,
+            cells_completed=0,
+            last_completed_cell=None,
+            groups=[],
+        )
+    return stats
+
+
+def progress_record(progress: dict | None) -> dict | None:
+    """JSON-safe view of partial progress; elapsed time is measured at failure."""
+    if not progress:
+        return None
+    record = {
+        key: value
+        for key, value in progress.items()
+        if key not in ("stats", "started_monotonic", "group_monotonic")
+    }
+    record["elapsed_seconds_at_failure"] = time.monotonic() - progress["started_monotonic"]
+    record["timing"] = progress["stats"].record()
+    return record
+
+
 def crop_cache(cache: Any, length: int) -> None:
     cache.crop(length)
     if cache.get_seq_length() != length:
@@ -700,10 +832,12 @@ def model_names(model: Any, plan: dict) -> list[str]:
     return list(names)
 
 
-def clean_condition(model: Any, item: dict, plan: dict, names: list[str]) -> dict:
+def clean_condition(
+    model: Any, item: dict, plan: dict, names: list[str], progress: dict | None = None
+) -> dict:
     import torch
 
-    stats = ForwardStats()
+    stats = start_progress(progress, "donor_clean", 1)
     start = time.monotonic()
     cache = prefix_cache(model, item["input_ids"], item["t_index"], stats=stats)
     result = evaluate(model, cache, item, plan, capture_names=names, stats=stats)
@@ -714,21 +848,34 @@ def clean_condition(model: Any, item: dict, plan: dict, names: list[str]) -> dic
             model.config.hidden_size,
         ):
             raise ValueError("normal capture dtype/shape differs; no implicit conversion")
+    if progress is not None:
+        progress.update(cells_completed=1, last_completed_cell="clean")
     result.update(elapsed_seconds=time.monotonic() - start, timing=stats.record())
     return result
 
 
 def intervene_condition(
-    model: Any, item: dict, plan: dict, normals: dict, names: list[str]
+    model: Any,
+    item: dict,
+    plan: dict,
+    normals: dict,
+    names: list[str],
+    progress: dict | None = None,
 ) -> dict:
     cid = item["row"]["condition_id"]
-    stats = ForwardStats()
+    layers = plan["settings"]["patching"]["layers"]
+    stats = start_progress(
+        progress, "interventions", len(DONOR_KINDS) * len(POSITIONS) * len(layers)
+    )
     start = time.monotonic()
     cache = prefix_cache(model, item["input_ids"], item["t_index"], stats=stats)
     entries, vectors = {}, {}
     positive = None
+    groups = progress["groups"] if progress is not None else []
     for kind in DONOR_KINDS:
         donor = plan["donors"][cid][kind]
+        group_start = time.monotonic()
+        groups.append({"donor_kind": kind, "started_at": datetime.now(UTC).isoformat()})
         for position in POSITIONS:
             for layer in plan["settings"]["patching"]["layers"]:
                 module = names[layer]
@@ -771,9 +918,17 @@ def intervene_condition(
                             patched["distribution"], normals[donor]["distribution"]
                         ),
                     }
+                if progress is not None:
+                    progress["cells_completed"] += 1
+                    progress["last_completed_cell"] = key
+        groups[-1].update(
+            finished_at=datetime.now(UTC).isoformat(), seconds=time.monotonic() - group_start
+        )
     repeated = evaluate(model, cache, item, plan, stats=stats)["record"]
     if not records_exact(repeated, normals[cid]["record"]):
         raise RuntimeError("normal recheck differs from first pass")
+    if progress is not None:
+        progress["last_completed_cell"] = "clean_recheck"
     return {
         "clean": normals[cid]["record"],
         "interventions": entries,
@@ -782,6 +937,7 @@ def intervene_condition(
         "vectors": vectors,
         "elapsed_seconds": time.monotonic() - start,
         "timing": stats.record(),
+        "group_timing": groups,
     }
 
 
@@ -793,6 +949,11 @@ def check_resources(limits: dict, seconds: float, peak: int) -> None:
 
 
 def patching_gpu_preflight(config_path: Path) -> dict:
+    with limited_cast_warning() as warnings_filter:
+        return _patching_gpu_preflight(config_path, warnings_filter)
+
+
+def _patching_gpu_preflight(config_path: Path, warnings_filter: RepeatedCastWarningFilter) -> dict:
     import torch
     from safetensors.torch import load_file
 
@@ -808,6 +969,7 @@ def patching_gpu_preflight(config_path: Path) -> dict:
         "donors": plan["donors"],
     }
     model = None
+    progress: dict = {}
     try:
         model, tokenizer = load_model(plan["config"])
         model.eval()
@@ -825,7 +987,7 @@ def patching_gpu_preflight(config_path: Path) -> dict:
             item = prepare_input(plan, row, tokenizer)
             items[cid] = item
             torch.cuda.reset_peak_memory_stats()
-            normals[cid] = clean_condition(model, item, plan, names)
+            normals[cid] = clean_condition(model, item, plan, names, progress)
             peaks[cid] = torch.cuda.max_memory_allocated()
             check_resources(
                 plan["settings"]["resources"], normals[cid]["elapsed_seconds"], peaks[cid]
@@ -860,9 +1022,10 @@ def patching_gpu_preflight(config_path: Path) -> dict:
                 ),
             }
             torch.cuda.reset_peak_memory_stats()
-            result = intervene_condition(model, item, plan, normals, names)
+            result = intervene_condition(model, item, plan, normals, names, progress)
             peak = max(peaks[cid], torch.cuda.max_memory_allocated())
             wall = normal["elapsed_seconds"] + result["elapsed_seconds"]
+            host_end = host_resources()
             check = {
                 "condition_id": cid,
                 "elapsed_seconds": wall,
@@ -870,6 +1033,8 @@ def patching_gpu_preflight(config_path: Path) -> dict:
                 "intervention_seconds": result["elapsed_seconds"],
                 "clean_timing": normal["timing"],
                 "intervention_timing": result["timing"],
+                "intervention_group_timing": result["group_timing"],
+                "host_resources": {"start": progress["host_at_start"], "end": host_end},
                 "peak_gpu_memory_bytes": peak,
                 "self_exact_count": sum(
                     entry["self_exact"] is True for entry in result["interventions"].values()
@@ -895,7 +1060,7 @@ def patching_gpu_preflight(config_path: Path) -> dict:
             check_resources(plan["settings"]["resources"], wall, peak)
             print(
                 f"GPU preflight {len(report['conditions'])}/{len(selected)}: "
-                f"{wall:.1f}s, {peak / 1024**3:.3f} GiB",
+                f"{wall:.1f}s, {peak / 1024**3:.3f} GiB; {resource_line(host_end)}",
                 flush=True,
             )
         report.update(
@@ -905,10 +1070,16 @@ def patching_gpu_preflight(config_path: Path) -> dict:
         )
     except Exception as exc:
         report.update(status="failed", exception_type=type(exc).__name__, failure_message=str(exc))
+        report["failure_diagnostics"] = {
+            "failed_at": datetime.now(UTC).isoformat(),
+            "progress": progress_record(progress),
+            "host_resources_at_failure": host_resources(),
+        }
         if torch.cuda.is_initialized():
             report["failure_peak_gpu_memory_bytes"] = torch.cuda.max_memory_allocated()
         raise
     finally:
+        report["log_filter"] = warnings_filter.record()
         if model is not None:
             report["environment"] = environment()
         write_report(target, report)
@@ -1059,6 +1230,13 @@ def bundle_files(
 
 def capture_patching(config_path: Path, runtime_freeze: Path) -> list[Path]:
     """Explicit full capture command. Neither preflight calls this function."""
+    with limited_cast_warning() as warnings_filter:
+        return _capture_patching(config_path, runtime_freeze, warnings_filter)
+
+
+def _capture_patching(
+    config_path: Path, runtime_freeze: Path, warnings_filter: RepeatedCastWarningFilter
+) -> list[Path]:
     import torch
 
     plan = load_plan(config_path, runtime_freeze, matching=True)
@@ -1077,6 +1255,9 @@ def capture_patching(config_path: Path, runtime_freeze: Path) -> list[Path]:
     items, normals, peaks = {}, {}, {}
     row = plan["rows"][0]
     stage = "donor_clean"
+    progress: dict = {}
+    measured: dict = {}
+    last_bundle_at = None
     try:
         model, tokenizer = load_model(plan["config"])
         model.eval()
@@ -1085,19 +1266,38 @@ def capture_patching(config_path: Path, runtime_freeze: Path) -> list[Path]:
         for row in plan["rows"]:
             cid = row["condition_id"]
             items[cid] = prepare_input(plan, row, tokenizer)
+            measured.clear()
             torch.cuda.reset_peak_memory_stats()
-            normals[cid] = clean_condition(model, items[cid], plan, names)
+            normals[cid] = clean_condition(model, items[cid], plan, names, progress)
             peaks[cid] = torch.cuda.max_memory_allocated()
+            measured.update(
+                donor_clean_seconds=normals[cid]["elapsed_seconds"],
+                peak_gpu_memory_bytes=peaks[cid],
+            )
             check_resources(limits, normals[cid]["elapsed_seconds"], peaks[cid])
+            print(
+                f"{datetime.now(UTC).isoformat()} donor clean {len(normals)}/"
+                f"{len(plan['rows'])}: {cid} {normals[cid]['elapsed_seconds']:.1f}s; "
+                f"{resource_line(host_resources())}",
+                flush=True,
+            )
         stage = "interventions"
         for row in plan["rows"]:
             cid = row["condition_id"]
             if cid in completed:
                 continue
+            measured.clear()
             torch.cuda.reset_peak_memory_stats()
-            result = intervene_condition(model, items[cid], plan, normals, names)
+            result = intervene_condition(model, items[cid], plan, normals, names, progress)
             wall = normals[cid]["elapsed_seconds"] + result["elapsed_seconds"]
             peak = max(peaks[cid], torch.cuda.max_memory_allocated())
+            measured.update(
+                elapsed_seconds=wall,
+                donor_clean_seconds=normals[cid]["elapsed_seconds"],
+                intervention_seconds=result["elapsed_seconds"],
+                peak_gpu_memory_bytes=peak,
+            )
+            host_end = host_resources()
             check_resources(limits, wall, peak)
             run = {
                 **base[cid],
@@ -1112,6 +1312,9 @@ def capture_patching(config_path: Path, runtime_freeze: Path) -> list[Path]:
                 "intervention_seconds": result["elapsed_seconds"],
                 "clean_timing": normals[cid]["timing"],
                 "intervention_timing": result["timing"],
+                "intervention_group_timing": result["group_timing"],
+                "host_resources": {"start": progress["host_at_start"], "end": host_end},
+                "log_filter_cumulative": warnings_filter.record(),
             }
             maximum = min(
                 limits["maximum_storage_gib_per_condition"] * 1024**3,
@@ -1125,7 +1328,13 @@ def capture_patching(config_path: Path, runtime_freeze: Path) -> list[Path]:
             )
             paths.append(path)
             total += sum(p.stat().st_size for p in path.iterdir() if p.is_file())
-            print(f"Captured {len(paths)}/{len(plan['rows'])}: {run['run_id']}", flush=True)
+            last_bundle_at = datetime.now(UTC).isoformat()
+            print(
+                f"{last_bundle_at} Captured {len(paths)}/{len(plan['rows'])}: "
+                f"{run['run_id']} {wall:.1f}s, {peak / 1024**3:.3f} GiB; "
+                f"{resource_line(host_end)}",
+                flush=True,
+            )
     except Exception as exc:
         cid = row["condition_id"]
         failure = {
@@ -1137,6 +1346,18 @@ def capture_patching(config_path: Path, runtime_freeze: Path) -> list[Path]:
             "peak_gpu_memory_bytes": (
                 torch.cuda.max_memory_allocated() if torch.cuda.is_initialized() else 0
             ),
+            # Diagnostics only: no intervention results are retained for a failed condition.
+            "diagnostics": {
+                "failed_at": datetime.now(UTC).isoformat(),
+                "measured_before_check": dict(measured) or None,
+                "donor_clean_seconds": (
+                    normals[cid]["elapsed_seconds"] if cid in normals else None
+                ),
+                "progress": progress_record(progress if progress.get("stage") == stage else None),
+                "last_completed_bundle_at": last_bundle_at,
+                "host_resources_at_failure": host_resources(),
+                "log_filter_cumulative": warnings_filter.record(),
+            },
         }
         # An existing completed bundle cannot be repurposed as a failure on resume.
         rid = failure["run_id"]
