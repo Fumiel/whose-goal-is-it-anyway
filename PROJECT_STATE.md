@@ -7,6 +7,19 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 ## Current phase
 
 - Phase: `phase2_argument_recipient_672_execution_design_review`
+- Latest patching status, verified by read-only inspection on 2026-11-14:
+  `argrec672-v1-pt-001` has 48 completed bundles, one retained technical failure
+  (`c475`, intervention-stage 600-second ceiling), and 191 unrun conditions.
+  Main capture therefore started, superseding the historical unstarted/preparation-only
+  descriptions below. All 435 declared files in the 49 bundles passed size/checksum
+  verification. WSL kernel records show RAM pressure and exhausted 16 GiB swap
+  during the failed condition; a 3.53 GB warning log was being displayed by
+  `tail -f` through memory-heavy `cmux-tui` processes. See the
+  [stop investigation and proposed recovery](docs/experiment_logs/2026-11-14_activation_patching_capture_stop_investigation.md).
+  The current request covers diagnosis and countermeasure planning only: no
+  restart, limit revision, recovery implementation, or intervention-effect analysis
+  was performed. Failed IDs cannot be retried by the existing resume path;
+  preserving the 48 completions requires an explicit recovery mapping.
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
