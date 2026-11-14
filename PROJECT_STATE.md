@@ -42,8 +42,12 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   passed: tokenizer 240/240; GPU 2/2 at 422.480 and 419.369 seconds (peak 9.750 GiB,
   self 60/60, positive/cache controls bit-exact), a 917-byte log with 1,695,959
   suppressed cast messages, zero swap, and unchanged 2.02 GiB Python RSS.
-  The environment lock, runtime freeze and `pt-002` capture have not been run;
-  they must use a checkout of `0b99c17`, not the later HEAD that records this log.
+  The environment lock and runtime freeze were then created at `0b99c17`, and the
+  researcher launched `pt-002` capture in tmux at 2026-11-15 03:42:14 JST
+  ([launch log](docs/experiment_logs/2026-11-15_activation_patching_pt002_capture_launch.md));
+  this satisfies the start definition again. The first 20 bundles are the
+  monitored window. Completion status is not yet recorded; do not check out
+  another commit in the executing working tree while capture runs.
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
