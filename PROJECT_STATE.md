@@ -45,9 +45,19 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   The environment lock and runtime freeze were then created at `0b99c17`, and the
   researcher launched `pt-002` capture in tmux at 2026-11-15 03:42:14 JST
   ([launch log](docs/experiment_logs/2026-11-15_activation_patching_pt002_capture_launch.md));
-  this satisfies the start definition again. The first 20 bundles are the
-  monitored window. Completion status is not yet recorded; do not check out
-  another commit in the executing working tree while capture runs.
+  this satisfies the start definition again. Capture completed with exit code 0
+  at 2026-11-16 08:11:49 JST
+  ([completion log](docs/experiment_logs/2026-11-16_activation_patching_pt002_capture_completion.md)):
+  240/240 bundles completed on the first attempt, with no technical failure or retry,
+  all at clean `0b99c17` under the matching freeze. All 2,160 declared files passed
+  size/checksum verification. No stop criterion (a)-(d) was met, either in the
+  monitored first 20 bundles or later. The maximum recorded time was 461.8 s;
+  swap stayed at ~0, and Python RSS was flat at 2.56 GiB. Recorded
+  `time.monotonic()` durations ran up to ~7.4% above wall-clock time because of
+  WSL clock drift (wall-clock intervention time was constant at ~417 s). This did
+  not change any ceiling decision. Whether to also record wall-clock time is left
+  for a future RDR. `results.json` has not been opened. The collection manifest and
+  patching analysis are the next steps, pending the researcher's instruction.
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
