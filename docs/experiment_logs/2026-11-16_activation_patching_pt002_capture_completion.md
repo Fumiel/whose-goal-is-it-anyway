@@ -120,7 +120,31 @@ collection manifestとパッチング解析は未実行である。
   - 今回の計算・判定には影響しない。
   - 変える場合はコードとruntime freezeの変更になるため、別のRDRで判断する。
 
+## collection manifest
+
+研究実施者の指示により、2026-11-16 13:14 JSTにcleanな`main`（`a05e41c`）で次を実行した（終了コード0）。
+このコマンドは取得commitとの一致を要求しない（`load_plan(..., matching=False)`）。
+manifestの`git_commit`には、freezeのcommit `0b99c17`が記録される。
+
+```bash
+PYTHONPATH=src HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 .venv/bin/python -m goal_takeover.phase2.activation_patching collection-manifest configs/analysis/phase2_activation_patching_v1.json --runtime-freeze artifacts/phase2-activation-patching-runtime-0b99c17.freeze.json --output data/manifests/2026-11-16_phase2_activation_patching_collection.json
+```
+
+| 出力 | bytes | SHA-256 |
+|---|---:|---|
+| [collection manifest](../../data/manifests/2026-11-16_phase2_activation_patching_collection.json) | 163090 | `375a6944e91b92d1cfbba597be96bc7d2771e997daef9e8c669b6658aedbde6c` |
+
+作成後に次を確認した。
+
+- `condition_count`は240。run IDとcondition IDに重複はない。
+- すべてのrun IDが`argrec672-v1-pt-002-cNNN`である。
+- 全件`attempt: 1`で、試行一覧は各1件（completed）。`retried_condition_count`は0、run単位の失敗記録は0件。
+- 各runの`manifest_sha256`は、bundleの`manifest.json`と240件すべて一致した。
+- runtime freezeのSHA-256は`d718cec4…`、`total_bytes`は425,353,057。validationの使用は0件。
+
+作成時に読まれたのは、各bundleの`manifest.json`と`run.json`だけである。`results.json`の内容は読まれていない。
+
 ## 次の手順
 
-RDR-2026-11-15-01と仕様に従い、`pt-002`の240件からcollection manifestを作成し、その後パッチング解析に進む。
-いずれも研究実施者の指示を受けてから行う。
+runnerの手順に従い、本manifestと本記録をcommitした後、取得とは異なるcleanなcommitでパッチング解析を一度だけ実行する。
+解析は研究実施者の指示を受けてから行う。

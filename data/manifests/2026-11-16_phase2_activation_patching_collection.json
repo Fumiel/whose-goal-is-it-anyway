@@ -1,0 +1,4585 @@
+{
+  "analysis_config_sha256": "b1490f50c938cdaccda523c9eea2c4220086ddce9b1431dd4e5b2aa4f8198ed2",
+  "condition_count": 240,
+  "created_at": "2026-11-16T04:14:30.012724+00:00",
+  "full_declaration_loaded_for_integrity": true,
+  "git_commit": "0b99c178ba374489f99fdd6d634add0ff465bd77",
+  "git_dirty": false,
+  "reference_sha256": {
+    "candidate_report": "6e38ae09b3ba7dae07bb4d910d67e1094525dad76db18f81eef0091a7179a30c",
+    "collection_manifest": "ce5983bcf5a9d4a76d47caacdccc79fa44023e92923369c2462766f33161ffdf",
+    "runtime_freeze": "6078989f3c56f936e764760c43de3a6de7044836c4acbd123a2c75d3d2266367"
+  },
+  "research_result": "post_result_train_only_exploratory_intervention_capture",
+  "retried_condition_count": 0,
+  "runs": [
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "03f15fbe02d9b1b4d723426e3571c853bbfd7774288cfcf2906a1018ababe319",
+          "run_id": "argrec672-v1-pt-002-c368",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765907,
+      "condition_id": "phase2_argrec672_015e0550742e5e29",
+      "elapsed_seconds": 427.58967446400493,
+      "manifest_sha256": "03f15fbe02d9b1b4d723426e3571c853bbfd7774288cfcf2906a1018ababe319",
+      "pair_id": "F4-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10194290176,
+      "run_id": "argrec672-v1-pt-002-c368",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "8f65edce06ffb4df0a8720d83c80f0822e58c6e7c11733033f88b6a79c95f56d",
+          "run_id": "argrec672-v1-pt-002-c144",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1775282,
+      "condition_id": "phase2_argrec672_01c86b60e6c4fe0e",
+      "elapsed_seconds": 425.65329494899925,
+      "manifest_sha256": "8f65edce06ffb4df0a8720d83c80f0822e58c6e7c11733033f88b6a79c95f56d",
+      "pair_id": "C3-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10192629248,
+      "run_id": "argrec672-v1-pt-002-c144",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "c4532bdbdf4a538fe89faa970b34b6b7ef5e03db7c81c5506339fe5136a704ef",
+          "run_id": "argrec672-v1-pt-002-c027",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1762431,
+      "condition_id": "phase2_argrec672_01e5e3a44237a643",
+      "elapsed_seconds": 427.1215098890025,
+      "manifest_sha256": "c4532bdbdf4a538fe89faa970b34b6b7ef5e03db7c81c5506339fe5136a704ef",
+      "pair_id": "B1-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10114871296,
+      "run_id": "argrec672-v1-pt-002-c027",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "89a4da2497b325b418aff379346054e6f38208cb0a13a8ea6292650e71793ef7",
+          "run_id": "argrec672-v1-pt-002-c263",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770707,
+      "condition_id": "phase2_argrec672_035da640dff35a3f",
+      "elapsed_seconds": 427.9696988220021,
+      "manifest_sha256": "89a4da2497b325b418aff379346054e6f38208cb0a13a8ea6292650e71793ef7",
+      "pair_id": "E3-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10111924736,
+      "run_id": "argrec672-v1-pt-002-c263",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "afe8720ff4621c6c8e896acb0ac4e2200085798ab6f5a6cee9cdee25d9611944",
+          "run_id": "argrec672-v1-pt-002-c452",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1797078,
+      "condition_id": "phase2_argrec672_04c3c61ab5fdc13b",
+      "elapsed_seconds": 426.5095887779935,
+      "manifest_sha256": "afe8720ff4621c6c8e896acb0ac4e2200085798ab6f5a6cee9cdee25d9611944",
+      "pair_id": "D7-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10191021568,
+      "run_id": "argrec672-v1-pt-002-c452",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "a9ba8a869e07abb4d501d3ff2614bad570769112cd7f14cbfae71bd198665557",
+          "run_id": "argrec672-v1-pt-002-c467",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1762738,
+      "condition_id": "phase2_argrec672_05f35a6fc303ac4f",
+      "elapsed_seconds": 425.1727101550023,
+      "manifest_sha256": "a9ba8a869e07abb4d501d3ff2614bad570769112cd7f14cbfae71bd198665557",
+      "pair_id": "E6-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10109500928,
+      "run_id": "argrec672-v1-pt-002-c467",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "415b9f859f116914c970e639e2c15137c545abd8e15baa28b278210526e43f73",
+          "run_id": "argrec672-v1-pt-002-c256",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768685,
+      "condition_id": "phase2_argrec672_06a51ff7fe304091",
+      "elapsed_seconds": 425.33818481100025,
+      "manifest_sha256": "415b9f859f116914c970e639e2c15137c545abd8e15baa28b278210526e43f73",
+      "pair_id": "E3-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10120387584,
+      "run_id": "argrec672-v1-pt-002-c256",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "73a29985da94863752c0f7c7908701810a16385f1f4f7d21de0c45eb33daa3f6",
+          "run_id": "argrec672-v1-pt-002-c264",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1790659,
+      "condition_id": "phase2_argrec672_098677e94998c65a",
+      "elapsed_seconds": 427.5848316729971,
+      "manifest_sha256": "73a29985da94863752c0f7c7908701810a16385f1f4f7d21de0c45eb33daa3f6",
+      "pair_id": "E3-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10112492544,
+      "run_id": "argrec672-v1-pt-002-c264",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "3a3ca9cf88a1aa1795c68f36105221291c7b30ecaa50ec8859544eb3b60d54e1",
+          "run_id": "argrec672-v1-pt-002-c056",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1778856,
+      "condition_id": "phase2_argrec672_09b460bad4ce8712",
+      "elapsed_seconds": 427.67925673100035,
+      "manifest_sha256": "3a3ca9cf88a1aa1795c68f36105221291c7b30ecaa50ec8859544eb3b60d54e1",
+      "pair_id": "C1-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10098144256,
+      "run_id": "argrec672-v1-pt-002-c056",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "82832b1cda4ebcb4aaa540d506018d9df51e567698d721dc08263656c68f3d35",
+          "run_id": "argrec672-v1-pt-002-c364",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1758746,
+      "condition_id": "phase2_argrec672_0b623eb3a5441bf5",
+      "elapsed_seconds": 428.6804341990028,
+      "manifest_sha256": "82832b1cda4ebcb4aaa540d506018d9df51e567698d721dc08263656c68f3d35",
+      "pair_id": "F4-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10138923520,
+      "run_id": "argrec672-v1-pt-002-c364",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "057cf99313db031c0e745c42cbc4678752c597a05a663e1c1522a8042e0f56fb",
+          "run_id": "argrec672-v1-pt-002-c187",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1790099,
+      "condition_id": "phase2_argrec672_0f40d74b8a764dd6",
+      "elapsed_seconds": 427.11264727499656,
+      "manifest_sha256": "057cf99313db031c0e745c42cbc4678752c597a05a663e1c1522a8042e0f56fb",
+      "pair_id": "F2-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10116619264,
+      "run_id": "argrec672-v1-pt-002-c187",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "d94faa687ca8fabdc07c9acd92decf8aa9f422475701b076cb8f3ed4c7a15394",
+          "run_id": "argrec672-v1-pt-002-c291",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1763490,
+      "condition_id": "phase2_argrec672_0fab52a052c9a17c",
+      "elapsed_seconds": 424.2358700370023,
+      "manifest_sha256": "d94faa687ca8fabdc07c9acd92decf8aa9f422475701b076cb8f3ed4c7a15394",
+      "pair_id": "A6-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10110624256,
+      "run_id": "argrec672-v1-pt-002-c291",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "e2f55c4b08f32b49d180f76ea8313ca28af8cefe2c6b5f56d1f518be9030bff1",
+          "run_id": "argrec672-v1-pt-002-c459",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768437,
+      "condition_id": "phase2_argrec672_0fd4f454bbed83e1",
+      "elapsed_seconds": 426.9031341560003,
+      "manifest_sha256": "e2f55c4b08f32b49d180f76ea8313ca28af8cefe2c6b5f56d1f518be9030bff1",
+      "pair_id": "E6-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10101471232,
+      "run_id": "argrec672-v1-pt-002-c459",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "e5c6400af1382f2878210866364edfd4504ce6554ede32ffe9c4450e490a6d9b",
+          "run_id": "argrec672-v1-pt-002-c064",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1763728,
+      "condition_id": "phase2_argrec672_10bedbb30e0e9a82",
+      "elapsed_seconds": 424.42065046300195,
+      "manifest_sha256": "e5c6400af1382f2878210866364edfd4504ce6554ede32ffe9c4450e490a6d9b",
+      "pair_id": "D1-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10152801792,
+      "run_id": "argrec672-v1-pt-002-c064",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "a7875c37e8b324734af031892a9ab72aaa766b91a4b3fa764f7c8f72fa03241c",
+          "run_id": "argrec672-v1-pt-002-c312",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766651,
+      "condition_id": "phase2_argrec672_1196a4a3f29004bf",
+      "elapsed_seconds": 425.130234182001,
+      "manifest_sha256": "a7875c37e8b324734af031892a9ab72aaa766b91a4b3fa764f7c8f72fa03241c",
+      "pair_id": "B5-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10198385664,
+      "run_id": "argrec672-v1-pt-002-c312",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "65270f12b66fdc09896eb5fbdf9cf761c6c38b9b4f3233d9abd5433acd34bab8",
+          "run_id": "argrec672-v1-pt-002-c340",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1771265,
+      "condition_id": "phase2_argrec672_11b1fb067bbbbcc5",
+      "elapsed_seconds": 426.1748441439995,
+      "manifest_sha256": "65270f12b66fdc09896eb5fbdf9cf761c6c38b9b4f3233d9abd5433acd34bab8",
+      "pair_id": "D5-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10142295040,
+      "run_id": "argrec672-v1-pt-002-c340",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "eb714e93242ac7e482b148b06e9e40db0272cb2342ac187e3de1e504b448d05d",
+          "run_id": "argrec672-v1-pt-002-c200",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1790739,
+      "condition_id": "phase2_argrec672_123573e6e45bd195",
+      "elapsed_seconds": 425.56077951599946,
+      "manifest_sha256": "eb714e93242ac7e482b148b06e9e40db0272cb2342ac187e3de1e504b448d05d",
+      "pair_id": "A4-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10108104192,
+      "run_id": "argrec672-v1-pt-002-c200",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "8f48123ac8db9f1a83cad9215bc78d119d13397570bb595ca2802a0888c72ace",
+          "run_id": "argrec672-v1-pt-002-c447",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1789774,
+      "condition_id": "phase2_argrec672_12f82f24a16d1f1a",
+      "elapsed_seconds": 426.6027358439969,
+      "manifest_sha256": "8f48123ac8db9f1a83cad9215bc78d119d13397570bb595ca2802a0888c72ace",
+      "pair_id": "D7-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10155137536,
+      "run_id": "argrec672-v1-pt-002-c447",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "3e47582c0da71074933d0c4053c6ebcc1fa56f4572b575d9ef87f788cf3abfe4",
+          "run_id": "argrec672-v1-pt-002-c411",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766289,
+      "condition_id": "phase2_argrec672_16485bda7eef8362",
+      "elapsed_seconds": 425.6266119600041,
+      "manifest_sha256": "3e47582c0da71074933d0c4053c6ebcc1fa56f4572b575d9ef87f788cf3abfe4",
+      "pair_id": "C6-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10161839616,
+      "run_id": "argrec672-v1-pt-002-c411",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "efbc67ec42c40b45c06d4f229e6fffcea14ab09471924e38d2c187bb83e20cea",
+          "run_id": "argrec672-v1-pt-002-c067",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770913,
+      "condition_id": "phase2_argrec672_16fe849d80cc0867",
+      "elapsed_seconds": 426.8226396440041,
+      "manifest_sha256": "efbc67ec42c40b45c06d4f229e6fffcea14ab09471924e38d2c187bb83e20cea",
+      "pair_id": "D1-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10190409216,
+      "run_id": "argrec672-v1-pt-002-c067",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "15022edb6770eb5319d98d4ababfedbef0fcb64fc8925bb046e7d594ded158fa",
+          "run_id": "argrec672-v1-pt-002-c016",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765085,
+      "condition_id": "phase2_argrec672_186d962955a6e47f",
+      "elapsed_seconds": 428.33503827700406,
+      "manifest_sha256": "15022edb6770eb5319d98d4ababfedbef0fcb64fc8925bb046e7d594ded158fa",
+      "pair_id": "A2-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10101987328,
+      "run_id": "argrec672-v1-pt-002-c016",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "5e05c364ad7a7f8235fba5010e2d593fb81470a0de1bd4ad5366e6c16b1e8ad8",
+          "run_id": "argrec672-v1-pt-002-c204",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1777373,
+      "condition_id": "phase2_argrec672_194255f4cead6f16",
+      "elapsed_seconds": 426.2229372110014,
+      "manifest_sha256": "5e05c364ad7a7f8235fba5010e2d593fb81470a0de1bd4ad5366e6c16b1e8ad8",
+      "pair_id": "A4-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10101223424,
+      "run_id": "argrec672-v1-pt-002-c204",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "7a7aa31dfcc189eac039d210caced32576980bed8d3d7a6e959d867b3d957dce",
+          "run_id": "argrec672-v1-pt-002-c396",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1771750,
+      "condition_id": "phase2_argrec672_1967321cbc96bd40",
+      "elapsed_seconds": 428.16201831500075,
+      "manifest_sha256": "7a7aa31dfcc189eac039d210caced32576980bed8d3d7a6e959d867b3d957dce",
+      "pair_id": "A7-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10190653952,
+      "run_id": "argrec672-v1-pt-002-c396",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "fdddf3c4544e5e90cff66a70ba97015b01c474fed6162dfe06c9b8d491e5fbb5",
+          "run_id": "argrec672-v1-pt-002-c143",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767169,
+      "condition_id": "phase2_argrec672_19b1d64c7e4fbd8a",
+      "elapsed_seconds": 431.95620310899903,
+      "manifest_sha256": "fdddf3c4544e5e90cff66a70ba97015b01c474fed6162dfe06c9b8d491e5fbb5",
+      "pair_id": "C3-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10191565824,
+      "run_id": "argrec672-v1-pt-002-c143",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "63e193b0d3a5ae5bb119f8a140e0f115354867de80ac18ffcdf9e6b40a3480b5",
+          "run_id": "argrec672-v1-pt-002-c415",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765635,
+      "condition_id": "phase2_argrec672_1a84146311331ddb",
+      "elapsed_seconds": 431.126566455001,
+      "manifest_sha256": "63e193b0d3a5ae5bb119f8a140e0f115354867de80ac18ffcdf9e6b40a3480b5",
+      "pair_id": "C6-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10188395008,
+      "run_id": "argrec672-v1-pt-002-c415",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "55622e7da239a540ac980e25b4230553de29c91962485bdd350207b5487f2f52",
+          "run_id": "argrec672-v1-pt-002-c007",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766101,
+      "condition_id": "phase2_argrec672_1a9fbf3edc4d995c",
+      "elapsed_seconds": 433.2544368900053,
+      "manifest_sha256": "55622e7da239a540ac980e25b4230553de29c91962485bdd350207b5487f2f52",
+      "pair_id": "A1-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10188122112,
+      "run_id": "argrec672-v1-pt-002-c007",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "5c3ca1a2869a655c2956294f21c0b15f46d9eb4dbb997cd19b770de213773b98",
+          "run_id": "argrec672-v1-pt-002-c175",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769443,
+      "condition_id": "phase2_argrec672_1b3eaad30237a4ab",
+      "elapsed_seconds": 434.0332065249968,
+      "manifest_sha256": "5c3ca1a2869a655c2956294f21c0b15f46d9eb4dbb997cd19b770de213773b98",
+      "pair_id": "E2-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10210653184,
+      "run_id": "argrec672-v1-pt-002-c175",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "778914fd93babc2b62b32c1c18963efc0bd13e1343e52470a82452c5bf227757",
+          "run_id": "argrec672-v1-pt-002-c284",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1771661,
+      "condition_id": "phase2_argrec672_1b55dd2cfb2e6513",
+      "elapsed_seconds": 434.3665798789989,
+      "manifest_sha256": "778914fd93babc2b62b32c1c18963efc0bd13e1343e52470a82452c5bf227757",
+      "pair_id": "F3-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102785536,
+      "run_id": "argrec672-v1-pt-002-c284",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "a8cbea52ef1ac25c1ee8ccd183bea8afccaa715933a52852c9e5f5b47b8d1f40",
+          "run_id": "argrec672-v1-pt-002-c236",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769965,
+      "condition_id": "phase2_argrec672_1bb02f7cd7c1db2d",
+      "elapsed_seconds": 430.9491417119971,
+      "manifest_sha256": "a8cbea52ef1ac25c1ee8ccd183bea8afccaa715933a52852c9e5f5b47b8d1f40",
+      "pair_id": "C4-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10192866304,
+      "run_id": "argrec672-v1-pt-002-c236",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "ba314311431ad78cfe5b3837b342cc2ea21cfc0480a8e367c6d370ceac37edf8",
+          "run_id": "argrec672-v1-pt-002-c111",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766457,
+      "condition_id": "phase2_argrec672_1ca40fc08c1fd9c0",
+      "elapsed_seconds": 433.62807318600244,
+      "manifest_sha256": "ba314311431ad78cfe5b3837b342cc2ea21cfc0480a8e367c6d370ceac37edf8",
+      "pair_id": "B3-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106626560,
+      "run_id": "argrec672-v1-pt-002-c111",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "2a610e5e2d982a53f5c5db45908e77bbf1a08ee542ad8d461cfba147c5c58a7e",
+          "run_id": "argrec672-v1-pt-002-c480",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1792039,
+      "condition_id": "phase2_argrec672_1d020b1a6b513235",
+      "elapsed_seconds": 433.38306406000265,
+      "manifest_sha256": "2a610e5e2d982a53f5c5db45908e77bbf1a08ee542ad8d461cfba147c5c58a7e",
+      "pair_id": "F6-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10103507456,
+      "run_id": "argrec672-v1-pt-002-c480",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "7e6ac44b71134e6d0f83d9c8f688c79ace5cbceafdffbf7a666d9a8d166a91fc",
+          "run_id": "argrec672-v1-pt-002-c455",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1795078,
+      "condition_id": "phase2_argrec672_1d88a10d12e5d7e5",
+      "elapsed_seconds": 433.682294440001,
+      "manifest_sha256": "7e6ac44b71134e6d0f83d9c8f688c79ace5cbceafdffbf7a666d9a8d166a91fc",
+      "pair_id": "D7-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10196256768,
+      "run_id": "argrec672-v1-pt-002-c455",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "2e021b20475149356deb44331feae737b1aceb7b554f569d9fc3cb80ce8abbbe",
+          "run_id": "argrec672-v1-pt-002-c383",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768548,
+      "condition_id": "phase2_argrec672_2004f4617fced1b2",
+      "elapsed_seconds": 436.8218268119963,
+      "manifest_sha256": "2e021b20475149356deb44331feae737b1aceb7b554f569d9fc3cb80ce8abbbe",
+      "pair_id": "F5-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10099494912,
+      "run_id": "argrec672-v1-pt-002-c383",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "31534326a3143f54593c1836fb0f7ebeceb70a1d6ff877c575bec69a772d1035",
+          "run_id": "argrec672-v1-pt-002-c127",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772030,
+      "condition_id": "phase2_argrec672_21edb666b8a01d6f",
+      "elapsed_seconds": 433.8073521230035,
+      "manifest_sha256": "31534326a3143f54593c1836fb0f7ebeceb70a1d6ff877c575bec69a772d1035",
+      "pair_id": "C2-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10111813632,
+      "run_id": "argrec672-v1-pt-002-c127",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "a3f3031eaf999f5c3d9b22e5d45ffb798f557800215a14f9d264f1c84f07c326",
+          "run_id": "argrec672-v1-pt-002-c336",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768501,
+      "condition_id": "phase2_argrec672_238da97d6416ad67",
+      "elapsed_seconds": 433.9107272660003,
+      "manifest_sha256": "a3f3031eaf999f5c3d9b22e5d45ffb798f557800215a14f9d264f1c84f07c326",
+      "pair_id": "C5-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10101781504,
+      "run_id": "argrec672-v1-pt-002-c336",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "6366c4ddfc45a831f9f56aa9dcf5d09120b87b0b9a6a650412591503acd20860",
+          "run_id": "argrec672-v1-pt-002-c372",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768646,
+      "condition_id": "phase2_argrec672_2638070598bf6b2b",
+      "elapsed_seconds": 434.39446252999915,
+      "manifest_sha256": "6366c4ddfc45a831f9f56aa9dcf5d09120b87b0b9a6a650412591503acd20860",
+      "pair_id": "F4-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10190007296,
+      "run_id": "argrec672-v1-pt-002-c372",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "f15bb8e5029f94287d6e651a0977dda863ab06e879706d20458db7c30477d46f",
+          "run_id": "argrec672-v1-pt-002-c148",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772005,
+      "condition_id": "phase2_argrec672_278e1cca4c566d4b",
+      "elapsed_seconds": 434.9722768569991,
+      "manifest_sha256": "f15bb8e5029f94287d6e651a0977dda863ab06e879706d20458db7c30477d46f",
+      "pair_id": "D2-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10109340160,
+      "run_id": "argrec672-v1-pt-002-c148",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "c287b1bc838fac48280f77c426fa445ed47ec29c759f2c5614e75b544eef5984",
+          "run_id": "argrec672-v1-pt-002-c095",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768156,
+      "condition_id": "phase2_argrec672_28fc444a1e7522f6",
+      "elapsed_seconds": 436.23369997799455,
+      "manifest_sha256": "c287b1bc838fac48280f77c426fa445ed47ec29c759f2c5614e75b544eef5984",
+      "pair_id": "F1-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10109854208,
+      "run_id": "argrec672-v1-pt-002-c095",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "8bb946e087c67936950187d25b4ee84731fe6609aa10102ec8a83ad0caab68b1",
+          "run_id": "argrec672-v1-pt-002-c380",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1793097,
+      "condition_id": "phase2_argrec672_29f89143b6585910",
+      "elapsed_seconds": 436.0114476669987,
+      "manifest_sha256": "8bb946e087c67936950187d25b4ee84731fe6609aa10102ec8a83ad0caab68b1",
+      "pair_id": "F5-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10096673792,
+      "run_id": "argrec672-v1-pt-002-c380",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "c0652228df95e745f6cd437f8f88c5beea0843b1cffb8532e4fe5915a6282e3b",
+          "run_id": "argrec672-v1-pt-002-c180",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766878,
+      "condition_id": "phase2_argrec672_2b6e368dfcefffd3",
+      "elapsed_seconds": 433.5685138539957,
+      "manifest_sha256": "c0652228df95e745f6cd437f8f88c5beea0843b1cffb8532e4fe5915a6282e3b",
+      "pair_id": "E2-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10201056768,
+      "run_id": "argrec672-v1-pt-002-c180",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "217eb9373e445ce577017a1096b4d0c124010f8a26706738b49597fedde4ea74",
+          "run_id": "argrec672-v1-pt-002-c152",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770158,
+      "condition_id": "phase2_argrec672_2b6f6bb7af47ab2a",
+      "elapsed_seconds": 437.0953133080038,
+      "manifest_sha256": "217eb9373e445ce577017a1096b4d0c124010f8a26706738b49597fedde4ea74",
+      "pair_id": "D2-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102672384,
+      "run_id": "argrec672-v1-pt-002-c152",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "bc33e4d00ab76a6590cee1aa90ebd840a6ac6d0205f18ff1473740a0f73cd5ff",
+          "run_id": "argrec672-v1-pt-002-c456",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766298,
+      "condition_id": "phase2_argrec672_2c0c9fb082469187",
+      "elapsed_seconds": 434.08150849499725,
+      "manifest_sha256": "bc33e4d00ab76a6590cee1aa90ebd840a6ac6d0205f18ff1473740a0f73cd5ff",
+      "pair_id": "D7-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10196180480,
+      "run_id": "argrec672-v1-pt-002-c456",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "0e7c5003b0bf5fa3b26b899cca9b3e2989ef97e4af87749e91dee6a1d6a5ff38",
+          "run_id": "argrec672-v1-pt-002-c412",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1773931,
+      "condition_id": "phase2_argrec672_2c229797e1b7ca8b",
+      "elapsed_seconds": 432.7942349740042,
+      "manifest_sha256": "0e7c5003b0bf5fa3b26b899cca9b3e2989ef97e4af87749e91dee6a1d6a5ff38",
+      "pair_id": "C6-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10160752640,
+      "run_id": "argrec672-v1-pt-002-c412",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "8fc1d7d38a68ffb31d9a0180c37d6a2e52672a4080356db83caaa0b7793296d8",
+          "run_id": "argrec672-v1-pt-002-c055",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1776874,
+      "condition_id": "phase2_argrec672_2c916ed6f9c30b68",
+      "elapsed_seconds": 437.76927786999295,
+      "manifest_sha256": "8fc1d7d38a68ffb31d9a0180c37d6a2e52672a4080356db83caaa0b7793296d8",
+      "pair_id": "C1-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10097096704,
+      "run_id": "argrec672-v1-pt-002-c055",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "0be5ed992812f4cfe08a6142d3cf2a699cad8864e48a033f38419477f1715bcd",
+          "run_id": "argrec672-v1-pt-002-c344",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1763796,
+      "condition_id": "phase2_argrec672_2c9ddfed05ef74db",
+      "elapsed_seconds": 435.1319727809969,
+      "manifest_sha256": "0be5ed992812f4cfe08a6142d3cf2a699cad8864e48a033f38419477f1715bcd",
+      "pair_id": "D5-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10185145344,
+      "run_id": "argrec672-v1-pt-002-c344",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "e719275724e633e85090abadc04081a10e71285ed1b361bdce52ffd2a071cc48",
+          "run_id": "argrec672-v1-pt-002-c076",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769208,
+      "condition_id": "phase2_argrec672_2d9dcd58ca0e0a74",
+      "elapsed_seconds": 437.25111566999476,
+      "manifest_sha256": "e719275724e633e85090abadc04081a10e71285ed1b361bdce52ffd2a071cc48",
+      "pair_id": "E1-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102274048,
+      "run_id": "argrec672-v1-pt-002-c076",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "15bdb2cb2e86031840a3b16b22a012ada1b29e53df1d375a69fd5a8c00c34ba2",
+          "run_id": "argrec672-v1-pt-002-c015",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1774922,
+      "condition_id": "phase2_argrec672_2e522cf1d547e3de",
+      "elapsed_seconds": 437.9773364180037,
+      "manifest_sha256": "15bdb2cb2e86031840a3b16b22a012ada1b29e53df1d375a69fd5a8c00c34ba2",
+      "pair_id": "A2-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102108672,
+      "run_id": "argrec672-v1-pt-002-c015",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "f089cf16eaea4895cf1cd68cc267ebef4fe800b3ac4d45082465977c41f2196b",
+          "run_id": "argrec672-v1-pt-002-c300",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1792793,
+      "condition_id": "phase2_argrec672_2e5d4b4a130ae230",
+      "elapsed_seconds": 437.30208786000003,
+      "manifest_sha256": "f089cf16eaea4895cf1cd68cc267ebef4fe800b3ac4d45082465977c41f2196b",
+      "pair_id": "A6-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10109150208,
+      "run_id": "argrec672-v1-pt-002-c300",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "93fde3da26e9082ba9d1511ecdff7525674a2b6ed9b2239c9c92ce851626ead0",
+          "run_id": "argrec672-v1-pt-002-c475",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767938,
+      "condition_id": "phase2_argrec672_2e82ddc84ce96ec5",
+      "elapsed_seconds": 437.24026395899637,
+      "manifest_sha256": "93fde3da26e9082ba9d1511ecdff7525674a2b6ed9b2239c9c92ce851626ead0",
+      "pair_id": "F6-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106615808,
+      "run_id": "argrec672-v1-pt-002-c475",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "3f008f74798fd20d8e04d58e0a354eb0310e91042528eb8f1d9ca7a1ee0b75a3",
+          "run_id": "argrec672-v1-pt-002-c371",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766025,
+      "condition_id": "phase2_argrec672_30047a7828bc6e67",
+      "elapsed_seconds": 435.99078405300315,
+      "manifest_sha256": "3f008f74798fd20d8e04d58e0a354eb0310e91042528eb8f1d9ca7a1ee0b75a3",
+      "pair_id": "F4-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10190602752,
+      "run_id": "argrec672-v1-pt-002-c371",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "9271c533c98813556e6e1bcaaffa23e4669f5d1f7c2a11ec28be1c418fc0f675",
+          "run_id": "argrec672-v1-pt-002-c159",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1771619,
+      "condition_id": "phase2_argrec672_30eaa53fb7f38ea3",
+      "elapsed_seconds": 435.46654624899384,
+      "manifest_sha256": "9271c533c98813556e6e1bcaaffa23e4669f5d1f7c2a11ec28be1c418fc0f675",
+      "pair_id": "D3-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10148888576,
+      "run_id": "argrec672-v1-pt-002-c159",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "01a41dd431b958dd4218f2eb351458813898c3e367d76e83928fb184f3d3d73c",
+          "run_id": "argrec672-v1-pt-002-c296",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768260,
+      "condition_id": "phase2_argrec672_328986c250415b49",
+      "elapsed_seconds": 437.6762648310032,
+      "manifest_sha256": "01a41dd431b958dd4218f2eb351458813898c3e367d76e83928fb184f3d3d73c",
+      "pair_id": "A6-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102716928,
+      "run_id": "argrec672-v1-pt-002-c296",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "5a3b6e05046300e7d7e64a618c87f504aa7d8354ec62f2b8e5c847df9843f915",
+          "run_id": "argrec672-v1-pt-002-c104",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764481,
+      "condition_id": "phase2_argrec672_335f554ac368dbe1",
+      "elapsed_seconds": 436.3283548859981,
+      "manifest_sha256": "5a3b6e05046300e7d7e64a618c87f504aa7d8354ec62f2b8e5c847df9843f915",
+      "pair_id": "A3-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105642496,
+      "run_id": "argrec672-v1-pt-002-c104",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "6600e969139fafd3bedbfa00f6c86d42fa3508bfbd68c0003116397d4179ebf5",
+          "run_id": "argrec672-v1-pt-002-c035",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1791381,
+      "condition_id": "phase2_argrec672_33b1d980d05b7576",
+      "elapsed_seconds": 434.21701282300273,
+      "manifest_sha256": "6600e969139fafd3bedbfa00f6c86d42fa3508bfbd68c0003116397d4179ebf5",
+      "pair_id": "B1-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10113746944,
+      "run_id": "argrec672-v1-pt-002-c035",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "2167581fae42c51f2efeb133af7079ff5fd36be2cc7028bb373a91279fc358ea",
+          "run_id": "argrec672-v1-pt-002-c047",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764325,
+      "condition_id": "phase2_argrec672_364e7300dc96954a",
+      "elapsed_seconds": 437.743266261994,
+      "manifest_sha256": "2167581fae42c51f2efeb133af7079ff5fd36be2cc7028bb373a91279fc358ea",
+      "pair_id": "B2-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10192103424,
+      "run_id": "argrec672-v1-pt-002-c047",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "4ffca8f4fa2106bd83f5e2d0cfd41c7d3326dba658dac9024533a6012d38c586",
+          "run_id": "argrec672-v1-pt-002-c132",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765131,
+      "condition_id": "phase2_argrec672_37a9d0f51b33ff11",
+      "elapsed_seconds": 438.87299811599587,
+      "manifest_sha256": "4ffca8f4fa2106bd83f5e2d0cfd41c7d3326dba658dac9024533a6012d38c586",
+      "pair_id": "C2-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10098628096,
+      "run_id": "argrec672-v1-pt-002-c132",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "02c6eabaefe0aca4b72a4d15e4befcfa4eed278478a67dd634990c35d2f5bf20",
+          "run_id": "argrec672-v1-pt-002-c128",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1773943,
+      "condition_id": "phase2_argrec672_38333bfb327eeac7",
+      "elapsed_seconds": 434.8857285280028,
+      "manifest_sha256": "02c6eabaefe0aca4b72a4d15e4befcfa4eed278478a67dd634990c35d2f5bf20",
+      "pair_id": "C2-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10114752512,
+      "run_id": "argrec672-v1-pt-002-c128",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "4daa1b37885f1bf0243f1343b0f0367ff280ec539f1ca8c0f35fd9862a833643",
+          "run_id": "argrec672-v1-pt-002-c024",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767421,
+      "condition_id": "phase2_argrec672_399efe7d3461e313",
+      "elapsed_seconds": 437.0387337309985,
+      "manifest_sha256": "4daa1b37885f1bf0243f1343b0f0367ff280ec539f1ca8c0f35fd9862a833643",
+      "pair_id": "A2-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10098633728,
+      "run_id": "argrec672-v1-pt-002-c024",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "252a3dea27c7dda81daa1195eea6fc1f6a13fec55362262895ee508b5f119c3b",
+          "run_id": "argrec672-v1-pt-002-c203",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764196,
+      "condition_id": "phase2_argrec672_3a409cd4060f1cb8",
+      "elapsed_seconds": 436.3845394680029,
+      "manifest_sha256": "252a3dea27c7dda81daa1195eea6fc1f6a13fec55362262895ee508b5f119c3b",
+      "pair_id": "A4-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105564672,
+      "run_id": "argrec672-v1-pt-002-c203",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "18ca97bbb9c046bf293784dd785ae5c6bfc17780fb5c3014c342cfe03c7b7f6f",
+          "run_id": "argrec672-v1-pt-002-c223",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1773942,
+      "condition_id": "phase2_argrec672_3d03f58fa1fc0dd5",
+      "elapsed_seconds": 439.60762861100375,
+      "manifest_sha256": "18ca97bbb9c046bf293784dd785ae5c6bfc17780fb5c3014c342cfe03c7b7f6f",
+      "pair_id": "B4-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10103518208,
+      "run_id": "argrec672-v1-pt-002-c223",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "4962bbbf9110dd8c78d3d1bcb1c07382bede66c26d5ea3065bbd995ae3f652f6",
+          "run_id": "argrec672-v1-pt-002-c212",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769607,
+      "condition_id": "phase2_argrec672_3da04367519f6691",
+      "elapsed_seconds": 437.69597439300196,
+      "manifest_sha256": "4962bbbf9110dd8c78d3d1bcb1c07382bede66c26d5ea3065bbd995ae3f652f6",
+      "pair_id": "A5-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10201043456,
+      "run_id": "argrec672-v1-pt-002-c212",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "7af1f92d61ac920e1aae282de87b637b7321a63390a7771563819c76ef3610a5",
+          "run_id": "argrec672-v1-pt-002-c092",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772218,
+      "condition_id": "phase2_argrec672_3f144613c2b70f44",
+      "elapsed_seconds": 438.8809083720007,
+      "manifest_sha256": "7af1f92d61ac920e1aae282de87b637b7321a63390a7771563819c76ef3610a5",
+      "pair_id": "F1-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10097434112,
+      "run_id": "argrec672-v1-pt-002-c092",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "472e27f79249c15d39fe72f106974726d39a8b974c0b239bad34d1046b20e58d",
+          "run_id": "argrec672-v1-pt-002-c304",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766107,
+      "condition_id": "phase2_argrec672_3f5d0afcdf7a2884",
+      "elapsed_seconds": 437.3885052319929,
+      "manifest_sha256": "472e27f79249c15d39fe72f106974726d39a8b974c0b239bad34d1046b20e58d",
+      "pair_id": "B5-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10156610560,
+      "run_id": "argrec672-v1-pt-002-c304",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "99ffb1c81bac2c59a0a00be86ee7568bdf0cf6f206d6efd9af208e2bf2f13707",
+          "run_id": "argrec672-v1-pt-002-c395",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1774213,
+      "condition_id": "phase2_argrec672_40643fe25b569ae2",
+      "elapsed_seconds": 438.2335076800009,
+      "manifest_sha256": "99ffb1c81bac2c59a0a00be86ee7568bdf0cf6f206d6efd9af208e2bf2f13707",
+      "pair_id": "A7-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10190558208,
+      "run_id": "argrec672-v1-pt-002-c395",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "0cb6aea57d511df77ba339a96ace9471f8df1952cb925f2c528ffcd289fb6e29",
+          "run_id": "argrec672-v1-pt-002-c323",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1792541,
+      "condition_id": "phase2_argrec672_409cfdde33de4fd3",
+      "elapsed_seconds": 437.08941774100094,
+      "manifest_sha256": "0cb6aea57d511df77ba339a96ace9471f8df1952cb925f2c528ffcd289fb6e29",
+      "pair_id": "B6-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105177088,
+      "run_id": "argrec672-v1-pt-002-c323",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "cda103b55773e578edcafcd139d2ac8c6417cc46e0c5b79023cc7e3152c2697b",
+          "run_id": "argrec672-v1-pt-002-c115",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766441,
+      "condition_id": "phase2_argrec672_413a83ce8b63f9e2",
+      "elapsed_seconds": 437.9693643440005,
+      "manifest_sha256": "cda103b55773e578edcafcd139d2ac8c6417cc46e0c5b79023cc7e3152c2697b",
+      "pair_id": "B3-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10121454592,
+      "run_id": "argrec672-v1-pt-002-c115",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "524e3d3af17e26f9027462785b189faa151f439a9c6d3b3450f498e56a273264",
+          "run_id": "argrec672-v1-pt-002-c003",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769787,
+      "condition_id": "phase2_argrec672_416f1b1586be5c12",
+      "elapsed_seconds": 432.51518216500335,
+      "manifest_sha256": "524e3d3af17e26f9027462785b189faa151f439a9c6d3b3450f498e56a273264",
+      "pair_id": "A1-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10171427840,
+      "run_id": "argrec672-v1-pt-002-c003",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "75c9220dfe6090c960eb5d97f771c36735132c7992026d11603e2405801e7b82",
+          "run_id": "argrec672-v1-pt-002-c088",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768218,
+      "condition_id": "phase2_argrec672_427fe85e94a8da1e",
+      "elapsed_seconds": 435.9498005620044,
+      "manifest_sha256": "75c9220dfe6090c960eb5d97f771c36735132c7992026d11603e2405801e7b82",
+      "pair_id": "F1-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10107997184,
+      "run_id": "argrec672-v1-pt-002-c088",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "2c9716ad6073834fd172e4b482e8682238340fa9d7b5b36ddf32e3d789fef2da",
+          "run_id": "argrec672-v1-pt-002-c183",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765081,
+      "condition_id": "phase2_argrec672_42d981fb31e92c93",
+      "elapsed_seconds": 437.4638984919984,
+      "manifest_sha256": "2c9716ad6073834fd172e4b482e8682238340fa9d7b5b36ddf32e3d789fef2da",
+      "pair_id": "F2-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105236480,
+      "run_id": "argrec672-v1-pt-002-c183",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "7504ff3edeaabb0304249fc92fd27e204e05688b705a3b898753bb865e2fcf79",
+          "run_id": "argrec672-v1-pt-002-c343",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1761791,
+      "condition_id": "phase2_argrec672_42fefc413ac95c07",
+      "elapsed_seconds": 435.7042517809932,
+      "manifest_sha256": "7504ff3edeaabb0304249fc92fd27e204e05688b705a3b898753bb865e2fcf79",
+      "pair_id": "D5-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10185920000,
+      "run_id": "argrec672-v1-pt-002-c343",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "618ce7f189f8da17553f7582058c07f8651effc235d055849f554c25263239fe",
+          "run_id": "argrec672-v1-pt-002-c419",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769583,
+      "condition_id": "phase2_argrec672_438a79c297366345",
+      "elapsed_seconds": 438.6414888170002,
+      "manifest_sha256": "618ce7f189f8da17553f7582058c07f8651effc235d055849f554c25263239fe",
+      "pair_id": "C6-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10184601600,
+      "run_id": "argrec672-v1-pt-002-c419",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "e88d91387939b23d51dfcb3c69f4c22ff8aef66abf7034bc22106515ff49b41f",
+          "run_id": "argrec672-v1-pt-002-c135",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1762914,
+      "condition_id": "phase2_argrec672_4491a72feb36f4c4",
+      "elapsed_seconds": 435.7401667880076,
+      "manifest_sha256": "e88d91387939b23d51dfcb3c69f4c22ff8aef66abf7034bc22106515ff49b41f",
+      "pair_id": "C3-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10145062400,
+      "run_id": "argrec672-v1-pt-002-c135",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "e103ca339e72ee7172f9f29a85d04df9a6ed6bffe3432958df67d0539203bc3c",
+          "run_id": "argrec672-v1-pt-002-c279",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1788928,
+      "condition_id": "phase2_argrec672_45a30da7c27c1dcb",
+      "elapsed_seconds": 433.22129527499783,
+      "manifest_sha256": "e103ca339e72ee7172f9f29a85d04df9a6ed6bffe3432958df67d0539203bc3c",
+      "pair_id": "F3-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106016768,
+      "run_id": "argrec672-v1-pt-002-c279",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "93a837858289353eeadb22117022c0e2e580597fd6544c067659f6bacadcc5b8",
+          "run_id": "argrec672-v1-pt-002-c315",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767154,
+      "condition_id": "phase2_argrec672_46fed23949e52575",
+      "elapsed_seconds": 434.21180831200036,
+      "manifest_sha256": "93a837858289353eeadb22117022c0e2e580597fd6544c067659f6bacadcc5b8",
+      "pair_id": "B6-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10115509760,
+      "run_id": "argrec672-v1-pt-002-c315",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "695d50fa7d18129550f89411dcac4d03a73a30a39dea6b974ce9987994666b87",
+          "run_id": "argrec672-v1-pt-002-c399",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767754,
+      "condition_id": "phase2_argrec672_4743969029af4e14",
+      "elapsed_seconds": 434.76152577099856,
+      "manifest_sha256": "695d50fa7d18129550f89411dcac4d03a73a30a39dea6b974ce9987994666b87",
+      "pair_id": "B7-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105653760,
+      "run_id": "argrec672-v1-pt-002-c399",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "ac98bed36c40e6b6f7a08f54db61a6786bba46bcf0f1b4b2c045cba0ecc88b61",
+          "run_id": "argrec672-v1-pt-002-c168",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1762411,
+      "condition_id": "phase2_argrec672_47c8c356647e8099",
+      "elapsed_seconds": 436.8583527899973,
+      "manifest_sha256": "ac98bed36c40e6b6f7a08f54db61a6786bba46bcf0f1b4b2c045cba0ecc88b61",
+      "pair_id": "D3-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10197496320,
+      "run_id": "argrec672-v1-pt-002-c168",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "1e8ef5829f04c480100778ec32aad1f74085496467d9b26d440c1278f5e20874",
+          "run_id": "argrec672-v1-pt-002-c235",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769938,
+      "condition_id": "phase2_argrec672_49a28cdbd8e1dd86",
+      "elapsed_seconds": 435.37129168099636,
+      "manifest_sha256": "1e8ef5829f04c480100778ec32aad1f74085496467d9b26d440c1278f5e20874",
+      "pair_id": "C4-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10194147328,
+      "run_id": "argrec672-v1-pt-002-c235",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "3913755c14eeb6455cfe9bdafaa60f179ba114ff52b58dcfc878a911f149e683",
+          "run_id": "argrec672-v1-pt-002-c287",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1795432,
+      "condition_id": "phase2_argrec672_4a10e7b6fc76f939",
+      "elapsed_seconds": 434.8434232020045,
+      "manifest_sha256": "3913755c14eeb6455cfe9bdafaa60f179ba114ff52b58dcfc878a911f149e683",
+      "pair_id": "F3-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10104837632,
+      "run_id": "argrec672-v1-pt-002-c287",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "24224fff32828753e4349ca4f3a1caccceea211394b26f878d1a0709ef4fe887",
+          "run_id": "argrec672-v1-pt-002-c420",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766750,
+      "condition_id": "phase2_argrec672_4a2c5cb792487c72",
+      "elapsed_seconds": 436.2099223839941,
+      "manifest_sha256": "24224fff32828753e4349ca4f3a1caccceea211394b26f878d1a0709ef4fe887",
+      "pair_id": "C6-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10183589888,
+      "run_id": "argrec672-v1-pt-002-c420",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "3175247f5d38c8ce7fda7c4d4f790f0ee098d9e1763b48e42fa43aa3a7b6497b",
+          "run_id": "argrec672-v1-pt-002-c319",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769628,
+      "condition_id": "phase2_argrec672_4d51f1175473e57f",
+      "elapsed_seconds": 438.06520874699345,
+      "manifest_sha256": "3175247f5d38c8ce7fda7c4d4f790f0ee098d9e1763b48e42fa43aa3a7b6497b",
+      "pair_id": "B6-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10104594944,
+      "run_id": "argrec672-v1-pt-002-c319",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "cd6acc4c7bf525cf62db0e6d7dc10715ec35fe1ab749af4be0b66f1d13899a50",
+          "run_id": "argrec672-v1-pt-002-c120",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1791176,
+      "condition_id": "phase2_argrec672_4dc7682c811b18e6",
+      "elapsed_seconds": 436.6420183649934,
+      "manifest_sha256": "cd6acc4c7bf525cf62db0e6d7dc10715ec35fe1ab749af4be0b66f1d13899a50",
+      "pair_id": "B3-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10113245696,
+      "run_id": "argrec672-v1-pt-002-c120",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "411d8412b0fee0965e6fba742d004ca00a9e8dc00af8fba8e8dd589d1360e732",
+          "run_id": "argrec672-v1-pt-002-c012",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764259,
+      "condition_id": "phase2_argrec672_503af297eec63e04",
+      "elapsed_seconds": 439.20620627400785,
+      "manifest_sha256": "411d8412b0fee0965e6fba742d004ca00a9e8dc00af8fba8e8dd589d1360e732",
+      "pair_id": "A1-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10187844096,
+      "run_id": "argrec672-v1-pt-002-c012",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "7c554586482275f7eec44d7e07653ec42d0d16c2494bbdd701052f983994d0e9",
+          "run_id": "argrec672-v1-pt-002-c231",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1763247,
+      "condition_id": "phase2_argrec672_51ee1ba660be4de8",
+      "elapsed_seconds": 439.01690880299066,
+      "manifest_sha256": "7c554586482275f7eec44d7e07653ec42d0d16c2494bbdd701052f983994d0e9",
+      "pair_id": "C4-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10155944448,
+      "run_id": "argrec672-v1-pt-002-c231",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "8a6a778b0b6a367c19191142a6845fbfad9f90bf0f516abd7a060f6f11020eb3",
+          "run_id": "argrec672-v1-pt-002-c164",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1796066,
+      "condition_id": "phase2_argrec672_524efcbcd0d419c1",
+      "elapsed_seconds": 437.10201627900096,
+      "manifest_sha256": "8a6a778b0b6a367c19191142a6845fbfad9f90bf0f516abd7a060f6f11020eb3",
+      "pair_id": "D3-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10189835776,
+      "run_id": "argrec672-v1-pt-002-c164",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "f6ef23b335cbccf8cac67fefa0149aafcf5b95a3f8b0a0045d9389d8b6093c77",
+          "run_id": "argrec672-v1-pt-002-c331",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767120,
+      "condition_id": "phase2_argrec672_54c2bf739469fb00",
+      "elapsed_seconds": 437.3605032579908,
+      "manifest_sha256": "f6ef23b335cbccf8cac67fefa0149aafcf5b95a3f8b0a0045d9389d8b6093c77",
+      "pair_id": "C5-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10111768064,
+      "run_id": "argrec672-v1-pt-002-c331",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "df63d3be0db5b16dd1418f44df349aa6018a0e2336c4c9758f996b6b25af7d3f",
+          "run_id": "argrec672-v1-pt-002-c052",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768697,
+      "condition_id": "phase2_argrec672_5509c34add23171e",
+      "elapsed_seconds": 439.915995157,
+      "manifest_sha256": "df63d3be0db5b16dd1418f44df349aa6018a0e2336c4c9758f996b6b25af7d3f",
+      "pair_id": "C1-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10118148096,
+      "run_id": "argrec672-v1-pt-002-c052",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "a051f95f205c3acab125431a5534a66834c5a889cc336cfe2fae71610e1f051a",
+          "run_id": "argrec672-v1-pt-002-c172",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1790993,
+      "condition_id": "phase2_argrec672_5a8c949654df1c78",
+      "elapsed_seconds": 436.6507150620055,
+      "manifest_sha256": "a051f95f205c3acab125431a5534a66834c5a889cc336cfe2fae71610e1f051a",
+      "pair_id": "E2-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10167163392,
+      "run_id": "argrec672-v1-pt-002-c172",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "bcae53cf3951e48f47de8c10e4c67ed6bc59c48604f2bb5fa5a3ff25274c7acb",
+          "run_id": "argrec672-v1-pt-002-c211",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765330,
+      "condition_id": "phase2_argrec672_5cd16647084d127c",
+      "elapsed_seconds": 438.5764278860006,
+      "manifest_sha256": "bcae53cf3951e48f47de8c10e4c67ed6bc59c48604f2bb5fa5a3ff25274c7acb",
+      "pair_id": "A5-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10205184000,
+      "run_id": "argrec672-v1-pt-002-c211",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "9d18c0cdb1563d59b1053d2840c0228e3307b55721df3f755e68f64101824842",
+          "run_id": "argrec672-v1-pt-002-c423",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766538,
+      "condition_id": "phase2_argrec672_5d6d649eeddfd6df",
+      "elapsed_seconds": 438.80057276799926,
+      "manifest_sha256": "9d18c0cdb1563d59b1053d2840c0228e3307b55721df3f755e68f64101824842",
+      "pair_id": "C7-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105672192,
+      "run_id": "argrec672-v1-pt-002-c423",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "497c17dc9daf3454f0c33f3e55cf52c3637a4a43a68fab0b73f41f7e40ea69e9",
+          "run_id": "argrec672-v1-pt-002-c043",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1771117,
+      "condition_id": "phase2_argrec672_5d81b9782a2c6d8e",
+      "elapsed_seconds": 438.1258551200044,
+      "manifest_sha256": "497c17dc9daf3454f0c33f3e55cf52c3637a4a43a68fab0b73f41f7e40ea69e9",
+      "pair_id": "B2-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10208309760,
+      "run_id": "argrec672-v1-pt-002-c043",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "42517c06e0408e49a8093f2518d9576553cbee521e35554e72eefaa878744e18",
+          "run_id": "argrec672-v1-pt-002-c087",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1790750,
+      "condition_id": "phase2_argrec672_5e11f3dd1d42a765",
+      "elapsed_seconds": 439.7054969839992,
+      "manifest_sha256": "42517c06e0408e49a8093f2518d9576553cbee521e35554e72eefaa878744e18",
+      "pair_id": "F1-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10107150848,
+      "run_id": "argrec672-v1-pt-002-c087",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "e78a6e22712913fa0329f917e71c44a3868f7cf56fb40de7289d5c1351b72271",
+          "run_id": "argrec672-v1-pt-002-c339",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768165,
+      "condition_id": "phase2_argrec672_6040cb82489ecf3d",
+      "elapsed_seconds": 440.21829982400595,
+      "manifest_sha256": "e78a6e22712913fa0329f917e71c44a3868f7cf56fb40de7289d5c1351b72271",
+      "pair_id": "D5-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10139955200,
+      "run_id": "argrec672-v1-pt-002-c339",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "a2c6ca29578a1edd240f10bfadda03b1bc6255a4cec52f0799c16159c4f0725a",
+          "run_id": "argrec672-v1-pt-002-c352",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1791169,
+      "condition_id": "phase2_argrec672_61e887991a27301f",
+      "elapsed_seconds": 434.8996199610083,
+      "manifest_sha256": "a2c6ca29578a1edd240f10bfadda03b1bc6255a4cec52f0799c16159c4f0725a",
+      "pair_id": "E5-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105794560,
+      "run_id": "argrec672-v1-pt-002-c352",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "005d813f5448b45dab532550d3658452284f120a8ec513d6f48a0eac078f6e4b",
+          "run_id": "argrec672-v1-pt-002-c004",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764352,
+      "condition_id": "phase2_argrec672_633e41d5364c2e54",
+      "elapsed_seconds": 436.6222853060026,
+      "manifest_sha256": "005d813f5448b45dab532550d3658452284f120a8ec513d6f48a0eac078f6e4b",
+      "pair_id": "A1-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10171164672,
+      "run_id": "argrec672-v1-pt-002-c004",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "cea824c6e0f8e3ae7f80bd6659c7ed467b9e9c192c88830d6ea20bbefd0a08ce",
+          "run_id": "argrec672-v1-pt-002-c259",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770358,
+      "condition_id": "phase2_argrec672_635d7ecef088c92e",
+      "elapsed_seconds": 440.59047879699574,
+      "manifest_sha256": "cea824c6e0f8e3ae7f80bd6659c7ed467b9e9c192c88830d6ea20bbefd0a08ce",
+      "pair_id": "E3-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10112733184,
+      "run_id": "argrec672-v1-pt-002-c259",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "25dcf6b426a624498eddb8e3ccfc66ac3d03f0ad6ef5a6398814daaec9601b94",
+          "run_id": "argrec672-v1-pt-002-c039",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772093,
+      "condition_id": "phase2_argrec672_643a7c44259de537",
+      "elapsed_seconds": 441.9841707250016,
+      "manifest_sha256": "25dcf6b426a624498eddb8e3ccfc66ac3d03f0ad6ef5a6398814daaec9601b94",
+      "pair_id": "B2-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10167934464,
+      "run_id": "argrec672-v1-pt-002-c039",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "9eaef5723a145a0c682de9cf8f6feccfba4709ca0a0a58ecf1e3d09ed12548dd",
+          "run_id": "argrec672-v1-pt-002-c392",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772455,
+      "condition_id": "phase2_argrec672_6c096465c4efa793",
+      "elapsed_seconds": 442.4836799859986,
+      "manifest_sha256": "9eaef5723a145a0c682de9cf8f6feccfba4709ca0a0a58ecf1e3d09ed12548dd",
+      "pair_id": "A7-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10189820928,
+      "run_id": "argrec672-v1-pt-002-c392",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "5009dd995bf6d175fd3eaccbdfa6afddc4aeff878d9934fd4bd628dcca5f67f4",
+          "run_id": "argrec672-v1-pt-002-c387",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1789305,
+      "condition_id": "phase2_argrec672_6e17c3eb1f49ed4b",
+      "elapsed_seconds": 441.5172039149911,
+      "manifest_sha256": "5009dd995bf6d175fd3eaccbdfa6afddc4aeff878d9934fd4bd628dcca5f67f4",
+      "pair_id": "A7-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10148738048,
+      "run_id": "argrec672-v1-pt-002-c387",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "db018f78c32ab1b7628bdf4ad801b361aaeed3beb330bac0d2e60d6d3860a1c6",
+          "run_id": "argrec672-v1-pt-002-c228",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768538,
+      "condition_id": "phase2_argrec672_6f1f4165319f13dc",
+      "elapsed_seconds": 439.9645953869949,
+      "manifest_sha256": "db018f78c32ab1b7628bdf4ad801b361aaeed3beb330bac0d2e60d6d3860a1c6",
+      "pair_id": "B4-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106999808,
+      "run_id": "argrec672-v1-pt-002-c228",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "3bb6d521ffae70c59241f3bae7749be7a3b3c90cbeadc8ac5c2f6bcf67d2d7be",
+          "run_id": "argrec672-v1-pt-002-c308",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768261,
+      "condition_id": "phase2_argrec672_6f8720aa5f5f9055",
+      "elapsed_seconds": 438.28324781899573,
+      "manifest_sha256": "3bb6d521ffae70c59241f3bae7749be7a3b3c90cbeadc8ac5c2f6bcf67d2d7be",
+      "pair_id": "B5-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10200121344,
+      "run_id": "argrec672-v1-pt-002-c308",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "233e75ce83509c69f434eb909b645132a53ff59ecbb8ddb92ca1148187545687",
+          "run_id": "argrec672-v1-pt-002-c327",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767672,
+      "condition_id": "phase2_argrec672_6f972d118efde2da",
+      "elapsed_seconds": 443.6786443429992,
+      "manifest_sha256": "233e75ce83509c69f434eb909b645132a53ff59ecbb8ddb92ca1148187545687",
+      "pair_id": "C5-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10109613056,
+      "run_id": "argrec672-v1-pt-002-c327",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "44ca216bcff46c399383396d09f30bc1f1f03a6cd0dcdad359f1cacd7a5c9644",
+          "run_id": "argrec672-v1-pt-002-c196",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766023,
+      "condition_id": "phase2_argrec672_6fa77d76fa2c0776",
+      "elapsed_seconds": 435.34327728300195,
+      "manifest_sha256": "44ca216bcff46c399383396d09f30bc1f1f03a6cd0dcdad359f1cacd7a5c9644",
+      "pair_id": "A4-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10094785536,
+      "run_id": "argrec672-v1-pt-002-c196",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "0f2d0ab53db2d97fc8e3115a8cb16d86226469326b7751d6bd1ca7f27f2702ed",
+          "run_id": "argrec672-v1-pt-002-c019",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1773792,
+      "condition_id": "phase2_argrec672_6fd33eb6c2870925",
+      "elapsed_seconds": 440.6419404379885,
+      "manifest_sha256": "0f2d0ab53db2d97fc8e3115a8cb16d86226469326b7751d6bd1ca7f27f2702ed",
+      "pair_id": "A2-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10111569920,
+      "run_id": "argrec672-v1-pt-002-c019",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "d057993f56069be180caa320b9b3ddd81381835052966c7d58e5f1ea9175d353",
+          "run_id": "argrec672-v1-pt-002-c268",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767041,
+      "condition_id": "phase2_argrec672_70aa808dcfc4ddfc",
+      "elapsed_seconds": 437.69016646900127,
+      "manifest_sha256": "d057993f56069be180caa320b9b3ddd81381835052966c7d58e5f1ea9175d353",
+      "pair_id": "E4-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10174304256,
+      "run_id": "argrec672-v1-pt-002-c268",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "c3f0ff4bd5413881a13b6426b2f7b0f63330f5940ae24fa8cdf219628ddd1d72",
+          "run_id": "argrec672-v1-pt-002-c379",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1792780,
+      "condition_id": "phase2_argrec672_70e2aac93c3a88fa",
+      "elapsed_seconds": 439.8915644239896,
+      "manifest_sha256": "c3f0ff4bd5413881a13b6426b2f7b0f63330f5940ae24fa8cdf219628ddd1d72",
+      "pair_id": "F5-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102251520,
+      "run_id": "argrec672-v1-pt-002-c379",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "6f44bd75b84fa4c073d4d86c640a6f1ba777e48ca85412b87884659e6752fec9",
+          "run_id": "argrec672-v1-pt-002-c188",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1790944,
+      "condition_id": "phase2_argrec672_71c218ede16d3df9",
+      "elapsed_seconds": 441.23281548699015,
+      "manifest_sha256": "6f44bd75b84fa4c073d4d86c640a6f1ba777e48ca85412b87884659e6752fec9",
+      "pair_id": "F2-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10110844928,
+      "run_id": "argrec672-v1-pt-002-c188",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "be987224b93dffb3030972990a5e94fa6d92dc1dc8a3099498ead669db2c3af3",
+          "run_id": "argrec672-v1-pt-002-c347",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772557,
+      "condition_id": "phase2_argrec672_71ca36a9d7395b31",
+      "elapsed_seconds": 440.9366344469927,
+      "manifest_sha256": "be987224b93dffb3030972990a5e94fa6d92dc1dc8a3099498ead669db2c3af3",
+      "pair_id": "D5-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10179627008,
+      "run_id": "argrec672-v1-pt-002-c347",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "a9fc52fea93014763fba8fc7f5cfd8d3df6839d2b014763543729ecbe5cc9e40",
+          "run_id": "argrec672-v1-pt-002-c080",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1794855,
+      "condition_id": "phase2_argrec672_72f0613241b6f130",
+      "elapsed_seconds": 440.1387295860004,
+      "manifest_sha256": "a9fc52fea93014763fba8fc7f5cfd8d3df6839d2b014763543729ecbe5cc9e40",
+      "pair_id": "E1-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102384640,
+      "run_id": "argrec672-v1-pt-002-c080",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "90a2abf155f6f2059baba08d4855a4e821d6c918c6029e786244562690e987c3",
+          "run_id": "argrec672-v1-pt-002-c208",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764698,
+      "condition_id": "phase2_argrec672_74e9b732cb974384",
+      "elapsed_seconds": 440.45201973499206,
+      "manifest_sha256": "90a2abf155f6f2059baba08d4855a4e821d6c918c6029e786244562690e987c3",
+      "pair_id": "A5-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10158723072,
+      "run_id": "argrec672-v1-pt-002-c208",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "3540a45a6b68141215ee06ebdf54aa15bf55c24eee3df5fa9544b90145afb49f",
+          "run_id": "argrec672-v1-pt-002-c400",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1789423,
+      "condition_id": "phase2_argrec672_750665113c5ded82",
+      "elapsed_seconds": 440.60369881299266,
+      "manifest_sha256": "3540a45a6b68141215ee06ebdf54aa15bf55c24eee3df5fa9544b90145afb49f",
+      "pair_id": "B7-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10104048640,
+      "run_id": "argrec672-v1-pt-002-c400",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "427a3dab5e7540dc172e1fdbd487bfc0ddd100af6210d7c3be0d0842f73352a8",
+          "run_id": "argrec672-v1-pt-002-c119",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1771284,
+      "condition_id": "phase2_argrec672_762b7ec1ebbf4306",
+      "elapsed_seconds": 441.71308507700087,
+      "manifest_sha256": "427a3dab5e7540dc172e1fdbd487bfc0ddd100af6210d7c3be0d0842f73352a8",
+      "pair_id": "B3-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10114791424,
+      "run_id": "argrec672-v1-pt-002-c119",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "2170af1d3b884e50ede4728431ee78eeb643efd008f2c1f1e18176f849559481",
+          "run_id": "argrec672-v1-pt-002-c023",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1775599,
+      "condition_id": "phase2_argrec672_77f442cff2441d8e",
+      "elapsed_seconds": 442.43585129899657,
+      "manifest_sha256": "2170af1d3b884e50ede4728431ee78eeb643efd008f2c1f1e18176f849559481",
+      "pair_id": "A2-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10095454208,
+      "run_id": "argrec672-v1-pt-002-c023",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "1877c15554816432f7075e12d5e256cb9331a11dbf1bac684a57d6e489736e40",
+          "run_id": "argrec672-v1-pt-002-c099",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1792185,
+      "condition_id": "phase2_argrec672_7814a62fbe0be11b",
+      "elapsed_seconds": 441.9164890000102,
+      "manifest_sha256": "1877c15554816432f7075e12d5e256cb9331a11dbf1bac684a57d6e489736e40",
+      "pair_id": "A3-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105739264,
+      "run_id": "argrec672-v1-pt-002-c099",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "5d10aa918b4a6f2aa4d9948785dd13aca5142f5cf2f32a90fcfb7c27d8a9e878",
+          "run_id": "argrec672-v1-pt-002-c436",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770422,
+      "condition_id": "phase2_argrec672_78c86e23ccf2223e",
+      "elapsed_seconds": 445.71289397699366,
+      "manifest_sha256": "5d10aa918b4a6f2aa4d9948785dd13aca5142f5cf2f32a90fcfb7c27d8a9e878",
+      "pair_id": "D6-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10110196736,
+      "run_id": "argrec672-v1-pt-002-c436",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "cd34a24c05c657734036de3497d5c874aaba1830ea66a4d501099ad269a2c581",
+          "run_id": "argrec672-v1-pt-002-c008",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1774487,
+      "condition_id": "phase2_argrec672_7988c67331a43efd",
+      "elapsed_seconds": 441.78375250500903,
+      "manifest_sha256": "cd34a24c05c657734036de3497d5c874aaba1830ea66a4d501099ad269a2c581",
+      "pair_id": "A1-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10192301568,
+      "run_id": "argrec672-v1-pt-002-c008",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "dd76f9f175d5310af490eb2882ca6078c3fb0322aba09734d52512da21655da8",
+          "run_id": "argrec672-v1-pt-002-c432",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772872,
+      "condition_id": "phase2_argrec672_7abd7b3e4968c707",
+      "elapsed_seconds": 435.48693782100236,
+      "manifest_sha256": "dd76f9f175d5310af490eb2882ca6078c3fb0322aba09734d52512da21655da8",
+      "pair_id": "C7-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106269184,
+      "run_id": "argrec672-v1-pt-002-c432",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "854d679d55387f6630d618547f22171a5fa8b3b49c8d7489f16218a141faccaa",
+          "run_id": "argrec672-v1-pt-002-c384",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770355,
+      "condition_id": "phase2_argrec672_7afc5af2e7640aec",
+      "elapsed_seconds": 440.8408463670021,
+      "manifest_sha256": "854d679d55387f6630d618547f22171a5fa8b3b49c8d7489f16218a141faccaa",
+      "pair_id": "F5-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10104225280,
+      "run_id": "argrec672-v1-pt-002-c384",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "35c3a34a16de8c8379e96c8aa1d137a55541d674c28a2a55d6c990d8350a5ebd",
+          "run_id": "argrec672-v1-pt-002-c388",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1759237,
+      "condition_id": "phase2_argrec672_7cabed7a16d149d4",
+      "elapsed_seconds": 440.21698987900527,
+      "manifest_sha256": "35c3a34a16de8c8379e96c8aa1d137a55541d674c28a2a55d6c990d8350a5ebd",
+      "pair_id": "A7-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10148820992,
+      "run_id": "argrec672-v1-pt-002-c388",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "f536efba300c5c9993cdb96b107afaf97a8e1a915eb5b1e92d4a99ff69fad019",
+          "run_id": "argrec672-v1-pt-002-c332",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767435,
+      "condition_id": "phase2_argrec672_7d509627ef4329c4",
+      "elapsed_seconds": 441.55788375499833,
+      "manifest_sha256": "f536efba300c5c9993cdb96b107afaf97a8e1a915eb5b1e92d4a99ff69fad019",
+      "pair_id": "C5-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10109089280,
+      "run_id": "argrec672-v1-pt-002-c332",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "d6f352ed67153d695be5c643ec98b3bd8600bda02db881a39145d2f7467263e8",
+          "run_id": "argrec672-v1-pt-002-c199",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767405,
+      "condition_id": "phase2_argrec672_7d8e2cfe24ac1fd9",
+      "elapsed_seconds": 443.5353748170055,
+      "manifest_sha256": "d6f352ed67153d695be5c643ec98b3bd8600bda02db881a39145d2f7467263e8",
+      "pair_id": "A4-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106814976,
+      "run_id": "argrec672-v1-pt-002-c199",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "838576626a3cc2ccab090926e52f5a0a2a2d56506d1bb4056af9efc35a35efaf",
+          "run_id": "argrec672-v1-pt-002-c139",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772409,
+      "condition_id": "phase2_argrec672_7eecc70f48911943",
+      "elapsed_seconds": 442.06457948800016,
+      "manifest_sha256": "838576626a3cc2ccab090926e52f5a0a2a2d56506d1bb4056af9efc35a35efaf",
+      "pair_id": "C3-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10186836480,
+      "run_id": "argrec672-v1-pt-002-c139",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "9c614f882e7f477f83acafc5a57df7fae6e89cdb514596624158559b9aa6ae3a",
+          "run_id": "argrec672-v1-pt-002-c479",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1792026,
+      "condition_id": "phase2_argrec672_7f8ea083fd9c7bad",
+      "elapsed_seconds": 440.7161802959963,
+      "manifest_sha256": "9c614f882e7f477f83acafc5a57df7fae6e89cdb514596624158559b9aa6ae3a",
+      "pair_id": "F6-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10104239616,
+      "run_id": "argrec672-v1-pt-002-c479",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "44472d3ca54835308e5e2f228eccf22192663171a7a663b1d0eda276262a32dc",
+          "run_id": "argrec672-v1-pt-002-c435",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772612,
+      "condition_id": "phase2_argrec672_8201bfe6329edc25",
+      "elapsed_seconds": 441.06511222999325,
+      "manifest_sha256": "44472d3ca54835308e5e2f228eccf22192663171a7a663b1d0eda276262a32dc",
+      "pair_id": "D6-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10107785216,
+      "run_id": "argrec672-v1-pt-002-c435",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "b72aa9434625606cee1f5fb119c6d144168babfacaf94e93bc39e9ab4e6665e1",
+          "run_id": "argrec672-v1-pt-002-c440",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765589,
+      "condition_id": "phase2_argrec672_850d7c866af7efb0",
+      "elapsed_seconds": 442.58666782599903,
+      "manifest_sha256": "b72aa9434625606cee1f5fb119c6d144168babfacaf94e93bc39e9ab4e6665e1",
+      "pair_id": "D6-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10109989376,
+      "run_id": "argrec672-v1-pt-002-c440",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "3e72a26fd661a51a079a74d85a122c3b33db66787db0821f0c9072a52ae70f24",
+          "run_id": "argrec672-v1-pt-002-c112",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769895,
+      "condition_id": "phase2_argrec672_8555e8704a27ca6b",
+      "elapsed_seconds": 440.93764927801385,
+      "manifest_sha256": "3e72a26fd661a51a079a74d85a122c3b33db66787db0821f0c9072a52ae70f24",
+      "pair_id": "B3-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10110323200,
+      "run_id": "argrec672-v1-pt-002-c112",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "cc9d09510476b6e5e19bf983d2f1a2144c121c148733089c0b4115ba553a0f05",
+          "run_id": "argrec672-v1-pt-002-c288",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768294,
+      "condition_id": "phase2_argrec672_85ddf7730f77a90c",
+      "elapsed_seconds": 440.1134438840054,
+      "manifest_sha256": "cc9d09510476b6e5e19bf983d2f1a2144c121c148733089c0b4115ba553a0f05",
+      "pair_id": "F3-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10101663232,
+      "run_id": "argrec672-v1-pt-002-c288",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "f9dd667ba35764789c606b81a86155c17b372021f0163f77d79f9f89fd6c9237",
+          "run_id": "argrec672-v1-pt-002-c044",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1776759,
+      "condition_id": "phase2_argrec672_86a6159412399928",
+      "elapsed_seconds": 441.29151395400186,
+      "manifest_sha256": "f9dd667ba35764789c606b81a86155c17b372021f0163f77d79f9f89fd6c9237",
+      "pair_id": "B2-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10206142464,
+      "run_id": "argrec672-v1-pt-002-c044",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "8638ebfb2e45731691842cc7f5cae866f361af52c06694eda9424448485766e3",
+          "run_id": "argrec672-v1-pt-002-c048",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1775767,
+      "condition_id": "phase2_argrec672_891e94a8bfcbb95b",
+      "elapsed_seconds": 443.1507910429973,
+      "manifest_sha256": "8638ebfb2e45731691842cc7f5cae866f361af52c06694eda9424448485766e3",
+      "pair_id": "B2-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10200953344,
+      "run_id": "argrec672-v1-pt-002-c048",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "b181130f1dbbb30ef907722b6c09684aeaaf1c53370799657663b2f558d2f382",
+          "run_id": "argrec672-v1-pt-002-c192",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772491,
+      "condition_id": "phase2_argrec672_8a49a8c93a05c477",
+      "elapsed_seconds": 447.1070632770061,
+      "manifest_sha256": "b181130f1dbbb30ef907722b6c09684aeaaf1c53370799657663b2f558d2f382",
+      "pair_id": "F2-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102351360,
+      "run_id": "argrec672-v1-pt-002-c192",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "2033690ca7ea3e95d2b0d331696da884bbcf2ec02b6622692706ca065db8a84f",
+          "run_id": "argrec672-v1-pt-002-c103",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766708,
+      "condition_id": "phase2_argrec672_8c6b686d2e190452",
+      "elapsed_seconds": 444.1758701659928,
+      "manifest_sha256": "2033690ca7ea3e95d2b0d331696da884bbcf2ec02b6622692706ca065db8a84f",
+      "pair_id": "A3-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10104740864,
+      "run_id": "argrec672-v1-pt-002-c103",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "6631df57e6c435b0a579417b4be06f96aaa8580f276684f5005de724d60f6603",
+          "run_id": "argrec672-v1-pt-002-c244",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764766,
+      "condition_id": "phase2_argrec672_8c873a47bb08668f",
+      "elapsed_seconds": 437.210912480994,
+      "manifest_sha256": "6631df57e6c435b0a579417b4be06f96aaa8580f276684f5005de724d60f6603",
+      "pair_id": "D4-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10110887424,
+      "run_id": "argrec672-v1-pt-002-c244",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "f7ce0a4e474e4179e805387e2d2aac129b2f6f6bb73faa618e177f714a5f2b5e",
+          "run_id": "argrec672-v1-pt-002-c271",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765684,
+      "condition_id": "phase2_argrec672_8d4d5b498c0eb46a",
+      "elapsed_seconds": 439.006914393005,
+      "manifest_sha256": "f7ce0a4e474e4179e805387e2d2aac129b2f6f6bb73faa618e177f714a5f2b5e",
+      "pair_id": "E4-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10208090624,
+      "run_id": "argrec672-v1-pt-002-c271",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "cd1eb34bf4a905aca7ea0ac0bd1058386f30f3fbaf6597ecc6f4bf69a7ffc980",
+          "run_id": "argrec672-v1-pt-002-c335",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1762907,
+      "condition_id": "phase2_argrec672_8d853ed07c381a84",
+      "elapsed_seconds": 444.50382163799804,
+      "manifest_sha256": "cd1eb34bf4a905aca7ea0ac0bd1058386f30f3fbaf6597ecc6f4bf69a7ffc980",
+      "pair_id": "C5-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10096746496,
+      "run_id": "argrec672-v1-pt-002-c335",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "7ad01f74ecbab44eb9fd93ea0db7edf297f99c7d060ac955a2839030edbeb161",
+          "run_id": "argrec672-v1-pt-002-c351",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1774069,
+      "condition_id": "phase2_argrec672_8ffe04e18323fb56",
+      "elapsed_seconds": 444.2597794449939,
+      "manifest_sha256": "7ad01f74ecbab44eb9fd93ea0db7edf297f99c7d060ac955a2839030edbeb161",
+      "pair_id": "E5-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10101226496,
+      "run_id": "argrec672-v1-pt-002-c351",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "f2fe9197e19b3ee2962033ccaf5b22adf92181696b6fb4a92dc120b9af28ae7a",
+          "run_id": "argrec672-v1-pt-002-c252",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1775862,
+      "condition_id": "phase2_argrec672_90414da0716cee56",
+      "elapsed_seconds": 445.6437653070061,
+      "manifest_sha256": "f2fe9197e19b3ee2962033ccaf5b22adf92181696b6fb4a92dc120b9af28ae7a",
+      "pair_id": "D4-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106911232,
+      "run_id": "argrec672-v1-pt-002-c252",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "39f180fcd0db1378c6a3f12a26c6e520452c4cb8c5405946f4b7f3775fe2e1b1",
+          "run_id": "argrec672-v1-pt-002-c292",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766838,
+      "condition_id": "phase2_argrec672_9289fcdfed3a0af8",
+      "elapsed_seconds": 445.09101737198944,
+      "manifest_sha256": "39f180fcd0db1378c6a3f12a26c6e520452c4cb8c5405946f4b7f3775fe2e1b1",
+      "pair_id": "A6-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10110268416,
+      "run_id": "argrec672-v1-pt-002-c292",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "821dbd598dbddedeea3e80925ac460910c5c5f735c4e3be9624144cf20c0afa8",
+          "run_id": "argrec672-v1-pt-002-c063",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1781001,
+      "condition_id": "phase2_argrec672_930465746d091fbf",
+      "elapsed_seconds": 443.54686027500793,
+      "manifest_sha256": "821dbd598dbddedeea3e80925ac460910c5c5f735c4e3be9624144cf20c0afa8",
+      "pair_id": "D1-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10147471360,
+      "run_id": "argrec672-v1-pt-002-c063",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "699495789b21ec7ed31c55633248a061370427003787e9ac24b192f160d5930b",
+          "run_id": "argrec672-v1-pt-002-c124",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1776537,
+      "condition_id": "phase2_argrec672_94fe5dd5271076cb",
+      "elapsed_seconds": 446.6495779149991,
+      "manifest_sha256": "699495789b21ec7ed31c55633248a061370427003787e9ac24b192f160d5930b",
+      "pair_id": "C2-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10108579840,
+      "run_id": "argrec672-v1-pt-002-c124",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "8fdd215b339244e728cc0498a6045826e6c3f9da851d9c062772cdcaeb938730",
+          "run_id": "argrec672-v1-pt-002-c151",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769533,
+      "condition_id": "phase2_argrec672_95046cb22f058eb5",
+      "elapsed_seconds": 448.33061502299097,
+      "manifest_sha256": "8fdd215b339244e728cc0498a6045826e6c3f9da851d9c062772cdcaeb938730",
+      "pair_id": "D2-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10103523840,
+      "run_id": "argrec672-v1-pt-002-c151",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "9b37d76bfc177783838c894cdaaea80cbff6fbe07460e3880db55fe682eab175",
+          "run_id": "argrec672-v1-pt-002-c320",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770881,
+      "condition_id": "phase2_argrec672_95dbba3e0b29fec0",
+      "elapsed_seconds": 447.1419358769963,
+      "manifest_sha256": "9b37d76bfc177783838c894cdaaea80cbff6fbe07460e3880db55fe682eab175",
+      "pair_id": "B6-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10107640832,
+      "run_id": "argrec672-v1-pt-002-c320",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "ff68321615205395b720a309de0cba6aa7b33388baef06f5075393995d2f3a4d",
+          "run_id": "argrec672-v1-pt-002-c040",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767195,
+      "condition_id": "phase2_argrec672_983fea1c80aa5580",
+      "elapsed_seconds": 448.50067844300065,
+      "manifest_sha256": "ff68321615205395b720a309de0cba6aa7b33388baef06f5075393995d2f3a4d",
+      "pair_id": "B2-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10169586688,
+      "run_id": "argrec672-v1-pt-002-c040",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "331c25c44310c1852357e704f51be220eba593674295e486d3e2e9082c0faa9a",
+          "run_id": "argrec672-v1-pt-002-c464",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765502,
+      "condition_id": "phase2_argrec672_98bcf8c375b25d19",
+      "elapsed_seconds": 446.0455230970001,
+      "manifest_sha256": "331c25c44310c1852357e704f51be220eba593674295e486d3e2e9082c0faa9a",
+      "pair_id": "E6-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102653952,
+      "run_id": "argrec672-v1-pt-002-c464",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "cd8cdd00ce0e674b9e968b305fe5f029f9e14a5b738f4eec064930c9e6a2f351",
+          "run_id": "argrec672-v1-pt-002-c428",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772512,
+      "condition_id": "phase2_argrec672_9946bf600e8e4264",
+      "elapsed_seconds": 450.3685542040075,
+      "manifest_sha256": "cd8cdd00ce0e674b9e968b305fe5f029f9e14a5b738f4eec064930c9e6a2f351",
+      "pair_id": "C7-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10108976128,
+      "run_id": "argrec672-v1-pt-002-c428",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "a2ebf49924addc9176f1e6bc0ab3a3b51b7d32ac18485440e5e5e049c1101144",
+          "run_id": "argrec672-v1-pt-002-c280",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1789495,
+      "condition_id": "phase2_argrec672_9a0cd51be9ea33b9",
+      "elapsed_seconds": 448.1255939820112,
+      "manifest_sha256": "a2ebf49924addc9176f1e6bc0ab3a3b51b7d32ac18485440e5e5e049c1101144",
+      "pair_id": "F3-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102459904,
+      "run_id": "argrec672-v1-pt-002-c280",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "9ab93e70b34fc30481ab72acee69cbd715baf02c53ab8a0e24b8215661777090",
+          "run_id": "argrec672-v1-pt-002-c283",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1790309,
+      "condition_id": "phase2_argrec672_9bec2715fc662cba",
+      "elapsed_seconds": 447.49212313499083,
+      "manifest_sha256": "9ab93e70b34fc30481ab72acee69cbd715baf02c53ab8a0e24b8215661777090",
+      "pair_id": "F3-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106274304,
+      "run_id": "argrec672-v1-pt-002-c283",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "defa465145531e33c53484898750500f441c597aff7705731510b84a25c3ed2c",
+          "run_id": "argrec672-v1-pt-002-c155",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1792204,
+      "condition_id": "phase2_argrec672_9cc1fee8e69fe32a",
+      "elapsed_seconds": 449.18406167899957,
+      "manifest_sha256": "defa465145531e33c53484898750500f441c597aff7705731510b84a25c3ed2c",
+      "pair_id": "D2-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10098787328,
+      "run_id": "argrec672-v1-pt-002-c155",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "aef8c644dadd44b718abd33de2a28d0fab3b87ff3ccb0a6288f5d1c9bb26ab13",
+          "run_id": "argrec672-v1-pt-002-c444",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766378,
+      "condition_id": "phase2_argrec672_9e843acf5eb92c3c",
+      "elapsed_seconds": 450.296419219012,
+      "manifest_sha256": "aef8c644dadd44b718abd33de2a28d0fab3b87ff3ccb0a6288f5d1c9bb26ab13",
+      "pair_id": "D6-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10107357184,
+      "run_id": "argrec672-v1-pt-002-c444",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "2f543ae64071e7a86270770f84956f1fd598115aa173fc3115dcbf1b9d81fbbc",
+          "run_id": "argrec672-v1-pt-002-c407",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765824,
+      "condition_id": "phase2_argrec672_9f56098e079c8eaf",
+      "elapsed_seconds": 448.1511679920004,
+      "manifest_sha256": "2f543ae64071e7a86270770f84956f1fd598115aa173fc3115dcbf1b9d81fbbc",
+      "pair_id": "B7-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10112885760,
+      "run_id": "argrec672-v1-pt-002-c407",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "1cdf698be1938908e9a2fa04d3e0d568312209f778569ec46828dd6860b99824",
+          "run_id": "argrec672-v1-pt-002-c071",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1773270,
+      "condition_id": "phase2_argrec672_a0fab3c7f0706613",
+      "elapsed_seconds": 448.187925153994,
+      "manifest_sha256": "1cdf698be1938908e9a2fa04d3e0d568312209f778569ec46828dd6860b99824",
+      "pair_id": "D1-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10181787136,
+      "run_id": "argrec672-v1-pt-002-c071",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "360086f0502f2e9549a56f5811d14f3fe48494192a888361409301566d53b5dc",
+          "run_id": "argrec672-v1-pt-002-c096",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765542,
+      "condition_id": "phase2_argrec672_a49a170054c958bc",
+      "elapsed_seconds": 457.24092011000903,
+      "manifest_sha256": "360086f0502f2e9549a56f5811d14f3fe48494192a888361409301566d53b5dc",
+      "pair_id": "F1-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10103671296,
+      "run_id": "argrec672-v1-pt-002-c096",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "88e0bfaca68e6fd2635f4c6d09526542fb12b899047f1f34a9f1f228bc885f45",
+          "run_id": "argrec672-v1-pt-002-c427",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767610,
+      "condition_id": "phase2_argrec672_a4fa1b7cc7c762dc",
+      "elapsed_seconds": 451.9966488279897,
+      "manifest_sha256": "88e0bfaca68e6fd2635f4c6d09526542fb12b899047f1f34a9f1f228bc885f45",
+      "pair_id": "C7-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10110944768,
+      "run_id": "argrec672-v1-pt-002-c427",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "a798d5571ef0ba84f7f87f1f4fb018904547c4e37b2238d189f1d32f5955055d",
+          "run_id": "argrec672-v1-pt-002-c468",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765447,
+      "condition_id": "phase2_argrec672_a5c5439e2b84df80",
+      "elapsed_seconds": 450.18519991600624,
+      "manifest_sha256": "a798d5571ef0ba84f7f87f1f4fb018904547c4e37b2238d189f1d32f5955055d",
+      "pair_id": "E6-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106204160,
+      "run_id": "argrec672-v1-pt-002-c468",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "52d85fa037cb27f8dc2a6c55e73f7a811bfc61cb66c1771203f79b1750fa7f55",
+          "run_id": "argrec672-v1-pt-002-c032",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1762789,
+      "condition_id": "phase2_argrec672_a6a52b2185f5f484",
+      "elapsed_seconds": 448.44308952400024,
+      "manifest_sha256": "52d85fa037cb27f8dc2a6c55e73f7a811bfc61cb66c1771203f79b1750fa7f55",
+      "pair_id": "B1-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10112582656,
+      "run_id": "argrec672-v1-pt-002-c032",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "b5f03a31669ae3fe50c6b113e378358b400ec20457941edc1d39074e404f5902",
+          "run_id": "argrec672-v1-pt-002-c448",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764961,
+      "condition_id": "phase2_argrec672_a861498b9db4f629",
+      "elapsed_seconds": 450.0974682660053,
+      "manifest_sha256": "b5f03a31669ae3fe50c6b113e378358b400ec20457941edc1d39074e404f5902",
+      "pair_id": "D7-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10152843776,
+      "run_id": "argrec672-v1-pt-002-c448",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "5b7cd611f3a72ef60061818fbbca5bec1c5a0637dc151ade04099cb5a43e26e5",
+          "run_id": "argrec672-v1-pt-002-c295",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1775198,
+      "condition_id": "phase2_argrec672_a90795e8a70d0d70",
+      "elapsed_seconds": 452.15001048200065,
+      "manifest_sha256": "5b7cd611f3a72ef60061818fbbca5bec1c5a0637dc151ade04099cb5a43e26e5",
+      "pair_id": "A6-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105533952,
+      "run_id": "argrec672-v1-pt-002-c295",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "563f366c2539a7130ed8b5ac903e7c78e5763506d3ac7347ee04c172fc8283f1",
+          "run_id": "argrec672-v1-pt-002-c116",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1762750,
+      "condition_id": "phase2_argrec672_a951236c30de00eb",
+      "elapsed_seconds": 451.0680606970054,
+      "manifest_sha256": "563f366c2539a7130ed8b5ac903e7c78e5763506d3ac7347ee04c172fc8283f1",
+      "pair_id": "B3-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10119536128,
+      "run_id": "argrec672-v1-pt-002-c116",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "56e48da622ec3fabed82f0deb6a60d205999bde60956804faf079e713c80341e",
+          "run_id": "argrec672-v1-pt-002-c219",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1758624,
+      "condition_id": "phase2_argrec672_aa26ce96b8b81049",
+      "elapsed_seconds": 451.01131637800427,
+      "manifest_sha256": "56e48da622ec3fabed82f0deb6a60d205999bde60956804faf079e713c80341e",
+      "pair_id": "B4-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10104971776,
+      "run_id": "argrec672-v1-pt-002-c219",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "52e9642fef612d7a09fd8d89f022e56790ff4104c7841506a5dab8c7023084bc",
+          "run_id": "argrec672-v1-pt-002-c239",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1763794,
+      "condition_id": "phase2_argrec672_abddfb37ca92df6c",
+      "elapsed_seconds": 451.28289660600785,
+      "manifest_sha256": "52e9642fef612d7a09fd8d89f022e56790ff4104c7841506a5dab8c7023084bc",
+      "pair_id": "C4-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10180600320,
+      "run_id": "argrec672-v1-pt-002-c239",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "ccce0858550a5f72ac1a659cafc0b3ece22b787bd974f08a53c87f694166d5ae",
+          "run_id": "argrec672-v1-pt-002-c439",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1762541,
+      "condition_id": "phase2_argrec672_abe55714a16727cc",
+      "elapsed_seconds": 451.9880109249898,
+      "manifest_sha256": "ccce0858550a5f72ac1a659cafc0b3ece22b787bd974f08a53c87f694166d5ae",
+      "pair_id": "D6-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106784256,
+      "run_id": "argrec672-v1-pt-002-c439",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "9adb91099272e3107ad9ee8f881c965fae50d3e05e6ac24249a34b9c86a7f214",
+          "run_id": "argrec672-v1-pt-002-c224",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765395,
+      "condition_id": "phase2_argrec672_ae9b8fc609490143",
+      "elapsed_seconds": 450.3862893230071,
+      "manifest_sha256": "9adb91099272e3107ad9ee8f881c965fae50d3e05e6ac24249a34b9c86a7f214",
+      "pair_id": "B4-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10104825344,
+      "run_id": "argrec672-v1-pt-002-c224",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "cdc3d2ecd8c38ff35d3e9189cd320186a18af621e2b668107c1cc98e63dfd283",
+          "run_id": "argrec672-v1-pt-002-c324",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768386,
+      "condition_id": "phase2_argrec672_aed4ab0d2ca71623",
+      "elapsed_seconds": 448.96390365299885,
+      "manifest_sha256": "cdc3d2ecd8c38ff35d3e9189cd320186a18af621e2b668107c1cc98e63dfd283",
+      "pair_id": "B6-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10103673344,
+      "run_id": "argrec672-v1-pt-002-c324",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "f6db04399bcbd1ac03a345f462c7605ace7d75270567a5ce3b559573b8ea78bd",
+          "run_id": "argrec672-v1-pt-002-c232",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768056,
+      "condition_id": "phase2_argrec672_afb122e5b7e0f0b3",
+      "elapsed_seconds": 450.92834780800695,
+      "manifest_sha256": "f6db04399bcbd1ac03a345f462c7605ace7d75270567a5ce3b559573b8ea78bd",
+      "pair_id": "C4-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10152919040,
+      "run_id": "argrec672-v1-pt-002-c232",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "11574c403eeca322c06e3a4450130a816ff44a3d9fbac75eddac09dc4190473d",
+          "run_id": "argrec672-v1-pt-002-c191",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1771677,
+      "condition_id": "phase2_argrec672_b021a7f8a7f74bc0",
+      "elapsed_seconds": 452.8695610349896,
+      "manifest_sha256": "11574c403eeca322c06e3a4450130a816ff44a3d9fbac75eddac09dc4190473d",
+      "pair_id": "F2-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106967040,
+      "run_id": "argrec672-v1-pt-002-c191",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "3f0b4a1ee217b222cc9eae63837efb3f2a44718308e3f97d58fb4f14e4019468",
+          "run_id": "argrec672-v1-pt-002-c079",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1793304,
+      "condition_id": "phase2_argrec672_b330e83e3b203f71",
+      "elapsed_seconds": 451.0659793589948,
+      "manifest_sha256": "3f0b4a1ee217b222cc9eae63837efb3f2a44718308e3f97d58fb4f14e4019468",
+      "pair_id": "E1-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10103827968,
+      "run_id": "argrec672-v1-pt-002-c079",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "24def6cb472e0de36b83497c6d6265d1a80a77575d20730aab47b2a62cfa6c7a",
+          "run_id": "argrec672-v1-pt-002-c167",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1793654,
+      "condition_id": "phase2_argrec672_b4699854e6412ea6",
+      "elapsed_seconds": 450.5970439520024,
+      "manifest_sha256": "24def6cb472e0de36b83497c6d6265d1a80a77575d20730aab47b2a62cfa6c7a",
+      "pair_id": "D3-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10191737856,
+      "run_id": "argrec672-v1-pt-002-c167",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "d721985e3aa9c6e1a1ccbb0739d7447afb092b6d5e5d9c7ad04fcc54ae008631",
+          "run_id": "argrec672-v1-pt-002-c031",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767843,
+      "condition_id": "phase2_argrec672_b6188c86a22fa95f",
+      "elapsed_seconds": 451.5086839430078,
+      "manifest_sha256": "d721985e3aa9c6e1a1ccbb0739d7447afb092b6d5e5d9c7ad04fcc54ae008631",
+      "pair_id": "B1-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10112663040,
+      "run_id": "argrec672-v1-pt-002-c031",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "2c2a97d19d8cb6572802d7021210a3a2660edb113c5939e3f311f408c5d907f1",
+          "run_id": "argrec672-v1-pt-002-c028",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766291,
+      "condition_id": "phase2_argrec672_b65fa177819533b5",
+      "elapsed_seconds": 452.3030134219989,
+      "manifest_sha256": "2c2a97d19d8cb6572802d7021210a3a2660edb113c5939e3f311f408c5d907f1",
+      "pair_id": "B1-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10112993280,
+      "run_id": "argrec672-v1-pt-002-c028",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "7f4088798fc37fede148e718f06433a186d8eaf7da511803bbfd2225cfadb40a",
+          "run_id": "argrec672-v1-pt-002-c356",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770994,
+      "condition_id": "phase2_argrec672_b7077fad63698670",
+      "elapsed_seconds": 451.8322763879951,
+      "manifest_sha256": "7f4088798fc37fede148e718f06433a186d8eaf7da511803bbfd2225cfadb40a",
+      "pair_id": "E5-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10111616512,
+      "run_id": "argrec672-v1-pt-002-c356",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "9ca17a2133e650ba58769447d61f18c940e99dcb2cd585605989b28f06403e24",
+          "run_id": "argrec672-v1-pt-002-c051",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767416,
+      "condition_id": "phase2_argrec672_b784be4df4cba7dd",
+      "elapsed_seconds": 452.0942422659973,
+      "manifest_sha256": "9ca17a2133e650ba58769447d61f18c940e99dcb2cd585605989b28f06403e24",
+      "pair_id": "C1-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10118667264,
+      "run_id": "argrec672-v1-pt-002-c051",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "7a9bd2736ac925be4ac33fa28dd93ecc79db06680e35277e9a18d780edbe914b",
+          "run_id": "argrec672-v1-pt-002-c275",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1773386,
+      "condition_id": "phase2_argrec672_b935425dafd144ff",
+      "elapsed_seconds": 452.6069829680091,
+      "manifest_sha256": "7a9bd2736ac925be4ac33fa28dd93ecc79db06680e35277e9a18d780edbe914b",
+      "pair_id": "E4-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10203341312,
+      "run_id": "argrec672-v1-pt-002-c275",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "f7da073e35818ffc869260788ad416664705bee3284c7a77beb2a2889aaf0384",
+          "run_id": "argrec672-v1-pt-002-c355",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1777837,
+      "condition_id": "phase2_argrec672_b962912f15105f67",
+      "elapsed_seconds": 452.2444247609965,
+      "manifest_sha256": "f7da073e35818ffc869260788ad416664705bee3284c7a77beb2a2889aaf0384",
+      "pair_id": "E5-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10108042240,
+      "run_id": "argrec672-v1-pt-002-c355",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "c946536c4bc4d227fe11099ab913a4054d59e3852d05da6ecb3cbcbccf8f1d7c",
+          "run_id": "argrec672-v1-pt-002-c463",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767685,
+      "condition_id": "phase2_argrec672_ba347b81fca5c64a",
+      "elapsed_seconds": 454.2998333670039,
+      "manifest_sha256": "c946536c4bc4d227fe11099ab913a4054d59e3852d05da6ecb3cbcbccf8f1d7c",
+      "pair_id": "E6-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10101176832,
+      "run_id": "argrec672-v1-pt-002-c463",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "983bb5158d5afe63a65bb2a4b283f2ad6d9c76095f37bc10921615ad0b8d8ffb",
+          "run_id": "argrec672-v1-pt-002-c471",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767403,
+      "condition_id": "phase2_argrec672_bafef5d0314382da",
+      "elapsed_seconds": 454.66710034899734,
+      "manifest_sha256": "983bb5158d5afe63a65bb2a4b283f2ad6d9c76095f37bc10921615ad0b8d8ffb",
+      "pair_id": "F6-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10108842496,
+      "run_id": "argrec672-v1-pt-002-c471",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "85f70bfca76ddcf27e300c9a9d94d05c8aff6ef1d0610dcb466ea62d0031e72a",
+          "run_id": "argrec672-v1-pt-002-c307",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770765,
+      "condition_id": "phase2_argrec672_bb0f5095d768f80f",
+      "elapsed_seconds": 452.8798312270119,
+      "manifest_sha256": "85f70bfca76ddcf27e300c9a9d94d05c8aff6ef1d0610dcb466ea62d0031e72a",
+      "pair_id": "B5-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10207201280,
+      "run_id": "argrec672-v1-pt-002-c307",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "95ac905b52b935842c2630d2d914470982a201408472eb1cf64336c7009c7a0c",
+          "run_id": "argrec672-v1-pt-002-c416",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767444,
+      "condition_id": "phase2_argrec672_bd381e177ca2a351",
+      "elapsed_seconds": 453.8450553699986,
+      "manifest_sha256": "95ac905b52b935842c2630d2d914470982a201408472eb1cf64336c7009c7a0c",
+      "pair_id": "C6-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10193756672,
+      "run_id": "argrec672-v1-pt-002-c416",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "cd3f8c127432cbba7934629941925a9badc9e68fe3fb2d78a01e4f7641c72677",
+          "run_id": "argrec672-v1-pt-002-c163",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1776311,
+      "condition_id": "phase2_argrec672_be5f15bc7472672e",
+      "elapsed_seconds": 453.10936484999183,
+      "manifest_sha256": "cd3f8c127432cbba7934629941925a9badc9e68fe3fb2d78a01e4f7641c72677",
+      "pair_id": "D3-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10195144704,
+      "run_id": "argrec672-v1-pt-002-c163",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "82d72a998a417576da2c85750589c11fa8232463de0c37dffcf8b6587890bb8e",
+          "run_id": "argrec672-v1-pt-002-c179",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767008,
+      "condition_id": "phase2_argrec672_be8d76fb717f1ae1",
+      "elapsed_seconds": 452.0339457100017,
+      "manifest_sha256": "82d72a998a417576da2c85750589c11fa8232463de0c37dffcf8b6587890bb8e",
+      "pair_id": "E2-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10207726592,
+      "run_id": "argrec672-v1-pt-002-c179",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "1ffcbe6b2fe6ae183c04477cd69dee51516666621fffe8d89bc6355e96b40e1b",
+          "run_id": "argrec672-v1-pt-002-c020",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770071,
+      "condition_id": "phase2_argrec672_bf155b8b173a40cc",
+      "elapsed_seconds": 455.78969586000676,
+      "manifest_sha256": "1ffcbe6b2fe6ae183c04477cd69dee51516666621fffe8d89bc6355e96b40e1b",
+      "pair_id": "A2-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10108195840,
+      "run_id": "argrec672-v1-pt-002-c020",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "768c7e7471ec5288c95d1a1cce4dc31ff147657f3d0a558c4e73a94af6433010",
+          "run_id": "argrec672-v1-pt-002-c108",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1774816,
+      "condition_id": "phase2_argrec672_bf61e93cb9040370",
+      "elapsed_seconds": 455.3585635390009,
+      "manifest_sha256": "768c7e7471ec5288c95d1a1cce4dc31ff147657f3d0a558c4e73a94af6433010",
+      "pair_id": "A3-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105131520,
+      "run_id": "argrec672-v1-pt-002-c108",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "8c6ba1b1aa46880911d35c70bf34dc805c398dd499e81b8da876b69a0a403e31",
+          "run_id": "argrec672-v1-pt-002-c240",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770436,
+      "condition_id": "phase2_argrec672_bf6715f14d606ce0",
+      "elapsed_seconds": 455.11770286200044,
+      "manifest_sha256": "8c6ba1b1aa46880911d35c70bf34dc805c398dd499e81b8da876b69a0a403e31",
+      "pair_id": "C4-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10180601856,
+      "run_id": "argrec672-v1-pt-002-c240",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "d653a4126452dca8424c1a58279b2d3cd284c8dfe525986ea7099ee2c24fd674",
+          "run_id": "argrec672-v1-pt-002-c251",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765225,
+      "condition_id": "phase2_argrec672_c154141d9e3fb7f5",
+      "elapsed_seconds": 453.32709247899766,
+      "manifest_sha256": "d653a4126452dca8424c1a58279b2d3cd284c8dfe525986ea7099ee2c24fd674",
+      "pair_id": "D4-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10108529664,
+      "run_id": "argrec672-v1-pt-002-c251",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "de673a196d71e8cc1b21a87b082548065a958f7365ffe0c9156e7803d79757d5",
+          "run_id": "argrec672-v1-pt-002-c476",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1773205,
+      "condition_id": "phase2_argrec672_c1769d14059fb066",
+      "elapsed_seconds": 455.49139352600105,
+      "manifest_sha256": "de673a196d71e8cc1b21a87b082548065a958f7365ffe0c9156e7803d79757d5",
+      "pair_id": "F6-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10097830400,
+      "run_id": "argrec672-v1-pt-002-c476",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "4e9ebdd87f0de3ffb3b3904476c4c3e2232aade6d6549a785908bd6c2fcc844c",
+          "run_id": "argrec672-v1-pt-002-c100",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1792943,
+      "condition_id": "phase2_argrec672_c1824d22ddd39145",
+      "elapsed_seconds": 454.34555458800605,
+      "manifest_sha256": "4e9ebdd87f0de3ffb3b3904476c4c3e2232aade6d6549a785908bd6c2fcc844c",
+      "pair_id": "A3-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10104457728,
+      "run_id": "argrec672-v1-pt-002-c100",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "7e78f9e2da34d718ee52a0cfc8e2efe7e1a068d6d0acffd6eafee64bd6c79a61",
+          "run_id": "argrec672-v1-pt-002-c059",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1779851,
+      "condition_id": "phase2_argrec672_c2cbf2be218964ba",
+      "elapsed_seconds": 453.69840507499976,
+      "manifest_sha256": "7e78f9e2da34d718ee52a0cfc8e2efe7e1a068d6d0acffd6eafee64bd6c79a61",
+      "pair_id": "C1-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10107160576,
+      "run_id": "argrec672-v1-pt-002-c059",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "6cb27570d804ec04840cc06a0e6e3e9e689481803d48e48c2258a907376b9438",
+          "run_id": "argrec672-v1-pt-002-c367",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770505,
+      "condition_id": "phase2_argrec672_c44dc286e595c3bc",
+      "elapsed_seconds": 453.81449628899645,
+      "manifest_sha256": "6cb27570d804ec04840cc06a0e6e3e9e689481803d48e48c2258a907376b9438",
+      "pair_id": "F4-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10194813440,
+      "run_id": "argrec672-v1-pt-002-c367",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "04044858966149903327406eebcbbbaad90c6085678b50d0220daa5c28088ee1",
+          "run_id": "argrec672-v1-pt-002-c123",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1776562,
+      "condition_id": "phase2_argrec672_c534d7f05ec4e9ef",
+      "elapsed_seconds": 453.704874811996,
+      "manifest_sha256": "04044858966149903327406eebcbbbaad90c6085678b50d0220daa5c28088ee1",
+      "pair_id": "C2-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102438400,
+      "run_id": "argrec672-v1-pt-002-c123",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "8ad7120d9f3a2083b76b66722089bee223d70bf47fa5e36e63eaf0fc6018a6b1",
+          "run_id": "argrec672-v1-pt-002-c091",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1758896,
+      "condition_id": "phase2_argrec672_c71ebb414f2878d9",
+      "elapsed_seconds": 456.0343746029939,
+      "manifest_sha256": "8ad7120d9f3a2083b76b66722089bee223d70bf47fa5e36e63eaf0fc6018a6b1",
+      "pair_id": "F1-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10101648384,
+      "run_id": "argrec672-v1-pt-002-c091",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "e393cfdd5c68529fccc0c4187d870c4c12084f62b489d52dc3c6a8f28f42f633",
+          "run_id": "argrec672-v1-pt-002-c359",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765059,
+      "condition_id": "phase2_argrec672_c95d3403b5fbe784",
+      "elapsed_seconds": 457.5500141539924,
+      "manifest_sha256": "e393cfdd5c68529fccc0c4187d870c4c12084f62b489d52dc3c6a8f28f42f633",
+      "pair_id": "E5-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10101233152,
+      "run_id": "argrec672-v1-pt-002-c359",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "bbacdebccc251d27fbb5f03ffc41c13eeb977a24c684164cef5479b81be855e5",
+          "run_id": "argrec672-v1-pt-002-c460",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1793208,
+      "condition_id": "phase2_argrec672_cbc8d51675eb9f75",
+      "elapsed_seconds": 454.6525319909997,
+      "manifest_sha256": "bbacdebccc251d27fbb5f03ffc41c13eeb977a24c684164cef5479b81be855e5",
+      "pair_id": "E6-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102558720,
+      "run_id": "argrec672-v1-pt-002-c460",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "f69c7bbe293d28353c045f0cd167bd8125adc1830afec13bd5b3f6cb4b525ab5",
+          "run_id": "argrec672-v1-pt-002-c220",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764600,
+      "condition_id": "phase2_argrec672_ccafad2ab82258ce",
+      "elapsed_seconds": 457.15741694500684,
+      "manifest_sha256": "f69c7bbe293d28353c045f0cd167bd8125adc1830afec13bd5b3f6cb4b525ab5",
+      "pair_id": "B4-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10101389824,
+      "run_id": "argrec672-v1-pt-002-c220",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "52299f901ce3fe050886d351b13c99deda6fcb26cf91fec10293e076f13bd607",
+          "run_id": "argrec672-v1-pt-002-c036",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1759986,
+      "condition_id": "phase2_argrec672_ccff49c002e806e5",
+      "elapsed_seconds": 454.71809615399616,
+      "manifest_sha256": "52299f901ce3fe050886d351b13c99deda6fcb26cf91fec10293e076f13bd607",
+      "pair_id": "B1-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10108281344,
+      "run_id": "argrec672-v1-pt-002-c036",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "aa2d0fb8565cc87c674ec7ed4f50e91dfc51dc5b2a31e76ebd245e71a0158780",
+          "run_id": "argrec672-v1-pt-002-c255",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764290,
+      "condition_id": "phase2_argrec672_cfc15ab77be0498f",
+      "elapsed_seconds": 452.16762154500975,
+      "manifest_sha256": "aa2d0fb8565cc87c674ec7ed4f50e91dfc51dc5b2a31e76ebd245e71a0158780",
+      "pair_id": "E3-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10118299136,
+      "run_id": "argrec672-v1-pt-002-c255",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "547985072447f41e49646707e38e522ce0c5ba787dc2f66567560d59327336f1",
+          "run_id": "argrec672-v1-pt-002-c136",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766044,
+      "condition_id": "phase2_argrec672_d1b0f48135b003e4",
+      "elapsed_seconds": 455.97974306900505,
+      "manifest_sha256": "547985072447f41e49646707e38e522ce0c5ba787dc2f66567560d59327336f1",
+      "pair_id": "C3-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10144699904,
+      "run_id": "argrec672-v1-pt-002-c136",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "e587caa41b9159c4bad114f3fdf37b24c524026114e5784d68a6d0f71dedbd78",
+          "run_id": "argrec672-v1-pt-002-c316",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766517,
+      "condition_id": "phase2_argrec672_d1e365621d9e7530",
+      "elapsed_seconds": 455.109390120997,
+      "manifest_sha256": "e587caa41b9159c4bad114f3fdf37b24c524026114e5784d68a6d0f71dedbd78",
+      "pair_id": "B6-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10111731712,
+      "run_id": "argrec672-v1-pt-002-c316",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "32d49bf5d4fb57fac266bdd5a65e5260f3b1ddc2a9ad63b7e59b2e648459c350",
+          "run_id": "argrec672-v1-pt-002-c184",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1794602,
+      "condition_id": "phase2_argrec672_d26f83e9b5c662d4",
+      "elapsed_seconds": 454.36246660900724,
+      "manifest_sha256": "32d49bf5d4fb57fac266bdd5a65e5260f3b1ddc2a9ad63b7e59b2e648459c350",
+      "pair_id": "F2-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105846272,
+      "run_id": "argrec672-v1-pt-002-c184",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "9e58abe3475adb04174851f7de40a62a2c56770dc5eeb8e8fa274227670acc76",
+          "run_id": "argrec672-v1-pt-002-c348",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1763599,
+      "condition_id": "phase2_argrec672_d3e23d10ad57bfbf",
+      "elapsed_seconds": 453.14592532500683,
+      "manifest_sha256": "9e58abe3475adb04174851f7de40a62a2c56770dc5eeb8e8fa274227670acc76",
+      "pair_id": "D5-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10181076992,
+      "run_id": "argrec672-v1-pt-002-c348",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "6916737af63c7e32ccf1fefbb3c3e586a94ee5e02ed5e05beea9b3b54eb5e0b0",
+          "run_id": "argrec672-v1-pt-002-c160",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769422,
+      "condition_id": "phase2_argrec672_d509d8cfc9cf54fd",
+      "elapsed_seconds": 455.39086312801373,
+      "manifest_sha256": "6916737af63c7e32ccf1fefbb3c3e586a94ee5e02ed5e05beea9b3b54eb5e0b0",
+      "pair_id": "D3-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10151589376,
+      "run_id": "argrec672-v1-pt-002-c160",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "c619e7ca41c9fa366c888e6662cb5a0db23057d1450398899aa2376d765ed2ed",
+          "run_id": "argrec672-v1-pt-002-c140",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1775016,
+      "condition_id": "phase2_argrec672_d5c0d95db7995c54",
+      "elapsed_seconds": 456.6745051049875,
+      "manifest_sha256": "c619e7ca41c9fa366c888e6662cb5a0db23057d1450398899aa2376d765ed2ed",
+      "pair_id": "C3-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10186764800,
+      "run_id": "argrec672-v1-pt-002-c140",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "410bc1fde65a168847801eeec3d98b39e9a3f214d915909dc99924d043853a11",
+          "run_id": "argrec672-v1-pt-002-c011",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772055,
+      "condition_id": "phase2_argrec672_d710d14f6f9cd2bb",
+      "elapsed_seconds": 457.63872566400096,
+      "manifest_sha256": "410bc1fde65a168847801eeec3d98b39e9a3f214d915909dc99924d043853a11",
+      "pair_id": "A1-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10188677120,
+      "run_id": "argrec672-v1-pt-002-c011",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "11d171dd1b5fb49bf6f0bba94437d048db465b968ba35401d636ce734566c820",
+          "run_id": "argrec672-v1-pt-002-c443",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764341,
+      "condition_id": "phase2_argrec672_d762fbb694bc391a",
+      "elapsed_seconds": 457.1379368250018,
+      "manifest_sha256": "11d171dd1b5fb49bf6f0bba94437d048db465b968ba35401d636ce734566c820",
+      "pair_id": "D6-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10115665920,
+      "run_id": "argrec672-v1-pt-002-c443",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "166760344f03bec587fb79c61a2419a5c4d421f5e137967a0162eb0c46664706",
+          "run_id": "argrec672-v1-pt-002-c227",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765494,
+      "condition_id": "phase2_argrec672_d7cd8044a7d462d4",
+      "elapsed_seconds": 455.04675583100106,
+      "manifest_sha256": "166760344f03bec587fb79c61a2419a5c4d421f5e137967a0162eb0c46664706",
+      "pair_id": "B4-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10109504000,
+      "run_id": "argrec672-v1-pt-002-c227",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "91e2cb5f7122e9e283afa5364c915794c768d6ea18ffafd35125da1146d3d5f8",
+          "run_id": "argrec672-v1-pt-002-c376",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1777268,
+      "condition_id": "phase2_argrec672_da8537960482f4e9",
+      "elapsed_seconds": 456.5100505940063,
+      "manifest_sha256": "91e2cb5f7122e9e283afa5364c915794c768d6ea18ffafd35125da1146d3d5f8",
+      "pair_id": "F5-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10101445632,
+      "run_id": "argrec672-v1-pt-002-c376",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "9cc2719f513c700060f58c795068ba937aa278e6d863ee9963ae4836fbaff5f7",
+          "run_id": "argrec672-v1-pt-002-c107",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766714,
+      "condition_id": "phase2_argrec672_db8cd03911f248da",
+      "elapsed_seconds": 460.46884391099593,
+      "manifest_sha256": "9cc2719f513c700060f58c795068ba937aa278e6d863ee9963ae4836fbaff5f7",
+      "pair_id": "A3-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10108225536,
+      "run_id": "argrec672-v1-pt-002-c107",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "2fec695b5d89eff2321441045fac8f0ab4615d03bf3025910a436b9f6b11123b",
+          "run_id": "argrec672-v1-pt-002-c403",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765299,
+      "condition_id": "phase2_argrec672_dc25ad181f3f9655",
+      "elapsed_seconds": 456.40621572999953,
+      "manifest_sha256": "2fec695b5d89eff2321441045fac8f0ab4615d03bf3025910a436b9f6b11123b",
+      "pair_id": "B7-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10108547072,
+      "run_id": "argrec672-v1-pt-002-c403",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "696a2a3bce1ec5ce25b910b337096861cc6f4e403ae35106c104c13634f2f284",
+          "run_id": "argrec672-v1-pt-002-c216",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764634,
+      "condition_id": "phase2_argrec672_dcb3b8a0c633b6da",
+      "elapsed_seconds": 456.4914455059952,
+      "manifest_sha256": "696a2a3bce1ec5ce25b910b337096861cc6f4e403ae35106c104c13634f2f284",
+      "pair_id": "A5-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10207756800,
+      "run_id": "argrec672-v1-pt-002-c216",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "e0b36f2bb0b162f748b89a9316dea02a09e784f0dfb28f9c2d943bceeb3d7c71",
+          "run_id": "argrec672-v1-pt-002-c247",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1794236,
+      "condition_id": "phase2_argrec672_ddfa78501a3f23de",
+      "elapsed_seconds": 456.8941134520064,
+      "manifest_sha256": "e0b36f2bb0b162f748b89a9316dea02a09e784f0dfb28f9c2d943bceeb3d7c71",
+      "pair_id": "D4-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105258496,
+      "run_id": "argrec672-v1-pt-002-c247",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "2097639ee55b72b964db7623ee0ecf0946b5e97faa01ed64126b296c60d5ddd6",
+          "run_id": "argrec672-v1-pt-002-c207",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764400,
+      "condition_id": "phase2_argrec672_df633ec17548440e",
+      "elapsed_seconds": 456.14594595500967,
+      "manifest_sha256": "2097639ee55b72b964db7623ee0ecf0946b5e97faa01ed64126b296c60d5ddd6",
+      "pair_id": "A5-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10156219392,
+      "run_id": "argrec672-v1-pt-002-c207",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "e3fdc2c7b33a6fe6c44b38f6e4d631f5e6d585482c23a1e84d2b26d8c7bef57f",
+          "run_id": "argrec672-v1-pt-002-c075",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769297,
+      "condition_id": "phase2_argrec672_df842dcaf1288601",
+      "elapsed_seconds": 456.03772030199616,
+      "manifest_sha256": "e3fdc2c7b33a6fe6c44b38f6e4d631f5e6d585482c23a1e84d2b26d8c7bef57f",
+      "pair_id": "E1-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10102067200,
+      "run_id": "argrec672-v1-pt-002-c075",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "1234580b4fdb6f04defdb01a3c54d925535ad13d0c61685edcd7bc9f1e0c20dd",
+          "run_id": "argrec672-v1-pt-002-c068",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767465,
+      "condition_id": "phase2_argrec672_e1525d0e58814b53",
+      "elapsed_seconds": 456.33611441599714,
+      "manifest_sha256": "1234580b4fdb6f04defdb01a3c54d925535ad13d0c61685edcd7bc9f1e0c20dd",
+      "pair_id": "D1-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10188212736,
+      "run_id": "argrec672-v1-pt-002-c068",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "3363dc26d7c09629d5f580f82181e8d4905a8d2285ca376b8d9b15fd47440ac6",
+          "run_id": "argrec672-v1-pt-002-c391",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765859,
+      "condition_id": "phase2_argrec672_e222be83e71b0c49",
+      "elapsed_seconds": 455.68809614401107,
+      "manifest_sha256": "3363dc26d7c09629d5f580f82181e8d4905a8d2285ca376b8d9b15fd47440ac6",
+      "pair_id": "A7-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10190099968,
+      "run_id": "argrec672-v1-pt-002-c391",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "447487644aef30d7fe1365d6bf26148b143c2bb6bef3727fb374f977f0d4343c",
+          "run_id": "argrec672-v1-pt-002-c408",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1792207,
+      "condition_id": "phase2_argrec672_e2b23fe4a930f565",
+      "elapsed_seconds": 456.5561899189961,
+      "manifest_sha256": "447487644aef30d7fe1365d6bf26148b143c2bb6bef3727fb374f977f0d4343c",
+      "pair_id": "B7-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10117447168,
+      "run_id": "argrec672-v1-pt-002-c408",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "3d293ca378572f780b2e15eeccfd5c42f3df0025a9fde7e0146c1d76b72c77e2",
+          "run_id": "argrec672-v1-pt-002-c083",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1763423,
+      "condition_id": "phase2_argrec672_e2e55dd3740263f5",
+      "elapsed_seconds": 455.77041239200116,
+      "manifest_sha256": "3d293ca378572f780b2e15eeccfd5c42f3df0025a9fde7e0146c1d76b72c77e2",
+      "pair_id": "E1-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10108704768,
+      "run_id": "argrec672-v1-pt-002-c083",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "de835475ffd197f91b0ed505e0d732f353a4a6c926f5df68b962296f608662be",
+          "run_id": "argrec672-v1-pt-002-c084",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765050,
+      "condition_id": "phase2_argrec672_e573c04ab41fe332",
+      "elapsed_seconds": 455.8607298759889,
+      "manifest_sha256": "de835475ffd197f91b0ed505e0d732f353a4a6c926f5df68b962296f608662be",
+      "pair_id": "E1-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10112399360,
+      "run_id": "argrec672-v1-pt-002-c084",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "88b866aea8a165b690c5aa1bdc2959747bf0ce1982e6c35c652c6f2999c60512",
+          "run_id": "argrec672-v1-pt-002-c147",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765985,
+      "condition_id": "phase2_argrec672_e6e049c62192d4e4",
+      "elapsed_seconds": 454.8975784780014,
+      "manifest_sha256": "88b866aea8a165b690c5aa1bdc2959747bf0ce1982e6c35c652c6f2999c60512",
+      "pair_id": "D2-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10109103616,
+      "run_id": "argrec672-v1-pt-002-c147",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "d12ad045a7ff7e42a011c3a84912b42438deec114f26462b06943237916a75bc",
+          "run_id": "argrec672-v1-pt-002-c176",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767883,
+      "condition_id": "phase2_argrec672_e71e3bd98e7e6232",
+      "elapsed_seconds": 458.2985520839975,
+      "manifest_sha256": "d12ad045a7ff7e42a011c3a84912b42438deec114f26462b06943237916a75bc",
+      "pair_id": "E2-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10210784256,
+      "run_id": "argrec672-v1-pt-002-c176",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "d1c2d9d73738f0eb16d7cd7d7d7518d64081ff2a6e5c5e41dd608979d1d21b94",
+          "run_id": "argrec672-v1-pt-002-c072",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765663,
+      "condition_id": "phase2_argrec672_e72cb68f25f834fd",
+      "elapsed_seconds": 457.344971462011,
+      "manifest_sha256": "d1c2d9d73738f0eb16d7cd7d7d7518d64081ff2a6e5c5e41dd608979d1d21b94",
+      "pair_id": "D1-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10186411008,
+      "run_id": "argrec672-v1-pt-002-c072",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "cf93c6d537bad145e07084c82555de29eabd3f2b503d5714185109230ad8d7f7",
+          "run_id": "argrec672-v1-pt-002-c451",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1776113,
+      "condition_id": "phase2_argrec672_e74268afcbbb0137",
+      "elapsed_seconds": 456.16383706699344,
+      "manifest_sha256": "cf93c6d537bad145e07084c82555de29eabd3f2b503d5714185109230ad8d7f7",
+      "pair_id": "D7-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10196814848,
+      "run_id": "argrec672-v1-pt-002-c451",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "72d8bbe9c7f5d82d8997c33bc15c7831e3744275fd7a94d81a981d7029da461e",
+          "run_id": "argrec672-v1-pt-002-c260",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764086,
+      "condition_id": "phase2_argrec672_e81fc96b9560eec5",
+      "elapsed_seconds": 459.1434338660147,
+      "manifest_sha256": "72d8bbe9c7f5d82d8997c33bc15c7831e3744275fd7a94d81a981d7029da461e",
+      "pair_id": "E3-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10111330304,
+      "run_id": "argrec672-v1-pt-002-c260",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "7f0cc445aa9c5543b1f43d1d3da85e9961d6c670b5f3d83775dd0aeaa40a9800",
+          "run_id": "argrec672-v1-pt-002-c215",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1763923,
+      "condition_id": "phase2_argrec672_e890a1d9a4e6e573",
+      "elapsed_seconds": 459.908706490005,
+      "manifest_sha256": "7f0cc445aa9c5543b1f43d1d3da85e9961d6c670b5f3d83775dd0aeaa40a9800",
+      "pair_id": "A5-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10204004864,
+      "run_id": "argrec672-v1-pt-002-c215",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "043d0b8210ccd8e2da7005fd78b1cfb24394e37bc484300eaf575fe8392a0673",
+          "run_id": "argrec672-v1-pt-002-c272",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769771,
+      "condition_id": "phase2_argrec672_e968482ad106a20b",
+      "elapsed_seconds": 458.7412008020001,
+      "manifest_sha256": "043d0b8210ccd8e2da7005fd78b1cfb24394e37bc484300eaf575fe8392a0673",
+      "pair_id": "E4-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10208958976,
+      "run_id": "argrec672-v1-pt-002-c272",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "990874ac4cb3f0831aa14c37c4bfd1b719d4d1c65f0d68d8510a4263f0775d93",
+          "run_id": "argrec672-v1-pt-002-c311",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769981,
+      "condition_id": "phase2_argrec672_e9f7f432027a4a7d",
+      "elapsed_seconds": 455.66498001201035,
+      "manifest_sha256": "990874ac4cb3f0831aa14c37c4bfd1b719d4d1c65f0d68d8510a4263f0775d93",
+      "pair_id": "B5-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10193564160,
+      "run_id": "argrec672-v1-pt-002-c311",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "97cc9e3767dca41276b1ca36993b0b701a55d315a0c325cc79242395b4cea629",
+          "run_id": "argrec672-v1-pt-002-c156",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1790633,
+      "condition_id": "phase2_argrec672_ee58e84c6be8361c",
+      "elapsed_seconds": 457.2769869359945,
+      "manifest_sha256": "97cc9e3767dca41276b1ca36993b0b701a55d315a0c325cc79242395b4cea629",
+      "pair_id": "D2-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10099271168,
+      "run_id": "argrec672-v1-pt-002-c156",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "3bda769c767bf3b4d85a8df1939313c889a42fb9ca4fd29de3db6a89ff0b3f20",
+          "run_id": "argrec672-v1-pt-002-c472",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1766286,
+      "condition_id": "phase2_argrec672_efae850a21dc6de4",
+      "elapsed_seconds": 459.99368778500866,
+      "manifest_sha256": "3bda769c767bf3b4d85a8df1939313c889a42fb9ca4fd29de3db6a89ff0b3f20",
+      "pair_id": "F6-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106265088,
+      "run_id": "argrec672-v1-pt-002-c472",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "dbfc9c71adae1be9cc3cdae25759860cb6becd2e9863a9b655fc62d0cab054df",
+          "run_id": "argrec672-v1-pt-002-c404",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764390,
+      "condition_id": "phase2_argrec672_eff391cb5dbcfb98",
+      "elapsed_seconds": 460.29205503899357,
+      "manifest_sha256": "dbfc9c71adae1be9cc3cdae25759860cb6becd2e9863a9b655fc62d0cab054df",
+      "pair_id": "B7-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10109580800,
+      "run_id": "argrec672-v1-pt-002-c404",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "c7695ef1aac85a79d063df7b262e9c718f558b7e6c5279d79b7549fa4ea31148",
+          "run_id": "argrec672-v1-pt-002-c243",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765043,
+      "condition_id": "phase2_argrec672_f031071d2c9c2801",
+      "elapsed_seconds": 457.6805533260049,
+      "manifest_sha256": "c7695ef1aac85a79d063df7b262e9c718f558b7e6c5279d79b7549fa4ea31148",
+      "pair_id": "D4-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10107170816,
+      "run_id": "argrec672-v1-pt-002-c243",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "1a45a67b179e9ff87ae11392de20226564157fd282e711046a1f62da972707f2",
+          "run_id": "argrec672-v1-pt-002-c171",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1791445,
+      "condition_id": "phase2_argrec672_f0c03d8ce3a9f305",
+      "elapsed_seconds": 456.97638391598593,
+      "manifest_sha256": "1a45a67b179e9ff87ae11392de20226564157fd282e711046a1f62da972707f2",
+      "pair_id": "E2-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10167689216,
+      "run_id": "argrec672-v1-pt-002-c171",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "b032d3493df07a0f68122bb082ee92b0bf8d57a2fee8ce2eaca6c69a161b4fa7",
+          "run_id": "argrec672-v1-pt-002-c375",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1778855,
+      "condition_id": "phase2_argrec672_f0f167d8a7b4a4c6",
+      "elapsed_seconds": 460.5064257210215,
+      "manifest_sha256": "b032d3493df07a0f68122bb082ee92b0bf8d57a2fee8ce2eaca6c69a161b4fa7",
+      "pair_id": "F5-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10101926912,
+      "run_id": "argrec672-v1-pt-002-c375",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "1842098179c47e4149ef365eac0d95988f607d362054db7091d91110ed2c9e60",
+          "run_id": "argrec672-v1-pt-002-c276",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1762895,
+      "condition_id": "phase2_argrec672_f1a00584a35e1b5a",
+      "elapsed_seconds": 457.5833175759981,
+      "manifest_sha256": "1842098179c47e4149ef365eac0d95988f607d362054db7091d91110ed2c9e60",
+      "pair_id": "E4-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10203649024,
+      "run_id": "argrec672-v1-pt-002-c276",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "0633e7671a75d3df278bd9d5fcc0a05e43bb3d7ff9ba934119764caa2a6ac042",
+          "run_id": "argrec672-v1-pt-002-c060",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1768307,
+      "condition_id": "phase2_argrec672_f1df630149873e3e",
+      "elapsed_seconds": 458.111837147022,
+      "manifest_sha256": "0633e7671a75d3df278bd9d5fcc0a05e43bb3d7ff9ba934119764caa2a6ac042",
+      "pair_id": "C1-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10106173952,
+      "run_id": "argrec672-v1-pt-002-c060",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "cb943f2f75c23b2eaba5f3ea516b6ce5b84f86abe7365a7d927a2b918417f07d",
+          "run_id": "argrec672-v1-pt-002-c424",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772809,
+      "condition_id": "phase2_argrec672_f22ac1a2fa9eda6c",
+      "elapsed_seconds": 459.8757621250188,
+      "manifest_sha256": "cb943f2f75c23b2eaba5f3ea516b6ce5b84f86abe7365a7d927a2b918417f07d",
+      "pair_id": "C7-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10099890688,
+      "run_id": "argrec672-v1-pt-002-c424",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "0122f81c863e17461de633baaa3737930633080149c8a5278ad2488f6ece22b1",
+          "run_id": "argrec672-v1-pt-002-c248",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765473,
+      "condition_id": "phase2_argrec672_f4032dd42cbdce2a",
+      "elapsed_seconds": 458.38181873899157,
+      "manifest_sha256": "0122f81c863e17461de633baaa3737930633080149c8a5278ad2488f6ece22b1",
+      "pair_id": "D4-2_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10105388032,
+      "run_id": "argrec672-v1-pt-002-c248",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "ba1a2a35197a3f086058b00a54f26306ac71d112d33e8cf8a318ff38bf3060f0",
+          "run_id": "argrec672-v1-pt-002-c328",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765003,
+      "condition_id": "phase2_argrec672_f6956b61a901a315",
+      "elapsed_seconds": 461.7946179589817,
+      "manifest_sha256": "ba1a2a35197a3f086058b00a54f26306ac71d112d33e8cf8a318ff38bf3060f0",
+      "pair_id": "C5-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10112424960,
+      "run_id": "argrec672-v1-pt-002-c328",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "5b58e078f58dc73e17b63eb08623079c709c0187a24f0135891dbb121237d3c2",
+          "run_id": "argrec672-v1-pt-002-c267",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1791224,
+      "condition_id": "phase2_argrec672_f6de7ed7a1458b4b",
+      "elapsed_seconds": 458.4336818239972,
+      "manifest_sha256": "5b58e078f58dc73e17b63eb08623079c709c0187a24f0135891dbb121237d3c2",
+      "pair_id": "E4-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10174471680,
+      "run_id": "argrec672-v1-pt-002-c267",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "1893fa044e102ea16abfa46126e835f6137cf0c35f97a74e10efdc5daab562ed",
+          "run_id": "argrec672-v1-pt-002-c131",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1769913,
+      "condition_id": "phase2_argrec672_f8cb1c8c76462501",
+      "elapsed_seconds": 459.0602382389952,
+      "manifest_sha256": "1893fa044e102ea16abfa46126e835f6137cf0c35f97a74e10efdc5daab562ed",
+      "pair_id": "C2-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10098462208,
+      "run_id": "argrec672-v1-pt-002-c131",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "4d3bdf023f1cb7a0f9df7d4f7da5f04e40a35c5e1b483c806327ed8af113e05d",
+          "run_id": "argrec672-v1-pt-002-c195",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1788024,
+      "condition_id": "phase2_argrec672_f92fc889dc3b410d",
+      "elapsed_seconds": 458.91662414797975,
+      "manifest_sha256": "4d3bdf023f1cb7a0f9df7d4f7da5f04e40a35c5e1b483c806327ed8af113e05d",
+      "pair_id": "A4-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10096790016,
+      "run_id": "argrec672-v1-pt-002-c195",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "c288d867232e0ee0d0045b27e5fbac6be67ec879996601eac234e78ebf62e1d1",
+          "run_id": "argrec672-v1-pt-002-c431",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1770443,
+      "condition_id": "phase2_argrec672_fc8a5a91adc46573",
+      "elapsed_seconds": 460.02729981097946,
+      "manifest_sha256": "c288d867232e0ee0d0045b27e5fbac6be67ec879996601eac234e78ebf62e1d1",
+      "pair_id": "C7-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10104391168,
+      "run_id": "argrec672-v1-pt-002-c431",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "880203c2656bdb449e1c2e00cae19d9954ce5ac5895d8141c6478976d626a8f9",
+          "run_id": "argrec672-v1-pt-002-c303",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1765642,
+      "condition_id": "phase2_argrec672_fc934eab08ba483c",
+      "elapsed_seconds": 457.49767354701544,
+      "manifest_sha256": "880203c2656bdb449e1c2e00cae19d9954ce5ac5895d8141c6478976d626a8f9",
+      "pair_id": "B5-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10154561024,
+      "run_id": "argrec672-v1-pt-002-c303",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "ba352c8102f7f95aeb48a1fc62db3fe3df11e40e3fbd1ef22922d8b99006e9ba",
+          "run_id": "argrec672-v1-pt-002-c360",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1764506,
+      "condition_id": "phase2_argrec672_fcb0e8343b931353",
+      "elapsed_seconds": 458.382301499998,
+      "manifest_sha256": "ba352c8102f7f95aeb48a1fc62db3fe3df11e40e3fbd1ef22922d8b99006e9ba",
+      "pair_id": "E5-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10103625216,
+      "run_id": "argrec672-v1-pt-002-c360",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "04439bc999a47461dcb744f3b0195a26afa9832aa03f06cc3251fd9bb8a381f2",
+          "run_id": "argrec672-v1-pt-002-c299",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1772633,
+      "condition_id": "phase2_argrec672_fe25b82ce156cfaf",
+      "elapsed_seconds": 457.05036004200156,
+      "manifest_sha256": "04439bc999a47461dcb744f3b0195a26afa9832aa03f06cc3251fd9bb8a381f2",
+      "pair_id": "A6-3_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10110584320,
+      "run_id": "argrec672-v1-pt-002-c299",
+      "run_level_failure_records": []
+    },
+    {
+      "attempt": 1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "manifest_sha256": "8fb8690210ab7eeb55ca1e00d56d688492c2258fee0e6e0fd2812d17fe124b3b",
+          "run_id": "argrec672-v1-pt-002-c363",
+          "status": "completed"
+        }
+      ],
+      "bytes": 1767821,
+      "condition_id": "phase2_argrec672_ff89ff7f1700c05e",
+      "elapsed_seconds": 461.5640036789955,
+      "manifest_sha256": "8fb8690210ab7eeb55ca1e00d56d688492c2258fee0e6e0fd2812d17fe124b3b",
+      "pair_id": "F4-1_recipient_role_pair",
+      "peak_gpu_memory_bytes": 10141701632,
+      "run_id": "argrec672-v1-pt-002-c363",
+      "run_level_failure_records": []
+    }
+  ],
+  "runtime_freeze": "artifacts/phase2-activation-patching-runtime-0b99c17.freeze.json",
+  "runtime_freeze_sha256": "d718cec44eb37472a71d4c0eec3ee91bba5bb4766de96f9ebd69b0c0132e3915",
+  "spec_sha256": "64ac4f67345fbffc66e09fde351319b21035fa863d082ed6e851cc8449a6fc16",
+  "sweep_config_sha256": "5f9d0acfc9ffa66bbb94d789b2b4fc457fcfcdb010dca6ff8335cad01cba9cb6",
+  "total_bytes": 425353057,
+  "validation_declaration_rows_loaded": 192,
+  "validation_rows_used": 0,
+  "validation_run_bundles_loaded": 0
+}

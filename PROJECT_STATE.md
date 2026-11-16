@@ -56,8 +56,13 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   `time.monotonic()` durations ran up to ~7.4% above wall-clock time because of
   WSL clock drift (wall-clock intervention time was constant at ~417 s). This did
   not change any ceiling decision. Whether to also record wall-clock time is left
-  for a future RDR. `results.json` has not been opened. The collection manifest and
-  patching analysis are the next steps, pending the researcher's instruction.
+  for a future RDR. `results.json` has not been opened. The
+  [collection manifest](data/manifests/2026-11-16_phase2_activation_patching_collection.json)
+  (SHA-256 `375a6944e91b92d1cfbba597be96bc7d2771e997daef9e8c669b6658aedbde6c`)
+  was created on 2026-11-16. It selects all 240 first attempts, with 0 retried
+  conditions, and every bundle manifest checksum matched. Patching analysis
+  at a clean commit other than the capture commit is the next step, pending the
+  researcher's instruction.
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
