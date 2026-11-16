@@ -1,0 +1,4744 @@
+{
+  "cells": {
+    "G/layer0": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": -0.003127957265176844,
+          "ne_y_to_x": -0.0020109834584630445
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.07327586206896551,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -2.9802322387695312e-08,
+            "raw_change_y_to_x": 0.7499999850988388,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": -0.49999989569187164,
+            "raw_change_y_to_x": -0.9999995101679815,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.5000000596046448,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -0.7499998831190169,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.0022788828691652743,
+          "B": -0.004737916187803066,
+          "C": -0.012094383567885083,
+          "D": -0.005518831632364966,
+          "E": 0.008875486782852287,
+          "F": -0.0024712533705631085
+        },
+        "interval": [
+          -0.007326770932726697,
+          0.0016095010503963014
+        ],
+        "mean": -0.0025694703618199437,
+        "mean_digit_margin_change": -0.005926724137931034,
+        "median_log_mass_change": 0.0,
+        "median_stem_log_likelihood_change": null,
+        "source_role_means": {
+          "tool": -0.0025499630793276123,
+          "user": -0.002581834132413675
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.0036820938888079717,
+        "ne_y_to_x": 0.004135201281238564
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.04310344827586207,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": 0.7500000447034836,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": -0.25,
+          "raw_change_y_to_x": 2.9802322387695312e-08,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -0.24999979429412633,
+          "raw_change_y_to_x": 0.250000118961907,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.000622491713441252,
+        "B": -0.007724458849621833,
+        "C": 0.027911970119223122,
+        "D": -0.002792394393655557,
+        "E": -0.0009012954707084032,
+        "F": 0.005567922204881833
+      },
+      "interval": [
+        -0.0033594802308015343,
+        0.0160024244759673
+      ],
+      "layer": 0,
+      "mean": 0.003908647585023268,
+      "mean_digit_margin_change": 0.02101293103448276,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": null,
+      "position": "G",
+      "source_role_means": {
+        "tool": -0.0020511445238601267,
+        "user": 0.007685980611780348
+      }
+    },
+    "G/layer12": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": -0.0013090196193895653,
+          "ne_y_to_x": -9.511579970461579e-05
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.07327586206896551,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -0.2500000298023224,
+            "raw_change_y_to_x": 0.24999995529651642,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 1.5000000968575478,
+            "raw_change_y_to_x": -0.7499998812272679,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": -0.25,
+            "raw_change_y_to_x": -0.25000008940696716,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -1.0000000414438546,
+            "raw_change_y_to_x": -0.5000005957990652,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.0035146173028109255,
+          "B": 0.00222939852695754,
+          "C": -0.03147428171293251,
+          "D": 0.00015161949270743252,
+          "E": 0.0120206991003738,
+          "F": 0.01518783580505727
+        },
+        "interval": [
+          -0.015545607517023776,
+          0.008626785347041999
+        ],
+        "mean": -0.0007020677095470906,
+        "mean_digit_margin_change": 0.028017241379310345,
+        "median_log_mass_change": 1.509903308361693e-14,
+        "median_stem_log_likelihood_change": null,
+        "source_role_means": {
+          "tool": 0.0050084569879727935,
+          "user": -0.0043214143488202565
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.006456337168176241,
+        "ne_y_to_x": -0.005238471886401103
+      },
+      "disrupted_count": 1,
+      "disrupted_fraction": 0.004310344827586207,
+      "disruption_reasons": {
+        "candidate_mass": 1,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.05172413793103448,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.5000000149011612,
+          "raw_change_y_to_x": 0.24999995529651642,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 1.2500000968575478,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": -0.5,
+          "raw_change_y_to_x": -0.5,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.7500001831795089,
+          "raw_change_y_to_x": -0.2500004766825441,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.002433335849494906,
+        "B": 0.0024524851181475607,
+        "C": -0.009971018341889678,
+        "D": 0.002118714849830907,
+        "E": 0.005763068275353498,
+        "F": 0.0021093213186664486
+      },
+      "interval": [
+        -0.003929342950893261,
+        0.0040177096395215064
+      ],
+      "layer": 12,
+      "mean": 0.0006089326408875687,
+      "mean_digit_margin_change": 0.059267241379310345,
+      "median_log_mass_change": 1.1102230235911808e-16,
+      "median_stem_log_likelihood_change": null,
+      "position": "G",
+      "source_role_means": {
+        "tool": 7.47240176308437e-05,
+        "user": 0.0009475155711207042
+      }
+    },
+    "G/layer16": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": -0.007018891340038201,
+          "ne_y_to_x": -0.0003766786512904834
+        },
+        "disrupted_count": 1,
+        "disrupted_fraction": 0.004310344827586207,
+        "disruption_reasons": {
+          "candidate_mass": 1,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.07327586206896551,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 1.75,
+            "raw_change_y_to_x": 2.000000014901161,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 3.0000000968575478,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 2.5000001080334187,
+            "raw_change_y_to_x": -1.0000000894069672,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -1.2499999864958227,
+            "raw_change_y_to_x": -1.7499998804146344,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.008335793033213744,
+          "B": -0.000753522720510638,
+          "C": -0.052124009288120596,
+          "D": 0.0026793386055938713,
+          "E": 0.011130728580187297,
+          "F": 0.016301835341541795
+        },
+        "interval": [
+          -0.03028493378631698,
+          0.012427667503463814
+        ],
+        "mean": -0.0036977849956643417,
+        "mean_digit_margin_change": 0.0334051724137931,
+        "median_log_mass_change": 4.3165471197370864e-13,
+        "median_stem_log_likelihood_change": null,
+        "source_role_means": {
+          "tool": 0.012818149420523022,
+          "user": -0.01416563075240281
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.007165249254680688,
+        "ne_y_to_x": -0.005046211029390278
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.05172413793103448,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.5000000149011612,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 2.5000000968575478,
+          "raw_change_y_to_x": -0.7499998812272679,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 0.7500000298023224,
+          "raw_change_y_to_x": -0.25,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.24999984970781952,
+          "raw_change_y_to_x": 1.2500002341221261,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": -0.007002368474910712,
+        "B": 0.007207876534910726,
+        "C": -0.0040380987371715525,
+        "D": 0.000224129994519377,
+        "E": 0.0019481217193682793,
+        "F": 0.009802341373344932
+      },
+      "interval": [
+        -0.00404155572170478,
+        0.006022350021740257
+      ],
+      "layer": 16,
+      "mean": 0.001059519112645206,
+      "mean_digit_margin_change": 0.09859913793103449,
+      "median_log_mass_change": 2.713385072179405e-13,
+      "median_stem_log_likelihood_change": null,
+      "position": "G",
+      "source_role_means": {
+        "tool": -0.0034976723154333976,
+        "user": 0.003947879876920377
+      }
+    },
+    "G/layer20": {
+      "class": "P-PARTIAL",
+      "cross": {
+        "class": "P-PARTIAL",
+        "direction_means": {
+          "ne_x_to_y": 0.02178397331874762,
+          "ne_y_to_x": 0.024049154910019205
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.07758620689655173,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 4.749999985098839,
+            "raw_change_y_to_x": -0.2500000298023224,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 4.500000141561031,
+            "raw_change_y_to_x": -0.5000001417647582,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 6.500000058149446,
+            "raw_change_y_to_x": -2.500000074505806,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 1.000000003783498,
+            "raw_change_y_to_x": -1.4999997612112566,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.027704060484962094,
+          "B": 0.01796429264543502,
+          "C": 0.01885101936278465,
+          "D": -0.0018074272484739546,
+          "E": 0.05931197941336746,
+          "F": 0.018728224432842857
+        },
+        "interval": [
+          0.010567167481284879,
+          0.03507724945900002
+        ],
+        "mean": 0.022916564114383413,
+        "mean_digit_margin_change": -0.3108836206896552,
+        "median_log_mass_change": 2.6054713941818254e-12,
+        "median_stem_log_likelihood_change": null,
+        "source_role_means": {
+          "tool": 0.01588089787949405,
+          "user": 0.02737578919283442
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.017511533402616804,
+        "ne_y_to_x": 0.014539923524811909
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.05603448275862069,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.2500000298023224,
+          "raw_change_y_to_x": -1.2499998658895493,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 5.0000001937150955,
+          "raw_change_y_to_x": -1.9999993730525603,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 2.4999999031424522,
+          "raw_change_y_to_x": 0.4999999701976776,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -1.1909287422895432e-07,
+          "raw_change_y_to_x": 3.4999997034719854,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.00873094744884278,
+        "B": 0.01367150827303346,
+        "C": 0.02058780496561809,
+        "D": 0.0025938897815487587,
+        "E": 0.023934459285498304,
+        "F": 0.03013886950202391
+      },
+      "interval": [
+        0.007893564540964126,
+        0.024658034292944025
+      ],
+      "layer": 20,
+      "mean": 0.016025728463714355,
+      "mean_digit_margin_change": -0.21551724137931033,
+      "median_log_mass_change": 5.075939668581129e-13,
+      "median_stem_log_likelihood_change": null,
+      "position": "G",
+      "source_role_means": {
+        "tool": 0.012192619355185633,
+        "user": 0.01845516381419031
+      }
+    },
+    "G/layer24": {
+      "class": "P-STRONG",
+      "cross": {
+        "class": "P-STRONG",
+        "direction_means": {
+          "ne_x_to_y": 0.814297891371261,
+          "ne_y_to_x": 0.944410925145513
+        },
+        "disrupted_count": 9,
+        "disrupted_fraction": 0.03879310344827586,
+        "disruption_reasons": {
+          "candidate_mass": 9,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.8577586206896551,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 15.250019877961869,
+            "raw_change_y_to_x": -12.749999508261794,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 18.750006176512223,
+            "raw_change_y_to_x": -5.499999489463107,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 19.125493462115465,
+            "raw_change_y_to_x": -12.500000149013204,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 13.250020176493763,
+            "raw_change_y_to_x": -11.750004887186371,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.7611695369529392,
+          "B": 0.7259727326493282,
+          "C": 1.3230566930965069,
+          "D": 0.700998325052165,
+          "E": 0.9514616415939563,
+          "F": 0.7878641642823159
+        },
+        "interval": [
+          0.7076916445936575,
+          1.1619238867896455
+        ],
+        "mean": 0.8793544082583871,
+        "mean_digit_margin_change": 0.9838362067680935,
+        "median_log_mass_change": -2.545038361894476e-08,
+        "median_stem_log_likelihood_change": null,
+        "source_role_means": {
+          "tool": 0.7230256065918329,
+          "user": 0.9784360431174705
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.6937219194858109,
+        "ne_y_to_x": 0.6616731613120983
+      },
+      "disrupted_count": 10,
+      "disrupted_fraction": 0.04310344827586207,
+      "disruption_reasons": {
+        "candidate_mass": 10,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.8189655172413793,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": 0.24999991059303284,
+          "raw_change_y_to_x": -0.24999992549419403,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 5.2500000931322575,
+          "raw_change_y_to_x": -0.9999995101679815,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": -1.0,
+          "raw_change_y_to_x": 4.250000156462185,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -3.750000088941306,
+          "raw_change_y_to_x": 8.749999761970685,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.6432130398332127,
+        "B": 0.6805252647603633,
+        "C": 0.6703520302473599,
+        "D": 0.6629126948779854,
+        "E": 0.7150722591956656,
+        "F": 0.7031672582106618
+      },
+      "interval": [
+        0.6512536460074474,
+        0.7088756727859298
+      ],
+      "layer": 24,
+      "mean": 0.6776975403989546,
+      "mean_digit_margin_change": 0.48060344853277864,
+      "median_log_mass_change": -3.7518139340934494e-08,
+      "median_stem_log_likelihood_change": null,
+      "position": "G",
+      "source_role_means": {
+        "tool": 0.6929150560344101,
+        "user": 0.6680526361229616
+      }
+    },
+    "G/layer28": {
+      "class": "P-STRONG",
+      "cross": {
+        "class": "P-STRONG",
+        "direction_means": {
+          "ne_x_to_y": 1.0500038257059392,
+          "ne_y_to_x": 1.1509045759519823
+        },
+        "disrupted_count": 12,
+        "disrupted_fraction": 0.05172413793103448,
+        "disruption_reasons": {
+          "candidate_mass": 12,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.9525862068965517,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 19.250014275218625,
+            "raw_change_y_to_x": -16.49999998509884,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 26.250002361831548,
+            "raw_change_y_to_x": -8.249999727879192,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 21.00008809362125,
+            "raw_change_y_to_x": -18.500000029802322,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 15.500001103151305,
+            "raw_change_y_to_x": -14.125005960067021,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.9958270889206299,
+          "B": 0.9567097458485089,
+          "C": 1.5592442661670087,
+          "D": 0.8703413321475368,
+          "E": 1.1561436345746294,
+          "F": 1.042731200007933
+        },
+        "interval": [
+          0.9095589348452043,
+          1.415170862118957
+        ],
+        "mean": 1.1004542008289608,
+        "mean_digit_margin_change": 1.6233836206896552,
+        "median_log_mass_change": -1.1917221764967813e-07,
+        "median_stem_log_likelihood_change": null,
+        "source_role_means": {
+          "tool": 0.9171938605504363,
+          "user": 1.2166051207238002
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.8935929731308755,
+        "ne_y_to_x": 0.8259725324436384
+      },
+      "disrupted_count": 11,
+      "disrupted_fraction": 0.04741379310344827,
+      "disruption_reasons": {
+        "candidate_mass": 11,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.9525862068965517,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.25000008940696716,
+          "raw_change_y_to_x": 1.2500000149011612,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 6.750000141561031,
+          "raw_change_y_to_x": 3.750000264670234,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 1.0000000596046448,
+          "raw_change_y_to_x": 2.2499999701976776,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -8.750000074040145,
+          "raw_change_y_to_x": 15.499999592469976,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.8446900977181582,
+        "B": 0.8611405193389388,
+        "C": 0.8834201362673059,
+        "D": 0.8245764538527803,
+        "E": 0.8685295061946262,
+        "F": 0.8800102132917896
+      },
+      "interval": [
+        0.8296499425554444,
+        0.8935113197290622
+      ],
+      "layer": 28,
+      "mean": 0.859782752787257,
+      "mean_digit_margin_change": 0.890625,
+      "median_log_mass_change": -1.6952876384578328e-07,
+      "median_stem_log_likelihood_change": null,
+      "position": "G",
+      "source_role_means": {
+        "tool": 0.833918287348396,
+        "user": 0.8761757238400562
+      }
+    },
+    "G/layer32": {
+      "class": "P-STRONG",
+      "cross": {
+        "class": "P-STRONG",
+        "direction_means": {
+          "ne_x_to_y": 1.1126714633795514,
+          "ne_y_to_x": 1.3154989114978028
+        },
+        "disrupted_count": 12,
+        "disrupted_fraction": 0.05172413793103448,
+        "disruption_reasons": {
+          "candidate_mass": 12,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.9956896551724138,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 20.50000008940696,
+            "raw_change_y_to_x": -17.37499998509884,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 30.62500021606683,
+            "raw_change_y_to_x": -3.4999993703913788,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 20.87500607966524,
+            "raw_change_y_to_x": -18.250000029802322,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 17.50000289128831,
+            "raw_change_y_to_x": -14.25000047644788,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 1.100391559387613,
+          "B": 1.0560283239914154,
+          "C": 1.7360258939644377,
+          "D": 0.937166457799701,
+          "E": 1.2906466603512752,
+          "F": 1.1386214334840246
+        },
+        "interval": [
+          1.0040084337804545,
+          1.5599318163503961
+        ],
+        "mean": 1.214085187438677,
+        "mean_digit_margin_change": 0.18211206896551724,
+        "median_log_mass_change": -2.384407986610879e-07,
+        "median_stem_log_likelihood_change": null,
+        "source_role_means": {
+          "tool": 1.001852103918024,
+          "user": 1.348599113613739
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.9643023987813341,
+        "ne_y_to_x": 0.9662040048987526
+      },
+      "disrupted_count": 12,
+      "disrupted_fraction": 0.05172413793103448,
+      "disruption_reasons": {
+        "candidate_mass": 12,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.9956896551724138,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -1.0000001043081284,
+          "raw_change_y_to_x": 1.0000000149011612,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": -4.499999722582288,
+          "raw_change_y_to_x": 4.000000221829396,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": -1.0000000298023224,
+          "raw_change_y_to_x": 1.2499999701976776,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -14.499999824096449,
+          "raw_change_y_to_x": 16.499999848583684,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.9728648212634751,
+        "B": 0.9677029236328496,
+        "C": 0.9514487567027508,
+        "D": 0.9297453032072029,
+        "E": 0.9923702063831651,
+        "F": 0.9845199951304304
+      },
+      "interval": [
+        0.9534401050082997,
+        0.9763319007604848
+      ],
+      "layer": 32,
+      "mean": 0.9652532018400434,
+      "mean_digit_margin_change": -0.2338362068965517,
+      "median_log_mass_change": -2.3568224552272345e-07,
+      "median_stem_log_likelihood_change": null,
+      "position": "G",
+      "source_role_means": {
+        "tool": 0.9538269633411376,
+        "user": 0.9724951839872371
+      }
+    },
+    "G/layer35": {
+      "class": "P-STRONG",
+      "cross": {
+        "class": "P-STRONG",
+        "direction_means": {
+          "ne_x_to_y": 1.1868461850065115,
+          "ne_y_to_x": 1.3291121503681154
+        },
+        "disrupted_count": 14,
+        "disrupted_fraction": 0.0603448275862069,
+        "disruption_reasons": {
+          "candidate_mass": 14,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 1.0,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 23.749999970197678,
+            "raw_change_y_to_x": -20.74999998509884,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 29.875000096857548,
+            "raw_change_y_to_x": -2.7499997285049176,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 27.625,
+            "raw_change_y_to_x": -19.250000029802322,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 22.000000030267984,
+            "raw_change_y_to_x": -14.750000238029315,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 1.106756925512546,
+          "B": 1.0657978135281796,
+          "C": 1.9116419486855292,
+          "D": 0.9566302850915293,
+          "E": 1.299145869982866,
+          "F": 1.1716861608417122
+        },
+        "interval": [
+          1.0189324995735056,
+          1.6604195415606784
+        ],
+        "mean": 1.2579791676873133,
+        "mean_digit_margin_change": 0.46012931034482757,
+        "median_log_mass_change": -8.106306277455561e-06,
+        "median_stem_log_likelihood_change": null,
+        "source_role_means": {
+          "tool": 0.9835420611109862,
+          "user": 1.4319181788976618
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.9888280372481785,
+        "ne_y_to_x": 0.9888280372481785
+      },
+      "disrupted_count": 14,
+      "disrupted_fraction": 0.0603448275862069,
+      "disruption_reasons": {
+        "candidate_mass": 14,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 1.0,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.7500000447034836,
+          "raw_change_y_to_x": 0.7500000447034836,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": -5.0000000560539775,
+          "raw_change_y_to_x": 5.0000000560539775,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": -1.2499999701976776,
+          "raw_change_y_to_x": 1.2499999701976776,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -17.2499997317027,
+          "raw_change_y_to_x": 17.2499997317027,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.9931339390415321,
+        "B": 0.9980520563694539,
+        "C": 0.993516764245069,
+        "D": 0.9529649155418023,
+        "E": 0.9977715698218521,
+        "F": 0.999952608713981
+      },
+      "interval": [
+        0.9795652663429683,
+        0.9955949758015605
+      ],
+      "layer": 35,
+      "mean": 0.9888280372481785,
+      "mean_digit_margin_change": 0.0,
+      "median_log_mass_change": -8.29350117205803e-06,
+      "median_stem_log_likelihood_change": null,
+      "position": "G",
+      "source_role_means": {
+        "tool": 0.9733622720940864,
+        "user": 0.9986302827683778
+      }
+    },
+    "G/layer4": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": -0.0015372041547082138,
+          "ne_y_to_x": 0.0008267362735230506
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.06896551724137931,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -2.9802322387695312e-08,
+            "raw_change_y_to_x": 0.4999999552965164,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 0.2500000670552254,
+            "raw_change_y_to_x": -2.5000002057495294,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": -0.75,
+            "raw_change_y_to_x": 0.4999999701976776,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -0.4999997776467353,
+            "raw_change_y_to_x": 0.25000023816755856,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.0007891891084624888,
+          "B": -0.007625832548228262,
+          "C": -0.008383432590466349,
+          "D": -7.960042373469982e-05,
+          "E": 0.010698941636407274,
+          "F": 0.005513419228372539
+        },
+        "interval": [
+          -0.004450633245490803,
+          0.003779468546321267
+        ],
+        "mean": -0.0003552339405925821,
+        "mean_digit_margin_change": -0.0005387931034482759,
+        "median_log_mass_change": 4.4408920982098205e-16,
+        "median_stem_log_likelihood_change": null,
+        "source_role_means": {
+          "tool": -0.0008891367230843543,
+          "user": -1.684485309779679e-05
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.002729106677349045,
+        "ne_y_to_x": -0.0033679332570061217
+      },
+      "disrupted_count": 1,
+      "disrupted_fraction": 0.004310344827586207,
+      "disruption_reasons": {
+        "candidate_mass": 1,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.05172413793103448,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": 0.24999991059303284,
+          "raw_change_y_to_x": 0.4999999552965164,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 0.2500000670552254,
+          "raw_change_y_to_x": -0.7499998812272679,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 1.2499999701976776,
+          "raw_change_y_to_x": 0.2499999701976776,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -0.2500004766825441,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.0014848079350294663,
+        "B": -0.004700410349715329,
+        "C": -0.00517530077273203,
+        "D": 0.0038302548951994002,
+        "E": 0.002368083147480297,
+        "F": 0.0013382024182538401
+      },
+      "interval": [
+        -0.003243918260821969,
+        0.0023354789961314852
+      ],
+      "layer": 4,
+      "mean": -0.00031941328982853823,
+      "mean_digit_margin_change": 0.040948275862068964,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": null,
+      "position": "G",
+      "source_role_means": {
+        "tool": 0.00298468067231054,
+        "user": -0.0024135573503392214
+      }
+    },
+    "G/layer8": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": 0.00013601516252431168,
+          "ne_y_to_x": -0.0008775455560527884
+        },
+        "disrupted_count": 1,
+        "disrupted_fraction": 0.004310344827586207,
+        "disruption_reasons": {
+          "candidate_mass": 1,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.06465517241379311,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 1.2499999701976776,
+            "raw_change_y_to_x": 1.2500000447034836,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": -0.49999989569187164,
+            "raw_change_y_to_x": -1.750000090120011,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -0.7499998831190169,
+            "raw_change_y_to_x": -1.000000238083885,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.0033506857577477534,
+          "B": -0.0032143584412929757,
+          "C": -0.008298239385026116,
+          "D": -0.004242637951917935,
+          "E": 0.006715137642089083,
+          "F": 0.005982647365865586
+        },
+        "interval": [
+          -0.004920290057814869,
+          0.0032701403352147556
+        ],
+        "mean": -0.0003707651967642385,
+        "mean_digit_margin_change": 0.03125,
+        "median_log_mass_change": 1.2290168882594053e-13,
+        "median_stem_log_likelihood_change": null,
+        "source_role_means": {
+          "tool": 0.002370384153202702,
+          "user": -0.00210811337632075
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.006936810573259898,
+        "ne_y_to_x": -0.005791734200884634
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.05172413793103448,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": 0.2500000298023224,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 1.5000000968575478,
+          "raw_change_y_to_x": -1.4999994970712578,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": -0.25,
+          "raw_change_y_to_x": 0.9999999701976776,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -0.4999997776467353,
+          "raw_change_y_to_x": 0.49999976092294673,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": -0.003123456296501351,
+        "B": -0.00308904947484858,
+        "C": 0.004394500343663526,
+        "D": -0.0021858279281206754,
+        "E": 0.0001524064169078753,
+        "F": 0.008902645646296886
+      },
+      "interval": [
+        -0.0025165310104172628,
+        0.0036879021853777304
+      ],
+      "layer": 8,
+      "mean": 0.0005725381861876319,
+      "mean_digit_margin_change": 0.0738146551724138,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": null,
+      "position": "G",
+      "source_role_means": {
+        "tool": -0.002185079582446766,
+        "user": 0.0023203240958854896
+      }
+    },
+    "S/layer0": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": 0.0020751289371750414,
+          "ne_y_to_x": -0.001455661665523529
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.06465517241379311,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -0.7500000298023224,
+            "raw_change_y_to_x": 0.9999999552965164,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": -0.24999989941716194,
+            "raw_change_y_to_x": -2.5000002057495294,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 2.0000000074505806,
+            "raw_change_y_to_x": -0.7500000149011612,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -0.4999997776467353,
+            "raw_change_y_to_x": -1.000000357292265,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.004897213401843657,
+          "B": -0.00807337293152704,
+          "C": -0.0018317170927834468,
+          "D": -0.0017396607685859745,
+          "E": 0.0077474568002414805,
+          "F": 0.0025831698248004777
+        },
+        "interval": [
+          -0.0029718130543173716,
+          0.0035480819053831073
+        ],
+        "mean": 0.0003097336358257562,
+        "mean_digit_margin_change": 0.017780172413793104,
+        "median_log_mass_change": 6.7723604497997084e-15,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": 0.0008491372078839802,
+          "user": -3.2141867591428024e-05
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": -0.0019500292730502652,
+        "ne_y_to_x": 0.004956334848724946
+      },
+      "disrupted_count": 1,
+      "disrupted_fraction": 0.004310344827586207,
+      "disruption_reasons": {
+        "candidate_mass": 1,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.04310344827586207,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -2.9802322387695312e-08,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": -1.2499997913837433,
+          "raw_change_y_to_x": 1.5000000662985258,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 0.7500000298023224,
+          "raw_change_y_to_x": -0.5000000596046448,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.24999984970781952,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.005189994011374615,
+        "B": -0.007470678969224031,
+        "C": 0.01649613193373784,
+        "D": -0.002088068244309381,
+        "E": 9.30709162271648e-05,
+        "F": -0.004930161293690763
+      },
+      "interval": [
+        -0.0046696691188982545,
+        0.009366306535531369
+      ],
+      "layer": 0,
+      "mean": 0.0015031527878373399,
+      "mean_digit_margin_change": 0.028556034482758622,
+      "median_log_mass_change": 2.1505019976832222e-13,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "S",
+      "source_role_means": {
+        "tool": 0.003156903436321481,
+        "user": 0.0004550009683755602
+      }
+    },
+    "S/layer12": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": -0.003692991303214699,
+          "ne_y_to_x": -0.004610487731084301
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.06896551724137931,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -1.2499999552965164,
+            "raw_change_y_to_x": 2.249999985098839,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": -0.24999989941716194,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.5000000894069672,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -0.4999997776467353,
+            "raw_change_y_to_x": -0.2500004766825441,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": -0.0033179833709681126,
+          "B": -0.002350828418227702,
+          "C": -0.02178992636491514,
+          "D": -0.0005086663988782891,
+          "E": 0.005228110399980849,
+          "F": 0.0004863171658706585
+        },
+        "interval": [
+          -0.01434356945420086,
+          0.0026539356251903765
+        ],
+        "mean": -0.004151739517149499,
+        "mean_digit_margin_change": 0.011314655172413793,
+        "median_log_mass_change": 0.0,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": -0.00340626451770642,
+          "user": -0.004624223671726098
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.00389767415255306,
+        "ne_y_to_x": 0.001665967058045793
+      },
+      "disrupted_count": 1,
+      "disrupted_fraction": 0.004310344827586207,
+      "disruption_reasons": {
+        "candidate_mass": 1,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.04741379310344827,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.25000008940696716,
+          "raw_change_y_to_x": -0.2500000596046448,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": -0.49999989569187164,
+          "raw_change_y_to_x": 0.250000020081643,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 1.2499999701976776,
+          "raw_change_y_to_x": -1.000000074505806,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -0.4999997776467353,
+          "raw_change_y_to_x": 1.4999996350925358,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.0035270679402842967,
+        "B": -0.004138567670476794,
+        "C": 0.014011218553166126,
+        "D": -0.0016494246796449306,
+        "E": 0.00017781758755300523,
+        "F": 0.0046632462430947555
+      },
+      "interval": [
+        -0.0014113561844020578,
+        0.008971019927403455
+      ],
+      "layer": 12,
+      "mean": 0.0027818206052994264,
+      "mean_digit_margin_change": -0.014008620689655173,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "S",
+      "source_role_means": {
+        "tool": -0.00015573498863162013,
+        "user": 0.004643651615537413
+      }
+    },
+    "S/layer16": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": 0.006713259577233498,
+          "ne_y_to_x": -0.005553110008691759
+        },
+        "disrupted_count": 1,
+        "disrupted_fraction": 0.004310344827586207,
+        "disruption_reasons": {
+          "candidate_mass": 1,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.06896551724137931,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -2.9802322387695312e-08,
+            "raw_change_y_to_x": 2.5000000447034836,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 1.000000037252903,
+            "raw_change_y_to_x": 0.9999999774736352,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 1.500000074505806,
+            "raw_change_y_to_x": -0.5000000596046448,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 1.000000003783498,
+            "raw_change_y_to_x": 2.7499997882514435,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.0028418755381989153,
+          "B": -0.005547816460862636,
+          "C": 0.003975877446843977,
+          "D": -0.008680930938364204,
+          "E": 7.358262481347251e-05,
+          "F": 0.013484750939154749
+        },
+        "interval": [
+          -0.004230376228213312,
+          0.00496914991270187
+        ],
+        "mean": 0.0005800747842708695,
+        "mean_digit_margin_change": 0.12284482758620689,
+        "median_log_mass_change": 0.0,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": -0.005016206611112644,
+          "user": 0.004127013696837886
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.00824148512880461,
+        "ne_y_to_x": 0.0056969000268753105
+      },
+      "disrupted_count": 1,
+      "disrupted_fraction": 0.004310344827586207,
+      "disruption_reasons": {
+        "candidate_mass": 1,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.05172413793103448,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -2.9802322387695312e-08,
+          "raw_change_y_to_x": 0.9999999850988388,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": -0.24999989941716194,
+          "raw_change_y_to_x": -0.5000001417647582,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 1.0000000149011612,
+          "raw_change_y_to_x": -0.4999999701976776,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -0.24999979429412633,
+          "raw_change_y_to_x": -1.0000004765006452,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.002771468574246517,
+        "B": 0.010635197225724763,
+        "C": 0.029215339474558333,
+        "D": -0.002262551212929702,
+        "E": -0.009991444887091715,
+        "F": 0.008827045566550316
+      },
+      "interval": [
+        -0.0014783693372948563,
+        0.018208782586807092
+      ],
+      "layer": 16,
+      "mean": 0.0069691925778399616,
+      "mean_digit_margin_change": 0.06088362068965517,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "S",
+      "source_role_means": {
+        "tool": 0.0018993736834319631,
+        "user": 0.010182458074295733
+      }
+    },
+    "S/layer20": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": -0.03115992915937441,
+          "ne_y_to_x": 0.027970324762463143
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.07327586206896551,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 1.4999999403953552,
+            "raw_change_y_to_x": -0.49999991059303284,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 7.0000001937150955,
+            "raw_change_y_to_x": 6.500000152911525,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": -0.25,
+            "raw_change_y_to_x": -0.7500000596046448,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 0.5000001630978659,
+            "raw_change_y_to_x": -2.0000002380365913,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.029693799137942033,
+          "B": 0.0212050902440497,
+          "C": -0.09948001590477579,
+          "D": -0.0036200067231732637,
+          "E": 0.00499863787955363,
+          "F": 0.05295781585794085
+        },
+        "interval": [
+          -0.05970051228015679,
+          0.033613174173964214
+        ],
+        "mean": -0.001594802198455633,
+        "mean_digit_margin_change": 0.052262931034482756,
+        "median_log_mass_change": 2.688849142765076e-12,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": 0.003305299695819363,
+          "user": -0.004700500582151053
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.0038619250723790906,
+        "ne_y_to_x": 0.0061545348927663154
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.05603448275862069,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": 1.4999999403953552,
+          "raw_change_y_to_x": -1.2499998658895493,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": -0.24999989941716194,
+          "raw_change_y_to_x": 0.9999999774736352,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": -2.249999985098839,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -1.0000001601874828,
+          "raw_change_y_to_x": -2.7500002380311344,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.0068034807619888685,
+        "B": -0.0013408506242748794,
+        "C": -0.03253237837792011,
+        "D": 0.010760152513537968,
+        "E": 0.022772040622530517,
+        "F": 0.03319519314427765
+      },
+      "interval": [
+        -0.018295283254218205,
+        0.022494245736160216
+      ],
+      "layer": 20,
+      "mean": 0.005008229982572703,
+      "mean_digit_margin_change": 0.27209051724137934,
+      "median_log_mass_change": 8.051004307595132e-12,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "S",
+      "source_role_means": {
+        "tool": 0.00579807080965153,
+        "user": 0.004507626641466405
+      }
+    },
+    "S/layer24": {
+      "class": "P-PARTIAL",
+      "cross": {
+        "class": "P-PARTIAL",
+        "direction_means": {
+          "ne_x_to_y": 0.07952766186465865,
+          "ne_y_to_x": -0.0068971801298936194
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.08189655172413793,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 5.249999780207872,
+            "raw_change_y_to_x": -1.5000000484287739,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 3.75000012665987,
+            "raw_change_y_to_x": -3.2499993704823282,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 8.499999649982783,
+            "raw_change_y_to_x": -1.5000001043081284,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 0.5000001630978659,
+            "raw_change_y_to_x": -2.9999997611931803,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.0326245964168255,
+          "B": 0.03364853700476859,
+          "C": 0.06735795468449782,
+          "D": 0.04311955683171282,
+          "E": -0.000990034233666308,
+          "F": 0.037148072898562784
+        },
+        "interval": [
+          0.015456944340319868,
+          0.0561767813566022
+        ],
+        "mean": 0.03631524086738252,
+        "mean_digit_margin_change": 0.8157327586206896,
+        "median_log_mass_change": 3.534572634470365e-11,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": 0.042709551597497245,
+          "user": 0.0322625087144929
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.07922632179319654,
+        "ne_y_to_x": 0.03385443850750271
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.05603448275862069,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -2.9802322387695312e-08,
+          "raw_change_y_to_x": 0.4999999552965164,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 0.5000000521540642,
+          "raw_change_y_to_x": 6.250000152911525,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 2.7500000968575478,
+          "raw_change_y_to_x": 2.9802322387695312e-08,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -3.749999966006726,
+          "raw_change_y_to_x": 5.749999621340976,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.07804003454314383,
+        "B": 0.029218438662065353,
+        "C": 0.09192092562759305,
+        "D": 0.04075754420267235,
+        "E": 0.03332139378392615,
+        "F": 0.06493879902067098
+      },
+      "interval": [
+        0.03577255760666378,
+        0.08439803461434532
+      ],
+      "layer": 24,
+      "mean": 0.05654038015034962,
+      "mean_digit_margin_change": 0.5441810346112169,
+      "median_log_mass_change": 2.1601609390061227e-12,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "S",
+      "source_role_means": {
+        "tool": 0.040523599490138326,
+        "user": 0.06669186085048354
+      }
+    },
+    "S/layer28": {
+      "class": "P-PARTIAL",
+      "cross": {
+        "class": "P-PARTIAL",
+        "direction_means": {
+          "ne_x_to_y": 0.007410856196763435,
+          "ne_y_to_x": 0.001250027579515339
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.06896551724137931,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 0.24999991059303284,
+            "raw_change_y_to_x": 0.4999999552965164,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 0.750000111758709,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 0.2500000596046448,
+            "raw_change_y_to_x": 0.2499999701976776,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 0.24999984970781952,
+            "raw_change_y_to_x": -2.3841130314394832e-07,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.004165204583443743,
+          "B": 0.0033336970745422427,
+          "C": -0.0007996426310642511,
+          "D": 0.003919933654509629,
+          "E": 0.01333161859396115,
+          "F": 0.002965263516297686
+        },
+        "interval": [
+          0.0008968301721130679,
+          0.007956324814914867
+        ],
+        "mean": 0.004330441888139387,
+        "mean_digit_margin_change": 0.09698275862068965,
+        "median_log_mass_change": 4.773959005888077e-15,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": 0.005359798180015364,
+          "user": 0.003678032970753204
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.008618865904890714,
+        "ne_y_to_x": 0.0006511379366950453
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.04741379310344827,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.25000008940696716,
+          "raw_change_y_to_x": 0.24999995529651642,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 0.5000000521540642,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 0.2500000596046448,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -0.24999979429412633,
+          "raw_change_y_to_x": 0.2499999997598934,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.006261822478630323,
+        "B": 0.004495333289068624,
+        "C": 0.002950622522652283,
+        "D": 0.0015179550395856935,
+        "E": 0.008085470163119586,
+        "F": 0.005010071091585134
+      },
+      "interval": [
+        0.002817333868147396,
+        0.006611147337842416
+      ],
+      "layer": 28,
+      "mean": 0.00463500192079288,
+      "mean_digit_margin_change": 0.10560344827586207,
+      "median_log_mass_change": 9.992007209735688e-16,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "S",
+      "source_role_means": {
+        "tool": 0.003558112324982894,
+        "user": 0.005317537580109068
+      }
+    },
+    "S/layer32": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": -0.0003950903721866642,
+          "ne_y_to_x": 0.0023781699059078846
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.06896551724137931,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -0.25000008940696716,
+            "raw_change_y_to_x": 1.4901161193847656e-08,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 0.2500000596046448,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 0.24999984970781952,
+            "raw_change_y_to_x": -1.1920565157197416e-07,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": -0.0002954150528839935,
+          "B": 0.0003341316198138741,
+          "C": 0.004944873450790023,
+          "D": 0.0008366119218266634,
+          "E": 0.001727225344985969,
+          "F": -0.002359655444715743
+        },
+        "interval": [
+          -0.0005481609470635149,
+          0.0030751744990403463
+        ],
+        "mean": 0.0009915397668606102,
+        "mean_digit_margin_change": -0.02209051724137931,
+        "median_log_mass_change": 0.0,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": 0.0006526828108862972,
+          "user": 0.0012063082600837663
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.0006299954752354298,
+        "ne_y_to_x": 0.000629091615978104
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.05172413793103448,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": 1.4901161193847656e-08,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": -0.24999989941716194,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": 0.2499999701976776,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -0.2500004766825441,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": -0.00026646036252797714,
+        "B": 2.4618096549201228e-05,
+        "C": 0.005181397948301035,
+        "D": -0.001030281133554425,
+        "E": 0.00045145542414832515,
+        "F": -0.0011556658352807382
+      },
+      "interval": [
+        -0.0008651892933995611,
+        0.002739749068573198
+      ],
+      "layer": 32,
+      "mean": 0.0006295435456067669,
+      "mean_digit_margin_change": -0.04525862068965517,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "S",
+      "source_role_means": {
+        "tool": -0.0010911389897271004,
+        "user": 0.0017201169834944294
+      }
+    },
+    "S/layer35": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": 0.0,
+          "ne_y_to_x": 0.0
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.07327586206896551,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.0,
+          "B": 0.0,
+          "C": 0.0,
+          "D": 0.0,
+          "E": 0.0,
+          "F": 0.0
+        },
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "mean_digit_margin_change": 0.0,
+        "median_log_mass_change": 0.0,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": 0.0,
+          "user": 0.0
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.0,
+        "ne_y_to_x": 0.0
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.05172413793103448,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.0,
+        "B": 0.0,
+        "C": 0.0,
+        "D": 0.0,
+        "E": 0.0,
+        "F": 0.0
+      },
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "layer": 35,
+      "mean": 0.0,
+      "mean_digit_margin_change": 0.0,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "S",
+      "source_role_means": {
+        "tool": 0.0,
+        "user": 0.0
+      }
+    },
+    "S/layer4": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": 0.006192453280374216,
+          "ne_y_to_x": 0.003040419071117076
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.06896551724137931,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 0.24999991059303284,
+            "raw_change_y_to_x": 1.2500000447034836,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": -0.7499998435378075,
+            "raw_change_y_to_x": -0.24999982060398906,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": -0.5,
+            "raw_change_y_to_x": 0.7499999701976776,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -0.7499998831190169,
+            "raw_change_y_to_x": -0.2500004766825441,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.004070619828975948,
+          "B": -0.004469486675683936,
+          "C": 0.015061001447532382,
+          "D": -0.003343581942576627,
+          "E": 0.014712864860734639,
+          "F": 0.002107028809779224
+        },
+        "interval": [
+          -0.0015472790757079843,
+          0.012114506813704
+        ],
+        "mean": 0.004616436175745645,
+        "mean_digit_margin_change": 0.03825431034482758,
+        "median_log_mass_change": 2.2204460492412254e-16,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": 9.848185613041062e-07,
+          "user": 0.007541722247200509
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": -0.004429331100777328,
+        "ne_y_to_x": -0.0021492454856388973
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.04741379310344827,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.25000008940696716,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 1.000000037252903,
+          "raw_change_y_to_x": -0.9999995101679815,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 0.9999999701976776,
+          "raw_change_y_to_x": -0.750000074505806,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -0.4999997776467353,
+          "raw_change_y_to_x": -0.2500004766825441,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": -0.002955225750110998,
+        "B": -0.00838085565311751,
+        "C": -0.003248218422865061,
+        "D": -0.0038516211895024974,
+        "E": 0.0007153933095650766,
+        "F": -0.0008804391997755353
+      },
+      "interval": [
+        -0.00690593783162807,
+        0.00010455992482986572
+      ],
+      "layer": 4,
+      "mean": -0.0032892882932081128,
+      "mean_digit_margin_change": 0.03394396551724138,
+      "median_log_mass_change": 2.2204460491339514e-15,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "S",
+      "source_role_means": {
+        "tool": -0.001887658372047889,
+        "user": -0.004177645285492761
+      }
+    },
+    "S/layer8": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": -0.0032158983229245864,
+          "ne_y_to_x": -0.001880642590127444
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.06465517241379311,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -0.9999999701976776,
+            "raw_change_y_to_x": 0.5000000149011612,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": -1.2499997913837433,
+            "raw_change_y_to_x": 0.5000003334716894,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": -0.75,
+            "raw_change_y_to_x": 2.9802322387695312e-08,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -0.7499998831190169,
+            "raw_change_y_to_x": -0.7500004765342965,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": -0.004118524585425101,
+          "B": -0.0059123998375167144,
+          "C": -0.004636225883328048,
+          "D": -0.0003313685461700794,
+          "E": -0.0017393094065542801,
+          "F": 0.002889199945662682
+        },
+        "interval": [
+          -0.005502628038412953,
+          0.00021732929912214117
+        ],
+        "mean": -0.0025482704565260154,
+        "mean_digit_margin_change": 0.03556034482758621,
+        "median_log_mass_change": 5.551115114595483e-16,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": -0.0031751056905730195,
+          "user": -0.00215098051945397
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.0033443884626330493,
+        "ne_y_to_x": -0.0015873995257259085
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.04741379310344827,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": 0.24999994039535522,
+          "raw_change_y_to_x": 0.9999999552965164,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": -0.7499998435378075,
+          "raw_change_y_to_x": 0.9999999774736352,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": -0.25,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -0.4999997776467353,
+          "raw_change_y_to_x": 0.7500002370870789,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": -0.0003041681127473882,
+        "B": 0.0019369907968881579,
+        "C": 0.012862289810267208,
+        "D": -0.0009659971760112912,
+        "E": -0.003772578666855644,
+        "F": -0.007223113289442087
+      },
+      "interval": [
+        -0.003641733256517569,
+        0.006966967142588991
+      ],
+      "layer": 8,
+      "mean": 0.0008784944684535702,
+      "mean_digit_margin_change": 0.02101293103448276,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "S",
+      "source_role_means": {
+        "tool": -0.001013604136423303,
+        "user": 0.002077711894079757
+      }
+    },
+    "T/layer0": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": 0.00397927641762012,
+          "ne_y_to_x": 0.0017947656172486873
+        },
+        "disrupted_count": 29,
+        "disrupted_fraction": 0.125,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 29
+        },
+        "donor_sign_agreement_rate": 0.06896551724137931,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 0.24999991059303284,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": -0.24999989941716194,
+            "raw_change_y_to_x": 0.7500001831795089,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 1.5000001043081284,
+            "raw_change_y_to_x": -0.2500000298023224,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -0.24999979429412633,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.00361968360831478,
+          "B": -0.006585471253466009,
+          "C": 0.01897474589402523,
+          "D": -0.002127395652428732,
+          "E": 0.0039453705009635884,
+          "F": -0.0016339223477761426
+        },
+        "interval": [
+          -0.0027557298974083414,
+          0.010334487742836473
+        ],
+        "mean": 0.002887021017434404,
+        "mean_digit_margin_change": 0.07974137931034483,
+        "median_log_mass_change": 2.8865798512041028e-15,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": 0.0014604896363427818,
+          "user": 0.003791160625168531
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.005676589992442888,
+        "ne_y_to_x": 0.005464745650802006
+      },
+      "disrupted_count": 30,
+      "disrupted_fraction": 0.12931034482758622,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 30
+      },
+      "donor_sign_agreement_rate": 0.04741379310344827,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": 0.24999994039535522,
+          "raw_change_y_to_x": 0.4999999552965164,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": -0.24999989941716194,
+          "raw_change_y_to_x": 0.250000020081643,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": -0.5,
+          "raw_change_y_to_x": -0.5000000596046448,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.7500001831795089,
+          "raw_change_y_to_x": 1.249999995725375,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.004809331529452672,
+        "B": -0.0029327848726849607,
+        "C": 0.026193364897584302,
+        "D": -0.0042919621167785155,
+        "E": 0.009661967662307758,
+        "F": -0.0016585949618565664
+      },
+      "interval": [
+        -0.0016096322376393517,
+        0.01610679895169823
+      ],
+      "layer": 0,
+      "mean": 0.005570667821622448,
+      "mean_digit_margin_change": 0.05549568965517242,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": 2.3841835172788706e-07,
+      "position": "T",
+      "source_role_means": {
+        "tool": 0.0033707447931401076,
+        "user": 0.006964985234040832
+      }
+    },
+    "T/layer12": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": -0.005928257104592926,
+          "ne_y_to_x": 0.0050219006336534875
+        },
+        "disrupted_count": 28,
+        "disrupted_fraction": 0.1206896551724138,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 28
+        },
+        "donor_sign_agreement_rate": 0.06465517241379311,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 0.7499999701976776,
+            "raw_change_y_to_x": 0.9999999850988388,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 0.750000111758709,
+            "raw_change_y_to_x": 0.5000003334716894,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": -0.25,
+            "raw_change_y_to_x": -1.2499999701976776,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": 0.7499995218167896,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": -0.0011952981625666487,
+          "B": -0.004823451025783806,
+          "C": -0.008291982795368403,
+          "D": -0.0016698344699223172,
+          "E": 0.011842805852407864,
+          "F": 0.004186723889759167
+        },
+        "interval": [
+          -0.005908751503502528,
+          0.004945317526580636
+        ],
+        "mean": -0.0004531782354697196,
+        "mean_digit_margin_change": -0.03825431034482758,
+        "median_log_mass_change": 6.661338073304684e-16,
+        "median_stem_log_likelihood_change": -5.9604531088552903e-08,
+        "source_role_means": {
+          "tool": -0.004662107071790772,
+          "user": 0.0022144527171281303
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": -0.0013322200251680585,
+        "ne_y_to_x": 0.004521100258349239
+      },
+      "disrupted_count": 36,
+      "disrupted_fraction": 0.15517241379310345,
+      "disruption_reasons": {
+        "candidate_mass": 1,
+        "stem_likelihood": 35
+      },
+      "donor_sign_agreement_rate": 0.04741379310344827,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -2.9802322387695312e-08,
+          "raw_change_y_to_x": 1.5000000149011612,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 1.5000000968575478,
+          "raw_change_y_to_x": 0.9999999774736352,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -2.000000022351742,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.5000001630978659,
+          "raw_change_y_to_x": 2.249999608418875,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.0005171479452390084,
+        "B": -0.0007614355890367626,
+        "C": -0.0032357401228517535,
+        "D": 0.001153661345354533,
+        "E": 0.01349406524539929,
+        "F": -0.0004633510471806759
+      },
+      "interval": [
+        -0.0032938622096557887,
+        0.007675369852699372
+      ],
+      "layer": 12,
+      "mean": 0.0015944401165905898,
+      "mean_digit_margin_change": 0.015625,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": -3.5762627703661565e-07,
+      "position": "T",
+      "source_role_means": {
+        "tool": -3.5626982597326754e-05,
+        "user": 0.0026275812357941988
+      }
+    },
+    "T/layer16": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": 0.005443682503137479,
+          "ne_y_to_x": 1.03596999471085e-05
+        },
+        "disrupted_count": 24,
+        "disrupted_fraction": 0.10344827586206896,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 24
+        },
+        "donor_sign_agreement_rate": 0.07327586206896551,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -0.25000008940696716,
+            "raw_change_y_to_x": -0.24999992549419403,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": 0.250000020081643,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 1.2500000447034836,
+            "raw_change_y_to_x": 0.4999999701976776,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 0.24999984970781952,
+            "raw_change_y_to_x": -1.500000595677193,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": -0.010951074219860418,
+          "B": -0.0001971120885920167,
+          "C": 0.0213273554712631,
+          "D": -0.0056829923123809375,
+          "E": 0.007416041379170146,
+          "F": 0.004486995160161107
+        },
+        "interval": [
+          -0.0029120093528610825,
+          0.011054188291953138
+        ],
+        "mean": 0.0027270211015422933,
+        "mean_digit_margin_change": -0.010775862068965518,
+        "median_log_mass_change": 0.0,
+        "median_stem_log_likelihood_change": 9.536709058011184e-07,
+        "source_role_means": {
+          "tool": -0.003601494035426763,
+          "user": 0.006738051822156484
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.0007578416056099773,
+        "ne_y_to_x": 4.426764164332482e-05
+      },
+      "disrupted_count": 26,
+      "disrupted_fraction": 0.11206896551724138,
+      "disruption_reasons": {
+        "candidate_mass": 1,
+        "stem_likelihood": 25
+      },
+      "donor_sign_agreement_rate": 0.04741379310344827,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.7500000447034836,
+          "raw_change_y_to_x": -0.7499998658895493,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": -0.7499998435378075,
+          "raw_change_y_to_x": 0.7500001831795089,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": -0.25,
+          "raw_change_y_to_x": -0.25000008940696716,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.7500001831795089,
+          "raw_change_y_to_x": -1.500000595677193,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.00499129855432438,
+        "B": 0.0005419836794120827,
+        "C": -0.0014602655455576367,
+        "D": -0.0005984147751853018,
+        "E": 0.001594345412323959,
+        "F": -0.0031718523421790427
+      },
+      "interval": [
+        -0.0024522549198563582,
+        0.003428418797117684
+      ],
+      "layer": 16,
+      "mean": 0.00040105462362665094,
+      "mean_digit_margin_change": -0.007543103448275862,
+      "median_log_mass_change": -7.77156117004965e-16,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "T",
+      "source_role_means": {
+        "tool": 0.001020757969338858,
+        "user": 8.284897471026698e-06
+      }
+    },
+    "T/layer20": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": 0.001879170736771623,
+          "ne_y_to_x": 0.0007074408894212215
+        },
+        "disrupted_count": 8,
+        "disrupted_fraction": 0.034482758620689655,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 8
+        },
+        "donor_sign_agreement_rate": 0.07327586206896551,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": 1.4901161193847656e-08,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.5000001417647582,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 0.2500000596046448,
+            "raw_change_y_to_x": 0.7499999701976776,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.25000035747689253,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": -0.002449722553582922,
+          "B": -0.00021242177168507323,
+          "C": 0.00764110676871948,
+          "D": -0.002783297634521154,
+          "E": -0.0006747102532223681,
+          "F": 0.006926642356346662
+        },
+        "interval": [
+          -0.001361962531704372,
+          0.004210438017083963
+        ],
+        "mean": 0.0012933058130964222,
+        "mean_digit_margin_change": -0.025323275862068964,
+        "median_log_mass_change": 0.0,
+        "median_stem_log_likelihood_change": 2.3841812435421161e-07,
+        "source_role_means": {
+          "tool": -0.0027931286610549254,
+          "user": 0.003883299493896572
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": -0.0014028373349216656,
+        "ne_y_to_x": -0.0002942232809891769
+      },
+      "disrupted_count": 15,
+      "disrupted_fraction": 0.06465517241379311,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 15
+      },
+      "donor_sign_agreement_rate": 0.05172413793103448,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.7500000447034836,
+          "raw_change_y_to_x": -0.49999991059303284,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 0.5000000521540642,
+          "raw_change_y_to_x": -0.9999995101679815,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 0.5000000596046448,
+          "raw_change_y_to_x": 0.7499999701976776,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -0.24999979429412633,
+          "raw_change_y_to_x": -1.1920565157197416e-07,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": -0.00011949713870818205,
+        "B": -0.003952528801830236,
+        "C": 0.004657919954909979,
+        "D": -0.0017665031578744273,
+        "E": -0.003335315273482428,
+        "F": -0.0009679405676979742
+      },
+      "interval": [
+        -0.0032265194382434803,
+        0.0018568605673990445
+      ],
+      "layer": 20,
+      "mean": -0.0008485303079554213,
+      "mean_digit_margin_change": -0.04202586206896552,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": 2.3841766960686073e-07,
+      "position": "T",
+      "source_role_means": {
+        "tool": -0.0001533183679483533,
+        "user": -0.001289157593875394
+      }
+    },
+    "T/layer24": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": 0.0011009128078787798,
+          "ne_y_to_x": 0.0029739212649406814
+        },
+        "disrupted_count": 8,
+        "disrupted_fraction": 0.034482758620689655,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 8
+        },
+        "donor_sign_agreement_rate": 0.07327586206896551,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -0.25000008940696716,
+            "raw_change_y_to_x": 1.4901161193847656e-08,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": 0.5000003334716894,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": 0.2499999701976776,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -0.4999997776467353,
+            "raw_change_y_to_x": 0.250000118961907,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.0022608696125867517,
+          "B": 0.002703301749563873,
+          "C": -0.001101183648698743,
+          "D": -0.002933498037801182,
+          "E": 0.008636815261216057,
+          "F": 0.003792861869235037
+        },
+        "interval": [
+          -0.0010470371141486597,
+          0.005245386950005711
+        ],
+        "mean": 0.0020374170364097304,
+        "mean_digit_margin_change": 0.003771551724137931,
+        "median_log_mass_change": 0.0,
+        "median_stem_log_likelihood_change": 2.3841721485950984e-07,
+        "source_role_means": {
+          "tool": -0.0033937765403291497,
+          "user": 0.005479722824483669
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.00020077097321791095,
+        "ne_y_to_x": -0.0015881861664267592
+      },
+      "disrupted_count": 8,
+      "disrupted_fraction": 0.034482758620689655,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 8
+      },
+      "donor_sign_agreement_rate": 0.05172413793103448,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.2500000298023224,
+          "raw_change_y_to_x": 1.4901161193847656e-08,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": 0.250000020081643,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 0.2500000596046448,
+          "raw_change_y_to_x": 0.2499999701976776,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": 0.25000023816755856,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.0008810427428367533,
+        "B": -0.0015322712649366102,
+        "C": -0.004524905958839522,
+        "D": -0.0004434319114183344,
+        "E": 0.003095595029140063,
+        "F": -0.001108892916231496
+      },
+      "interval": [
+        -0.0029196910475744013,
+        0.001147960290192922
+      ],
+      "layer": 24,
+      "mean": -0.0006937075966044241,
+      "mean_digit_margin_change": 0.01939655172413793,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "T",
+      "source_role_means": {
+        "tool": -0.0004965459041367534,
+        "user": -0.0008186692326754831
+      }
+    },
+    "T/layer28": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": -0.0008819002235651875,
+          "ne_y_to_x": 0.0005950681523644748
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.07327586206896551,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -0.25000008940696716,
+            "raw_change_y_to_x": 1.4901161193847656e-08,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": -0.25,
+            "raw_change_y_to_x": 0.2499999701976776,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -0.24999979429412633,
+            "raw_change_y_to_x": 0.25000023816755856,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.0004456466567653433,
+          "B": 0.0018222187347874132,
+          "C": -0.010273665113027495,
+          "D": -0.0047419674831409245,
+          "E": 0.0076451849290854225,
+          "F": 0.006822325101085898
+        },
+        "interval": [
+          -0.006501015973610135,
+          0.004575486735095807
+        ],
+        "mean": -0.0001434160356003564,
+        "mean_digit_margin_change": 0.014008620689655173,
+        "median_log_mass_change": 0.0,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": -0.005591408581201425,
+          "user": 0.0033095369862594748
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.0005769193041609101,
+        "ne_y_to_x": 0.0022096139428555094
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.05172413793103448,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.25000008940696716,
+          "raw_change_y_to_x": 1.4901161193847656e-08,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": -0.24999989941716194,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 2.9802322387695312e-08,
+          "raw_change_y_to_x": -8.940696716308594e-08,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": 0.250000118961907,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": -0.0005974425333652242,
+        "B": -0.0010999360101010163,
+        "C": 0.004665339421357044,
+        "D": -0.00018202323901046687,
+        "E": 0.006548298810011805,
+        "F": -0.0009709129026326819
+      },
+      "interval": [
+        -0.0007669671853518716,
+        0.0042476724301696925
+      ],
+      "layer": 28,
+      "mean": 0.00139326662350821,
+      "mean_digit_margin_change": 0.01293103448275862,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "T",
+      "source_role_means": {
+        "tool": -0.0008956115423512221,
+        "user": 0.0028439640525740467
+      }
+    },
+    "T/layer32": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": 0.0019709028574373647,
+          "ne_y_to_x": 0.001531671041235
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.07327586206896551,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -0.25000008940696716,
+            "raw_change_y_to_x": 1.4901161193847656e-08,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": -0.24999979429412633,
+            "raw_change_y_to_x": 0.25000023816755856,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.0024219658742976233,
+          "B": 0.0014764043942149623,
+          "C": -0.004998095664862666,
+          "D": -0.0036753127690837273,
+          "E": 0.010459539270697461,
+          "F": 0.00711875211436042
+        },
+        "interval": [
+          -0.002662143222623081,
+          0.0057116280835700075
+        ],
+        "mean": 0.0017512869493361825,
+        "mean_digit_margin_change": 0.009698274834402677,
+        "median_log_mass_change": 0.0,
+        "median_stem_log_likelihood_change": 5.960600901744328e-08,
+        "source_role_means": {
+          "tool": -0.003983758624913603,
+          "user": 0.0053861749893536525
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.0010033608676598272,
+        "ne_y_to_x": 0.0005724609116251046
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.04741379310344827,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.25000008940696716,
+          "raw_change_y_to_x": 1.4901161193847656e-08,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": 0.250000020081643,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": 2.9802322387695312e-08,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -1.1920565157197416e-07,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.0014633937365080155,
+        "B": 0.0002929966006246811,
+        "C": 0.0009228404818204587,
+        "D": -0.00034735313259488825,
+        "E": 0.003332657894471527,
+        "F": -0.0010277231069732446
+      },
+      "interval": [
+        -0.00017779112853197467,
+        0.0018180186407654377
+      ],
+      "layer": 32,
+      "mean": 0.0007879108896424659,
+      "mean_digit_margin_change": 0.015625,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "T",
+      "source_role_means": {
+        "tool": -0.00031521438778996536,
+        "user": 0.0014870747978742887
+      }
+    },
+    "T/layer35": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": 0.0,
+          "ne_y_to_x": 0.0
+        },
+        "disrupted_count": 0,
+        "disrupted_fraction": 0.0,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 0
+        },
+        "donor_sign_agreement_rate": 0.07327586206896551,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": -0.0,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.0,
+          "B": 0.0,
+          "C": 0.0,
+          "D": 0.0,
+          "E": 0.0,
+          "F": 0.0
+        },
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "mean_digit_margin_change": 0.0,
+        "median_log_mass_change": 0.0,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": 0.0,
+          "user": 0.0
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": 0.0,
+        "ne_y_to_x": 0.0
+      },
+      "disrupted_count": 0,
+      "disrupted_fraction": 0.0,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 0
+      },
+      "donor_sign_agreement_rate": 0.05172413793103448,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -0.0,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.0,
+        "B": 0.0,
+        "C": 0.0,
+        "D": 0.0,
+        "E": 0.0,
+        "F": 0.0
+      },
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "layer": 35,
+      "mean": 0.0,
+      "mean_digit_margin_change": 0.0,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "T",
+      "source_role_means": {
+        "tool": 0.0,
+        "user": 0.0
+      }
+    },
+    "T/layer4": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": 0.005487063896681978,
+          "ne_y_to_x": 0.006544121094346453
+        },
+        "disrupted_count": 41,
+        "disrupted_fraction": 0.17672413793103448,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 41
+        },
+        "donor_sign_agreement_rate": 0.06465517241379311,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -0.5000000149011612,
+            "raw_change_y_to_x": 1.7500000149011612,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": -2.999999886378646,
+            "raw_change_y_to_x": 0.9999999774736352,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 1.4999999701976776,
+            "raw_change_y_to_x": -0.5000000894069672,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 0.24999984970781952,
+            "raw_change_y_to_x": -0.7500002381184458,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": 0.007260689706465798,
+          "B": -0.009998239943260758,
+          "C": 0.04228195619751417,
+          "D": -0.003124647246238686,
+          "E": -0.0059091035594780435,
+          "F": 0.0027183564378993694
+        },
+        "interval": [
+          -0.004889472629850603,
+          0.0224340154147866
+        ],
+        "mean": 0.006015592495514216,
+        "mean_digit_margin_change": 0.012392241379310345,
+        "median_log_mass_change": 7.771561159968379e-16,
+        "median_stem_log_likelihood_change": 0.0,
+        "source_role_means": {
+          "tool": -0.0002364386518785789,
+          "user": 0.009978147448087114
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": -0.006011020629898943,
+        "ne_y_to_x": 0.003260577650781642
+      },
+      "disrupted_count": 34,
+      "disrupted_fraction": 0.14655172413793102,
+      "disruption_reasons": {
+        "candidate_mass": 0,
+        "stem_likelihood": 34
+      },
+      "donor_sign_agreement_rate": 0.04741379310344827,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": 1.4999999403953552,
+          "raw_change_y_to_x": -0.7499998658895493,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": -0.9999998342245817,
+          "raw_change_y_to_x": 0.9999999774736352,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 1.2499999552965164,
+          "raw_change_y_to_x": 0.2499999701976776,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": 0.7500001831795089,
+          "raw_change_y_to_x": 3.749999672098056,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.0031983869467451013,
+        "B": 0.0007744452178537432,
+        "C": -0.0075620244953034195,
+        "D": -0.005702474118043952,
+        "E": 0.011423550888093707,
+        "F": -0.010783043782629375
+      },
+      "interval": [
+        -0.007288335556847262,
+        0.004065249158619598
+      ],
+      "layer": 4,
+      "mean": -0.0013752214895586508,
+      "mean_digit_margin_change": -0.02747844827586207,
+      "median_log_mass_change": -1.221245325691805e-15,
+      "median_stem_log_likelihood_change": -2.980224280690891e-07,
+      "position": "T",
+      "source_role_means": {
+        "tool": 0.0019398847521735403,
+        "user": -0.0034763451638959546
+      }
+    },
+    "T/layer8": {
+      "class": "P-NONE",
+      "cross": {
+        "class": "P-NONE",
+        "direction_means": {
+          "ne_x_to_y": -0.002513862208064998,
+          "ne_y_to_x": -0.002144984729685964
+        },
+        "disrupted_count": 44,
+        "disrupted_fraction": 0.1896551724137931,
+        "disruption_reasons": {
+          "candidate_mass": 0,
+          "stem_likelihood": 44
+        },
+        "donor_sign_agreement_rate": 0.06896551724137931,
+        "eligible_pairs": 116,
+        "excluded_pairs": [
+          {
+            "delta": -0.7500000447034836,
+            "pair": [
+              112,
+              182
+            ],
+            "raw_change_x_to_y": -0.9999999701976776,
+            "raw_change_y_to_x": -1.2499998658895493,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -5.0000000560539775,
+            "pair": [
+              145,
+              221
+            ],
+            "raw_change_x_to_y": -0.49999989569187164,
+            "raw_change_y_to_x": 1.7500002246233635,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -1.2499999701976776,
+            "pair": [
+              143,
+              72
+            ],
+            "raw_change_x_to_y": 1.0,
+            "raw_change_y_to_x": -0.7500000596046448,
+            "reason": "small_or_reversed_delta"
+          },
+          {
+            "delta": -17.2499997317027,
+            "pair": [
+              104,
+              38
+            ],
+            "raw_change_x_to_y": 0.0,
+            "raw_change_y_to_x": 3.4999995839716576,
+            "reason": "small_or_reversed_delta"
+          }
+        ],
+        "family_means": {
+          "A": -0.0018284439835356138,
+          "B": -0.0038316298947974592,
+          "C": -0.006230807941871099,
+          "D": -0.006085080089955523,
+          "E": 0.005320146092629315,
+          "F": 0.0002253702489361873
+        },
+        "interval": [
+          -0.007489736547041723,
+          0.0023371749909793147
+        ],
+        "mean": -0.002329423468875481,
+        "mean_digit_margin_change": 0.02209051724137931,
+        "median_log_mass_change": 8.704148513059498e-14,
+        "median_stem_log_likelihood_change": 1.1920963061129441e-07,
+        "source_role_means": {
+          "tool": -0.00305138913307033,
+          "user": -0.0018718395972026894
+        }
+      },
+      "direction_means": {
+        "ne_x_to_y": -0.0014942933384161133,
+        "ne_y_to_x": -6.850857512850098e-05
+      },
+      "disrupted_count": 37,
+      "disrupted_fraction": 0.15948275862068967,
+      "disruption_reasons": {
+        "candidate_mass": 1,
+        "stem_likelihood": 36
+      },
+      "donor_sign_agreement_rate": 0.04741379310344827,
+      "eligible_pairs": 116,
+      "excluded_pairs": [
+        {
+          "delta": -0.7500000447034836,
+          "pair": [
+            112,
+            182
+          ],
+          "raw_change_x_to_y": -0.5000000149011612,
+          "raw_change_y_to_x": 0.7499999850988388,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -5.0000000560539775,
+          "pair": [
+            145,
+            221
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": 0.250000020081643,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -1.2499999701976776,
+          "pair": [
+            143,
+            72
+          ],
+          "raw_change_x_to_y": 0.0,
+          "raw_change_y_to_x": -0.5000000596046448,
+          "reason": "small_or_reversed_delta"
+        },
+        {
+          "delta": -17.2499997317027,
+          "pair": [
+            104,
+            38
+          ],
+          "raw_change_x_to_y": -0.24999979429412633,
+          "raw_change_y_to_x": 3.999999942181603,
+          "reason": "small_or_reversed_delta"
+        }
+      ],
+      "family_means": {
+        "A": 0.0073151162669219975,
+        "B": -0.0024191824614270864,
+        "C": 0.00907605702374343,
+        "D": -0.002739217349840321,
+        "E": -0.01207181538723787,
+        "F": -0.006541386135348919
+      },
+      "interval": [
+        -0.00716644611330933,
+        0.005534868225801549
+      ],
+      "layer": 8,
+      "mean": -0.0007814009567723069,
+      "mean_digit_margin_change": -0.029094827586206896,
+      "median_log_mass_change": 0.0,
+      "median_stem_log_likelihood_change": 0.0,
+      "position": "T",
+      "source_role_means": {
+        "tool": 0.00041519138127607005,
+        "user": -0.0015398045513100108
+      }
+    }
+  },
+  "collection_manifest": {
+    "path": "data/manifests/2026-11-16_phase2_activation_patching_collection.json",
+    "sha256": "375a6944e91b92d1cfbba597be96bc7d2771e997daef9e8c669b6658aedbde6c"
+  },
+  "health": {
+    "clean_recheck_exact": true,
+    "positive_control_exact": true,
+    "self_exact": true
+  },
+  "hypothesis_mapping": {
+    "description": "T middle layers did not meet the strong-effect criterion; S/G middle layers did. Partial or late-layer T effects are not excluded.",
+    "evidence_cells": [
+      {
+        "cell": "G/layer24",
+        "cross_description": "same_accounts_order_cross_context_ge_half",
+        "cross_to_matched_mean_ratio": 1.2975617526082783
+      }
+    ],
+    "mapping": "H3_consistent",
+    "rule": 2,
+    "shallowest_strong_layers": {
+      "G": 24,
+      "S": null,
+      "T": null
+    }
+  },
+  "limitations": [
+    "post-result train-only; no attack or independent validation",
+    "whole-vector sufficiency does not establish necessity, a probe direction, or first decision time",
+    "cross fixes both account identity and order",
+    "uncorrected exploratory cell intervals"
+  ],
+  "note": "Pair-level effects are omitted here; they remain in the immutable report. Exploratory, post-result, train-only; not independent validation.",
+  "provenance": {
+    "analysis_config_sha256": "b1490f50c938cdaccda523c9eea2c4220086ddce9b1431dd4e5b2aa4f8198ed2",
+    "bundle_manifest_sha256": "omitted; see the report and collection manifest",
+    "capture_commit": "0b99c178ba374489f99fdd6d634add0ff465bd77",
+    "full_declaration_loaded_for_integrity": true,
+    "git_commit": "1d3b338681e161d0035c19475d32e5fdf2542d17",
+    "git_dirty": false,
+    "reference_sha256": {
+      "candidate_report": "6e38ae09b3ba7dae07bb4d910d67e1094525dad76db18f81eef0091a7179a30c",
+      "collection_manifest": "ce5983bcf5a9d4a76d47caacdccc79fa44023e92923369c2462766f33161ffdf",
+      "runtime_freeze": "6078989f3c56f936e764760c43de3a6de7044836c4acbd123a2c75d3d2266367"
+    },
+    "research_result": "post_result_train_only_exploratory_intervention",
+    "runtime_freeze_sha256": "d718cec44eb37472a71d4c0eec3ee91bba5bb4766de96f9ebd69b0c0132e3915",
+    "spec_sha256": "64ac4f67345fbffc66e09fde351319b21035fa863d082ed6e851cc8449a6fc16",
+    "sweep_config_sha256": "5f9d0acfc9ffa66bbb94d789b2b4fc457fcfcdb010dca6ff8335cad01cba9cb6",
+    "validation_declaration_rows_loaded": 192,
+    "validation_rows_used": 0,
+    "validation_run_bundles_loaded": 0
+  },
+  "research_result": "post_result_train_only_exploratory_intervention",
+  "summary_of": {
+    "bytes": 2697050,
+    "manifest_sha256": "7db3fc627ccde7cce05adaee41dddfd29e20b7449d9098d0bf7f0d3775341dd6",
+    "path": "artifacts/processed/argrec672-v1-dg-009-patching/report.json",
+    "sha256": "0510f4ca1c21aaec6bb9323e52c883392aa3130617ef01edaaedb121414bfff8"
+  }
+}

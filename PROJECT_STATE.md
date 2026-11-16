@@ -60,9 +60,19 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   [collection manifest](data/manifests/2026-11-16_phase2_activation_patching_collection.json)
   (SHA-256 `375a6944e91b92d1cfbba597be96bc7d2771e997daef9e8c669b6658aedbde6c`)
   was created on 2026-11-16. It selects all 240 first attempts, with 0 retried
-  conditions, and every bundle manifest checksum matched. Patching analysis
-  at a clean commit other than the capture commit is the next step, pending the
-  researcher's instruction.
+  conditions, and every bundle manifest checksum matched. Patching analysis ran
+  once on 2026-11-16 at clean `1d3b338`
+  ([analysis log](docs/experiment_logs/2026-11-16_activation_patching_analysis.md),
+  [summary](results/2026-11-16_phase2_activation_patching_v1.json),
+  [plain-language report](output/pdf/2026-11-16_activation_patching_report.pdf)).
+  The `self`, positive-control and clean-recheck checks were all bit-exact; 116 of
+  120 pairs were eligible. Only `G` layers 24/28/32/35 were P-STRONG (`G`24 mean
+  0.678), and no cell was P-DISRUPT. `T` was P-NONE at every layer, and `S` was
+  at most P-PARTIAL. Rule 2 maps this to **H3-consistent**. That mapping rests on a
+  single cell at the middle-layer boundary (`G`20 is 0.016), and `cross` exceeded
+  `matched` (ratio 1.30). Both caveats must accompany any citation. This is
+  exploratory, post-result and train-only, not validation. The local wording
+  baseline (`dg-010`) has not been run and awaits the researcher's instruction.
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
