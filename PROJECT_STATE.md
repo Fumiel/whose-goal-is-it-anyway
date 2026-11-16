@@ -71,8 +71,13 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   at most P-PARTIAL. Rule 2 maps this to **H3-consistent**. That mapping rests on a
   single cell at the middle-layer boundary (`G`20 is 0.016), and `cross` exceeded
   `matched` (ratio 1.30). Both caveats must accompany any citation. This is
-  exploratory, post-result and train-only, not validation. The local wording
-  baseline (`dg-010`) has not been run and awaits the researcher's instruction.
+  exploratory, post-result and train-only, not validation. The formal local
+  wording baseline (`dg-010`) ran once on 2026-11-16 at clean `ca51df7`
+  ([log](docs/experiment_logs/2026-11-16_local_wording_baseline.md)). With only the
+  32 characters before each account, family-held-out paired accuracy was 1.000
+  for `A1` and 0.992 for `A2`. Every family-held-out value matches the informal
+  check. The caveat that the sweep's H1-consistent mapping is not H1 evidence
+  therefore stands; no prior classification changes.
 - Phase 2 custom-task candidate: the development-only two-document purchase-order
   payment series is declared in `data/templates/phase2_two_document_payment_v1.json`.
   Five matched source-role variants pass synthetic controls and native AgentDojo
