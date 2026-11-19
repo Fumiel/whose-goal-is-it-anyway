@@ -7,6 +7,24 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 ## Current phase
 
 - Phase: `phase2_argument_recipient_672_execution_design_review`
+- Proposed direction (2026-11-20, pending supervisor approval):
+  [RDR-2026-11-20-01](docs/decisions/2026-11-20_pointer_hijack_question_and_bec_attack_extension.md)
+  (`proposed`) compares Claude's initial plan with a ChatGPT critical review
+  (prompt and response under `docs/deep_research/2026-11-20_*`). It proposes
+  replacing the "when is the recipient decided" question with whether IPI
+  hijacks which in-context candidate is pointed to (a low-dimensional "pointer"
+  component at `G`), and it stops citing the patching result as "decided at
+  `G`" (the `H3-consistent` mapping stays as a historical rule output). It
+  proposes a business-email-compromise style threat model where the legitimate
+  recipient also comes from the document, three experiments (pointer direction
+  from saved residuals and direction-only/donor-separated patching; a 90-120
+  condition clean/placebo/IPI set with a third account; a pointer-restoring
+  defense), gates G0-G8 (11/24 to 1/11), a deviation from protocol section 22
+  so that the IPI experiment runs in December, and replacing the
+  `authority_score` confirmatory regression. Deadlines: interim review
+  2026-11-30, thesis submission 2027-02-09, oral examination 2027-02-16.
+  Until approval, the current proposal, protocol, and earlier RDRs remain in
+  force; no condition, split, specification, or runtime is frozen by it.
 - Latest patching status, verified by read-only inspection on 2026-11-14:
   `argrec672-v1-pt-001` has 48 completed bundles, one retained technical failure
   (`c475`, intervention-stage 600-second ceiling), and 191 unrun conditions.
