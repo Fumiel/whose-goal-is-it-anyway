@@ -7,9 +7,9 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
 ## Current phase
 
 - Phase: `phase2_argument_recipient_672_execution_design_review`
-- Proposed direction (2026-11-20, pending supervisor approval):
+- Accepted direction (proposed 2026-11-20, accepted 2026-11-24):
   [RDR-2026-11-20-01](docs/decisions/2026-11-20_pointer_hijack_question_and_bec_attack_extension.md)
-  (`proposed`) compares Claude's initial plan with a ChatGPT critical review
+  (`accepted`) compares Claude's initial plan with a ChatGPT critical review
   (prompt and response under `docs/deep_research/2026-11-20_*`). It proposes
   replacing the "when is the recipient decided" question with whether IPI
   hijacks which in-context candidate is pointed to (a low-dimensional "pointer"
@@ -23,8 +23,15 @@ experimental procedure remains canonical in `docs/experimental_protocol.md`.
   so that the IPI experiment runs in December, and replacing the
   `authority_score` confirmatory regression. Deadlines: interim review
   2026-11-30, thesis submission 2027-02-09, oral examination 2027-02-16.
-  Until approval, the current proposal, protocol, and earlier RDRs remain in
-  force; no condition, split, specification, or runtime is frozen by it.
+  On 2026-11-24 the researcher reported that this direction was decided and
+  asked for it to be marked `accepted`; no item-level modifications were
+  reported. `docs/research_proposal.md` (title, sections 2.1, 6.1, 7, 9-11)
+  and `docs/experimental_protocol.md` (sections 1, 15.0, 19, 22) were revised
+  accordingly; the original text is retained as history. The `authority_score`
+  regression is no longer the confirmatory analysis; its replacement metric
+  will be fixed in a separate RDR after G2. No condition, split,
+  specification, or runtime is frozen by it. Next gates: G0 literature comparison (11/24), G1 experiment-2 condition
+  design (11/27), G2 experiment-1 (b)(c) results (11/28).
 - Latest patching status, verified by read-only inspection on 2026-11-14:
   `argrec672-v1-pt-001` has 48 completed bundles, one retained technical failure
   (`c475`, intervention-stage 600-second ceiling), and 191 unrun conditions.
